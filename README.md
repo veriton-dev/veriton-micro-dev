@@ -15,6 +15,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 
 ## Free tool
 - **[HTML → JSON extractor](./tools/html-to-json.html)** — browser-only, no upload. Paste HTML → title/meta/links/images/selector JSON.
+- Share card: [assets/html-to-json-og.jpg](./assets/html-to-json-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)
