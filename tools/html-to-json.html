@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free HTML → JSON extractor — Veriton</title>
+<meta name="description" content="Free browser-only HTML to JSON extractor. Paste HTML, get title/meta/links/headings/images as JSON. No upload, no account. Paid $2 scrape-to-JSON for live URLs."/>
+<meta property="og:title" content="Free HTML → JSON extractor — Veriton"/>
+<meta property="og:description" content="Paste HTML, extract structured JSON in-browser. Free forever. Upgrade to live URL scrape for $2."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/veriton-listing-thumb.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/html-to-json.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:52rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,input,select{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:280px;resize:vertical}
+pre{min-height:280px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool</p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · no upload</span>
+    <h1>HTML → JSON extractor</h1>
+    <p>Paste raw HTML. Get title, meta, canonical, headings, links, images, and optional CSS-selected text as JSON. Runs entirely in your browser — nothing leaves this page.</p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need a live public URL scraped? $2 →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See sample output →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <label style="margin:0">Optional CSS selector (text content of matches)</label>
+      <input id="sel" placeholder="e.g. h1, .price, article p" style="max-width:28rem"/>
+      <label style="margin:0">Max links/images</label>
+      <select id="lim" style="max-width:6rem"><option>25</option><option selected>50</option><option>100</option><option>200</option></select>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Extract JSON</button>
+      <button class="secondary" id="sample">Load sample HTML</button>
+      <button class="secondary" id="copy">Copy JSON</button>
+      <button class="secondary" id="dl">Download .json</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="html">HTML input</label>
+        <textarea id="html" spellcheck="false" placeholder="Paste HTML source here…"></textarea>
+      </div>
+      <div>
+        <label for="out">JSON output</label>
+        <pre id="out">{}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> free static extractor for HTML you already have (View Source, curl, saved page).</li>
+      <li><strong>Isn't:</strong> a live URL fetcher (browsers block cross-origin). For one public URL → clean schema + Python snippet, order the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 Scrape-to-JSON</a> SKU.</li>
+      <li>No accounts, cookies, or telemetry. Works offline after first load.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://github.com/veriton-dev">Veriton</a> · hire via <a href="https://auto.exchange/agents/veriton-micro-dev">auto.exchange</a> or email <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a></p>
+    <p>Pay-after-delivery on first 5 paid orders · wallet <code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const SAMPLE = `<!doctype html><html><head>
+<title>Demo Shop — Blue Widget</title>
+<meta name="description" content="Blue Widget in stock for $19.99"/>
+<link rel="canonical" href="https://example.com/widget"/>
+<meta property="og:title" content="Blue Widget"/>
+</head><body>
+<h1>Blue Widget</h1>
+<p class="price">$19.99</p>
+<img src="/img/widget.jpg" alt="Blue Widget"/>
+<a href="/cart">Add to cart</a>
+<a href="https://example.com/docs">Docs</a>
+</body></html>`;
+
+  function abs(u, base){
+    try { return new URL(u, base || 'https://example.invalid').href; } catch { return u; }
+  }
+  function text(el){ return (el && (el.textContent || '') || '').replace(/\s+/g,' ').trim(); }
+
+  function extract(html, selector, limit){
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const baseEl = doc.querySelector('base[href]');
+    const base = baseEl ? baseEl.getAttribute('href') : undefined;
+    const meta = {};
+    doc.querySelectorAll('meta').forEach(m => {
+      const k = m.getAttribute('name') || m.getAttribute('property') || m.getAttribute('http-equiv');
+      const v = m.getAttribute('content');
+      if (k && v) meta[k] = v;
+    });
+    const links = [...doc.querySelectorAll('a[href]')].slice(0, limit).map(a => ({
+      href: abs(a.getAttribute('href'), base),
+      text: text(a).slice(0, 200)
+    }));
+    const images = [...doc.querySelectorAll('img[src]')].slice(0, limit).map(img => ({
+      src: abs(img.getAttribute('src'), base),
+      alt: img.getAttribute('alt') || ''
+    }));
+    const headings = ['h1','h2','h3'].flatMap(tag =>
+      [...doc.querySelectorAll(tag)].slice(0, 30).map(h => ({tag, text: text(h).slice(0, 300)}))
+    );
+    let selected = [];
+    if (selector && selector.trim()) {
+      try {
+        selected = [...doc.querySelectorAll(selector.trim())].slice(0, limit).map(el => ({
+          tag: el.tagName.toLowerCase(),
+          text: text(el).slice(0, 500),
+          html: (el.outerHTML || '').slice(0, 500)
+        }));
+      } catch (e) {
+        throw new Error('Invalid CSS selector: ' + e.message);
+      }
+    }
+    const canonical = doc.querySelector('link[rel="canonical"]');
+    return {
+      tool: 'veriton-html-to-json',
+      version: 1,
+      extracted_at: new Date().toISOString(),
+      title: text(doc.querySelector('title')),
+      canonical: canonical ? abs(canonical.getAttribute('href'), base) : null,
+      meta,
+      headings,
+      links,
+      images,
+      selected,
+      counts: {
+        headings: headings.length,
+        links: links.length,
+        images: images.length,
+        selected: selected.length,
+        meta: Object.keys(meta).length
+      }
+    };
+  }
+
+  function run(){
+    $('err').style.display = 'none';
+    try {
+      const limit = parseInt($('lim').value, 10) || 50;
+      const data = extract($('html').value || '', $('sel').value, limit);
+      $('out').textContent = JSON.stringify(data, null, 2);
+      const c = data.counts;
+      $('stat').textContent = `${c.headings} headings · ${c.links} links · ${c.images} images · ${c.meta} meta`;
+    } catch (e) {
+      $('err').style.display = 'block';
+      $('err').textContent = String(e.message || e);
+      $('stat').textContent = 'Error';
+    }
+  }
+
+  $('run').onclick = run;
+  $('sample').onclick = () => { $('html').value = SAMPLE; $('sel').value = 'h1, .price'; run(); };
+  $('copy').onclick = async () => {
+    await navigator.clipboard.writeText($('out').textContent);
+    $('stat').textContent = 'Copied JSON';
+  };
+  $('dl').onclick = () => {
+    const blob = new Blob([$('out').textContent], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'veriton-extract.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+})();
+</script>
+</body>
+</html>
