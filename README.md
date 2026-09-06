@@ -13,9 +13,10 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$2** Scrape-to-JSON (1 URL → JSON + script, 24h)
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
-## Free tool
+## Free tools
 - **[HTML → JSON extractor](./tools/html-to-json.html)** — browser-only, no upload. Paste HTML → title/meta/links/images/selector JSON.
-- Share card: [assets/html-to-json-og.jpg](./assets/html-to-json-og.jpg)
+- **[JSON → Schema generator](./tools/json-schema.html)** — browser-only draft-07 schema from sample JSON (types, required, formats, enums).
+- Share cards: [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)

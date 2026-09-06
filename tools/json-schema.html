@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free JSON → JSON Schema generator — Veriton</title>
+<meta name="description" content="Free browser-only JSON to JSON Schema (draft-07) generator. Paste sample JSON, get a usable schema. No upload, no account. Pair with Veriton $2 scrape-to-JSON."/>
+<meta property="og:title" content="Free JSON → JSON Schema generator — Veriton"/>
+<meta property="og:description" content="Paste sample JSON, infer draft-07 schema in-browser. Free forever. Upgrade to live URL scrape for $2."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/json-schema-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/json-schema-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/json-schema.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:52rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,input,select{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:300px;resize:vertical}
+pre{min-height:300px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.chk{display:flex;gap:.45rem;align-items:center;font-size:.9rem;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="html-to-json.html">HTML→JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · draft-07</span>
+    <h1>JSON → JSON Schema generator</h1>
+    <p>Paste sample JSON. Infer a practical JSON Schema (draft-07) with types, required keys, enums for short strings, and array item shapes. Runs entirely in your browser — nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/json-schema-og.jpg" alt="JSON to JSON Schema free browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need live URL → clean JSON + schema? $2 →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See scrape sample →</a>
+       <a class="btn ghost" href="html-to-json.html">HTML→JSON tool →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <label class="chk"><input type="checkbox" id="req" checked/> mark object keys required</label>
+      <label class="chk"><input type="checkbox" id="add" checked/> additionalProperties: false</label>
+      <label class="chk"><input type="checkbox" id="enums" checked/> enum short repeated strings</label>
+      <label style="margin:0">title</label>
+      <input id="title" placeholder="optional schema title" style="max-width:16rem"/>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Generate schema</button>
+      <button class="secondary" id="sample">Load sample JSON</button>
+      <button class="secondary" id="fmt">Format input</button>
+      <button class="secondary" id="copy">Copy schema</button>
+      <button class="secondary" id="dl">Download .json</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="inp">Sample JSON</label>
+        <textarea id="inp" spellcheck="false" placeholder='{"id":1,"name":"ada","tags":["dev","agent"]}'></textarea>
+      </div>
+      <div>
+        <label for="out">JSON Schema (draft-07)</label>
+        <pre id="out">{}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a fast local draft schema from one sample document (or a small array of samples).</li>
+      <li><strong>Is:</strong> useful for validating scrape output, webhook payloads, and fixture shape before you write tests.</li>
+      <li><strong>Isn't:</strong> a full OpenAPI builder, and it cannot see fields that never appear in the sample.</li>
+      <li><strong>Isn't:</strong> a live-site fetcher. For one public URL → cleaned JSON + schema notes, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 scrape-to-JSON SKU</a>.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Veriton free tools · no cookies · no analytics · <a href="../">hire micro-dev</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a></p>
+    <p class="muted">Updated 2026-09-06 · pairs with free <a href="html-to-json.html">HTML→JSON</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const err = (m) => { const e=$('err'); if(!m){e.style.display='none';e.textContent='';return;} e.style.display='block'; e.textContent=m; };
+  const sample = {
+    id: 42,
+    slug: "veriton-micro-dev",
+    active: true,
+    price_usd: 2,
+    tags: ["scrape", "json", "agent"],
+    owner: { handle: "veriton-dev", email: "acer-openclaw@agentmail.to" },
+    metrics: { requests: 0, earned: 0.0 },
+    optional_note: null
+  };
+
+  function isEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s); }
+  function isUri(s){ return /^https?:\/\//i.test(s); }
+  function isDateTime(s){ return /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?)?$/.test(s); }
+  function isUuid(s){ return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(s); }
+
+  function mergeTypes(a,b){
+    const sa = new Set(Array.isArray(a) ? a : (a ? [a] : []));
+    const sb = new Set(Array.isArray(b) ? b : (b ? [b] : []));
+    sb.forEach(t => sa.add(t));
+    const arr = [...sa];
+    if (arr.length === 0) return undefined;
+    if (arr.length === 1) return arr[0];
+    return arr.sort();
+  }
+
+  function inferStringFormat(s){
+    if (isUri(s)) return 'uri';
+    if (isEmail(s)) return 'email';
+    if (isUuid(s)) return 'uuid';
+    if (isDateTime(s)) return 'date-time';
+    return undefined;
+  }
+
+  function inferOne(v, opts, path){
+    if (v === null) return { type: 'null' };
+    const t = Array.isArray(v) ? 'array' : typeof v;
+    if (t === 'number') {
+      return Number.isInteger(v) ? { type: 'integer' } : { type: 'number' };
+    }
+    if (t === 'boolean') return { type: 'boolean' };
+    if (t === 'string') {
+      const out = { type: 'string' };
+      const fmt = inferStringFormat(v);
+      if (fmt) out.format = fmt;
+      if (opts.enums && v.length > 0 && v.length <= 32) out._enumCandidates = [v];
+      return out;
+    }
+    if (t === 'array') {
+      const out = { type: 'array' };
+      if (v.length === 0) {
+        out.items = {};
+        return out;
+      }
+      let item = null;
+      for (const el of v) {
+        const sch = inferOne(el, opts, path + '[]');
+        item = item ? mergeSchema(item, sch, opts) : sch;
+      }
+      out.items = item || {};
+      return out;
+    }
+    if (t === 'object') {
+      const out = { type: 'object', properties: {} };
+      const keys = Object.keys(v);
+      for (const k of keys) {
+        out.properties[k] = inferOne(v[k], opts, path + '.' + k);
+      }
+      if (opts.required) out.required = keys.slice().sort();
+      if (opts.additional === false) out.additionalProperties = false;
+      return out;
+    }
+    return {};
+  }
+
+  function mergeSchema(a, b, opts){
+    if (!a) return b;
+    if (!b) return a;
+    const out = {};
+    out.type = mergeTypes(a.type, b.type);
+    // formats
+    if (a.format && a.format === b.format) out.format = a.format;
+    // properties
+    if (a.properties || b.properties) {
+      out.type = mergeTypes(out.type, 'object');
+      out.properties = {};
+      const keys = new Set([
+        ...Object.keys(a.properties || {}),
+        ...Object.keys(b.properties || {})
+      ]);
+      const reqA = new Set(a.required || []);
+      const reqB = new Set(b.required || []);
+      const req = [];
+      for (const k of keys) {
+        out.properties[k] = mergeSchema(a.properties?.[k], b.properties?.[k], opts);
+        if (opts.required && reqA.has(k) && reqB.has(k)) req.push(k);
+      }
+      if (opts.required && req.length) out.required = req.sort();
+      if (opts.additional === false) out.additionalProperties = false;
+    }
+    // items
+    if (a.items || b.items) {
+      out.type = mergeTypes(out.type, 'array');
+      out.items = mergeSchema(a.items || {}, b.items || {}, opts);
+    }
+    // enum candidates
+    const ca = a._enumCandidates || (a.enum ? [a.enum].flat().map(x=>String(x)) : null);
+    const cb = b._enumCandidates || (b.enum ? [b.enum].flat().map(x=>String(x)) : null);
+    if (opts.enums && (a.type === 'string' || b.type === 'string' || (Array.isArray(out.type) && out.type.includes('string')))) {
+      const vals = new Set();
+      (a._enumCandidates || []).forEach(x => vals.add(x));
+      (b._enumCandidates || []).forEach(x => vals.add(x));
+      if (a.enum) a.enum.forEach(x => vals.add(x));
+      if (b.enum) b.enum.forEach(x => vals.add(x));
+      // keep intermediate candidates
+      out._enumCandidates = [...vals];
+    }
+    return out;
+  }
+
+  function finalize(schema, opts){
+    if (!schema || typeof schema !== 'object') return schema;
+    const s = { ...schema };
+    if (s._enumCandidates) {
+      const vals = [...new Set(s._enumCandidates)].filter(v => typeof v === 'string' && v.length <= 48);
+      if (opts.enums && vals.length >= 1 && vals.length <= 12 && s.type === 'string' && !s.format) {
+        // only lock enum when small closed set from multiple samples or repeated single values is still useful? keep optional soft enum only if <=8 unique from multi-sample merge
+        if (vals.length <= 8) s.enum = vals.sort();
+      }
+      delete s._enumCandidates;
+    }
+    if (s.properties) {
+      const props = {};
+      for (const [k,v] of Object.entries(s.properties)) props[k] = finalize(v, opts);
+      s.properties = props;
+    }
+    if (s.items) s.items = finalize(s.items, opts);
+    return s;
+  }
+
+  function build(raw, opts){
+    let data = JSON.parse(raw);
+    let schema;
+    if (Array.isArray(data)) {
+      // treat as multiple samples of same root shape when homogeneous objects; else schema for the array itself
+      const allObjects = data.length > 0 && data.every(x => x && typeof x === 'object' && !Array.isArray(x));
+      if (allObjects) {
+        schema = null;
+        for (const row of data) schema = mergeSchema(schema, inferOne(row, opts, '$'), opts);
+      } else {
+        schema = inferOne(data, opts, '$');
+      }
+    } else {
+      schema = inferOne(data, opts, '$');
+    }
+    schema = finalize(schema, opts);
+    const root = {
+      $schema: 'http://json-schema.org/draft-07/schema#',
+      $id: 'https://veriton-dev.github.io/veriton-micro-dev/schemas/inferred.json',
+    };
+    if (opts.title) root.title = opts.title;
+    root.description = 'Inferred from sample JSON in-browser by Veriton free tool. Review before production use.';
+    return Object.assign(root, schema);
+  }
+
+  function run(){
+    err('');
+    try {
+      const opts = {
+        required: $('req').checked,
+        additional: $('add').checked ? false : undefined,
+        enums: $('enums').checked,
+        title: $('title').value.trim()
+      };
+      // normalize additional flag for helpers
+      opts.additional = $('add').checked ? false : true;
+      const schema = build($('inp').value.trim() || 'null', {
+        required: opts.required,
+        additional: $('add').checked ? false : true,
+        enums: opts.enums,
+        title: opts.title
+      });
+      // fix additional: when unchecked, omit field
+      function stripAdd(node, keepFalse){
+        if (!node || typeof node !== 'object') return node;
+        const n = {...node};
+        if (!keepFalse && 'additionalProperties' in n && n.additionalProperties === false) {
+          // keep
+        }
+        if (!keepFalse) {
+          // already only set when checked
+        }
+        if (!$('add').checked) delete n.additionalProperties;
+        if (n.properties) {
+          const p={}; for (const [k,v] of Object.entries(n.properties)) p[k]=stripAdd(v, keepFalse); n.properties=p;
+        }
+        if (n.items) n.items = stripAdd(n.items, keepFalse);
+        return n;
+      }
+      const cleaned = stripAdd(schema, $('add').checked);
+      const text = JSON.stringify(cleaned, null, 2);
+      $('out').textContent = text;
+      const keys = cleaned.properties ? Object.keys(cleaned.properties).length : (cleaned.type || 'value');
+      $('stat').textContent = 'Schema ready · root type ' + (Array.isArray(cleaned.type)?cleaned.type.join('|'):cleaned.type) + (cleaned.properties ? (' · ' + Object.keys(cleaned.properties).length + ' props') : '');
+      window.__schema = text;
+    } catch (e) {
+      err('JSON parse/infer error: ' + (e && e.message ? e.message : e));
+      $('stat').textContent = 'Error';
+    }
+  }
+
+  $('sample').onclick = () => { $('inp').value = JSON.stringify(sample, null, 2); run(); };
+  $('fmt').onclick = () => {
+    try { $('inp').value = JSON.stringify(JSON.parse($('inp').value), null, 2); err(''); }
+    catch(e){ err('Cannot format: ' + e.message); }
+  };
+  $('run').onclick = run;
+  $('copy').onclick = async () => {
+    const t = window.__schema || $('out').textContent;
+    try { await navigator.clipboard.writeText(t); $('stat').textContent = 'Copied schema'; }
+    catch { err('Clipboard blocked — select the schema and copy manually'); }
+  };
+  $('dl').onclick = () => {
+    const t = window.__schema || $('out').textContent;
+    const blob = new Blob([t], {type:'application/schema+json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'inferred.schema.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  // boot empty ready state
+  $('inp').value = JSON.stringify(sample, null, 2);
+  run();
+})();
+</script>
+</body>
+</html>
