@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Cron Expression Explainer — Veriton</title>
+<meta name="description" content="Free browser-only cron expression explainer. Paste a 5-field crontab, get plain English + next run times. No upload, no account. Useful for CI, agents, and ops."/>
+<meta property="og:title" content="Free Cron Expression Explainer — Veriton"/>
+<meta property="og:description" content="Paste a crontab expression. Get plain English and the next run times in-browser. Free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/cron-explain-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/cron-explain-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/cron-explain.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:52rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:800px){.grid{grid-template-columns:1.05fr .95fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,input,select{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:120px;resize:vertical}
+pre{min-height:280px;overflow:auto;background:#0b1220;color:#e2e8f0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.chip{background:#eef2ff;color:#312e81;border:1px solid #c7d2fe;border-radius:999px;padding:.2rem .65rem;font-size:.8rem;font-weight:700;cursor:pointer}
+.chip:hover{background:#e0e7ff}
+.field{display:grid;grid-template-columns:5.5rem 1fr;gap:.5rem;align-items:center;margin:.35rem 0;font-size:.9rem}
+.field code{background:#f3f4f6;border-radius:6px;padding:.15rem .4rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="diff-risk.html">Diff Risk</a> · <a href="html-to-json.html">HTML→JSON</a> · <a href="json-schema.html">JSON→Schema</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · 5-field cron</span>
+    <h1>Cron Expression Explainer</h1>
+    <p>Paste a classic 5-field crontab (<code>min hour dom mon dow</code>). Get plain English, field breakdown, and the next run times. Runs entirely in your browser — nothing is uploaded. Handy for CI schedules, agent wake loops, and ops checklists.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/cron-explain-og.jpg" alt="Cron Expression Explainer free tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a repo + CI schedule scaffold? $3 →</a>
+       <a class="btn ghost" href="diff-risk.html">Diff Risk →</a>
+       <a class="btn ghost" href="../">Offer page →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="chips" id="presets">
+      <span class="chip" data-cron="*/5 * * * *">every 5 min</span>
+      <span class="chip" data-cron="0 * * * *">hourly</span>
+      <span class="chip" data-cron="0 9 * * 1-5">weekdays 09:00</span>
+      <span class="chip" data-cron="30 2 * * *">daily 02:30</span>
+      <span class="chip" data-cron="0 0 1 * *">1st of month</span>
+      <span class="chip" data-cron="0 12 * * 0">Sundays noon</span>
+      <span class="chip" data-cron="15 10 15 * *">15th @ 10:15</span>
+      <span class="chip" data-cron="0 0 * * 1,4">Mon+Thu midnight</span>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Explain</button>
+      <button class="secondary" id="copy">Copy report</button>
+      <button class="secondary" id="dl">Download .md</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="inp">Cron expression (5 fields)</label>
+        <input id="inp" spellcheck="false" value="0 9 * * 1-5" placeholder="0 9 * * 1-5"/>
+        <label for="tz" style="margin-top:.7rem">Timezone label (display only)</label>
+        <input id="tz" value="America/Los_Angeles" spellcheck="false"/>
+        <label for="count" style="margin-top:.7rem">Next runs to list</label>
+        <select id="count">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="20">20</option>
+        </select>
+        <p class="muted" style="margin:.7rem 0 0">Supports <code>*</code>, <code>*/n</code>, lists (<code>1,4</code>), ranges (<code>1-5</code>), and steps on ranges (<code>1-10/2</code>). No seconds field; no <code>L</code>/<code>W</code>/<code>#</code> extensions.</p>
+      </div>
+      <div>
+        <label>Human summary</label>
+        <div id="summary" class="muted">Click Explain.</div>
+        <label style="margin-top:.8rem">Field map</label>
+        <div id="fields" class="muted">—</div>
+        <label for="out" style="margin-top:.8rem">Markdown report</label>
+        <pre id="out"># Cron explain report
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">What this is (and is not)</h3>
+    <p class="muted">Local decoder for standard 5-field cron used by crontab, many CI systems, and agent schedulers. It does not execute jobs, talk to a server, or guarantee platform-specific quirks (some runners treat Sunday as 0 or 7; some reject both). Day-of-month <strong>and</strong> day-of-week both set ⇒ match either (classic cron OR semantics). For a full CI scaffold + README + deploy checklist, use the <strong>$3 Repo Bootstrap</strong>.</p>
+  </div>
+
+  <footer>
+    Veriton Micro-Dev · free tool · <a href="../">offer</a> ·
+    <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const NAMES = {
+    mon: ['','January','February','March','April','May','June','July','August','September','October','November','December'],
+    dow: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  };
+
+  function parseField(raw, min, max){
+    const out = new Set();
+    const parts = String(raw).split(',');
+    for (const part of parts){
+      const p = part.trim();
+      if (!p) throw new Error('empty list item');
+      let step = 1;
+      let base = p;
+      if (p.includes('/')){
+        const [b,s] = p.split('/');
+        base = b || '*';
+        step = parseInt(s,10);
+        if (!Number.isFinite(step) || step < 1) throw new Error('bad step in '+p);
+      }
+      let start, end;
+      if (base === '*'){ start = min; end = max; }
+      else if (base.includes('-')){
+        const [a,b] = base.split('-');
+        start = parseInt(a,10); end = parseInt(b,10);
+      } else {
+        start = end = parseInt(base,10);
+      }
+      if (![start,end].every(n => Number.isFinite(n))) throw new Error('bad number in '+p);
+      if (start < min || end > max || start > end) throw new Error('out of range in '+p+' (valid '+min+'-'+max+')');
+      for (let i=start; i<=end; i+=step) out.add(i);
+    }
+    return [...out].sort((a,b)=>a-b);
+  }
+
+  function describeList(vals, min, max, namer){
+    if (vals.length === (max-min+1)) return 'every';
+    if (vals.length === 1) return namer ? namer(vals[0]) : String(vals[0]);
+    // detect simple step
+    if (vals.length > 1){
+      const step = vals[1]-vals[0];
+      let ok = true;
+      for (let i=1;i<vals.length;i++){ if (vals[i]-vals[i-1] !== step){ ok=false; break; } }
+      if (ok && vals[0]===min && vals[vals.length-1]+step > max) return 'every '+step;
+    }
+    const mapped = vals.map(v => namer ? namer(v) : String(v));
+    if (mapped.length <= 8) return mapped.join(', ');
+    return mapped.slice(0,8).join(', ') + ', … ('+mapped.length+' values)';
+  }
+
+  function explain(expr){
+    const fields = expr.trim().split(/\s+/);
+    if (fields.length !== 5) throw new Error('need exactly 5 fields (min hour dom mon dow); got '+fields.length);
+    const [fMin,fHour,fDom,fMon,fDow] = fields;
+    const minute = parseField(fMin, 0, 59);
+    const hour = parseField(fHour, 0, 23);
+    const dom = parseField(fDom, 1, 31);
+    const mon = parseField(fMon, 1, 12);
+    let dowRaw = fDow;
+    // allow 7 as Sunday alias → 0
+    const dowParts = dowRaw.split(',').map(p=>{
+      return p.replace(/\b7\b/g,'0');
+    }).join(',');
+    const dow = parseField(dowParts, 0, 6);
+    const domStar = fDom === '*' || fDom.startsWith('*/');
+    const dowStar = fDow === '*' || fDow.startsWith('*/') || fDow.replace(/\b7\b/g,'0') === '*';
+    return {minute,hour,dom,mon,dow,domStar,dowStar,fields:{fMin,fHour,fDom,fMon,fDow}};
+  }
+
+  function plainEnglish(p){
+    const minT = describeList(p.minute,0,59);
+    const hourT = describeList(p.hour,0,23);
+    const monT = describeList(p.mon,1,12, v => NAMES.mon[v]);
+    const domT = describeList(p.dom,1,31);
+    const dowT = describeList(p.dow,0,6, v => NAMES.dow[v]);
+    let when = '';
+    if (minT === 'every' && hourT === 'every') when = 'Every minute';
+    else if (minT.startsWith('every ') && hourT === 'every') when = 'Every '+minT.slice(6)+' minutes';
+    else if (minT === 'every') when = 'Every minute during hour '+hourT;
+    else if (hourT === 'every') when = 'At minute '+minT+' of every hour';
+    else when = 'At '+String(p.hour[0]).padStart(2,'0')+':'+String(p.minute[0]).padStart(2,'0') + (p.hour.length+p.minute.length>2 ? ' (and matching hour/minute sets)' : '');
+
+    let day = '';
+    if (p.domStar && p.dowStar) day = 'every day';
+    else if (!p.domStar && p.dowStar) day = 'on day-of-month '+domT;
+    else if (p.domStar && !p.dowStar) day = 'on '+dowT;
+    else day = 'on day-of-month '+domT+' OR on '+dowT+' (cron OR rule)';
+
+    let month = (monT === 'every') ? 'every month' : 'in '+monT;
+    return when + ', ' + day + ', ' + month + '.';
+  }
+
+  function matches(dt, p){
+    if (!p.minute.includes(dt.getMinutes())) return false;
+    if (!p.hour.includes(dt.getHours())) return false;
+    if (!p.mon.includes(dt.getMonth()+1)) return false;
+    const domOk = p.dom.includes(dt.getDate());
+    const dowOk = p.dow.includes(dt.getDay());
+    if (p.domStar && p.dowStar) return true;
+    if (!p.domStar && p.dowStar) return domOk;
+    if (p.domStar && !p.dowStar) return dowOk;
+    return domOk || dowOk; // classic OR
+  }
+
+  function nextRuns(p, n, from){
+    const out = [];
+    const cursor = new Date(from.getTime());
+    cursor.setSeconds(0,0);
+    cursor.setMinutes(cursor.getMinutes()+1); // exclusive of now
+    // hard cap search ~ 4 years of minutes is too slow; jump smartly
+    let guard = 0;
+    const maxGuard = 366*24*60; // 1 year minute scan worst case
+    while (out.length < n && guard < maxGuard){
+      guard++;
+      if (matches(cursor, p)){
+        out.push(new Date(cursor.getTime()));
+        cursor.setMinutes(cursor.getMinutes()+1);
+        continue;
+      }
+      // skip forward: if minute not in set, jump to next candidate minute in hour
+      const m = cursor.getMinutes();
+      const nextMin = p.minute.find(x => x > m);
+      if (nextMin != null){
+        cursor.setMinutes(nextMin);
+        continue;
+      }
+      // next hour candidate
+      cursor.setMinutes(0);
+      cursor.setHours(cursor.getHours()+1);
+      const h = cursor.getHours();
+      // if hour not matching, jump
+      if (!p.hour.includes(h)){
+        const nextH = p.hour.find(x => x > h);
+        if (nextH != null) cursor.setHours(nextH, p.minute[0]||0, 0, 0);
+        else {
+          // next day
+          cursor.setDate(cursor.getDate()+1);
+          cursor.setHours(p.hour[0]||0, p.minute[0]||0, 0, 0);
+        }
+      } else {
+        cursor.setMinutes(p.minute[0]||0, 0, 0);
+      }
+    }
+    return out;
+  }
+
+  function fmt(d, tzLabel){
+    // display in local browser TZ; label is informational
+    const pad = n => String(n).padStart(2,'0');
+    const s = d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes());
+    const dow = NAMES.dow[d.getDay()];
+    return s + ' ('+dow+')' + (tzLabel ? ' · browser-local; label='+tzLabel : '');
+  }
+
+  function render(){
+    $('err').style.display='none';
+    try{
+      const expr = $('inp').value.trim();
+      const p = explain(expr);
+      const summary = plainEnglish(p);
+      const tz = $('tz').value.trim() || 'local';
+      const n = parseInt($('count').value,10) || 10;
+      const runs = nextRuns(p, n, new Date());
+      $('summary').innerHTML = '<strong style="color:#111827">'+summary+'</strong>';
+      $('fields').innerHTML = [
+        ['minute', p.fields.fMin, describeList(p.minute,0,59)],
+        ['hour', p.fields.fHour, describeList(p.hour,0,23)],
+        ['dom', p.fields.fDom, describeList(p.dom,1,31)],
+        ['month', p.fields.fMon, describeList(p.mon,1,12, v=>NAMES.mon[v])],
+        ['dow', p.fields.fDow, describeList(p.dow,0,6, v=>NAMES.dow[v])]
+      ].map(([k,raw,desc]) => '<div class="field"><code>'+k+'</code><span><code>'+raw+'</code> → '+desc+'</span></div>').join('');
+
+      const lines = [];
+      lines.push('# Cron explain report');
+      lines.push('');
+      lines.push('- Expression: `'+expr+'`');
+      lines.push('- Summary: '+summary);
+      lines.push('- Timezone label: '+tz+' (next-run clock uses this browser\'s local zone)');
+      lines.push('- Generated: '+new Date().toISOString());
+      lines.push('');
+      lines.push('## Fields');
+      lines.push('| Field | Raw | Meaning |');
+      lines.push('|---|---|---|');
+      lines.push('| minute | `'+p.fields.fMin+'` | '+describeList(p.minute,0,59)+' |');
+      lines.push('| hour | `'+p.fields.fHour+'` | '+describeList(p.hour,0,23)+' |');
+      lines.push('| day-of-month | `'+p.fields.fDom+'` | '+describeList(p.dom,1,31)+' |');
+      lines.push('| month | `'+p.fields.fMon+'` | '+describeList(p.mon,1,12, v=>NAMES.mon[v])+' |');
+      lines.push('| day-of-week | `'+p.fields.fDow+'` | '+describeList(p.dow,0,6, v=>NAMES.dow[v])+' |');
+      lines.push('');
+      lines.push('## Next '+runs.length+' runs (browser-local)');
+      runs.forEach((d,i)=> lines.push((i+1)+'. '+fmt(d, tz)));
+      if (!runs.length) lines.push('_No runs found within search window._');
+      lines.push('');
+      lines.push('---');
+      lines.push('Generated by Veriton free Cron Explainer — https://veriton-dev.github.io/veriton-micro-dev/tools/cron-explain.html');
+      $('out').textContent = lines.join('\n');
+      $('stat').textContent = runs.length ? ('OK · '+runs.length+' next runs') : 'Parsed · 0 runs in window';
+    } catch (e){
+      $('err').style.display='block';
+      $('err').textContent = e.message || String(e);
+      $('stat').textContent = 'Error';
+    }
+  }
+
+  $('run').onclick = render;
+  $('inp').addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
+  document.getElementById('presets').addEventListener('click', e => {
+    const t = e.target.closest('.chip'); if (!t) return;
+    $('inp').value = t.getAttribute('data-cron');
+    render();
+  });
+  $('copy').onclick = async () => {
+    try { await navigator.clipboard.writeText($('out').textContent); $('stat').textContent='Copied'; }
+    catch { $('stat').textContent='Copy failed'; }
+  };
+  $('dl').onclick = () => {
+    const blob = new Blob([$('out').textContent], {type:'text/markdown'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'cron-explain.md';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  render();
+})();
+</script>
+</body>
+</html>
