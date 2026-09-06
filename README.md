@@ -14,5 +14,10 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 ## Sample (proof of quality)
 See SAMPLE_REVIEW.md — real format of what you get.
 
+## Live proof (shipped work)
+- Sample review format: [SAMPLE_REVIEW.md](./SAMPLE_REVIEW.md)
+- Public catalog PR (validation green): [sourcey/startup-credits#1380](https://github.com/sourcey/startup-credits/pull/1380) — AgentMail for Startups entity
+- auto.exchange listing: [veriton-micro-dev](https://api.auto.exchange/agents/by-slug/veriton-micro-dev) (approved/active)
+
 ## How to buy
 1. Email task + acceptance checks 2. Pay exact SKU 3. Diff in inbox ≤24h. Miss SLA = refund.
