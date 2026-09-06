@@ -14,9 +14,10 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
+- **[Unified Diff Risk Scanner](./tools/diff-risk.html)** — paste a git/patch diff → HIGH/MED/LOW findings (auth bypass, secrets, injection, unsafe deser, deleted tests). Demo for the **$1** review SKU.
 - **[HTML → JSON extractor](./tools/html-to-json.html)** — browser-only, no upload. Paste HTML → title/meta/links/images/selector JSON.
 - **[JSON → Schema generator](./tools/json-schema.html)** — browser-only draft-07 schema from sample JSON (types, required, formats, enums).
-- Share cards: [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg)
+- Share cards: [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Unified Diff Risk Scanner — Veriton</title>
+<meta name="description" content="Free browser-only unified diff risk scanner. Paste a git/patch diff, get HIGH/MED/LOW findings with line refs. No upload, no account. Pair with Veriton $1 Code Review Sprint."/>
+<meta property="og:title" content="Free Unified Diff Risk Scanner — Veriton"/>
+<meta property="og:description" content="Paste a unified diff. Get HIGH/MED/LOW risk findings in-browser. Free forever. Upgrade to a human-style $1 review sprint."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/diff-risk-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/diff-risk-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/diff-risk.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1.05fr .95fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:360px;resize:vertical}
+pre{min-height:360px;overflow:auto;background:#0b1220;color:#e2e8f0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem}
+.pill.H{background:#fecaca;color:#7f1d1d}.pill.M{background:#fde68a;color:#78350f}.pill.L{background:#bbf7d0;color:#14532d}
+.find{border:1px solid #e5e7eb;border-radius:10px;padding:.7rem .8rem;margin:.55rem 0;background:#fafafa}
+.find h4{margin:0 0 .25rem;font-size:.95rem}
+.find p{margin:.2rem 0;font-size:.9rem}
+code.ln{background:#e5e7eb;border-radius:4px;padding:0 .3rem;font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="html-to-json.html">HTML→JSON</a> · <a href="json-schema.html">JSON→Schema</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · unified diff</span>
+    <h1>Unified Diff Risk Scanner</h1>
+    <p>Paste a <code>git diff</code> / patch. Heuristic scan flags auth gaps, secret leaks, SQL/command injection patterns, unsafe deserialization, broad exception swallows, missing tests, and destructive ops. Runs entirely in your browser — nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/diff-risk-og.jpg" alt="Unified Diff Risk Scanner free tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Want a real $1 review sprint (findings + fix diff)? →</a>
+       <a class="btn ghost" href="../SAMPLE_REVIEW.md">See sample review →</a>
+       <a class="btn ghost" href="json-schema.html">JSON→Schema →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="run">Scan diff</button>
+      <button class="secondary" id="sample">Load sample diff</button>
+      <button class="secondary" id="copy">Copy report</button>
+      <button class="secondary" id="dl">Download .md</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="inp">Unified diff</label>
+        <textarea id="inp" spellcheck="false" placeholder="diff --git a/app.py b/app.py
+..."></textarea>
+      </div>
+      <div>
+        <label>Findings</label>
+        <div id="finds" class="muted">Run a scan to see HIGH / MED / LOW items.</div>
+        <label for="out" style="margin-top:.8rem">Markdown report</label>
+        <pre id="out"># Diff risk report
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">What this is (and is not)</h3>
+    <p class="muted">Fast local triage for PRs and agent patches. Not a substitute for a full review: no control-flow understanding, no dependency CVE DB, no secrets-manager integration. The <strong>$1 Code Review Sprint</strong> adds ranked findings, concrete fix diffs, and acceptance notes within 24h.</p>
+  </div>
+
+  <footer>
+    Veriton Micro-Dev · free tool · <a href="../">offer</a> ·
+    <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const SAMPLE = `diff --git a/api/auth.py b/api/auth.py
+index 111..222 100644
+--- a/api/auth.py
++++ b/api/auth.py
+@@ -10,6 +10,18 @@ def login(req):
+     user = db.find(req.json["email"])
+-    if not user or not verify(user.password_hash, req.json["password"]):
+-        raise AuthError("bad credentials")
++    # TODO: temporary bypass for staging
++    if req.headers.get("X-Debug") == "1":
++        return token_for(user)
++    if not user or not verify(user.password_hash, req.json.get("password","")):
++        return {"ok": False}
++    api_key = "sk_live_EXAMPLE_DO_NOT_SHIP"
++    q = "SELECT * FROM sessions WHERE user_id = %s" % user.id
++    db.execute(q)
++    os.system("rm -rf " + req.json.get("path", "/tmp/x"))
++    pickle.loads(req.body)
+     return token_for(user)
+diff --git a/tests/test_auth.py b/tests/test_auth.py
+deleted file mode 100644
+index aaa..000
+--- a/tests/test_auth.py
++++ /dev/null
+@@ -1,12 +0,0 @@
+-def test_login_ok():
+-    assert True
+`;
+
+  const RULES = [
+    {id:'secret-literal', sev:'HIGH', re:/(api[_-]?key|secret|password|token|private[_-]?key)\s*[:=]\s*['\"][^'\"]{8,}/i, title:'Hard-coded secret-like literal', why:'Credentials in source leak via git history and forks.', fix:'Load from env/secret store; rotate if ever committed.'},
+    {id:'sk-live', sev:'HIGH', re:/\b(sk_live_|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|xox[baprs]-)/, title:'Cloud/API token pattern', why:'Looks like a live provider token.', fix:'Revoke + move to secrets manager.'},
+    {id:'sql-format', sev:'HIGH', re:/(SELECT|INSERT|UPDATE|DELETE|DROP)[\s\S]{0,80}(%s|\%\(|f["\'].*\{|\+ |\.format\()/i, title:'SQL built via string format/concat', why:'Classic injection path if any input reaches the query.', fix:'Parameterized queries / bound args only.'},
+    {id:'os-system', sev:'HIGH', re:/\b(os\.system|subprocess\.(call|run|Popen)|child_process\.exec|exec\(|shell=True)\b/, title:'Shell/command execution', why:'Command injection if args include user input.', fix:'Avoid shell; pass argv lists; validate paths.'},
+    {id:'pickle', sev:'HIGH', re:/\b(pickle\.loads|yaml\.load\(|unserialize\(|Marshal\.load)\b/, title:'Unsafe deserialization', why:'Attacker-controlled payloads can RCE.', fix:'json; safe yaml.safe_load; never untrusted pickle.'},
+    {id:'auth-bypass', sev:'HIGH', re:/(bypass|skip auth|X-Debug|TODO:.*auth|authenticate\s*=\s*False|dangerouslyAllow)/i, title:'Auth bypass / debug backdoor', why:'Staging shortcuts often ship to prod.', fix:'Remove bypass; feature-flag with server-side allowlist.'},
+    {id:'rm-rf', sev:'HIGH', re:/\brm\s+-rf\b|shutil\.rmtree|fs\.rmSync\([^\)]*recursive:\s*true/, title:'Destructive recursive delete', why:'Path control → data loss.', fix:'Allowlist roots; refuse user-controlled absolute paths.'},
+    {id:'eval', sev:'HIGH', re:/\b(eval\(|new Function\(|exec\()/ , title:'Dynamic code execution', why:'Remote code execution if input reaches eval/exec.', fix:'Parse data, do not execute it.'},
+    {id:'md5-sha1-password', sev:'MED', re:/\b(md5|sha1)\s*\(.*password/i, title:'Weak password hash', why:'MD5/SHA1 not suitable for passwords.', fix:'argon2id / bcrypt / scrypt.'},
+    {id:'except-pass', sev:'MED', re:/except\s+Exception\s*:\s*(pass|return\s+None)|catch\s*\([^)]*\)\s*\{\s*\}/, title:'Swallowed exception', why:'Hides failures and security errors.', fix:'Log + re-raise or return explicit error.'},
+    {id:'http-cleartext', sev:'MED', re:/\bhttp:\/\/(?!localhost|127\.0\.0\.1)/i, title:'Cleartext HTTP endpoint', why:'Credentials/tokens can be sniffed.', fix:'HTTPS only outside local dev.'},
+    {id:'cors-star', sev:'MED', re:/(Access-Control-Allow-Origin['\":\s]*\*|cors\(\s*\{\s*origin:\s*true)/i, title:'Wide-open CORS', why:'Any origin can read authenticated responses with cookies/tokens mis-set.', fix:'Explicit origin allowlist.'},
+    {id:'todo-security', sev:'MED', re:/(TODO|FIXME|HACK).*(security|auth|permission|sanitize|validat)/i, title:'Security debt marker', why:'Known gap left unresolved in the patch.', fix:'Close before merge or track with owner+date.'},
+    {id:'test-delete', sev:'MED', re:/^deleted file mode.*\n--- a\/.*test/m, title:'Tests deleted', why:'Coverage drop on touched behavior.', fix:'Replace with updated tests in same PR.'},
+    {id:'console-log-secret', sev:'LOW', re:/(console\.(log|debug|info)|print\().*(password|token|secret|authorization)/i, title:'Logging sensitive fields', why:'Logs become an exfil channel.', fix:'Redact; structured logger with allowlist.'},
+    {id:'any-type', sev:'LOW', re:/:\s*any\b|as any\b|# type:\s*ignore/, title:'Type safety disabled', why:'Hides contract breaks at boundaries.', fix:'Tighten types at public APIs.'},
+    {id:'large-add', sev:'LOW', re:null, title:'Large addition hunk', why:'Harder to review; higher miss rate.', fix:'Split PR or add focused tests.'},
+  ];
+
+  function parseDiff(text){
+    const lines = text.replace(/\r\n/g,'\n').split('\n');
+    const files = [];
+    let cur = null;
+    let newLine = 0;
+    for (const line of lines){
+      if (line.startsWith('diff --git ')){
+        cur = {file: line.split(' ').pop().replace(/^b\//,''), added: [], deleted: [], meta: []};
+        files.push(cur);
+        newLine = 0;
+        continue;
+      }
+      if (!cur) continue;
+      if (line.startsWith('+++ ')){ cur.file = line.slice(4).replace(/^b\//,''); continue; }
+      if (line.startsWith('@@')){
+        const m = line.match(/\+(\d+)/);
+        newLine = m ? parseInt(m[1],10) : newLine;
+        cur.meta.push(line);
+        continue;
+      }
+      if (line.startsWith('+') && !line.startsWith('+++')){
+        cur.added.push({n:newLine, t:line.slice(1)});
+        newLine++;
+      } else if (line.startsWith('-') && !line.startsWith('---')){
+        cur.deleted.push(line.slice(1));
+      } else if (line.startsWith(' ')){
+        newLine++;
+      } else if (line.startsWith('deleted file mode')){
+        cur.deletedFile = true;
+        cur.meta.push(line);
+      }
+    }
+    return files;
+  }
+
+  function scan(text){
+    const files = parseDiff(text);
+    const findings = [];
+    let addCount = 0;
+    for (const f of files){
+      addCount += f.added.length;
+      const blob = f.added.map(a=>a.t).join('\n');
+      const whole = (f.meta.join('\n')+'\n'+blob+'\n'+f.deleted.join('\n'));
+      for (const rule of RULES){
+        if (!rule.re) continue;
+        if (rule.id === 'test-delete'){
+          if (f.deletedFile && /test/i.test(f.file)){
+            findings.push({sev:rule.sev, id:rule.id, title:rule.title, why:rule.why, fix:rule.fix, file:f.file, line:null, snip:'deleted test file'});
+          }
+          continue;
+        }
+        // per added line
+        let hit = false;
+        for (const a of f.added){
+          if (rule.re.test(a.t)){
+            findings.push({sev:rule.sev, id:rule.id, title:rule.title, why:rule.why, fix:rule.fix, file:f.file, line:a.n, snip:a.t.trim().slice(0,140)});
+            hit = true;
+            break;
+          }
+        }
+        if (!hit && rule.re.test(whole) && rule.id === 'test-delete'){
+          /* handled */
+        }
+      }
+      if (f.added.length >= 80){
+        const rule = RULES.find(r=>r.id==='large-add');
+        findings.push({sev:'LOW', id:rule.id, title:rule.title, why:rule.why, fix:rule.fix, file:f.file, line:f.added[0]?.n||null, snip:`+${f.added.length} lines`});
+      }
+    }
+    // de-dupe by id+file+line
+    const seen = new Set();
+    const uniq = [];
+    for (const f of findings){
+      const k = f.id+'|'+f.file+'|'+f.line+'|'+f.snip;
+      if (seen.has(k)) continue;
+      seen.add(k); uniq.push(f);
+    }
+    const order = {HIGH:0,MED:1,LOW:2};
+    uniq.sort((a,b)=> order[a.sev]-order[b.sev] || (a.file||'').localeCompare(b.file||''));
+    return {files, findings: uniq, addCount};
+  }
+
+  function render(result){
+    const counts = {HIGH:0,MED:0,LOW:0};
+    result.findings.forEach(f=>counts[f.sev]++);
+    const box = $('finds');
+    if (!result.findings.length){
+      box.innerHTML = '<p class="muted">No heuristic hits. Still run tests and a human pass on auth/data paths.</p>';
+    } else {
+      box.innerHTML = result.findings.map(f => {
+        const loc = f.line ? `<code class="ln">${f.file}:${f.line}</code>` : `<code class="ln">${f.file}</code>`;
+        return `<div class="find"><h4><span class="pill ${f.sev[0]}">${f.sev}</span>${f.title}</h4>
+          <p>${loc} — <code>${escapeHtml(f.snip||'')}</code></p>
+          <p><strong>Why:</strong> ${f.why}</p>
+          <p><strong>Fix:</strong> ${f.fix}</p></div>`;
+      }).join('');
+    }
+    const md = [
+      '# Diff risk report (Veriton free scanner)',
+      '',
+      `- Files touched: **${result.files.length}**`,
+      `- Added lines scanned: **${result.addCount}**`,
+      `- Findings: **${counts.HIGH} HIGH · ${counts.MED} MED · ${counts.LOW} LOW**`,
+      '',
+      ...result.findings.map((f,i)=>{
+        const loc = f.line ? `${f.file}:${f.line}` : f.file;
+        return `## ${i+1}. [${f.sev}] ${f.title}\n- **Where:** \`${loc}\`\n- **Snippet:** \`${(f.snip||'').replace(/`/g,"'")}\`\n- **Why:** ${f.why}\n- **Fix:** ${f.fix}\n`;
+      }),
+      '---',
+      '_Heuristic only. For ranked findings + fix patch within 24h: email acer-openclaw@agentmail.to subject `[Veriton $1 review]`._',
+      ''
+    ].join('\n');
+    $('out').textContent = md;
+    $('stat').textContent = `${counts.HIGH} HIGH · ${counts.MED} MED · ${counts.LOW} LOW · ${result.files.length} files`;
+  }
+
+  function escapeHtml(s){
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  function run(){
+    $('err').style.display = 'none';
+    try {
+      const text = $('inp').value || '';
+      if (!text.trim()) throw new Error('Paste a unified diff first');
+      if (!/^diff --git |^--- |\+\+\+ |^@@/m.test(text)) {
+        // still try
+      }
+      render(scan(text));
+    } catch (e) {
+      $('err').style.display = 'block';
+      $('err').textContent = String(e.message || e);
+      $('stat').textContent = 'Error';
+    }
+  }
+
+  $('run').onclick = run;
+  $('sample').onclick = () => { $('inp').value = SAMPLE; run(); };
+  $('copy').onclick = async () => {
+    await navigator.clipboard.writeText($('out').textContent);
+    $('stat').textContent = 'Copied markdown report';
+  };
+  $('dl').onclick = () => {
+    const blob = new Blob([$('out').textContent], {type:'text/markdown'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'veriton-diff-risk.md';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+})();
+</script>
+</body>
+</html>
