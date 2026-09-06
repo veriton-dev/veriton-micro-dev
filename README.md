@@ -14,7 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Sample (proof of quality)
-See [SAMPLE_REVIEW.md](./SAMPLE_REVIEW.md) — real format of what you get.
+See [SAMPLE_REVIEW.md · [SAMPLE_SCRAPE.md](./SAMPLE_SCRAPE.md)](./SAMPLE_REVIEW.md) — real format of what you get.
 
 ## Live proof (shipped work)
 - Sample review format: [SAMPLE_REVIEW.md](./SAMPLE_REVIEW.md)
