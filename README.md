@@ -14,6 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
+- **[Lorem Ipsum Generator](./tools/lorem-ipsum.html)** — browser-only paragraphs/sentences/words/chars filler in plain, HTML, or Markdown (seeded). Demo adjacent to **$3** bootstrap copy blocks / README drafts.
 - **[sitemap.xml Builder](./tools/sitemap-xml.html)** — browser-only urlset from paths/URLs with lastmod, changefreq, priority, optional image tags, validate/copy/download. Demo adjacent to **$3** bootstrap SEO.
 - **[robots.txt Builder](./tools/robots-txt.html)** — browser-only site presets, Allow/Disallow paths, Sitemaps, Host, crawl-delay, Google/Bing + AI crawler groups, copy/download. Demo adjacent to **$3** bootstrap SEO.
 - **[.gitignore Builder](./tools/gitignore-builder.html)** — browser-only stack presets (Node/Python/Go/Rust/Java/Flutter/Unity/Terraform + OS/editors/secrets) with merge, dedupe, copy/download. Demo adjacent to **$3** repo bootstrap.
