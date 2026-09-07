@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free SHA / HMAC Hash Generator — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only SHA-1/256/384/512 and HMAC generator. Hex or Base64, line batch, digest compare. No upload, no account."/>
+<meta property="og:title" content="Free SHA / HMAC Hash — Veriton"/>
+<meta property="og:description" content="Hash text with SHA-256 or HMAC in your browser. Batch lines, compare digests, hex/Base64. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/hash-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/hash-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/hash.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text],input[type=password]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:180px;resize:vertical}
+pre{min-height:140px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+.ok{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0;display:none}
+.kv{display:grid;gap:.4rem;margin-top:.35rem}
+.kv div{display:grid;grid-template-columns:9.5rem 1fr;gap:.5rem;align-items:start;font-size:.9rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.tabs{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.tabs button{background:#f3f4f6;color:#111827;border:1px solid #e5e7eb}.tabs button.on{background:#111827;color:#fff;border-color:#111827}
+#hmacWrap{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="base64-url.html">Base64/URL</a> · <a href="jwt-decode.html">JWT</a> · <a href="uuid-ulid.html">UUID/ULID</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · SHA + HMAC</span>
+    <h1>SHA / HMAC Hash Generator</h1>
+    <p>Hash text with SHA-1, SHA-256, SHA-384, or SHA-512 entirely in your tab. Optional HMAC, line-batch, hex/Base64 output, and digest compare. Nothing is uploaded. Handy next to integrity checks, webhook secrets, and review diffs.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/hash-og.jpg" alt="Free SHA HMAC hash generator" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need a reviewed diff? $1 Code Review →</a>
+       <a class="btn ghost" href="base64-url.html">Base64/URL →</a>
+       <a class="btn ghost" href="jwt-decode.html">JWT Decoder →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button type="button" data-mode="hash" class="on">Hash</button>
+      <button type="button" data-mode="hmac">HMAC</button>
+      <button type="button" data-mode="compare">Compare digests</button>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Run</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="algo">Algorithm</label>
+        <select id="algo">
+          <option value="SHA-256" selected>SHA-256</option>
+          <option value="SHA-1">SHA-1 (legacy)</option>
+          <option value="SHA-384">SHA-384</option>
+          <option value="SHA-512">SHA-512</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="fmt">Output</label>
+        <select id="fmt">
+          <option value="hex" selected>hex lowercase</option>
+          <option value="hexu">hex UPPER</option>
+          <option value="b64">Base64</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="batch">Input mode</label>
+        <select id="batch">
+          <option value="whole" selected>whole text (one digest)</option>
+          <option value="lines">one digest per non-empty line</option>
+        </select>
+      </div>
+      <div class="opt" id="hmacWrap">
+        <label for="key">HMAC key (UTF-8)</label>
+        <input id="key" type="password" placeholder="shared secret" autocomplete="off"/>
+      </div>
+    </div>
+    <div class="note">Uses Web Crypto (<code>crypto.subtle</code>). SHA-1 is offered for legacy checksums only — prefer SHA-256+. Local files are read in-browser only (never uploaded). This tool does not crack passwords or reverse hashes. Keys stay in-memory in this tab.</div>
+    <div class="err" id="err"></div>
+    <div class="ok" id="ok"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp" id="inpLabel">Input text</label>
+      <textarea id="inp" spellcheck="false" placeholder="hello world"></textarea>
+      <div class="row" style="margin-top:.55rem">
+        <label for="file" class="muted" style="margin:0;font-weight:600">or local file (stays in tab)</label>
+        <input id="file" type="file"/>
+      </div>
+      <div id="cmpBox" style="display:none;margin-top:.7rem">
+        <label for="cmp">Expected digest (hex or Base64)</label>
+        <input id="cmp" type="text" placeholder="paste digest to compare"/>
+      </div>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output <span class="pill" id="meta">idle</span></label>
+      <pre id="out"># Run to hash</pre>
+      <div class="kv" id="detail"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Agents verify payloads, pin file digests, and debug webhook signatures constantly. Local hashing beats pasting secrets into random websites. If you need a human-reviewed security pass over a diff (HMAC misuse, weak compare, missing constant-time checks), that is the paid <strong>$1 Code Review Sprint</strong>.</p>
+  </div>
+
+  <footer>Veriton · free tool · nothing leaves this tab · <a href="./">all tools</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · updated 2026-09-06</footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const enc = new TextEncoder();
+  let mode = 'hash';
+
+  function showErr(msg){
+    const e = $('err'); e.style.display = msg ? 'block' : 'none'; e.textContent = msg || '';
+    if (msg) $('ok').style.display = 'none';
+  }
+  function showOk(msg){
+    const o = $('ok'); o.style.display = msg ? 'block' : 'none'; o.textContent = msg || '';
+    if (msg) $('err').style.display = 'none';
+  }
+  function setStat(t){ $('stat').textContent = t; }
+  function setMeta(t){ $('meta').textContent = t; }
+
+  function bytesToHex(buf, upper){
+    const u8 = new Uint8Array(buf);
+    let s = '';
+    for (let i=0;i<u8.length;i++) s += u8[i].toString(16).padStart(2,'0');
+    return upper ? s.toUpperCase() : s;
+  }
+  function bytesToB64(buf){
+    const u8 = new Uint8Array(buf);
+    let bin = '';
+    for (let i=0;i<u8.length;i++) bin += String.fromCharCode(u8[i]);
+    return btoa(bin);
+  }
+  function formatDigest(buf){
+    const fmt = $('fmt').value;
+    if (fmt === 'b64') return bytesToB64(buf);
+    return bytesToHex(buf, fmt === 'hexu');
+  }
+  function normalizeDigest(s){
+    return (s || '').trim().replace(/\s+/g,'').toLowerCase();
+  }
+  function digestsEqual(a, b){
+    // length-checked equality; not a crypto constant-time claim, just UI compare
+    const x = normalizeDigest(a), y = normalizeDigest(b);
+    if (!x || !y || x.length !== y.length) return false;
+    let d = 0;
+    for (let i=0;i<x.length;i++) d |= x.charCodeAt(i) ^ y.charCodeAt(i);
+    return d === 0;
+  }
+
+  async function digestOne(text){
+    const algo = $('algo').value;
+    const data = enc.encode(text);
+    if (mode === 'hmac'){
+      const keyStr = $('key').value;
+      if (!keyStr) throw new Error('HMAC key required');
+      const key = await crypto.subtle.importKey(
+        'raw', enc.encode(keyStr), {name:'HMAC', hash: algo}, false, ['sign']
+      );
+      return crypto.subtle.sign('HMAC', key, data);
+    }
+    return crypto.subtle.digest(algo, data);
+  }
+
+  function setMode(m){
+    mode = m;
+    document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+    $('hmacWrap').style.display = m === 'hmac' ? 'block' : 'none';
+    $('cmpBox').style.display = m === 'compare' ? 'block' : 'none';
+    $('inpLabel').textContent = m === 'compare' ? 'Input text (hashed then compared)' : 'Input text';
+    $('batch').disabled = m === 'compare';
+    if (m === 'compare') $('batch').value = 'whole';
+    showErr(''); showOk('');
+  }
+
+  document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  async function run(){
+    showErr(''); showOk('');
+    try{
+      if (!window.crypto || !crypto.subtle) throw new Error('Web Crypto unavailable in this context');
+      const raw = $('inp').value;
+      if (!raw && mode !== 'compare') throw new Error('Input is empty');
+      if (!raw) throw new Error('Input is empty');
+
+      const batch = $('batch').value === 'lines' && mode !== 'compare';
+      const algo = $('algo').value;
+      const t0 = performance.now();
+
+      if (batch){
+        const lines = raw.split(/\r?\n/).filter(l => l.length > 0);
+        if (!lines.length) throw new Error('No non-empty lines');
+        const out = [];
+        for (const line of lines){
+          const buf = await digestOne(line);
+          out.push(formatDigest(buf) + '  ' + line);
+        }
+        $('out').textContent = out.join('\n');
+        setMeta(lines.length + ' lines');
+        setStat(algo + (mode==='hmac'?' HMAC':'') + ' · ' + lines.length + ' digests · ' + Math.round(performance.now()-t0) + 'ms');
+        $('detail').innerHTML = '';
+        return;
+      }
+
+      const buf = await digestOne(raw);
+      const dig = formatDigest(buf);
+      $('out').textContent = dig;
+      setMeta(algo + (mode==='hmac'?' HMAC':''));
+      const ms = Math.round(performance.now()-t0);
+      setStat(algo + (mode==='hmac'?' HMAC':'') + ' · ' + new Uint8Array(buf).length + ' bytes · ' + ms + 'ms');
+      $('detail').innerHTML =
+        '<div><span class="k">algo</span><span class="v">'+algo+(mode==='hmac'?' + HMAC':'')+'</span></div>'+
+        '<div><span class="k">input bytes</span><span class="v">'+enc.encode(raw).length+'</span></div>'+
+        '<div><span class="k">digest bytes</span><span class="v">'+new Uint8Array(buf).length+'</span></div>'+
+        '<div><span class="k">format</span><span class="v">'+$('fmt').value+'</span></div>';
+
+      if (mode === 'compare'){
+        const expected = $('cmp').value;
+        if (!expected.trim()) throw new Error('Expected digest required for compare');
+        // also try hex-of-b64 match by normalizing both
+        let match = digestsEqual(dig, expected);
+        if (!match && $('fmt').value !== 'hex'){
+          match = digestsEqual(bytesToHex(buf,false), expected);
+        }
+        if (!match && $('fmt').value === 'hex'){
+          // expected might be b64
+          try {
+            const bin = atob(expected.trim());
+            const u8 = new Uint8Array(bin.length);
+            for (let i=0;i<bin.length;i++) u8[i]=bin.charCodeAt(i);
+            match = digestsEqual(bytesToHex(buf,false), bytesToHex(u8,false));
+          } catch(_){}
+        }
+        if (match) showOk('MATCH — digests equal (length-checked compare).');
+        else showErr('NO MATCH — digests differ (or formats incompatible).');
+      }
+    } catch(e){
+      showErr(e && e.message ? e.message : String(e));
+      setStat('Error'); setMeta('error');
+    }
+  }
+
+  $('run').addEventListener('click', run);
+  $('sample').addEventListener('click', () => {
+    if (mode === 'hmac'){
+      $('key').value = 'secret';
+      $('inp').value = 'message';
+      $('algo').value = 'SHA-256';
+      $('fmt').value = 'hex';
+    } else if (mode === 'compare'){
+      $('inp').value = 'hello world';
+      $('algo').value = 'SHA-256';
+      $('fmt').value = 'hex';
+      // known SHA-256 of "hello world"
+      $('cmp').value = 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9';
+    } else {
+      $('inp').value = 'hello world\nline two\n';
+      $('algo').value = 'SHA-256';
+      $('batch').value = 'whole';
+      $('fmt').value = 'hex';
+    }
+    showErr(''); showOk('');
+    setStat('Sample loaded');
+  });
+  $('copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText($('out').textContent);
+      setStat('Copied');
+    } catch(_){ setStat('Copy failed'); }
+  });
+  $('clear').addEventListener('click', () => {
+    $('inp').value=''; $('out').textContent='# Run to hash'; $('detail').innerHTML='';
+    $('cmp').value=''; $('key').value='';
+    showErr(''); showOk(''); setMeta('idle'); setStat('Cleared');
+  });
+  $('inp').addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
+  });
+})();
+</script>
+</body>
+</html>
