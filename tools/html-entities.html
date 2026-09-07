@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free HTML Entities Encoder Decoder — Veriton</title>
+<meta name="description" content="Free browser-only HTML entity encoder/decoder. Named entities, numeric decimal/hex forms, XSS-safe escape, batch lines. No upload, no account."/>
+<meta property="og:title" content="Free HTML Entities Encoder · Decoder — Veriton"/>
+<meta property="og:description" content="Encode or decode HTML entities in your browser. Named, decimal, and hex forms. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/html-entities-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/html-entities-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/html-entities.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:160px;resize:vertical}
+pre{min-height:120px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-word}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.tabs button{background:#f3f4f6;color:#111827;border:1px solid #e5e7eb}.tabs button.on{background:#111827;color:#fff;border-color:#111827}
+.grid{display:grid;gap:.8rem}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:.5rem}
+.table th,.table td{border:1px solid #e5e7eb;padding:.35rem .5rem;text-align:left;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.table th{background:#f3f4f6}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="html-to-json.html">HTML→JSON</a> · <a href="base64-url.html">Base64/URL</a> · <a href="color-convert.html">Color</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · HTML entities</span>
+    <h1>HTML Entities Encoder · Decoder</h1>
+    <p>Escape and unescape HTML entities entirely in your tab. Named entities, decimal and hex numeric forms, minimal XSS-safe escape, and batch lines. Nothing is uploaded — useful next to scrape cleanup and UI string reviews.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/html-entities-og.jpg" alt="Free HTML Entities encoder decoder" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need live URL → JSON? $2 Scrape →</a>
+       <a class="btn ghost" href="html-to-json.html">HTML→JSON →</a>
+       <a class="btn ghost" href="base64-url.html">Base64/URL →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button type="button" data-mode="encode" class="on">Encode</button>
+      <button type="button" data-mode="decode">Decode</button>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Run</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="swap">Swap ↕</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="style">Encode style</label>
+        <select id="style">
+          <option value="named" selected>Named when possible</option>
+          <option value="minimal">Minimal XSS-safe (5 chars)</option>
+          <option value="decimal">Specials / non-ASCII as decimal</option>
+          <option value="hex">Specials / non-ASCII as hex</option>
+          <option value="allnamed">Named + common extras</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="batch">Batch mode</label>
+        <select id="batch">
+          <option value="off" selected>Whole text</option>
+          <option value="lines">One line at a time</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="keepnl">Newlines on encode</label>
+        <select id="keepnl">
+          <option value="keep" selected>Keep as-is</option>
+          <option value="num">Encode LF as numeric entity</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="input">Input</label>
+        <textarea id="input" spellcheck="false" placeholder='Hello <b>world</b> & "friends"'></textarea>
+      </div>
+      <div>
+        <label for="output">Output</label>
+        <pre id="output" aria-live="polite"></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">Quick reference</h2>
+    <p class="muted" style="margin:.2rem 0">Encode emits named / numeric forms. Decode accepts named, decimal, and hex entities.</p>
+    <table class="table">
+      <thead><tr><th>Char</th><th>Named</th><th>Decimal</th><th>Hex</th></tr></thead>
+      <tbody id="reftable"></tbody>
+    </table>
+  </div>
+
+  <p class="muted">Browser-only. Decode uses a detached textarea entity parser (no live page injection). Encode is a pure string transform. For live public URL → clean JSON, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 Scrape-to-JSON</a> SKU.</p>
+  <footer>Veriton · <a href="./">tools hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · free HTML entities · 2026-09-07</footer>
+</div>
+<script>
+(function () {
+  // Build entity strings in JS so HTML parsing cannot eat & sequences.
+  function ent(name) { return '\u0026' + name + ';'; }
+  function dec(n) { return '\u0026#' + n + ';'; }
+  function hex(n) { return '\u0026#x' + n.toString(16).toUpperCase() + ';'; }
+
+  var NAMED = {};
+  NAMED['\u0026'] = ent('amp');
+  NAMED['\u003C'] = ent('lt');
+  NAMED['\u003E'] = ent('gt');
+  NAMED['\u0022'] = ent('quot');
+  NAMED['\u0027'] = ent('apos');
+
+  var MINIMAL = {};
+  MINIMAL['\u0026'] = ent('amp');
+  MINIMAL['\u003C'] = ent('lt');
+  MINIMAL['\u003E'] = ent('gt');
+  MINIMAL['\u0022'] = ent('quot');
+  MINIMAL['\u0027'] = ent('apos');
+
+  var EXTRA = {};
+  EXTRA['\u00A0'] = ent('nbsp');
+  EXTRA['\u00A9'] = ent('copy');
+  EXTRA['\u00AE'] = ent('reg');
+  EXTRA['\u2013'] = ent('ndash');
+  EXTRA['\u2014'] = ent('mdash');
+  EXTRA['\u2018'] = ent('lsquo');
+  EXTRA['\u2019'] = ent('rsquo');
+  EXTRA['\u201C'] = ent('ldquo');
+  EXTRA['\u201D'] = ent('rdquo');
+  EXTRA['\u2026'] = ent('hellip');
+  EXTRA['\u00B7'] = ent('middot');
+  EXTRA['\u00D7'] = ent('times');
+  EXTRA['\u00F7'] = ent('divide');
+  EXTRA['\u20AC'] = ent('euro');
+  EXTRA['\u00A3'] = ent('pound');
+  EXTRA['\u00A5'] = ent('yen');
+
+  var el = function (id) { return document.getElementById(id); };
+  var input = el('input');
+  var output = el('output');
+  var err = el('err');
+  var stat = el('stat');
+  var mode = 'encode';
+
+  // Reference table (textContent so entities stay literal)
+  (function fillRef() {
+    var rows = [
+      ['\u0026', ent('amp'), dec(38), hex(38)],
+      ['\u003C', ent('lt'), dec(60), hex(60)],
+      ['\u003E', ent('gt'), dec(62), hex(62)],
+      ['\u0022', ent('quot'), dec(34), hex(34)],
+      ["'", ent('apos'), dec(39), hex(39)],
+      ['nbsp', ent('nbsp'), dec(160), hex(160)]
+    ];
+    var tb = el('reftable');
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      r.forEach(function (c) {
+        var td = document.createElement('td');
+        td.textContent = c;
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  })();
+
+  function showErr(msg) {
+    if (!msg) { err.style.display = 'none'; err.textContent = ''; return; }
+    err.style.display = 'block'; err.textContent = msg;
+  }
+
+  function encodeChar(ch, style) {
+    if (style === 'minimal') return MINIMAL[ch] || ch;
+    if (style === 'named') {
+      if (NAMED[ch]) return NAMED[ch];
+      var cp = ch.codePointAt(0);
+      if (cp < 32 && ch !== '\t' && ch !== '\n' && ch !== '\r') return dec(cp);
+      if (cp > 126) return dec(cp);
+      return ch;
+    }
+    if (style === 'allnamed') {
+      if (NAMED[ch]) return NAMED[ch];
+      if (EXTRA[ch]) return EXTRA[ch];
+      var cp2 = ch.codePointAt(0);
+      if (cp2 < 32 && ch !== '\t' && ch !== '\n' && ch !== '\r') return dec(cp2);
+      if (cp2 > 126) return dec(cp2);
+      return ch;
+    }
+    var cp3 = ch.codePointAt(0);
+    var special = (ch in NAMED) || (cp3 < 32 && ch !== '\t' && ch !== '\n' && ch !== '\r') || cp3 > 126;
+    if (!special) return ch;
+    if (style === 'hex') return hex(cp3);
+    return dec(cp3);
+  }
+
+  function encodeText(text, style, keepnl) {
+    var out = '';
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      // handle surrogate pairs
+      if (ch >= '\uD800' && ch <= '\uDBFF' && i + 1 < text.length) {
+        ch = String.fromCodePoint(text.codePointAt(i));
+        i++;
+      }
+      if (ch === '\n' && keepnl === 'num') {
+        out += dec(10);
+        continue;
+      }
+      out += encodeChar(ch, style);
+    }
+    return out;
+  }
+
+  function decodeText(text) {
+    var ta = document.createElement('textarea');
+    ta.innerHTML = text;
+    return ta.value;
+  }
+
+  function run() {
+    showErr('');
+    var style = el('style').value;
+    var batch = el('batch').value;
+    var keepnl = el('keepnl').value;
+    var raw = input.value;
+    try {
+      var result;
+      if (batch === 'lines') {
+        result = raw.split(/\r?\n/).map(function (line) {
+          return mode === 'encode' ? encodeText(line, style, keepnl) : decodeText(line);
+        }).join('\n');
+      } else {
+        result = mode === 'encode' ? encodeText(raw, style, keepnl) : decodeText(raw);
+      }
+      output.textContent = result;
+      var inN = Array.from(raw).length;
+      var outN = Array.from(result).length;
+      var delta = outN - inN;
+      stat.textContent = mode + ' · in ' + inN + ' chars → out ' + outN + ' (' + (delta >= 0 ? '+' : '') + delta + ')';
+    } catch (e) {
+      showErr(String(e && e.message ? e.message : e));
+      stat.textContent = 'Error';
+    }
+  }
+
+  document.querySelectorAll('#tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('#tabs button').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      mode = btn.getAttribute('data-mode');
+      run();
+    });
+  });
+
+  el('run').onclick = run;
+  el('clear').onclick = function () {
+    input.value = '';
+    output.textContent = '';
+    showErr('');
+    stat.textContent = 'Cleared';
+  };
+  el('copy').onclick = async function () {
+    try {
+      await navigator.clipboard.writeText(output.textContent || '');
+      stat.textContent = 'Copied';
+    } catch (_) {
+      showErr('Clipboard blocked — select output manually');
+    }
+  };
+  el('swap').onclick = function () {
+    var t = input.value;
+    input.value = output.textContent || '';
+    output.textContent = t;
+    mode = mode === 'encode' ? 'decode' : 'encode';
+    document.querySelectorAll('#tabs button').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-mode') === mode);
+    });
+    stat.textContent = 'Swapped → ' + mode;
+  };
+  el('sample').onclick = function () {
+    if (mode === 'encode') {
+      input.value = 'Hello <b>world</b> & "friends"\nPrice: \u20AC12 \u2014 it\'s 50% off\u2026\n<' + 'script>alert(1)</' + 'script>';
+    } else {
+      input.value = 'Hello ' + ent('lt') + 'b' + ent('gt') + 'world' + ent('lt') + '/b' + ent('gt') + ' ' + ent('amp') + ' ' + ent('quot') + 'friends' + ent('quot') +
+        '\nPrice: ' + ent('euro') + '12 ' + ent('mdash') + ' it' + ent('apos') + 's 50% off' + ent('hellip');
+    }
+    run();
+  };
+  ['style', 'batch', 'keepnl'].forEach(function (id) {
+    el(id).addEventListener('change', run);
+  });
+})();
+</script>
+</body>
+</html>
