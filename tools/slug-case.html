@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Slug / Case Converter — snake camel kebab Pascal — Veriton</title>
+<meta name="description" content="Free browser-only slug and case converter. snake_case, camelCase, kebab-case, PascalCase, CONSTANT_CASE, Title Case, path segments. Batch lines. No upload, no account."/>
+<meta property="og:title" content="Free Slug / Case Converter — Veriton"/>
+<meta property="og:description" content="Paste identifiers or titles → snake, camel, kebab, Pascal, CONSTANT, slug, path. Batch multi-line. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/slug-case-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/slug-case-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/slug-case.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:140px;resize:vertical}
+pre{min-height:72px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.grid{display:grid;gap:.65rem;margin-top:.55rem}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox .v{color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;white-space:pre-wrap;min-height:1.2em}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.checks{display:flex;flex-wrap:wrap;gap:.7rem 1.1rem;margin:.4rem 0 .2rem;font-size:.88rem}
+.checks label{font-weight:600;display:flex;gap:.35rem;align-items:center;margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="uuid-ulid.html">UUID/ULID</a> · <a href="base64-url.html">Base64/URL</a> · <a href="regex.html">Regex</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · slug + case</span>
+    <h1>Slug / Case Converter</h1>
+    <p>Turn titles and identifiers into snake_case, camelCase, kebab-case, PascalCase, CONSTANT_CASE, Title Case, URL slugs, or path segments. Multi-line batch. Nothing leaves your tab — useful next to repo bootstrap / file naming.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/slug-case-og.jpg" alt="Free Slug / Case converter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a repo scaffold? $3 Bootstrap →</a>
+       <a class="btn ghost" href="uuid-ulid.html">UUID/ULID →</a>
+       <a class="btn ghost" href="regex.html">Regex →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="input">Input (one identifier or title per line)</label>
+    <textarea id="input" spellcheck="false" placeholder="User Profile ID
+getHTTPResponseCode
+my-cool_API.v2"></textarea>
+    <div class="row">
+      <button class="primary" id="run" type="button">Convert</button>
+      <button class="secondary" id="sample" type="button">Load sample</button>
+      <button class="secondary" id="clear" type="button">Clear</button>
+      <button class="secondary" id="copyAll" type="button">Copy all formats</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="sep">Path / join separator</label>
+        <select id="sep">
+          <option value="/" selected>/ (path)</option>
+          <option value=".">. (dot)</option>
+          <option value="::">:: (scope)</option>
+          <option value=" ">space</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="slugSep">Slug separator</label>
+        <select id="slugSep">
+          <option value="-" selected>- (kebab slug)</option>
+          <option value="_">_ (snake slug)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="preserveAcronyms">Acronyms</label>
+        <select id="preserveAcronyms">
+          <option value="keep" selected>Keep HTTP/ID as one token</option>
+          <option value="split">Split ALLCAPS letter-by-letter</option>
+        </select>
+      </div>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="lowerSlug" checked/> lowercase slug</label>
+      <label><input type="checkbox" id="stripDiacritics" checked/> strip diacritics</label>
+      <label><input type="checkbox" id="dropEmpty" checked/> drop empty lines</label>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid" id="outs"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">What it does</h2>
+    <ul class="muted" style="margin:.2rem 0;padding-left:1.2rem">
+      <li>Tokenizes mixed input: spaces, hyphens, underscores, dots, path slashes, and camel/Pascal boundaries.</li>
+      <li>Outputs common identifier styles plus a URL-safe slug and a path-joined form.</li>
+      <li>Batch: each non-empty line converts independently; multi-line results stay aligned.</li>
+      <li>Local only — no network calls after page load.</li>
+    </ul>
+  </div>
+
+  <footer>Veriton · <a href="./">tools hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · free forever · nothing uploaded</footer>
+</div>
+<script>
+(function () {
+  const FORMATS = [
+    { id: 'snake', label: 'snake_case' },
+    { id: 'camel', label: 'camelCase' },
+    { id: 'pascal', label: 'PascalCase' },
+    { id: 'kebab', label: 'kebab-case' },
+    { id: 'constant', label: 'CONSTANT_CASE' },
+    { id: 'title', label: 'Title Case' },
+    { id: 'slug', label: 'slug' },
+    { id: 'path', label: 'path / join' },
+    { id: 'dot', label: 'dot.case' },
+    { id: 'train', label: 'Train-Case' },
+    { id: 'tokens', label: 'tokens (JSON)' }
+  ];
+
+  const el = {
+    input: document.getElementById('input'),
+    run: document.getElementById('run'),
+    sample: document.getElementById('sample'),
+    clear: document.getElementById('clear'),
+    copyAll: document.getElementById('copyAll'),
+    stat: document.getElementById('stat'),
+    err: document.getElementById('err'),
+    outs: document.getElementById('outs'),
+    sep: document.getElementById('sep'),
+    slugSep: document.getElementById('slugSep'),
+    preserveAcronyms: document.getElementById('preserveAcronyms'),
+    lowerSlug: document.getElementById('lowerSlug'),
+    stripDiacritics: document.getElementById('stripDiacritics'),
+    dropEmpty: document.getElementById('dropEmpty')
+  };
+
+  let lastByFormat = {};
+
+  function showErr(msg) {
+    if (!msg) { el.err.style.display = 'none'; el.err.textContent = ''; return; }
+    el.err.style.display = 'block'; el.err.textContent = msg;
+  }
+
+  function stripDia(s) {
+    try { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+    catch (_) { return s; }
+  }
+
+  function tokenize(raw, keepAcronyms) {
+    let s = String(raw == null ? '' : raw);
+    if (el.stripDiacritics.checked) s = stripDia(s);
+    s = s.replace(/['’`]/g, '');
+    // Normalize path-ish separators to space for token split, keep later via join option
+    s = s.replace(/[\/\\]+/g, ' ');
+    // Insert boundaries before capital runs / camel edges
+    // Always split camel/Pascal edges; optional letter-split of pure ALLCAPS runs
+    s = s
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2');
+    if (!keepAcronyms) {
+      s = s.replace(/\b([A-Z]{2,})\b/g, function (m) { return m.split('').join(' '); });
+    }
+    s = s.replace(/[_\-.]+/g, ' ').replace(/[^A-Za-z0-9]+/g, ' ').trim();
+    if (!s) return [];
+    return s.split(/\s+/).filter(Boolean).map(function (t) { return t.toLowerCase(); });
+  }
+
+  function cap(t) { return t ? t.charAt(0).toUpperCase() + t.slice(1).toLowerCase() : ''; }
+
+  function convertLine(line) {
+    const keep = el.preserveAcronyms.value === 'keep';
+    const tokens = tokenize(line, keep);
+    if (!tokens.length) return null;
+    const snake = tokens.join('_');
+    const kebab = tokens.join('-');
+    const constant = tokens.map(function (t) { return t.toUpperCase(); }).join('_');
+    const camel = tokens.map(function (t, i) { return i === 0 ? t.toLowerCase() : cap(t); }).join('');
+    const pascal = tokens.map(cap).join('');
+    const title = tokens.map(cap).join(' ');
+    const train = tokens.map(cap).join('-');
+    const dot = tokens.join('.');
+    let slug = tokens.join(el.slugSep.value || '-');
+    if (el.lowerSlug.checked) slug = slug.toLowerCase();
+    // collapse anything non [a-z0-9 sep]
+    const sepEsc = (el.slugSep.value || '-').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    slug = slug.replace(new RegExp('[^a-zA-Z0-9' + sepEsc + ']+', 'g'), el.slugSep.value || '-')
+              .replace(new RegExp(sepEsc + '{2,}', 'g'), el.slugSep.value || '-')
+              .replace(new RegExp('^' + sepEsc + '|' + sepEsc + '$', 'g'), '');
+    const path = tokens.join(el.sep.value || '/');
+    return {
+      snake: snake,
+      camel: camel,
+      pascal: pascal,
+      kebab: kebab,
+      constant: constant,
+      title: title,
+      slug: slug,
+      path: path,
+      dot: dot,
+      train: train,
+      tokens: JSON.stringify(tokens)
+    };
+  }
+
+  function convertAll() {
+    showErr('');
+    const raw = el.input.value;
+    const lines = raw.split(/\r?\n/);
+    const kept = [];
+    for (let i = 0; i < lines.length; i++) {
+      const L = lines[i];
+      if (el.dropEmpty.checked && !String(L).trim()) continue;
+      kept.push(L);
+    }
+    if (!kept.length) {
+      el.outs.innerHTML = '';
+      lastByFormat = {};
+      el.stat.textContent = 'No input';
+      return;
+    }
+    const rows = kept.map(convertLine);
+    const failed = rows.filter(function (r) { return !r; }).length;
+    const ok = rows.filter(Boolean);
+    lastByFormat = {};
+    FORMATS.forEach(function (f) {
+      lastByFormat[f.id] = ok.map(function (r) { return r[f.id]; }).join('\n');
+    });
+    el.outs.innerHTML = FORMATS.map(function (f) {
+      const val = lastByFormat[f.id] || '';
+      return '<div class="outbox" data-fmt="' + f.id + '">' +
+        '<div class="k"><span>' + f.label + '</span>' +
+        '<button type="button" class="tiny" data-copy="' + f.id + '">Copy</button></div>' +
+        '<div class="v" id="out-' + f.id + '"></div></div>';
+    }).join('');
+    FORMATS.forEach(function (f) {
+      const node = document.getElementById('out-' + f.id);
+      if (node) node.textContent = lastByFormat[f.id] || '';
+    });
+    el.outs.querySelectorAll('button[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.getAttribute('data-copy');
+        const text = lastByFormat[id] || '';
+        navigator.clipboard.writeText(text).then(function () {
+          el.stat.textContent = 'Copied ' + id;
+        }).catch(function () {
+          el.stat.textContent = 'Clipboard blocked';
+        });
+      });
+    });
+    el.stat.textContent = ok.length + ' line(s)' + (failed ? (', ' + failed + ' empty/skip') : '');
+  }
+
+  el.run.addEventListener('click', convertAll);
+  el.input.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') { e.preventDefault(); convertAll(); }
+  });
+  ['sep', 'slugSep', 'preserveAcronyms', 'lowerSlug', 'stripDiacritics', 'dropEmpty'].forEach(function (id) {
+    el[id].addEventListener('change', convertAll);
+  });
+  el.sample.addEventListener('click', function () {
+    el.input.value = [
+      'User Profile ID',
+      'getHTTPResponseCode',
+      'my-cool_API.v2',
+      'Über Café Menu',
+      'src/components/UserCard'
+    ].join('\n');
+    convertAll();
+  });
+  el.clear.addEventListener('click', function () {
+    el.input.value = '';
+    el.outs.innerHTML = '';
+    lastByFormat = {};
+    showErr('');
+    el.stat.textContent = 'Cleared';
+  });
+  el.copyAll.addEventListener('click', function () {
+    if (!Object.keys(lastByFormat).length) { convertAll(); }
+    const block = FORMATS.map(function (f) {
+      return f.label + ':\n' + (lastByFormat[f.id] || '');
+    }).join('\n\n');
+    navigator.clipboard.writeText(block).then(function () {
+      el.stat.textContent = 'Copied all formats';
+    }).catch(function () {
+      el.stat.textContent = 'Clipboard blocked';
+    });
+  });
+
+  // auto-run empty state grid
+  convertAll();
+})();
+</script>
+</body>
+</html>
