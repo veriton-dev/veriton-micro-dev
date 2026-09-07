@@ -1,0 +1,226 @@
+{
+  "schema": "veriton.agent-html-json-kit/v1",
+  "price_usd": 5,
+  "count": 40,
+  "recipes": [
+    {
+      "id": "title",
+      "selector": "title",
+      "note": "document title"
+    },
+    {
+      "id": "h1",
+      "selector": "h1",
+      "note": "primary heading"
+    },
+    {
+      "id": "meta-desc",
+      "selector": "meta[name=description]",
+      "attr": "content",
+      "note": "meta description"
+    },
+    {
+      "id": "og-title",
+      "selector": "meta[property='og:title']",
+      "attr": "content"
+    },
+    {
+      "id": "og-url",
+      "selector": "meta[property='og:url']",
+      "attr": "content"
+    },
+    {
+      "id": "canonical",
+      "selector": "link[rel=canonical]",
+      "attr": "href"
+    },
+    {
+      "id": "main",
+      "selector": "main",
+      "note": "main landmark text"
+    },
+    {
+      "id": "article",
+      "selector": "article",
+      "note": "article body"
+    },
+    {
+      "id": "nav-links",
+      "selector": "nav a",
+      "attr": "href",
+      "limit": 30
+    },
+    {
+      "id": "footer-links",
+      "selector": "footer a",
+      "attr": "href",
+      "limit": 20
+    },
+    {
+      "id": "json-ld",
+      "selector": "script[type='application/ld+json']",
+      "note": "structured data blobs"
+    },
+    {
+      "id": "table-rows",
+      "selector": "table tr",
+      "limit": 50
+    },
+    {
+      "id": "list-items",
+      "selector": "ul li, ol li",
+      "limit": 40
+    },
+    {
+      "id": "buttons",
+      "selector": "button, [role=button]",
+      "limit": 25
+    },
+    {
+      "id": "forms",
+      "selector": "form",
+      "attr": "action",
+      "limit": 10
+    },
+    {
+      "id": "inputs",
+      "selector": "input, textarea, select",
+      "attr": "name",
+      "limit": 40
+    },
+    {
+      "id": "images",
+      "selector": "img",
+      "attr": "src",
+      "limit": 30
+    },
+    {
+      "id": "images-alt",
+      "selector": "img[alt]",
+      "attr": "alt",
+      "limit": 30
+    },
+    {
+      "id": "code-blocks",
+      "selector": "pre code",
+      "limit": 20
+    },
+    {
+      "id": "headings-all",
+      "selector": "h1,h2,h3",
+      "limit": 40
+    },
+    {
+      "id": "price",
+      "selector": "[class*=price], [data-price], .price",
+      "limit": 15
+    },
+    {
+      "id": "sku",
+      "selector": "[data-sku], [itemprop=sku]",
+      "limit": 15
+    },
+    {
+      "id": "author",
+      "selector": "[rel=author], .author, [itemprop=author]",
+      "limit": 10
+    },
+    {
+      "id": "time",
+      "selector": "time",
+      "attr": "datetime",
+      "limit": 20
+    },
+    {
+      "id": "breadcrumbs",
+      "selector": "nav[aria-label*=breadcrumb] a, .breadcrumb a",
+      "attr": "href",
+      "limit": 15
+    },
+    {
+      "id": "pagination",
+      "selector": "a[rel=next], a[rel=prev], .pagination a",
+      "attr": "href",
+      "limit": 15
+    },
+    {
+      "id": "download",
+      "selector": "a[download], a[href$='.pdf'], a[href$='.zip']",
+      "attr": "href",
+      "limit": 20
+    },
+    {
+      "id": "mailto",
+      "selector": "a[href^=mailto:]",
+      "attr": "href",
+      "limit": 10
+    },
+    {
+      "id": "tel",
+      "selector": "a[href^=tel:]",
+      "attr": "href",
+      "limit": 10
+    },
+    {
+      "id": "iframe",
+      "selector": "iframe",
+      "attr": "src",
+      "limit": 10
+    },
+    {
+      "id": "video",
+      "selector": "video source, video",
+      "attr": "src",
+      "limit": 10
+    },
+    {
+      "id": "lang",
+      "selector": "html",
+      "attr": "lang"
+    },
+    {
+      "id": "robots",
+      "selector": "meta[name=robots]",
+      "attr": "content"
+    },
+    {
+      "id": "viewport",
+      "selector": "meta[name=viewport]",
+      "attr": "content"
+    },
+    {
+      "id": "twitter-card",
+      "selector": "meta[name='twitter:card']",
+      "attr": "content"
+    },
+    {
+      "id": "product-name",
+      "selector": "[itemprop=name], .product-title, h1.product",
+      "limit": 5
+    },
+    {
+      "id": "availability",
+      "selector": "[itemprop=availability], .stock, .availability",
+      "limit": 10
+    },
+    {
+      "id": "rating",
+      "selector": "[itemprop=ratingValue], .rating, [aria-label*=rating]",
+      "limit": 10
+    },
+    {
+      "id": "comments",
+      "selector": ".comment, [data-testid*=comment]",
+      "limit": 30
+    },
+    {
+      "id": "error-banner",
+      "selector": "[role=alert], .error, .toast-error",
+      "limit": 10
+    }
+  ],
+  "api": {
+    "docs": "https://veriton-dev.github.io/veriton-micro-dev/api/",
+    "live_hint": "see HOST on docs page"
+  }
+}
