@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free robots.txt Builder — Allow · Disallow · Sitemap — Veriton</title>
+<meta name="description" content="Free browser-only robots.txt builder. User-agent groups, Allow/Disallow paths, Sitemap URLs, crawl-delay, host. Presets for public site, block-all, AI crawlers. Copy or download. No upload, no account."/>
+<meta property="og:title" content="Free robots.txt Builder — Allow · Disallow · Sitemap — Veriton"/>
+<meta property="og:description" content="Compose a clean robots.txt from presets + custom rules. Browser-only. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/robots-txt-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/robots-txt-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/robots-txt.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],input[type=url],input[type=number],textarea,select{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:5.5rem;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.grid2{display:grid;gap:.75rem;margin:.55rem 0}@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+.field{margin:.55rem 0}
+.hint{color:#6b7280;font-size:.78rem;margin:.2rem 0 0;font-weight:500}
+.sec{font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;margin:1rem 0 .35rem}
+.checks{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+.checks label{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.88rem;margin:0;background:#f9fafb;border:1px solid #e5e7eb;border-radius:999px;padding:.35rem .75rem;cursor:pointer;user-select:none}
+.checks label.on{background:#ecfdf5;border-color:#6ee7b7;color:#065f46}
+.checks input{margin:0}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937;margin-top:.55rem}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox pre{margin:0;color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:12rem;max-height:28rem;overflow:auto}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.warn{color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.45rem .65rem;font-size:.85rem;margin:.45rem 0;display:none}
+.group{border:1px dashed #e5e7eb;border-radius:10px;padding:.75rem;margin:.55rem 0;background:#fafafa}
+.group h3{margin:0 0 .45rem;font-size:.95rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="meta-tags.html">Meta Tags</a> · <a href="gitignore-builder.html">.gitignore</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · SEO bootstrap</span>
+    <h1>robots.txt Builder</h1>
+    <p>Compose a clean <code>robots.txt</code> with user-agent groups, Allow/Disallow, Sitemap, Host, and crawl-delay. Presets for public sites, private staging, and common AI crawlers. Nothing leaves your tab — handy next to <strong>$3</strong> repo/SEO bootstrap.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/robots-txt-og.jpg" alt="Free robots.txt Builder" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a full scaffold? $3 Bootstrap →</a>
+       <a class="btn ghost" href="meta-tags.html">Meta Tags →</a>
+       <a class="btn ghost" href="gitignore-builder.html">.gitignore →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="sec">Presets (click to apply)</div>
+    <div class="row">
+      <button class="secondary" type="button" data-preset="public">Public site</button>
+      <button class="secondary" type="button" data-preset="blockall">Block all</button>
+      <button class="secondary" type="button" data-preset="staging">Staging / private</button>
+      <button class="secondary" type="button" data-preset="ai">Allow search · caution AI</button>
+      <button class="secondary" type="button" data-preset="wordpress">WordPress-ish</button>
+    </div>
+
+    <div class="sec">Site-wide</div>
+    <div class="grid2">
+      <div class="field">
+        <label for="sitemaps">Sitemap URLs (one per line)</label>
+        <textarea id="sitemaps" placeholder="https://example.com/sitemap.xml
+https://example.com/sitemap-posts.xml"></textarea>
+        <p class="hint">Emitted as <code>Sitemap:</code> lines after groups.</p>
+      </div>
+      <div class="field">
+        <label for="host">Host (optional, Yandex-style)</label>
+        <input type="text" id="host" placeholder="example.com"/>
+        <p class="hint">Some engines honor preferred host; Google ignores it.</p>
+        <div class="field" style="margin-top:.7rem">
+          <label for="comment">Header comment</label>
+          <input type="text" id="comment" placeholder="Generated by Veriton robots.txt Builder"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">User-agent groups</div>
+    <div id="groups"></div>
+    <div class="row">
+      <button class="secondary" type="button" id="addGroup">+ Add group</button>
+      <button class="primary" type="button" id="buildBtn">Rebuild</button>
+      <button class="secondary" type="button" id="clear">Clear</button>
+      <span class="stat" id="stats">0 groups · 0 rules</span>
+    </div>
+    <div class="warn" id="warn"></div>
+
+    <div class="outbox">
+      <div class="k"><span>robots.txt</span>
+        <span>
+          <button class="tiny" type="button" id="copyBtn">Copy</button>
+          <button class="tiny" type="button" id="dlBtn">Download</button>
+        </span>
+      </div>
+      <pre id="out" spellcheck="false"></pre>
+    </div>
+    <p class="muted" style="margin-top:.6rem">Notes: more specific Allow/Disallow paths usually win; empty Disallow = allow all for that agent. AI crawler names change — verify against current bot docs before shipping. This tool does not fetch your site.</p>
+  </div>
+
+  <footer>Veriton · free browser-only tool · <a href="./">hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · adjacent to $3 bootstrap SEO</footer>
+</div>
+<script>
+(function(){
+  const groupsEl = document.getElementById('groups');
+  const out = document.getElementById('out');
+  const stats = document.getElementById('stats');
+  const warn = document.getElementById('warn');
+  const sitemapsEl = document.getElementById('sitemaps');
+  const hostEl = document.getElementById('host');
+  const commentEl = document.getElementById('comment');
+
+  const COMMON_AGENTS = [
+    '*', 'Googlebot', 'Googlebot-Image', 'Bingbot', 'DuckDuckBot',
+    'Applebot', 'Yandex', 'Baiduspider',
+    'GPTBot', 'ChatGPT-User', 'ClaudeBot', 'anthropic-ai', 'Google-Extended',
+    'CCBot', 'Bytespider', 'PerplexityBot', 'FacebookBot', 'meta-externalagent'
+  ];
+
+  function blankGroup(ua, disallow, allow, delay){
+    return {
+      ua: ua || '*',
+      disallow: (disallow || []).join('\n'),
+      allow: (allow || []).join('\n'),
+      crawlDelay: delay == null ? '' : String(delay)
+    };
+  }
+
+  let groups = [
+    blankGroup('*', ['/admin/', '/api/private/', '/tmp/'], ['/'], ''),
+  ];
+
+  function agentOptions(selected){
+    const set = new Set(COMMON_AGENTS.concat([selected].filter(Boolean)));
+    return Array.from(set).map(a =>
+      `<option value="${esc(a)}"${a===selected?' selected':''}>${esc(a)}</option>`
+    ).join('');
+  }
+
+  function esc(s){
+    return String(s==null?'':s)
+      .replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>')
+      .replace(/"/g,'"');
+  }
+
+  function renderGroups(){
+    groupsEl.innerHTML = groups.map((g, i) => `
+      <div class="group" data-i="${i}">
+        <h3>Group ${i+1}
+          <button class="tiny secondary" type="button" data-rm="${i}" style="float:right;border:1px solid #d1d5db;background:#fff;color:#111;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer">Remove</button>
+        </h3>
+        <div class="grid2">
+          <div class="field">
+            <label>User-agent</label>
+            <select data-f="ua" data-i="${i}">${agentOptions(g.ua)}</select>
+            <p class="hint">Or type a custom name after picking closest.</p>
+            <input type="text" data-f="uaCustom" data-i="${i}" placeholder="custom agent name" value="${esc(COMMON_AGENTS.includes(g.ua)?'':g.ua)}" style="margin-top:.35rem"/>
+          </div>
+          <div class="field">
+            <label>Crawl-delay (optional seconds)</label>
+            <input type="number" min="0" step="1" data-f="crawlDelay" data-i="${i}" value="${esc(g.crawlDelay)}" placeholder="e.g. 10"/>
+            <p class="hint">Honored by some bots (not Google). Leave blank to omit.</p>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label>Disallow paths (one per line)</label>
+            <textarea data-f="disallow" data-i="${i}" placeholder="/admin/
+/private/">${esc(g.disallow)}</textarea>
+            <p class="hint">Empty line list + no Allow = allow all. <code>Disallow: /</code> blocks all.</p>
+          </div>
+          <div class="field">
+            <label>Allow paths (one per line)</label>
+            <textarea data-f="allow" data-i="${i}" placeholder="/public/
+/assets/">${esc(g.allow)}</textarea>
+            <p class="hint">Use to carve exceptions under a broader Disallow.</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    groupsEl.querySelectorAll('[data-rm]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = +btn.getAttribute('data-rm');
+        groups.splice(i, 1);
+        if (!groups.length) groups.push(blankGroup('*', [], [], ''));
+        renderGroups(); build();
+      });
+    });
+    groupsEl.querySelectorAll('[data-f]').forEach(el => {
+      const handler = () => {
+        const i = +el.getAttribute('data-i');
+        const f = el.getAttribute('data-f');
+        if (f === 'uaCustom') {
+          const v = el.value.trim();
+          if (v) groups[i].ua = v;
+          else {
+            const sel = groupsEl.querySelector(`select[data-f="ua"][data-i="${i}"]`);
+            groups[i].ua = sel ? sel.value : '*';
+          }
+        } else if (f === 'ua') {
+          const custom = groupsEl.querySelector(`input[data-f="uaCustom"][data-i="${i}"]`);
+          if (custom && custom.value.trim()) return; // custom wins while filled
+          groups[i].ua = el.value;
+        } else {
+          groups[i][f] = el.value;
+        }
+        build();
+      };
+      el.addEventListener('input', handler);
+      el.addEventListener('change', handler);
+    });
+  }
+
+  function lines(text){
+    return String(text||'').split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+  }
+
+  function normalizePath(p){
+    p = p.trim();
+    if (!p) return '';
+    // allow bare * and full URLs-as-path mistakes lightly
+    if (p === '/') return '/';
+    if (!p.startsWith('/') && !p.startsWith('*') && !p.startsWith('$')) p = '/' + p;
+    return p;
+  }
+
+  function build(){
+    const warnings = [];
+    const parts = [];
+    const cmt = commentEl.value.trim();
+    if (cmt) parts.push('# ' + cmt.replace(/\n/g, ' '));
+
+    let ruleCount = 0;
+    groups.forEach((g, idx) => {
+      const ua = (g.ua || '*').trim() || '*';
+      const disallow = lines(g.disallow).map(normalizePath).filter(Boolean);
+      const allow = lines(g.allow).map(normalizePath).filter(Boolean);
+      if (idx > 0 || cmt) parts.push('');
+      parts.push('User-agent: ' + ua);
+      // emit Allow before Disallow for readability (order does not define precedence by itself)
+      allow.forEach(p => { parts.push('Allow: ' + p); ruleCount++; });
+      if (!disallow.length && !allow.length) {
+        parts.push('Disallow:');
+        ruleCount++;
+      } else {
+        disallow.forEach(p => { parts.push('Disallow: ' + p); ruleCount++; });
+      }
+      const cd = String(g.crawlDelay||'').trim();
+      if (cd !== '') {
+        if (!/^\d+(\.\d+)?$/.test(cd)) warnings.push('Group '+(idx+1)+': crawl-delay should be numeric');
+        else { parts.push('Crawl-delay: ' + cd); ruleCount++; }
+      }
+      if (disallow.includes('/') && !allow.length && ua === '*') {
+        warnings.push('User-agent * Disallow: / blocks the whole site for default crawlers.');
+      }
+    });
+
+    const maps = lines(sitemapsEl.value);
+    maps.forEach(u => {
+      if (!/^https?:\/\//i.test(u)) warnings.push('Sitemap should be absolute http(s) URL: ' + u);
+      parts.push('Sitemap: ' + u);
+      ruleCount++;
+    });
+    const host = hostEl.value.trim();
+    if (host) {
+      parts.push('Host: ' + host.replace(/^https?:\/\//i,'').replace(/\/$/,''));
+      ruleCount++;
+    }
+
+    out.textContent = parts.join('\n') + (parts.length ? '\n' : '');
+    stats.textContent = groups.length + ' groups · ' + ruleCount + ' directives';
+    if (warnings.length) {
+      warn.style.display = 'block';
+      warn.textContent = warnings.join(' · ');
+    } else {
+      warn.style.display = 'none';
+      warn.textContent = '';
+    }
+    return out.textContent;
+  }
+
+  function applyPreset(name){
+    commentEl.value = 'robots.txt — ' + name + ' preset';
+    if (name === 'public') {
+      hostEl.value = '';
+      sitemapsEl.value = 'https://example.com/sitemap.xml';
+      groups = [
+        blankGroup('*', ['/admin/', '/private/', '/tmp/', '/*.json$'], ['/'], ''),
+      ];
+    } else if (name === 'blockall') {
+      sitemapsEl.value = '';
+      hostEl.value = '';
+      groups = [blankGroup('*', ['/'], [], '')];
+    } else if (name === 'staging') {
+      sitemapsEl.value = '';
+      hostEl.value = '';
+      commentEl.value = 'Staging — do not index';
+      groups = [blankGroup('*', ['/'], [], '')];
+    } else if (name === 'ai') {
+      sitemapsEl.value = 'https://example.com/sitemap.xml';
+      groups = [
+        blankGroup('*', ['/admin/', '/api/private/'], ['/'], ''),
+        blankGroup('GPTBot', ['/'], [], ''),
+        blankGroup('CCBot', ['/'], [], ''),
+        blankGroup('ClaudeBot', ['/'], [], ''),
+        blankGroup('Google-Extended', ['/'], [], ''),
+      ];
+    } else if (name === 'wordpress') {
+      sitemapsEl.value = 'https://example.com/wp-sitemap.xml';
+      groups = [
+        blankGroup('*', [
+          '/wp-admin/', '/wp-includes/', '/xmlrpc.php', '/wp-login.php',
+          '/wp-content/plugins/', '/wp-content/cache/'
+        ], ['/wp-admin/admin-ajax.php'], ''),
+      ];
+    }
+    renderGroups();
+    build();
+  }
+
+  document.getElementById('addGroup').addEventListener('click', () => {
+    groups.push(blankGroup('*', [], [], ''));
+    renderGroups(); build();
+  });
+  document.getElementById('buildBtn').addEventListener('click', build);
+  document.getElementById('clear').addEventListener('click', () => {
+    groups = [blankGroup('*', [], [], '')];
+    sitemapsEl.value = '';
+    hostEl.value = '';
+    commentEl.value = '';
+    renderGroups(); build();
+  });
+  document.querySelectorAll('[data-preset]').forEach(btn => {
+    btn.addEventListener('click', () => applyPreset(btn.getAttribute('data-preset')));
+  });
+  ['sitemaps','host','comment'].forEach(id => {
+    document.getElementById(id).addEventListener('input', build);
+  });
+  document.getElementById('copyBtn').addEventListener('click', async () => {
+    const t = build();
+    try {
+      await navigator.clipboard.writeText(t);
+      document.getElementById('copyBtn').textContent = 'Copied';
+      setTimeout(() => document.getElementById('copyBtn').textContent = 'Copy', 1200);
+    } catch (e) {
+      out.focus(); document.execCommand && document.execCommand('selectAll');
+    }
+  });
+  document.getElementById('dlBtn').addEventListener('click', () => {
+    const t = build();
+    const blob = new Blob([t], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'robots.txt';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  });
+
+  // node-smoke helpers (no DOM)
+  window.__robotsBuild = function(state){
+    if (state) {
+      if (state.groups) groups = state.groups.map(g => ({
+        ua: g.ua||'*',
+        disallow: Array.isArray(g.disallow)? g.disallow.join('\n') : (g.disallow||''),
+        allow: Array.isArray(g.allow)? g.allow.join('\n') : (g.allow||''),
+        crawlDelay: g.crawlDelay == null ? '' : String(g.crawlDelay)
+      }));
+      if (state.sitemaps != null) sitemapsEl.value = Array.isArray(state.sitemaps)? state.sitemaps.join('\n') : state.sitemaps;
+      if (state.host != null) hostEl.value = state.host;
+      if (state.comment != null) commentEl.value = state.comment;
+    }
+    return build();
+  };
+
+  commentEl.value = 'Generated by Veriton robots.txt Builder';
+  sitemapsEl.value = 'https://example.com/sitemap.xml';
+  renderGroups();
+  build();
+})();
+</script>
+</body>
+</html>
