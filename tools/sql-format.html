@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free SQL Formatter — pretty-print SELECT / JOIN / CTE — Veriton</title>
+<meta name="description" content="Free browser-only SQL formatter. Pretty-print SELECT, JOIN, WHERE, GROUP BY, CTEs, INSERT, UPDATE. Uppercase keywords, indent, minify. No upload, no account."/>
+<meta property="og:title" content="Free SQL Formatter — Veriton"/>
+<meta property="og:description" content="Paste messy SQL → readable SELECT/JOIN/CTE layout. Uppercase keywords, indent depth, minify. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/sql-format-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/sql-format-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/sql-format.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:180px;resize:vertical}
+pre{min-height:180px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre;word-break:normal}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.checks{display:flex;flex-wrap:wrap;gap:.7rem 1.1rem;margin:.4rem 0 .2rem;font-size:.88rem}
+.checks label{font-weight:600;display:flex;gap:.35rem;align-items:center;margin:0;cursor:pointer}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{width:100%;padding:.4rem .5rem;font-size:.85rem;border:1px solid #d1d5db;border-radius:8px;font-family:inherit}
+.grid{display:grid;gap:.65rem}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="json-diff.html">JSON Diff</a> · <a href="text-diff.html">Text Diff</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · SQL pretty-print</span>
+    <h1>SQL Formatter</h1>
+    <p>Paste messy one-line SQL and get readable SELECT / JOIN / WHERE / CTE layout. Uppercase keywords, indent depth, or minify. Nothing leaves your tab — handy next to query review and scrape→schema work.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/sql-format-og.jpg" alt="Free SQL Formatter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need a query/diff review? $1 →</a>
+       <a class="btn ghost" href="json-schema.html">JSON→Schema →</a>
+       <a class="btn ghost" href="text-diff.html">Text Diff →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="input">SQL input</label>
+        <textarea id="input" spellcheck="false" placeholder="select u.id,u.email,count(o.id) as orders from users u left join orders o on o.user_id=u.id where u.active=true group by u.id,u.email having count(o.id)>3 order by orders desc limit 20"></textarea>
+      </div>
+      <div>
+        <label for="output">Formatted</label>
+        <pre id="output" aria-live="polite"></pre>
+      </div>
+    </div>
+    <div class="row">
+      <button class="primary" id="run" type="button">Format</button>
+      <button class="secondary" id="minifyBtn" type="button">Minify</button>
+      <button class="secondary" id="sample" type="button">Load sample</button>
+      <button class="secondary" id="clear" type="button">Clear</button>
+      <button class="secondary" id="copy" type="button">Copy output</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="kwCase">Keyword case</label>
+        <select id="kwCase">
+          <option value="upper" selected>UPPERCASE</option>
+          <option value="lower">lowercase</option>
+          <option value="preserve">preserve</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="indent">Indent spaces</label>
+        <select id="indent">
+          <option value="2" selected>2</option>
+          <option value="4">4</option>
+          <option value="tab">tab</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="comma">Comma style</label>
+        <select id="comma">
+          <option value="end" selected>trailing (col,)</option>
+          <option value="start">leading (, col)</option>
+        </select>
+      </div>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" id="upperIds" /> Uppercase identifiers too</label>
+      <label><input type="checkbox" id="live" checked /> Format as you type</label>
+    </div>
+    <div class="err" id="err"></div>
+    <p class="note">Heuristic pretty-printer for common SQL (SELECT/CTE/DML). Not a full parser — exotic dialects and nested functions may need a hand tweak. Does not execute queries.</p>
+  </div>
+
+  <footer>
+    Veriton free tool · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="./">all tools</a> · nothing uploaded · 2026-09-07
+  </footer>
+</div>
+<script>
+(function () {
+  const KEYWORDS = new Set(("select distinct all as from where group by having order limit offset fetch next only rows row "+
+    "join inner left right full outer cross apply natural on using union except intersect all "+
+    "insert into values update set delete truncate table create alter drop index view "+
+    "with recursive and or not in is null like ilike between exists case when then else end "+
+    "true false asc desc nulls first last returning over partition window "+
+    "primary key foreign references constraint default unique check cascade restrict "+
+    "begin commit rollback transaction if elsif elseif loop while for return function procedure "+
+    "cast coalesce nullif greatest least count sum avg min max").split(/\s+/).filter(Boolean));
+
+  // Multi-word phrase starts (handled specially)
+  const NL_BEFORE = new Set([
+    "select","from","where","group","having","order","limit","offset","fetch","union","except","intersect",
+    "insert","update","delete","set","values","returning","with","join","inner","left","right","full","cross",
+    "outer","and","or","when","else","end","on","using","window","partition","over"
+  ]);
+  const NL_AFTER_OPEN = new Set(["select","from","where","having","set","values","returning"]);
+  // Keywords that open a list of items on following lines
+  const LIST_OPEN = new Set(["select","set","values","returning"]);
+
+  const SAMPLE = `with active_users as (
+  select id, email, created_at from users where active = true and deleted_at is null
+), order_stats as (
+  select user_id, count(*) as order_count, sum(total_cents) as revenue_cents
+  from orders where status in ('paid','shipped') group by user_id
+)
+select u.id, u.email, coalesce(s.order_count, 0) as orders, coalesce(s.revenue_cents, 0) as revenue_cents
+from active_users u
+left join order_stats s on s.user_id = u.id
+where s.order_count > 3 or s.order_count is null
+order by revenue_cents desc nulls last
+limit 50`;
+
+  const $ = (id) => document.getElementById(id);
+  const input = $("input"), output = $("output"), err = $("err"), stat = $("stat");
+
+  function showErr(msg) {
+    if (!msg) { err.style.display = "none"; err.textContent = ""; return; }
+    err.style.display = "block"; err.textContent = msg;
+  }
+
+  function indentUnit() {
+    const v = $("indent").value;
+    return v === "tab" ? "\t" : " ".repeat(Number(v) || 2);
+  }
+
+  function casifyKeyword(tok, mode) {
+    if (mode === "upper") return tok.toUpperCase();
+    if (mode === "lower") return tok.toLowerCase();
+    return tok;
+  }
+
+  function casifyIdent(tok, upperIds, kwMode) {
+    if (upperIds) return tok.toUpperCase();
+    return tok;
+  }
+
+  /** Tokenize SQL preserving strings, quoted idents, comments, numbers, ops */
+  function tokenize(sql) {
+    const tokens = [];
+    let i = 0, n = sql.length;
+    while (i < n) {
+      const c = sql[i];
+      // whitespace
+      if (/\s/.test(c)) {
+        let j = i + 1;
+        while (j < n && /\s/.test(sql[j])) j++;
+        tokens.push({ type: "ws", value: sql.slice(i, j) });
+        i = j; continue;
+      }
+      // line comment
+      if (c === "-" && sql[i + 1] === "-") {
+        let j = i + 2;
+        while (j < n && sql[j] !== "\n") j++;
+        tokens.push({ type: "comment", value: sql.slice(i, j) });
+        i = j; continue;
+      }
+      // block comment
+      if (c === "/" && sql[i + 1] === "*") {
+        let j = i + 2;
+        while (j < n - 1 && !(sql[j] === "*" && sql[j + 1] === "/")) j++;
+        j = Math.min(n, j + 2);
+        tokens.push({ type: "comment", value: sql.slice(i, j) });
+        i = j; continue;
+      }
+      // single-quoted string
+      if (c === "'") {
+        let j = i + 1, out = "'";
+        while (j < n) {
+          if (sql[j] === "'" && sql[j + 1] === "'") { out += "''"; j += 2; continue; }
+          if (sql[j] === "'") { out += "'"; j++; break; }
+          out += sql[j++];
+        }
+        tokens.push({ type: "string", value: out });
+        i = j; continue;
+      }
+      // double-quoted / backtick ident
+      if (c === '"' || c === "`") {
+        const q = c;
+        let j = i + 1, out = q;
+        while (j < n) {
+          if (sql[j] === q && sql[j + 1] === q) { out += q + q; j += 2; continue; }
+          if (sql[j] === q) { out += q; j++; break; }
+          out += sql[j++];
+        }
+        tokens.push({ type: "ident", value: out });
+        i = j; continue;
+      }
+      // number
+      if (/[0-9]/.test(c) || (c === "." && /[0-9]/.test(sql[i + 1] || ""))) {
+        let j = i;
+        while (j < n && /[0-9._eE+-]/.test(sql[j])) j++;
+        tokens.push({ type: "number", value: sql.slice(i, j) });
+        i = j; continue;
+      }
+      // multi-char ops
+      const two = sql.slice(i, i + 2);
+      if (["<>", "!=", "<=", ">=", "||", "::", "->", "=>"].includes(two)) {
+        tokens.push({ type: "op", value: two });
+        i += 2; continue;
+      }
+      // single punct
+      if (",()[];.+-*/%=<>!".includes(c)) {
+        tokens.push({ type: "op", value: c });
+        i++; continue;
+      }
+      // word
+      if (/[A-Za-z_@#$]/.test(c)) {
+        let j = i + 1;
+        while (j < n && /[A-Za-z0-9_@#$]/.test(sql[j])) j++;
+        const raw = sql.slice(i, j);
+        const low = raw.toLowerCase();
+        tokens.push({ type: KEYWORDS.has(low) ? "kw" : "ident", value: raw, low });
+        i = j; continue;
+      }
+      tokens.push({ type: "op", value: c });
+      i++;
+    }
+    return tokens;
+  }
+
+  function formatSQL(sql, opts) {
+    const tokens = tokenize(sql);
+    const unit = opts.indent;
+    const kwMode = opts.kwCase;
+    const upperIds = opts.upperIds;
+    const leadingComma = opts.comma === "start";
+    const minify = !!opts.minify;
+
+    if (minify) {
+      let out = "";
+      let prevType = null;
+      for (const t of tokens) {
+        if (t.type === "ws" || t.type === "comment") continue;
+        let v = t.value;
+        if (t.type === "kw") v = casifyKeyword(v, kwMode === "preserve" ? "lower" : kwMode);
+        else if (t.type === "ident" && !/^["`]/.test(v)) v = casifyIdent(v, upperIds, kwMode);
+        const needSpace =
+          out &&
+          !/^[,()[\].;]/.test(v) &&
+          !/[,([.]$/.test(out) &&
+          !(prevType === "op" && /^[),.;]$/.test(out.slice(-1))) &&
+          !(t.type === "op" && /^[),.;]/.test(v));
+        // space before most tokens except closing punct and after opening
+        if (needSpace && !(t.type === "op" && /^[,)]/.test(v))) out += " ";
+        if (t.type === "op" && v === "(" && /[A-Za-z0-9_]$/.test(out)) {
+          // function call: no space before (
+        } else if (needSpace && t.type === "op" && v === "(") {
+          // keep space for keywords like IN (
+        }
+        out += v;
+        prevType = t.type;
+      }
+      return out.replace(/\s+/g, " ").replace(/\s*,\s*/g, ", ").replace(/\s*\(\s*/g, "(").replace(/\s*\)\s*/g, ") ")
+        .replace(/\s+/g, " ").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")").replace(/\s+,/g, ",").trim();
+    }
+
+    // Pretty path: walk tokens with depth + list state
+    let depth = 0;
+    let out = "";
+    let atLineStart = true;
+    let inSelectList = false;
+    let selectDepth = -1;
+    let parenDepthAtSelect = -1;
+    let pendingLeadingComma = false;
+
+    function writeNewline() {
+      out = out.replace(/[ \t]+$/g, "");
+      out += "\n" + unit.repeat(Math.max(0, depth));
+      atLineStart = true;
+      pendingLeadingComma = false;
+    }
+    function writeSpace() {
+      if (!atLineStart && out && !/\s$/.test(out) && !/[([{.]$/.test(out)) out += " ";
+    }
+    function write(tok) {
+      if (atLineStart) {
+        // already indented via newline
+        atLineStart = false;
+      }
+      out += tok;
+    }
+
+    const significant = tokens.filter((t) => t.type !== "ws");
+
+    for (let i = 0; i < significant.length; i++) {
+      const t = significant[i];
+      const next = significant[i + 1];
+      const prev = significant[i - 1];
+
+      if (t.type === "comment") {
+        if (!atLineStart) writeNewline();
+        write(t.value.trim());
+        writeNewline();
+        continue;
+      }
+
+      if (t.type === "op" && t.value === "(") {
+        writeSpace();
+        write("(");
+        depth++;
+        writeNewline();
+        continue;
+      }
+      if (t.type === "op" && t.value === ")") {
+        depth = Math.max(0, depth - 1);
+        writeNewline();
+        write(")");
+        if (inSelectList && depth < parenDepthAtSelect) {
+          inSelectList = false;
+          selectDepth = -1;
+          parenDepthAtSelect = -1;
+        }
+        continue;
+      }
+
+      if (t.type === "op" && t.value === ",") {
+        if (leadingComma) {
+          writeNewline();
+          write(",");
+          write(" ");
+          pendingLeadingComma = false;
+          atLineStart = false;
+        } else {
+          write(",");
+          writeNewline();
+        }
+        continue;
+      }
+
+      if (t.type === "op" && t.value === ";") {
+        write(";");
+        depth = 0;
+        inSelectList = false;
+        writeNewline();
+        writeNewline();
+        continue;
+      }
+
+      if (t.type === "kw") {
+        const low = t.low;
+        let phrase = low;
+        // multi-word: group by, order by, left join, etc.
+        let consume = 0;
+        if (low === "group" && next && next.type === "kw" && next.low === "by") { phrase = "group by"; consume = 1; }
+        else if (low === "order" && next && next.type === "kw" && next.low === "by") { phrase = "order by"; consume = 1; }
+        else if (low === "partition" && next && next.type === "kw" && next.low === "by") { phrase = "partition by"; consume = 1; }
+        else if (low === "left" && next && next.type === "kw" && next.low === "join") { phrase = "left join"; consume = 1; }
+        else if (low === "right" && next && next.type === "kw" && next.low === "join") { phrase = "right join"; consume = 1; }
+        else if (low === "inner" && next && next.type === "kw" && next.low === "join") { phrase = "inner join"; consume = 1; }
+        else if (low === "full" && next && next.type === "kw" && (next.low === "join" || next.low === "outer")) {
+          if (next.low === "outer" && significant[i + 2] && significant[i + 2].type === "kw" && significant[i + 2].low === "join") {
+            phrase = "full outer join"; consume = 2;
+          } else if (next.low === "join") { phrase = "full join"; consume = 1; }
+        }
+        else if (low === "outer" && next && next.type === "kw" && next.low === "join") { phrase = "outer join"; consume = 1; }
+        else if (low === "cross" && next && next.type === "kw" && next.low === "join") { phrase = "cross join"; consume = 1; }
+        else if (low === "union" && next && next.type === "kw" && next.low === "all") { phrase = "union all"; consume = 1; }
+        else if (low === "insert" && next && next.type === "kw" && next.low === "into") { phrase = "insert into"; consume = 1; }
+        else if (low === "is" && next && next.type === "kw" && next.low === "null") { phrase = "is null"; consume = 1; }
+        else if (low === "is" && next && next.type === "kw" && next.low === "not" && significant[i + 2] && significant[i + 2].low === "null") {
+          phrase = "is not null"; consume = 2;
+        }
+        else if (low === "not" && next && next.type === "kw" && next.low === "null") { phrase = "not null"; consume = 1; }
+        else if (low === "nulls" && next && next.type === "kw" && (next.low === "first" || next.low === "last")) {
+          phrase = "nulls " + next.low; consume = 1;
+        }
+
+        const display = phrase.split(" ").map((w) => casifyKeyword(w, kwMode)).join(" ");
+        const first = phrase.split(" ")[0];
+
+        // Newline before major clauses
+        if (NL_BEFORE.has(first) || phrase.includes("join") || phrase === "group by" || phrase === "order by" || phrase === "union all") {
+          // "and"/"or" inside WHERE get newline at same depth
+          if (!atLineStart) writeNewline();
+        } else {
+          writeSpace();
+        }
+
+        write(display);
+
+        // Enter select-list mode after SELECT (and DISTINCT)
+        if (first === "select") {
+          inSelectList = true;
+          selectDepth = depth;
+          parenDepthAtSelect = depth;
+          // optional DISTINCT next
+          writeNewline();
+          depth++; // indent list items
+        } else if (phrase === "group by" || phrase === "order by" || first === "set" || first === "returning" || first === "values") {
+          if (inSelectList && depth > selectDepth) depth = selectDepth + 1; // keep
+          writeNewline();
+          if (!inSelectList || first === "set" || first === "values" || first === "returning") {
+            // slight indent for list
+          }
+          depth++;
+          inSelectList = true;
+          selectDepth = depth - 1;
+        } else if (["from","where","having","join","limit","offset","update","delete","with"].includes(first) || phrase.includes("join") || phrase === "insert into" || phrase === "union all") {
+          // leave select list indent
+          if (inSelectList && depth > selectDepth) {
+            depth = Math.max(selectDepth, 0);
+            inSelectList = false;
+          }
+          if (LIST_OPEN.has(first)) {
+            /* handled above */
+          }
+        }
+
+        i += consume;
+        continue;
+      }
+
+      // ident / number / string / other ops
+      if (t.type === "ident") {
+        writeSpace();
+        let v = t.value;
+        if (!/^["`]/.test(v)) v = casifyIdent(v, upperIds, kwMode);
+        write(v);
+        continue;
+      }
+      if (t.type === "number" || t.type === "string") {
+        writeSpace();
+        write(t.value);
+        continue;
+      }
+      if (t.type === "op") {
+        if (t.value === ".") {
+          write(".");
+        } else if (["=","<",">","<=",">=","<>","!=","+","-","*","/","%","::","||","->","=>"].includes(t.value)) {
+          writeSpace();
+          write(t.value);
+          write(" ");
+          atLineStart = false;
+        } else {
+          writeSpace();
+          write(t.value);
+        }
+        continue;
+      }
+    }
+
+    // Clean trailing whitespace / extra blank lines
+    return out
+      .replace(/[ \t]+$/gm, "")
+      .replace(/\n{3,}/g, "\n\n")
+      .replace(/^\n+/, "")
+      .replace(/\n+$/, "\n")
+      .trimEnd() + (out.trim() ? "\n" : "");
+  }
+
+  function currentOpts(extra) {
+    return Object.assign({
+      kwCase: $("kwCase").value,
+      indent: indentUnit(),
+      comma: $("comma").value,
+      upperIds: $("upperIds").checked,
+      minify: false
+    }, extra || {});
+  }
+
+  function run(extra) {
+    showErr("");
+    const sql = input.value;
+    if (!sql.trim()) {
+      output.textContent = "";
+      stat.textContent = "Empty";
+      return;
+    }
+    try {
+      const opts = currentOpts(extra);
+      const result = formatSQL(sql, opts);
+      output.textContent = result;
+      const lines = result.split("\n").length;
+      stat.textContent = opts.minify
+        ? `Minified · ${result.length} chars`
+        : `Formatted · ${lines} lines · ${result.length} chars`;
+    } catch (e) {
+      showErr(String(e && e.message ? e.message : e));
+      stat.textContent = "Error";
+    }
+  }
+
+  $("run").addEventListener("click", () => run());
+  $("minifyBtn").addEventListener("click", () => run({ minify: true }));
+  $("sample").addEventListener("click", () => { input.value = SAMPLE; run(); });
+  $("clear").addEventListener("click", () => { input.value = ""; output.textContent = ""; showErr(""); stat.textContent = "Ready"; });
+  $("copy").addEventListener("click", async () => {
+    const t = output.textContent || "";
+    try {
+      await navigator.clipboard.writeText(t);
+      stat.textContent = "Copied ✓";
+    } catch {
+      stat.textContent = "Copy failed";
+    }
+  });
+
+  ["kwCase","indent","comma","upperIds"].forEach((id) => {
+    $(id).addEventListener("change", () => run());
+  });
+  let timer = null;
+  input.addEventListener("input", () => {
+    if (!$("live").checked) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => run(), 180);
+  });
+
+  // boot empty
+  output.textContent = "";
+})();
+</script>
+</body>
+</html>
