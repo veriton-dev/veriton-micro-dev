@@ -14,7 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
-- **[Unix Timestamp Converter](./tools/unix-time.html)** — epoch seconds/ms ↔ UTC/local + relative age; batch log lines. Demo adjacent to **$1** review / harness time bugs.
+- **[Unix Timestamp Converter](./tools/timestamp.html)** — epoch seconds/ms ↔ ISO UTC/local + relative age + batch. Demo adjacent to **$1** review / harness time bugs.
 - **[Cron Expression Explainer](./tools/cron-explain.html)** — paste 5-field crontab → plain English + next run times. Demo adjacent to **$3** repo/CI bootstrap.
 - **[Unified Diff Risk Scanner](./tools/diff-risk.html)** — paste a git/patch diff → HIGH/MED/LOW findings (auth bypass, secrets, injection, unsafe deser, deleted tests). Demo for the **$1** review SKU.
 - **[HTML → JSON extractor](./tools/html-to-json.html)** — browser-only, no upload. Paste HTML → title/meta/links/images/selector JSON.
@@ -22,8 +22,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **[JWT Decoder](./tools/jwt-decode.html)** — browser-only header + claims inspector with exp/nbf flags (decode ≠ verify). Demo adjacent to **$1** auth/review work.
 - **[JSON Diff](./tools/json-diff.html)** — browser-only structural left/right JSON diff (added/removed/changed paths). Demo for scrape regressions + **$1**/**$2** checks.
 - **[CSV ↔ JSON](./tools/csv-json.html)** — browser-only bidirectional converter (delimiter detect, typed cells, nested flatten). Demo adjacent to **$2** scrape cleanup.
-- **[Unix Timestamp Converter](./tools/timestamp.html)** — browser-only epoch seconds/ms ↔ ISO UTC/local + relative age + batch. Demo adjacent to **$3** cron/CI bootstrap and JWT exp checks.
-- Share cards: [unix-time-og.jpg](./assets/unix-time-og.jpg) · [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg) · [csv-json-og.jpg](./assets/csv-json-og.jpg) · [timestamp-og.jpg](./assets/timestamp-og.jpg)
+- Share cards: [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg) · [csv-json-og.jpg](./assets/csv-json-og.jpg) · [timestamp-og.jpg](./assets/timestamp-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)
