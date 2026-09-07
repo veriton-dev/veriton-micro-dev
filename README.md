@@ -14,6 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
+- **[Markdown Preview](./tools/markdown-preview.html)** — browser-only live GFM/CommonMark preview (tables, fences, task lists). Demo adjacent to README polish / **$1** review notes.
 - **[Text Diff](./tools/text-diff.html)** — browser-only line-level unified + side-by-side patch (ignore WS/case). Demo adjacent to **$1** Code Review / Diff Risk.
 - **[XML ↔ JSON](./tools/xml-json.html)** — browser-only elements/attributes/text + repeated siblings as arrays. Demo adjacent to **$2** scrape / feed/API payloads.
 - **[HTML Entities Encoder/Decoder](./tools/html-entities.html)** — browser-only named/decimal/hex encode+decode, minimal XSS-safe escape, batch lines. Demo adjacent to **$2** scrape cleanup / **$1** UI string review.

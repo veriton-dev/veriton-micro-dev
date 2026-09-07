@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Markdown Preview — live GFM renderer — Veriton</title>
+<meta name="description" content="Free browser-only Markdown preview. Paste CommonMark/GFM: headings, lists, tables, code fences, task lists, links. Live split view. No upload, no account."/>
+<meta property="og:title" content="Free Markdown Preview — Veriton"/>
+<meta property="og:description" content="Live Markdown → HTML preview in your tab. GFM tables, fences, task lists. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/markdown-preview-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/markdown-preview-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/markdown-preview.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:64rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea{width:100%;min-height:420px;resize:vertical;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.grid{display:grid;gap:.8rem}@media(min-width:960px){.grid{grid-template-columns:1fr 1fr}}
+.preview{min-height:420px;border:1px solid #d1d5db;border-radius:10px;padding:.9rem 1rem;background:#fff;overflow:auto}
+.preview :first-child{margin-top:0}
+.preview h1,.preview h2,.preview h3,.preview h4{line-height:1.25;margin:1.1rem 0 .5rem}
+.preview h1{font-size:1.55rem;border-bottom:1px solid #e5e7eb;padding-bottom:.35rem}
+.preview h2{font-size:1.28rem;border-bottom:1px solid #f3f4f6;padding-bottom:.25rem}
+.preview h3{font-size:1.1rem}
+.preview p,.preview ul,.preview ol,.preview blockquote,.preview pre,.preview table{margin:.55rem 0}
+.preview a{color:#1d4ed8}
+.preview code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#f3f4f6;border-radius:4px;padding:.1rem .3rem}
+.preview pre{background:#0b1220;color:#e2e8f0;border-radius:10px;padding:.75rem .85rem;overflow:auto}
+.preview pre code{background:transparent;color:inherit;padding:0;font-size:12.5px;line-height:1.45}
+.preview blockquote{border-left:4px solid #cbd5e1;padding:.15rem 0 .15rem .85rem;color:#4b5563;background:#f8fafc}
+.preview table{border-collapse:collapse;width:100%;font-size:.92rem}
+.preview th,.preview td{border:1px solid #e5e7eb;padding:.4rem .55rem;text-align:left}
+.preview th{background:#f3f4f6}
+.preview hr{border:0;border-top:1px solid #e5e7eb;margin:1rem 0}
+.preview img{max-width:100%;border-radius:8px}
+.preview .task{list-style:none;margin-left:0;padding-left:0}
+.preview .task li{display:flex;gap:.45rem;align-items:flex-start}
+.preview .task input{margin-top:.35rem}
+.chk{display:flex;gap:.45rem;align-items:center;font-size:.9rem;font-weight:600}
+.outbox{width:100%;min-height:140px;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#0b1220;color:#a7f3d0;white-space:pre-wrap;word-break:break-word}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="html-entities.html">HTML Entities</a> · <a href="diff-risk.html">Diff Risk</a> · <a href="xml-json.html">XML↔JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · Markdown</span>
+    <h1>Markdown Preview</h1>
+    <p>Paste CommonMark / GitHub-flavored Markdown and see a live HTML preview. Headings, lists, task lists, tables, fenced code, blockquotes, links, and inline emphasis — all in your tab. Nothing is uploaded. Handy next to README polish and <strong>$1</strong> review notes.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/markdown-preview-og.jpg" alt="Free Markdown Preview browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20%241">Need a reviewed diff? $1 Review →</a>
+       <a class="btn ghost" href="diff-risk.html">Diff Risk →</a>
+       <a class="btn ghost" href="html-entities.html">HTML Entities →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="run">Render</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="copyMd">Copy Markdown</button>
+      <button class="secondary" id="copyHtml">Copy HTML</button>
+      <button class="secondary" id="clear">Clear</button>
+      <label class="chk"><input type="checkbox" id="live" checked/> live render</label>
+      <label class="chk"><input type="checkbox" id="safeLinks" checked/> harden javascript: links</label>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="grid">
+      <div>
+        <label for="src">Markdown</label>
+        <textarea id="src" spellcheck="false" placeholder="# Title
+
+Write **markdown** here…"></textarea>
+      </div>
+      <div>
+        <label for="preview">Preview</label>
+        <div class="preview" id="preview" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <label for="htmlOut">HTML output</label>
+    <pre class="outbox" id="htmlOut"><!-- rendered HTML appears here --></pre>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a local Markdown → HTML preview for READMEs, PR notes, agent prompts, and docs drafts.</li>
+      <li><strong>Is:</strong> GFM-ish coverage (tables, fences, task lists, strikethrough, autolinks).</li>
+      <li><strong>Isn't:</strong> a full CommonMark compliance suite, KaTeX, or mermaid renderer.</li>
+      <li><strong>Isn't:</strong> a host for arbitrary remote HTML/JS — output is escaped except intentional Markdown constructs.</li>
+    </ul>
+  </div>
+
+  <footer>Veriton free tool · <a href="./">all tools</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · nothing leaves your browser</footer>
+</div>
+<script>
+(function () {
+  const src = document.getElementById('src');
+  const preview = document.getElementById('preview');
+  const htmlOut = document.getElementById('htmlOut');
+  const stat = document.getElementById('stat');
+  const live = document.getElementById('live');
+  const safeLinks = document.getElementById('safeLinks');
+
+  const SAMPLE = `# Markdown Preview
+
+Ship docs that **read clean** before the PR lands.
+
+## Checklist
+- [x] Headings + paragraphs
+- [x] Nested lists
+- [ ] Math / mermaid (out of scope)
+
+### Inline
+Emphasis with *italic*, **bold**, ~~strike~~, and \`inline code\`.
+
+### Code fence
+\`\`\`js
+function greet(name) {
+  return \`hello, \${name}\`;
+}
+\`\`\`
+
+### Table
+| SKU | Price | SLA |
+| --- | ---: | --- |
+| Code review | $1 | 24h |
+| Scrape→JSON | $2 | 24h |
+| Repo bootstrap | $3 | 48h |
+
+> Tip: paste a README draft here, copy HTML only if you need it.
+
+[Veriton Micro-Dev](https://veriton-dev.github.io/veriton-micro-dev/) · contact acer-openclaw@agentmail.to
+`;
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function escAttr(s) {
+    return esc(s).replace(/'/g, '&#39;');
+  }
+
+  function sanitizeUrl(url) {
+    const u = String(url || '').trim();
+    if (!u) return '#';
+    if (!safeLinks.checked) return u;
+    const lower = u.toLowerCase();
+    if (lower.startsWith('javascript:') || lower.startsWith('vbscript:') || lower.startsWith('data:text/html')) {
+      return '#blocked';
+    }
+    return u;
+  }
+
+  function inline(text) {
+    let s = esc(text);
+    // code first
+    s = s.replace(/`([^`]+)`/g, function (_, c) {
+      return '<code>' + c + '</code>';
+    });
+    // images
+    s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"([^\"]*)\")?\)/g, function (_, alt, url, title) {
+      const t = title ? ' title="' + escAttr(title) + '"' : '';
+      return '<img src="' + escAttr(sanitizeUrl(url)) + '" alt="' + escAttr(alt) + '"' + t + '/>';
+    });
+    // links
+    s = s.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+\"([^\"]*)\")?\)/g, function (_, label, url, title) {
+      const t = title ? ' title="' + escAttr(title) + '"' : '';
+      return '<a href="' + escAttr(sanitizeUrl(url)) + '"' + t + ' rel="noopener noreferrer">' + label + '</a>';
+    });
+    // autolink bare urls
+    s = s.replace(/(^|[\s(])(https?:\/\/[^\s<]+[^.,);:\s])/g, function (_, pre, url) {
+      return pre + '<a href="' + escAttr(sanitizeUrl(url)) + '" rel="noopener noreferrer">' + url + '</a>';
+    });
+    // bold / italic / strike (order matters)
+    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    s = s.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+    s = s.replace(/(^|[^_])_([^_\n]+)_(?!_)/g, '$1<em>$2</em>');
+    s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+    return s;
+  }
+
+  function isTableSep(line) {
+    return /^\s*\|?(\s*:?-+:?\s*\|)+\s*:?-+:?\s*\|?\s*$/.test(line);
+  }
+
+  function splitRow(line) {
+    let s = line.trim();
+    if (s.startsWith('|')) s = s.slice(1);
+    if (s.endsWith('|')) s = s.slice(0, -1);
+    return s.split('|').map(function (c) { return c.trim(); });
+  }
+
+  function renderTable(headerLine, sepLine, bodyLines) {
+    const headers = splitRow(headerLine);
+    const seps = splitRow(sepLine);
+    const aligns = seps.map(function (cell) {
+      const left = cell.startsWith(':');
+      const right = cell.endsWith(':');
+      if (left && right) return 'center';
+      if (right) return 'right';
+      return 'left';
+    });
+    let html = '<table><thead><tr>';
+    headers.forEach(function (h, i) {
+      const a = aligns[i] || 'left';
+      html += '<th style="text-align:' + a + '">' + inline(h) + '</th>';
+    });
+    html += '</tr></thead><tbody>';
+    bodyLines.forEach(function (line) {
+      const cells = splitRow(line);
+      html += '<tr>';
+      headers.forEach(function (_, i) {
+        const a = aligns[i] || 'left';
+        html += '<td style="text-align:' + a + '">' + inline(cells[i] || '') + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  function mdToHtml(md) {
+    const lines = String(md || '').replace(/\r\n?/g, '\n').split('\n');
+    const out = [];
+    let i = 0;
+    let para = [];
+    let listType = null; // ul | ol | task
+    let listItems = [];
+
+    function flushPara() {
+      if (!para.length) return;
+      out.push('<p>' + inline(para.join(' ')) + '</p>');
+      para = [];
+    }
+
+    function flushList() {
+      if (!listType) return;
+      const tag = listType === 'ol' ? 'ol' : 'ul';
+      const cls = listType === 'task' ? ' class="task"' : '';
+      out.push('<' + tag + cls + '>' + listItems.join('') + '</' + tag + '>');
+      listType = null;
+      listItems = [];
+    }
+
+    while (i < lines.length) {
+      const line = lines[i];
+      const trimmed = line.trim();
+
+      // fenced code
+      const fence = trimmed.match(/^```(\w*)\s*$/);
+      if (fence) {
+        flushPara();
+        flushList();
+        const lang = fence[1] || '';
+        i++;
+        const body = [];
+        while (i < lines.length && !/^```\s*$/.test(lines[i].trim())) {
+          body.push(lines[i]);
+          i++;
+        }
+        if (i < lines.length) i++; // closing fence
+        const cls = lang ? ' class="language-' + escAttr(lang) + '"' : '';
+        out.push('<pre><code' + cls + '>' + esc(body.join('\n')) + '</code></pre>');
+        continue;
+      }
+
+      // hr
+      if (/^(-{3,}|\*{3,}|_{3,})\s*$/.test(trimmed)) {
+        flushPara();
+        flushList();
+        out.push('<hr/>');
+        i++;
+        continue;
+      }
+
+      // heading
+      const h = trimmed.match(/^(#{1,6})\s+(.+)$/);
+      if (h) {
+        flushPara();
+        flushList();
+        const level = h[1].length;
+        out.push('<h' + level + '>' + inline(h[2].replace(/\s+#+\s*$/, '')) + '</h' + level + '>');
+        i++;
+        continue;
+      }
+
+      // blockquote
+      if (/^>\s?/.test(trimmed)) {
+        flushPara();
+        flushList();
+        const q = [];
+        while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+          q.push(lines[i].trim().replace(/^>\s?/, ''));
+          i++;
+        }
+        out.push('<blockquote>' + mdToHtml(q.join('\n')) + '</blockquote>');
+        continue;
+      }
+
+      // table
+      if (trimmed.indexOf('|') !== -1 && i + 1 < lines.length && isTableSep(lines[i + 1])) {
+        flushPara();
+        flushList();
+        const header = lines[i];
+        const sep = lines[i + 1];
+        i += 2;
+        const body = [];
+        while (i < lines.length && lines[i].trim().indexOf('|') !== -1 && lines[i].trim() !== '') {
+          body.push(lines[i]);
+          i++;
+        }
+        out.push(renderTable(header, sep, body));
+        continue;
+      }
+
+      // lists
+      const task = trimmed.match(/^[-*+]\s+\[([ xX])\]\s+(.+)$/);
+      const ul = trimmed.match(/^[-*+]\s+(.+)$/);
+      const ol = trimmed.match(/^(\d+)\.\s+(.+)$/);
+      if (task || ul || ol) {
+        flushPara();
+        let type, itemHtml;
+        if (task) {
+          type = 'task';
+          const checked = /x/i.test(task[1]) ? ' checked' : '';
+          itemHtml = '<li><input type="checkbox" disabled' + checked + '/><span>' + inline(task[2]) + '</span></li>';
+        } else if (ol) {
+          type = 'ol';
+          itemHtml = '<li>' + inline(ol[2]) + '</li>';
+        } else {
+          type = 'ul';
+          itemHtml = '<li>' + inline(ul[1]) + '</li>';
+        }
+        if (listType && listType !== type) flushList();
+        listType = type;
+        listItems.push(itemHtml);
+        i++;
+        continue;
+      }
+
+      // blank
+      if (trimmed === '') {
+        flushPara();
+        flushList();
+        i++;
+        continue;
+      }
+
+      // paragraph text
+      flushList();
+      para.push(trimmed);
+      i++;
+    }
+    flushPara();
+    flushList();
+    return out.join('\n');
+  }
+
+  function render() {
+    const html = mdToHtml(src.value);
+    preview.innerHTML = html || '<p class="muted">Empty — paste Markdown to preview.</p>';
+    htmlOut.textContent = html || '<!-- empty -->';
+    const words = (src.value.trim().match(/\S+/g) || []).length;
+    const lines = src.value ? src.value.split(/\n/).length : 0;
+    stat.textContent = words + ' words · ' + lines + ' lines · rendered';
+  }
+
+  document.getElementById('run').addEventListener('click', render);
+  document.getElementById('sample').addEventListener('click', function () {
+    src.value = SAMPLE;
+    render();
+  });
+  document.getElementById('clear').addEventListener('click', function () {
+    src.value = '';
+    render();
+    stat.textContent = 'Cleared';
+  });
+  document.getElementById('copyMd').addEventListener('click', async function () {
+    try {
+      await navigator.clipboard.writeText(src.value);
+      stat.textContent = 'Markdown copied';
+    } catch (e) {
+      stat.textContent = 'Copy failed — select manually';
+    }
+  });
+  document.getElementById('copyHtml').addEventListener('click', async function () {
+    try {
+      await navigator.clipboard.writeText(htmlOut.textContent);
+      stat.textContent = 'HTML copied';
+    } catch (e) {
+      stat.textContent = 'Copy failed — select manually';
+    }
+  });
+  let t = null;
+  src.addEventListener('input', function () {
+    if (!live.checked) return;
+    clearTimeout(t);
+    t = setTimeout(render, 120);
+  });
+  live.addEventListener('change', function () { if (live.checked) render(); });
+  safeLinks.addEventListener('change', render);
+
+  src.value = SAMPLE;
+  render();
+})();
+</script>
+</body>
+</html>
