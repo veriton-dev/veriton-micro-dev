@@ -182,9 +182,11 @@ footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5
     return d === 0;
   }
 
-  async function digestOne(text){
+  let fileBytes = null; // ArrayBuffer from local file, if any
+  let fileName = '';
+
+  async function digestBytes(data){
     const algo = $('algo').value;
-    const data = enc.encode(text);
     if (mode === 'hmac'){
       const keyStr = $('key').value;
       if (!keyStr) throw new Error('HMAC key required');
@@ -194,6 +196,9 @@ footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5
       return crypto.subtle.sign('HMAC', key, data);
     }
     return crypto.subtle.digest(algo, data);
+  }
+  async function digestOne(text){
+    return digestBytes(enc.encode(text));
   }
 
   function setMode(m){
@@ -209,15 +214,28 @@ footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5
 
   document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
 
+  $('file').addEventListener('change', async (ev) => {
+    const f = ev.target.files && ev.target.files[0];
+    fileBytes = null; fileName = '';
+    if (!f) return;
+    if (f.size > 64 * 1024 * 1024) { showErr('File too large (max 64MB in-browser)'); return; }
+    fileBytes = await f.arrayBuffer();
+    fileName = f.name;
+    $('inp').value = '';
+    $('batch').value = 'whole';
+    setStat('File loaded: ' + fileName + ' (' + fileBytes.byteLength + ' bytes)');
+    showErr(''); showOk('');
+  });
+
   async function run(){
     showErr(''); showOk('');
     try{
       if (!window.crypto || !crypto.subtle) throw new Error('Web Crypto unavailable in this context');
       const raw = $('inp').value;
-      if (!raw && mode !== 'compare') throw new Error('Input is empty');
-      if (!raw) throw new Error('Input is empty');
+      const useFile = !!(fileBytes && !raw);
+      if (!raw && !fileBytes) throw new Error('Input is empty (paste text or choose a local file)');
 
-      const batch = $('batch').value === 'lines' && mode !== 'compare';
+      const batch = !useFile && $('batch').value === 'lines' && mode !== 'compare';
       const algo = $('algo').value;
       const t0 = performance.now();
 
@@ -236,15 +254,17 @@ footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5
         return;
       }
 
-      const buf = await digestOne(raw);
+      const inputBytes = useFile ? fileBytes : enc.encode(raw);
+      const buf = await digestBytes(inputBytes);
       const dig = formatDigest(buf);
       $('out').textContent = dig;
-      setMeta(algo + (mode==='hmac'?' HMAC':''));
+      setMeta(algo + (mode==='hmac'?' HMAC':'') + (useFile ? ' · file' : ''));
       const ms = Math.round(performance.now()-t0);
       setStat(algo + (mode==='hmac'?' HMAC':'') + ' · ' + new Uint8Array(buf).length + ' bytes · ' + ms + 'ms');
       $('detail').innerHTML =
         '<div><span class="k">algo</span><span class="v">'+algo+(mode==='hmac'?' + HMAC':'')+'</span></div>'+
-        '<div><span class="k">input bytes</span><span class="v">'+enc.encode(raw).length+'</span></div>'+
+        (useFile ? '<div><span class="k">file</span><span class="v">'+fileName+'</span></div>' : '')+
+        '<div><span class="k">input bytes</span><span class="v">'+inputBytes.byteLength+'</span></div>'+
         '<div><span class="k">digest bytes</span><span class="v">'+new Uint8Array(buf).length+'</span></div>'+
         '<div><span class="k">format</span><span class="v">'+$('fmt').value+'</span></div>';
 
@@ -304,7 +324,8 @@ footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5
   });
   $('clear').addEventListener('click', () => {
     $('inp').value=''; $('out').textContent='# Run to hash'; $('detail').innerHTML='';
-    $('cmp').value=''; $('key').value='';
+    $('cmp').value=''; $('key').value=''; $('file').value='';
+    fileBytes=null; fileName='';
     showErr(''); showOk(''); setMeta('idle'); setStat('Cleared');
   });
   $('inp').addEventListener('keydown', (e) => {
