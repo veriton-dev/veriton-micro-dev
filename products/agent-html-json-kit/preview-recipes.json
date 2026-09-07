@@ -1,0 +1,75 @@
+{
+  "schema": "veriton.agent-html-json-kit/v1-preview",
+  "count": 8,
+  "note": "8 of 40 \u2014 buy full kit $5 USDC",
+  "recipes": [
+    {
+      "id": "doc_title",
+      "name": "Document title",
+      "selector": "title",
+      "fields": [
+        "text"
+      ],
+      "notes": "HTML title element"
+    },
+    {
+      "id": "h1_main",
+      "name": "Primary H1",
+      "selector": "h1",
+      "fields": [
+        "text"
+      ],
+      "notes": "First page heading"
+    },
+    {
+      "id": "meta_desc",
+      "name": "Meta description",
+      "selector": "meta[name=description]",
+      "fields": [
+        "content"
+      ],
+      "notes": "SEO description"
+    },
+    {
+      "id": "canonical",
+      "name": "Canonical URL",
+      "selector": "link[rel=canonical]",
+      "fields": [
+        "href"
+      ],
+      "notes": "Canonical link"
+    },
+    {
+      "id": "og_title",
+      "name": "Open Graph title",
+      "selector": "meta[property='og:title']",
+      "fields": [
+        "content"
+      ]
+    },
+    {
+      "id": "og_desc",
+      "name": "Open Graph description",
+      "selector": "meta[property='og:description']",
+      "fields": [
+        "content"
+      ]
+    },
+    {
+      "id": "og_image",
+      "name": "Open Graph image",
+      "selector": "meta[property='og:image']",
+      "fields": [
+        "content"
+      ]
+    },
+    {
+      "id": "og_url",
+      "name": "Open Graph URL",
+      "selector": "meta[property='og:url']",
+      "fields": [
+        "content"
+      ]
+    }
+  ]
+}

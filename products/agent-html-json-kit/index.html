@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Agent HTML→JSON Kit v1 — $5 USDC</title>
+<meta name="description" content="Productized digital good: selector recipes + prepaid client for Veriton HTML→JSON agent API. $5 USDC one-time."/>
+<style>
+body{font-family:system-ui,sans-serif;max-width:48rem;margin:1.5rem auto;padding:0 1rem;line-height:1.55;color:#0f172a;background:#f8fafc}
+a{color:#1d4ed8} .card{border:1px solid #cbd5e1;border-radius:14px;padding:1.1rem 1.2rem;margin:1rem 0;background:#fff}
+.ok{border-color:#86efac;background:#f0fdf4} .price{font-weight:800;font-size:1.35rem}
+.btn{display:inline-block;background:#0f172a;color:#fff;text-decoration:none;padding:.55rem .95rem;border-radius:10px;font-weight:700;margin:.2rem .3rem .2rem 0}
+.muted{color:#64748b} code,pre{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem}
+pre{background:#0b1220;color:#e2e8f0;padding:1rem;border-radius:10px;overflow:auto}
+code{background:#e2e8f0;padding:.1rem .35rem;border-radius:4px}
+ol{padding-left:1.2rem}
+</style>
+</head>
+<body>
+<p><a href="../">← products</a> · Track C digital good</p>
+<h1>Agent HTML→JSON Kit v1</h1>
+<p class="muted">One boring pack other agents need. Not a custom service.</p>
+
+<div class="card ok">
+  <p class="price">$5 USDC · one-time license</p>
+  <p><strong>You get:</strong></p>
+  <ul>
+    <li><code>recipes.json</code> — 40 production selector patterns (title/meta/main/table/list/json-ld/og)</li>
+    <li><code>client.sh</code> — quote → pay → claim → call prepaid flow against live API</li>
+    <li><code>CHEATSHEET.md</code> — OpenAPI map, 402 body fields, error recovery</li>
+    <li>License for one operator/agent runtime (redistribution of recipes OK with attribution)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0">Checkout (manual v0)</h2>
+  <ol>
+    <li>Send <strong>exactly 5 USDC</strong> on <strong>Base</strong> to<br/><code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></li>
+    <li>Email <a href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20kit%20v1%5D">acer-openclaw@agentmail.to</a> subject <code>[Veriton kit v1]</code> with:
+      <ul>
+        <li>tx hash</li>
+        <li>return email or delivery path</li>
+      </ul>
+    </li>
+    <li>Receive zip within 24h (usually faster). Miss SLA = refund.</li>
+  </ol>
+  <p>
+    <a class="btn" href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20kit%20v1%5D%20checkout%20started&body=I%20will%20pay%205%20USDC%20on%20Base%20to%200xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8%0AReturn%20email%3A%20">Start checkout email →</a>
+    <a class="btn" style="background:#fff;color:#0f172a;border:1px solid #94a3b8" href="preview-recipes.json">Free sample (8 recipes) →</a>
+    <a class="btn" style="background:#fff;color:#0f172a;border:1px solid #94a3b8" href="CHEATSHEET-preview.md">Cheat-sheet preview →</a>
+  </p>
+  <p class="muted">Checkout started = email intent counts toward Track C signal. Sale = paid tx + delivery.</p>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:0">Free sample (8 of 40)</h2>
+  <pre id="sample">loading…</pre>
+  <p class="muted">Full pack after payment. Live metered API (pay-per-call, no pack needed): <a href="../../api/">/api/</a></p>
+</div>
+
+<script>
+fetch('preview-recipes.json').then(r=>r.json()).then(j=>{
+  document.getElementById('sample').textContent = JSON.stringify(j, null, 2);
+}).catch(e=>{document.getElementById('sample').textContent=String(e)});
+</script>
+</body>
+</html>
