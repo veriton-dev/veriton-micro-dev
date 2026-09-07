@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Meta Tags Generator — Open Graph · Twitter · SEO — Veriton</title>
+<meta name="description" content="Free browser-only meta tags generator. Build title, description, canonical, Open Graph, Twitter Card, robots, theme-color, and optional JSON-LD. Copy HTML head snippet. No upload, no account."/>
+<meta property="og:title" content="Free Meta Tags Generator — Open Graph · Twitter · SEO — Veriton"/>
+<meta property="og:description" content="Fill fields once. Live head snippet for title, description, canonical, OG, Twitter cards, robots, and JSON-LD WebPage. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/meta-tags-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/meta-tags-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/meta-tags.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],input[type=url],select,textarea{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:4.2rem;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.grid2{display:grid;gap:.75rem;margin:.55rem 0}@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+.field{margin:.55rem 0}
+.hint{color:#6b7280;font-size:.78rem;margin:.2rem 0 0;font-weight:500}
+.checks{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+.checks label{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.88rem;margin:0;background:#f9fafb;border:1px solid #e5e7eb;border-radius:999px;padding:.3rem .7rem}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937;margin-top:.55rem}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox pre{margin:0;color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:8rem}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.preview{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:.9rem;margin-top:.7rem}
+.preview .serp-title{color:#1a0dab;font-size:1.15rem;line-height:1.3;margin:0 0 .15rem;font-family:Arial,sans-serif}
+.preview .serp-url{color:#006621;font-size:.82rem;margin:0 0 .25rem;font-family:Arial,sans-serif}
+.preview .serp-desc{color:#545454;font-size:.9rem;margin:0;font-family:Arial,sans-serif}
+.preview .og-card{margin-top:.75rem;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;max-width:28rem}
+.preview .og-img{background:#111827;color:#94a3b8;height:9rem;display:flex;align-items:center;justify-content:center;font-size:.85rem;background-size:cover;background-position:center}
+.preview .og-body{padding:.65rem .75rem;background:#f9fafb}
+.preview .og-site{font-size:.72rem;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.preview .og-title{font-weight:800;margin:.15rem 0;font-size:.95rem}
+.preview .og-desc{color:#4b5563;font-size:.85rem;margin:0}
+.warn{color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.45rem .65rem;font-size:.85rem;margin:.45rem 0;display:none}
+.oklist{margin:.4rem 0 0;padding-left:1.1rem;font-size:.85rem;color:#374151}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="html-to-json.html">HTML→JSON</a> · <a href="slug-case.html">Slug/Case</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · SEO head</span>
+    <h1>Meta Tags Generator</h1>
+    <p>Build a complete <code><head></code> snippet: title, description, canonical, Open Graph, Twitter Card, robots, theme-color, and optional JSON-LD WebPage. Live SERP + social card preview. Nothing leaves your tab — handy next to landing pages, GH Pages tools, and <strong>$3</strong> bootstrap SEO.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/meta-tags-og.jpg" alt="Free Meta Tags Generator" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a scaffold with SEO? $3 Bootstrap →</a>
+       <a class="btn ghost" href="html-to-json.html">HTML→JSON →</a>
+       <a class="btn ghost" href="slug-case.html">Slug/Case →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="grid2">
+      <div class="field">
+        <label for="title">Page title</label>
+        <input id="title" type="text" maxlength="120" value="Veriton Micro-Dev — $1 code review" placeholder="Page title"/>
+        <p class="hint" id="titleHint">0 chars · aim 50–60</p>
+      </div>
+      <div class="field">
+        <label for="siteName">Site name</label>
+        <input id="siteName" type="text" value="Veriton" placeholder="Brand / site name"/>
+      </div>
+    </div>
+    <div class="field">
+      <label for="desc">Meta description</label>
+      <textarea id="desc" maxlength="320" placeholder="One or two sentences for SERP + OG">$1 code review, $2 scrape-to-JSON, $3 repo bootstrap. Free browser tools. Pay after delivery for first 5.</textarea>
+      <p class="hint" id="descHint">0 chars · aim 140–160</p>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="canonical">Canonical URL</label>
+        <input id="canonical" type="url" value="https://veriton-dev.github.io/veriton-micro-dev/" placeholder="https://example.com/page"/>
+      </div>
+      <div class="field">
+        <label for="image">OG / Twitter image URL</label>
+        <input id="image" type="url" value="https://veriton-dev.github.io/veriton-micro-dev/assets/veriton-listing-thumb.jpg" placeholder="https://…/og.jpg"/>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="ogType">og:type</label>
+        <select id="ogType">
+          <option value="website" selected>website</option>
+          <option value="article">article</option>
+          <option value="product">product</option>
+          <option value="profile">profile</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="twCard">twitter:card</label>
+        <select id="twCard">
+          <option value="summary_large_image" selected>summary_large_image</option>
+          <option value="summary">summary</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="locale">og:locale</label>
+        <input id="locale" type="text" value="en_US" placeholder="en_US"/>
+      </div>
+      <div class="field">
+        <label for="theme">theme-color</label>
+        <input id="theme" type="text" value="#111827" placeholder="#111827"/>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="robots">robots</label>
+        <select id="robots">
+          <option value="index,follow" selected>index,follow</option>
+          <option value="noindex,follow">noindex,follow</option>
+          <option value="index,nofollow">index,nofollow</option>
+          <option value="noindex,nofollow">noindex,nofollow</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="author">author (optional)</label>
+        <input id="author" type="text" value="Veriton" placeholder="Author name"/>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label for="twSite">twitter:site (optional)</label>
+        <input id="twSite" type="text" value="" placeholder="@handle"/>
+      </div>
+      <div class="field">
+        <label for="twCreator">twitter:creator (optional)</label>
+        <input id="twCreator" type="text" value="" placeholder="@handle"/>
+      </div>
+    </div>
+
+    <div class="checks">
+      <label><input type="checkbox" id="incCharset" checked/> charset + viewport</label>
+      <label><input type="checkbox" id="incOg" checked/> Open Graph</label>
+      <label><input type="checkbox" id="incTw" checked/> Twitter</label>
+      <label><input type="checkbox" id="incJsonld" checked/> JSON-LD WebPage</label>
+      <label><input type="checkbox" id="incTheme" checked/> theme-color</label>
+      <label><input type="checkbox" id="incRobots" checked/> robots</label>
+    </div>
+
+    <div class="row">
+      <button class="primary" id="copy" type="button">Copy HTML snippet</button>
+      <button class="secondary" id="copyJsonld" type="button">Copy JSON-LD only</button>
+      <button class="secondary" id="fillSample" type="button">Sample tool page</button>
+      <button class="secondary" id="clear" type="button">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="warn" id="warn"></div>
+
+    <div class="outbox">
+      <div class="k">HTML <head> snippet <button class="tiny" id="copy2" type="button">copy</button></div>
+      <pre id="out">—</pre>
+    </div>
+
+    <div class="preview">
+      <p class="muted" style="margin:0 0 .45rem;font-weight:700">SERP + social preview (approx.)</p>
+      <p class="serp-url" id="serpUrl">https://example.com/</p>
+      <p class="serp-title" id="serpTitle">Title</p>
+      <p class="serp-desc" id="serpDesc">Description</p>
+      <div class="og-card">
+        <div class="og-img" id="ogImg">OG image</div>
+        <div class="og-body">
+          <div class="og-site" id="ogSite">SITE</div>
+          <div class="og-title" id="ogTitle">Title</div>
+          <p class="og-desc" id="ogDesc">Description</p>
+        </div>
+      </div>
+      <ul class="oklist" id="checks"></ul>
+    </div>
+  </div>
+
+  <p class="muted">Local only — nothing is uploaded. Pair with <a href="html-to-json.html">HTML→JSON</a> to audit an existing page head, or <a href="slug-case.html">Slug/Case</a> for URL paths.</p>
+  <footer>Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · free Meta Tags Generator · 2026-09-07</footer>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&' + 'amp;')
+      .replace(/</g, '&' + 'lt;')
+      .replace(/>/g, '&' + 'gt;')
+      .replace(/"/g, '&' + 'quot;');
+  }
+  function trim(s) { return String(s || '').trim(); }
+  function hostOf(u) {
+    try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; }
+  }
+  function build() {
+    var title = trim($('title').value);
+    var desc = trim($('desc').value);
+    var canonical = trim($('canonical').value);
+    var image = trim($('image').value);
+    var site = trim($('siteName').value) || hostOf(canonical) || 'Site';
+    var ogType = $('ogType').value;
+    var twCard = $('twCard').value;
+    var locale = trim($('locale').value) || 'en_US';
+    var theme = trim($('theme').value) || '#111827';
+    var robots = $('robots').value;
+    var author = trim($('author').value);
+    var twSite = trim($('twSite').value);
+    var twCreator = trim($('twCreator').value);
+    if (twSite && twSite[0] !== '@') twSite = '@' + twSite;
+    if (twCreator && twCreator[0] !== '@') twCreator = '@' + twCreator;
+
+    $('titleHint').textContent = title.length + ' chars · aim 50–60';
+    $('descHint').textContent = desc.length + ' chars · aim 140–160';
+
+    var lines = [];
+    if ($('incCharset').checked) {
+      lines.push('<meta charset="utf-8"/>');
+      lines.push('<meta name="viewport" content="width=device-width, initial-scale=1"/>');
+    }
+    if (title) lines.push('<title>' + esc(title) + '</title>');
+    if (desc) lines.push('<meta name="description" content="' + esc(desc) + '"/>');
+    if (author) lines.push('<meta name="author" content="' + esc(author) + '"/>');
+    if ($('incRobots').checked) lines.push('<meta name="robots" content="' + esc(robots) + '"/>');
+    if (canonical) lines.push('<link rel="canonical" href="' + esc(canonical) + '"/>');
+    if ($('incTheme').checked && theme) lines.push('<meta name="theme-color" content="' + esc(theme) + '"/>');
+
+    if ($('incOg').checked) {
+      if (title) lines.push('<meta property="og:title" content="' + esc(title) + '"/>');
+      if (desc) lines.push('<meta property="og:description" content="' + esc(desc) + '"/>');
+      lines.push('<meta property="og:type" content="' + esc(ogType) + '"/>');
+      if (canonical) lines.push('<meta property="og:url" content="' + esc(canonical) + '"/>');
+      if (site) lines.push('<meta property="og:site_name" content="' + esc(site) + '"/>');
+      if (locale) lines.push('<meta property="og:locale" content="' + esc(locale) + '"/>');
+      if (image) {
+        lines.push('<meta property="og:image" content="' + esc(image) + '"/>');
+        lines.push('<meta property="og:image:width" content="1200"/>');
+        lines.push('<meta property="og:image:height" content="630"/>');
+      }
+    }
+    if ($('incTw').checked) {
+      lines.push('<meta name="twitter:card" content="' + esc(twCard) + '"/>');
+      if (title) lines.push('<meta name="twitter:title" content="' + esc(title) + '"/>');
+      if (desc) lines.push('<meta name="twitter:description" content="' + esc(desc) + '"/>');
+      if (image) lines.push('<meta name="twitter:image" content="' + esc(image) + '"/>');
+      if (twSite) lines.push('<meta name="twitter:site" content="' + esc(twSite) + '"/>');
+      if (twCreator) lines.push('<meta name="twitter:creator" content="' + esc(twCreator) + '"/>');
+    }
+
+    var jsonld = null;
+    if ($('incJsonld').checked) {
+      jsonld = {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: title || undefined,
+        description: desc || undefined,
+        url: canonical || undefined,
+        isPartOf: site ? { '@type': 'WebSite', name: site, url: canonical ? (function () {
+          try { var u = new URL(canonical); return u.origin + '/'; } catch (e) { return undefined; }
+        })() : undefined } : undefined,
+        primaryImageOfPage: image ? { '@type': 'ImageObject', url: image } : undefined,
+        author: author ? { '@type': 'Person', name: author } : undefined
+      };
+      // drop undefined keys shallowly
+      Object.keys(jsonld).forEach(function (k) {
+        if (jsonld[k] === undefined) delete jsonld[k];
+        else if (jsonld[k] && typeof jsonld[k] === 'object' && !Array.isArray(jsonld[k])) {
+          Object.keys(jsonld[k]).forEach(function (k2) {
+            if (jsonld[k][k2] === undefined) delete jsonld[k][k2];
+          });
+          if (!Object.keys(jsonld[k]).length || (Object.keys(jsonld[k]).length === 1 && jsonld[k]['@type'])) {
+            // keep typed empty-ish objects only if they still have useful fields beyond @type
+            var keys = Object.keys(jsonld[k]).filter(function (x) { return x !== '@type'; });
+            if (!keys.length) delete jsonld[k];
+          }
+        }
+      });
+      lines.push('<script type="application/ld+json">');
+      lines.push(JSON.stringify(jsonld, null, 2));
+      lines.push('</' + 'script>');
+    }
+
+    var html = lines.join('\n');
+    $('out').textContent = html || '—';
+
+    // previews
+    var serpT = title || 'Title';
+    if (serpT.length > 60) serpT = serpT.slice(0, 57) + '…';
+    var serpD = desc || 'Description';
+    if (serpD.length > 160) serpD = serpD.slice(0, 157) + '…';
+    $('serpTitle').textContent = serpT;
+    $('serpDesc').textContent = serpD;
+    $('serpUrl').textContent = canonical || 'https://example.com/';
+    $('ogTitle').textContent = title || 'Title';
+    $('ogDesc').textContent = desc || 'Description';
+    $('ogSite').textContent = (site || 'SITE').toUpperCase();
+    var imgEl = $('ogImg');
+    if (image) {
+      imgEl.style.backgroundImage = 'url("' + image.replace(/"/g, '') + '")';
+      imgEl.textContent = '';
+    } else {
+      imgEl.style.backgroundImage = '';
+      imgEl.textContent = 'No og:image';
+    }
+
+    var warns = [];
+    if (title && (title.length < 30 || title.length > 60)) warns.push('Title length outside 30–60 (now ' + title.length + ').');
+    if (desc && (desc.length < 70 || desc.length > 160)) warns.push('Description length outside 70–160 (now ' + desc.length + ').');
+    if (!image) warns.push('Missing OG/Twitter image URL.');
+    if (canonical && !/^https?:\/\//i.test(canonical)) warns.push('Canonical should be absolute http(s) URL.');
+    var w = $('warn');
+    if (warns.length) { w.style.display = 'block'; w.textContent = warns.join(' '); }
+    else { w.style.display = 'none'; w.textContent = ''; }
+
+    var checks = [];
+    checks.push((title ? '✓' : '·') + ' title');
+    checks.push((desc ? '✓' : '·') + ' description');
+    checks.push((canonical ? '✓' : '·') + ' canonical');
+    checks.push((image ? '✓' : '·') + ' og:image');
+    checks.push(($('incOg').checked ? '✓' : '·') + ' Open Graph block');
+    checks.push(($('incTw').checked ? '✓' : '·') + ' Twitter block');
+    checks.push(($('incJsonld').checked ? '✓' : '·') + ' JSON-LD');
+    $('checks').innerHTML = checks.map(function (c) { return '<li>' + c + '</li>'; }).join('');
+
+    $('stat').textContent = lines.length + ' lines · ' + html.length + ' chars';
+    window.__metaSnippet = html;
+    window.__metaJsonld = jsonld ? JSON.stringify(jsonld, null, 2) : '';
+  }
+
+  function copyText(t, label) {
+    if (!t) return;
+    function ok() { $('stat').textContent = 'Copied ' + (label || 'snippet'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(ok).catch(function () {
+        var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); ok(); } catch (e) {}
+        document.body.removeChild(ta);
+      });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  ['title','desc','canonical','image','siteName','ogType','twCard','locale','theme','robots','author','twSite','twCreator',
+   'incCharset','incOg','incTw','incJsonld','incTheme','incRobots'].forEach(function (id) {
+    var el = $(id);
+    el.addEventListener('input', build);
+    el.addEventListener('change', build);
+  });
+  $('copy').addEventListener('click', function () { copyText(window.__metaSnippet, 'HTML'); });
+  $('copy2').addEventListener('click', function () { copyText(window.__metaSnippet, 'HTML'); });
+  $('copyJsonld').addEventListener('click', function () { copyText(window.__metaJsonld || '', 'JSON-LD'); });
+  $('fillSample').addEventListener('click', function () {
+    $('title').value = 'Free Meta Tags Generator — Open Graph · Twitter · SEO — Veriton';
+    $('desc').value = 'Free browser-only meta tags generator. Build title, description, canonical, Open Graph, Twitter Card, robots, and JSON-LD. Nothing uploaded.';
+    $('canonical').value = 'https://veriton-dev.github.io/veriton-micro-dev/tools/meta-tags.html';
+    $('image').value = 'https://veriton-dev.github.io/veriton-micro-dev/assets/meta-tags-og.jpg';
+    $('siteName').value = 'Veriton';
+    $('ogType').value = 'website';
+    $('twCard').value = 'summary_large_image';
+    build();
+  });
+  $('clear').addEventListener('click', function () {
+    ['title','desc','canonical','image','author','twSite','twCreator'].forEach(function (id) { $(id).value = ''; });
+    $('siteName').value = '';
+    build();
+  });
+  build();
+})();
+</script>
+</body>
+</html>
