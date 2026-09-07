@@ -14,6 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
+- **[CSS Unit Converter](./tools/css-units.html)** — browser-only px · rem · em · % · vw/vh/vmin/vmax + absolute print units with editable root/parent/viewport. Demo adjacent to **$1** CSS/layout review.
 - **[Chmod Calculator](./tools/chmod-calc.html)** — browser-only octal ↔ symbolic ↔ rwx toggles with setuid/setgid/sticky and ls-style mode. Demo adjacent to **$3** repo bootstrap / Dockerfiles.
 - **[SQL Formatter](./tools/sql-format.html)** — browser-only pretty-print / minify for SELECT, JOIN, CTE, DML. Keyword case, indent, comma style. Demo adjacent to **$1** query/diff review.
 - **[JWT Builder](./tools/jwt-build.html)** — browser-only HS256/384/512 mint with claim helpers + local verify. Demo adjacent to **$1** auth/review work. Pairs with Decoder.
