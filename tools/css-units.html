@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free CSS Unit Converter — px · rem · em · % · vw/vh — Veriton</title>
+<meta name="description" content="Free browser-only CSS unit converter. Convert px, rem, em, %, vw, vh, vmin, vmax, cm, mm, in, pt, pc with root/parent font size and viewport controls. No upload, no account."/>
+<meta property="og:title" content="Free CSS Unit Converter — px · rem · em · % · vw/vh — Veriton"/>
+<meta property="og:description" content="Type any length with a unit. Live table across absolute + relative CSS units. Root font, parent font, and viewport are editable. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/css-units-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/css-units-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/css-units.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],input[type=number],select,pre{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.grid3{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));margin:.6rem 0}
+.ctx{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:.75rem}
+.ctx h3{margin:0 0 .45rem;font-size:.9rem}
+.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.presets button{font-size:.82rem;padding:.4rem .65rem}
+table{width:100%;border-collapse:collapse;font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+th,td{text-align:left;padding:.55rem .6rem;border-bottom:1px solid #e5e7eb;vertical-align:middle}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;font-weight:800}
+td.u{font-weight:800;color:#111827;width:4.5rem}
+td.v{color:#065f46}
+td.note{color:#6b7280;font-family:system-ui,sans-serif;font-size:.82rem}
+button.tiny{appearance:none;border:1px solid #d1d5db;background:#fff;color:#111827;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.swatch-row{display:flex;gap:.6rem;align-items:flex-end;flex-wrap:wrap;margin:.7rem 0}
+.bar{height:28px;background:linear-gradient(90deg,#22c55e,#111827);border-radius:8px;min-width:4px;max-width:100%;border:1px solid #111827}
+.barwrap{flex:1;min-width:12rem}
+.formula{background:#0b1220;color:#a7f3d0;border-radius:10px;padding:.7rem .8rem;font:12.5px/1.45 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;margin:.5rem 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="color-convert.html">Color</a> · <a href="number-base.html">Number Base</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · CSS lengths</span>
+    <h1>CSS Unit Converter</h1>
+    <p>Convert <code>px</code>, <code>rem</code>, <code>em</code>, <code>%</code>, <code>vw</code>/<code>vh</code>/<code>vmin</code>/<code>vmax</code>, and absolute print units. Set root font, parent font, and viewport once — the whole table stays live. Nothing leaves your tab.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/css-units-og.jpg" alt="Free CSS Unit Converter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need a CSS/layout review? $1 →</a>
+       <a class="btn ghost" href="color-convert.html">Color Converter →</a>
+       <a class="btn ghost" href="chmod-calc.html">Chmod Calculator →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="input">Value (number + unit)</label>
+    <input id="input" type="text" spellcheck="false" value="16px" placeholder="16px · 1.25rem · 50% · 4vw"/>
+    <div class="row">
+      <button class="primary" id="go" type="button">Convert</button>
+      <button class="secondary" id="swapRoot" type="button">Use as root font</button>
+      <button class="secondary" id="clear" type="button">Reset 16px</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+
+    <p class="muted" style="margin:.2rem 0">Presets</p>
+    <div class="presets" id="presets">
+      <button type="button" class="secondary" data-v="16px">16px base</button>
+      <button type="button" class="secondary" data-v="1rem">1rem</button>
+      <button type="button" class="secondary" data-v="1.5rem">1.5rem</button>
+      <button type="button" class="secondary" data-v="24px">24px</button>
+      <button type="button" class="secondary" data-v="0.875rem">0.875rem</button>
+      <button type="button" class="secondary" data-v="100%">100%</button>
+      <button type="button" class="secondary" data-v="50vw">50vw</button>
+      <button type="button" class="secondary" data-v="100vh">100vh</button>
+      <button type="button" class="secondary" data-v="1in">1in</button>
+      <button type="button" class="secondary" data-v="12pt">12pt</button>
+    </div>
+
+    <div class="grid3">
+      <div class="ctx">
+        <h3>Root font-size (rem)</h3>
+        <input id="root" type="number" min="1" step="0.5" value="16"/>
+        <p class="muted" style="margin:.35rem 0 0">html / :root font-size in px</p>
+      </div>
+      <div class="ctx">
+        <h3>Parent font-size (em / %)</h3>
+        <input id="parent" type="number" min="1" step="0.5" value="16"/>
+        <p class="muted" style="margin:.35rem 0 0">parent element font-size in px</p>
+      </div>
+      <div class="ctx">
+        <h3>Viewport</h3>
+        <div class="row" style="margin:0">
+          <input id="vw" type="number" min="1" step="1" value="1280" title="viewport width px" style="flex:1"/>
+          <span class="muted">×</span>
+          <input id="vh" type="number" min="1" step="1" value="720" title="viewport height px" style="flex:1"/>
+        </div>
+        <p class="muted" style="margin:.35rem 0 0">width × height in CSS px</p>
+      </div>
+    </div>
+
+    <div class="swatch-row">
+      <div class="barwrap">
+        <div class="muted">Visual scale vs 100% of parent font (clamped)</div>
+        <div class="bar" id="bar" style="width:16px"></div>
+      </div>
+    </div>
+
+    <div class="formula" id="formula">—</div>
+
+    <div style="overflow-x:auto;margin-top:.85rem">
+      <table>
+        <thead>
+          <tr><th>Unit</th><th>Value</th><th></th><th>Notes</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">How relative units resolve</h2>
+    <ul class="muted" style="margin:.2rem 0;padding-left:1.1rem">
+      <li><strong>rem</strong> = relative to root font-size (defaults 16px).</li>
+      <li><strong>em</strong> / <strong>%</strong> (font-size context) = relative to parent font-size.</li>
+      <li><strong>vw/vh/vmin/vmax</strong> = % of viewport width/height/min/max.</li>
+      <li>Absolute: 1in = 96px, 1cm = 96/2.54 px, 1pt = 1/72 in, 1pc = 12pt (CSS reference pixel).</li>
+      <li>This tool treats bare <code>%</code> as font-size percent of parent (layout % of containing block needs a width context you set via parent).</li>
+    </ul>
+  </div>
+
+  <p class="muted">Paid when free is not enough: <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">$1 review</a> · <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">$3 bootstrap</a></p>
+  <footer>Veriton · browser-only · no upload · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · 2026-09-07</footer>
+</div>
+<script>
+(function(){
+  const IN = document.getElementById('input');
+  const ROOT = document.getElementById('root');
+  const PARENT = document.getElementById('parent');
+  const VW = document.getElementById('vw');
+  const VH = document.getElementById('vh');
+  const ERR = document.getElementById('err');
+  const STAT = document.getElementById('stat');
+  const TB = document.getElementById('tbody');
+  const BAR = document.getElementById('bar');
+  const FORM = document.getElementById('formula');
+
+  const UNITS = [
+    {u:'px', note:'CSS reference pixels'},
+    {u:'rem', note:'root font-size'},
+    {u:'em', note:'parent font-size'},
+    {u:'%', note:'% of parent font (font-size context)'},
+    {u:'vw', note:'% of viewport width'},
+    {u:'vh', note:'% of viewport height'},
+    {u:'vmin', note:'% of smaller viewport side'},
+    {u:'vmax', note:'% of larger viewport side'},
+    {u:'cm', note:'centimeters (96px/in)'},
+    {u:'mm', note:'millimeters'},
+    {u:'in', note:'inches (96 CSS px)'},
+    {u:'pt', note:'points (1/72 in)'},
+    {u:'pc', note:'picas (12 pt)'},
+  ];
+
+  function ctx(){
+    return {
+      root: Math.max(1, Number(ROOT.value) || 16),
+      parent: Math.max(1, Number(PARENT.value) || 16),
+      vw: Math.max(1, Number(VW.value) || 1280),
+      vh: Math.max(1, Number(VH.value) || 720),
+    };
+  }
+
+  function showErr(msg){
+    if(!msg){ ERR.style.display='none'; ERR.textContent=''; return; }
+    ERR.style.display='block'; ERR.textContent=msg;
+  }
+
+  function parse(raw){
+    const s = String(raw||'').trim().toLowerCase().replace(/\s+/g,'');
+    if(!s) throw new Error('Enter a value like 16px or 1.25rem');
+    const m = s.match(/^([+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?)([a-z%]+)$/i);
+    if(!m) throw new Error('Need number + unit (px, rem, em, %, vw, vh, vmin, vmax, cm, mm, in, pt, pc)');
+    const n = Number(m[1]);
+    if(!Number.isFinite(n)) throw new Error('Invalid number');
+    const u = m[2] === 'percent' ? '%' : m[2];
+    const ok = UNITS.some(x => x.u === u);
+    if(!ok) throw new Error('Unsupported unit: ' + u);
+    return {n, u};
+  }
+
+  function toPx(n, u, c){
+    const vmin = Math.min(c.vw, c.vh);
+    const vmax = Math.max(c.vw, c.vh);
+    switch(u){
+      case 'px': return n;
+      case 'rem': return n * c.root;
+      case 'em': return n * c.parent;
+      case '%': return (n / 100) * c.parent;
+      case 'vw': return (n / 100) * c.vw;
+      case 'vh': return (n / 100) * c.vh;
+      case 'vmin': return (n / 100) * vmin;
+      case 'vmax': return (n / 100) * vmax;
+      case 'in': return n * 96;
+      case 'cm': return n * (96 / 2.54);
+      case 'mm': return n * (96 / 25.4);
+      case 'pt': return n * (96 / 72);
+      case 'pc': return n * (96 / 6);
+      default: throw new Error('unit');
+    }
+  }
+
+  function fromPx(px, u, c){
+    const vmin = Math.min(c.vw, c.vh);
+    const vmax = Math.max(c.vw, c.vh);
+    switch(u){
+      case 'px': return px;
+      case 'rem': return px / c.root;
+      case 'em': return px / c.parent;
+      case '%': return (px / c.parent) * 100;
+      case 'vw': return (px / c.vw) * 100;
+      case 'vh': return (px / c.vh) * 100;
+      case 'vmin': return (px / vmin) * 100;
+      case 'vmax': return (px / vmax) * 100;
+      case 'in': return px / 96;
+      case 'cm': return px / (96 / 2.54);
+      case 'mm': return px / (96 / 25.4);
+      case 'pt': return px / (96 / 72);
+      case 'pc': return px / (96 / 6);
+      default: return NaN;
+    }
+  }
+
+  function fmt(n){
+    if(!Number.isFinite(n)) return '—';
+    const a = Math.abs(n);
+    if(a === 0) return '0';
+    if(a >= 1000) return n.toFixed(2).replace(/\.00$/,'');
+    if(a >= 10) return n.toFixed(3).replace(/\.?0+$/,'');
+    if(a >= 1) return n.toFixed(4).replace(/\.?0+$/,'');
+    return n.toFixed(6).replace(/\.?0+$/,'');
+  }
+
+  function copyText(t){
+    navigator.clipboard.writeText(t).then(()=>{
+      STAT.textContent = 'Copied ' + t;
+    }).catch(()=>{ STAT.textContent = 'Copy failed'; });
+  }
+
+  function render(){
+    try{
+      const c = ctx();
+      const {n,u} = parse(IN.value);
+      const px = toPx(n,u,c);
+      showErr('');
+      STAT.textContent = n + u + ' → ' + fmt(px) + 'px';
+      FORM.textContent =
+        'input: ' + n + u + '\n' +
+        'context: root=' + c.root + 'px parent=' + c.parent + 'px viewport=' + c.vw + '×' + c.vh + '\n' +
+        'canonical: ' + fmt(px) + 'px';
+
+      const scale = Math.max(4, Math.min(100, (px / c.parent) * 100));
+      BAR.style.width = scale + '%';
+
+      TB.innerHTML = '';
+      UNITS.forEach(row => {
+        const v = fromPx(px, row.u, c);
+        const text = fmt(v) + row.u;
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="u">' + row.u + '</td>' +
+          '<td class="v">' + text + '</td>' +
+          '<td><button type="button" class="tiny" data-copy="' + text.replace(/"/g,'"') + '">copy</button></td>' +
+          '<td class="note">' + row.note + '</td>';
+        TB.appendChild(tr);
+      });
+    }catch(e){
+      showErr(e.message || String(e));
+      STAT.textContent = 'Error';
+      FORM.textContent = '—';
+      TB.innerHTML = '';
+    }
+  }
+
+  document.getElementById('go').addEventListener('click', render);
+  document.getElementById('clear').addEventListener('click', ()=>{ IN.value='16px'; render(); });
+  document.getElementById('swapRoot').addEventListener('click', ()=>{
+    try{
+      const c = ctx();
+      const {n,u} = parse(IN.value);
+      const px = toPx(n,u,c);
+      ROOT.value = String(Math.round(px * 1000) / 1000);
+      render();
+    }catch(e){ showErr(e.message || String(e)); }
+  });
+  ['input','change'].forEach(ev=>{
+    [IN, ROOT, PARENT, VW, VH].forEach(el => el.addEventListener(ev, render));
+  });
+  document.getElementById('presets').addEventListener('click', (e)=>{
+    const b = e.target.closest('button[data-v]');
+    if(!b) return;
+    IN.value = b.getAttribute('data-v');
+    render();
+  });
+  TB.addEventListener('click', (e)=>{
+    const b = e.target.closest('button[data-copy]');
+    if(!b) return;
+    copyText(b.getAttribute('data-copy'));
+  });
+
+  // Prefer live viewport defaults when available
+  if(window.innerWidth && window.innerHeight){
+    VW.value = String(Math.round(window.innerWidth));
+    VH.value = String(Math.round(window.innerHeight));
+  }
+  render();
+})();
+</script>
+</body>
+</html>
