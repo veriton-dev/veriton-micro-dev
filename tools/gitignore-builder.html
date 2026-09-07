@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free .gitignore Builder — stack presets · custom rules — Veriton</title>
+<meta name="description" content="Free browser-only .gitignore builder. Pick Node, Python, Go, Rust, Java, Flutter, Unity, OS, editors, and more. Merge presets, add custom rules, copy or download .gitignore. No upload, no account."/>
+<meta property="og:title" content="Free .gitignore Builder — stack presets · custom rules — Veriton"/>
+<meta property="og:description" content="Compose a clean .gitignore from stack presets + custom rules. Browser-only. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/gitignore-builder-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/gitignore-builder-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/gitignore-builder.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff;min-height:6rem;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.checks{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+.checks label{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.88rem;margin:0;background:#f9fafb;border:1px solid #e5e7eb;border-radius:999px;padding:.35rem .75rem;cursor:pointer;user-select:none}
+.checks label.on{background:#ecfdf5;border-color:#6ee7b7;color:#065f46}
+.checks input{margin:0}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937;margin-top:.55rem}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox pre{margin:0;color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:12rem;max-height:28rem;overflow:auto}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.sec{font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;margin:1rem 0 .35rem}
+.warn{color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.45rem .65rem;font-size:.85rem;margin:.45rem 0;display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="chmod-calc.html">Chmod</a> · <a href="meta-tags.html">Meta Tags</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · repo bootstrap</span>
+    <h1>.gitignore Builder</h1>
+    <p>Compose a clean <code>.gitignore</code> from language/OS/editor presets plus your own rules. Dedupes lines, keeps section headers, copies or downloads the file. Nothing leaves your tab — handy next to <strong>$3</strong> repo bootstrap.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/gitignore-builder-og.jpg" alt="Free .gitignore Builder" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a full scaffold? $3 Bootstrap →</a>
+       <a class="btn ghost" href="chmod-calc.html">Chmod Calculator →</a>
+       <a class="btn ghost" href="slug-case.html">Slug/Case →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="sec">Languages / runtimes</div>
+    <div class="checks" id="langChecks"></div>
+    <div class="sec">Frameworks / stacks</div>
+    <div class="checks" id="fwChecks"></div>
+    <div class="sec">OS · editors · secrets</div>
+    <div class="checks" id="envChecks"></div>
+
+    <div style="margin-top:1rem">
+      <label for="custom">Custom rules (one pattern per line)</label>
+      <textarea id="custom" placeholder="# project-specific
+tmp/
+*.local.env
+coverage/"></textarea>
+    </div>
+    <div class="row">
+      <button class="primary" id="buildBtn" type="button">Rebuild</button>
+      <button class="secondary" id="nodePy" type="button">Node + Python starter</button>
+      <button class="secondary" id="clear" type="button">Clear all</button>
+      <span class="stat" id="stats">0 presets · 0 rules</span>
+    </div>
+    <div class="warn" id="warn"></div>
+  </div>
+
+  <div class="card">
+    <div class="outbox">
+      <div class="k"><span>.gitignore</span>
+        <span>
+          <button class="tiny" id="copy" type="button">Copy</button>
+          <button class="tiny" id="download" type="button">Download</button>
+        </span>
+      </div>
+      <pre id="out"># select presets…</pre>
+    </div>
+    <p class="muted" style="margin:.6rem 0 0">Presets are condensed common patterns (not a full github/gitignore dump). Review before shipping secrets paths for your stack. Browser-only — no network.</p>
+  </div>
+
+  <footer>Veriton free tools · <a href="./">hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · nothing uploaded</footer>
+</div>
+<script>
+(function () {
+  var PRESETS = {
+    Node: {
+      group: 'lang',
+      body: [
+        '# Node / npm / yarn / pnpm',
+        'node_modules/',
+        'npm-debug.log*',
+        'yarn-debug.log*',
+        'yarn-error.log*',
+        'pnpm-debug.log*',
+        'lerna-debug.log*',
+        '.npm',
+        '.yarn/',
+        '.pnp.*',
+        '.eslintcache',
+        '.stylelintcache',
+        '*.tsbuildinfo',
+        'dist/',
+        'build/',
+        'coverage/',
+        '.nyc_output/',
+        '.next/',
+        'out/',
+        '.nuxt/',
+        '.vuepress/dist',
+        '.cache/',
+        '.parcel-cache/',
+        '.turbo/',
+        '.vercel/',
+        '.serverless/'
+      ]
+    },
+    Python: {
+      group: 'lang',
+      body: [
+        '# Python',
+        '__pycache__/',
+        '*.py[cod]',
+        '*$py.class',
+        '*.so',
+        '.Python',
+        'build/',
+        'develop-eggs/',
+        'dist/',
+        'downloads/',
+        'eggs/',
+        '.eggs/',
+        'lib/',
+        'lib64/',
+        'parts/',
+        'sdist/',
+        'var/',
+        'wheels/',
+        'share/python-wheels/',
+        '*.egg-info/',
+        '.installed.cfg',
+        '*.egg',
+        'MANIFEST',
+        '.venv/',
+        'venv/',
+        'ENV/',
+        'env/',
+        '.pytest_cache/',
+        '.mypy_cache/',
+        '.ruff_cache/',
+        '.coverage',
+        'htmlcov/',
+        '.tox/',
+        '.nox/',
+        'pip-log.txt',
+        'pip-delete-this-directory.txt',
+        '.ipynb_checkpoints'
+      ]
+    },
+    Go: {
+      group: 'lang',
+      body: [
+        '# Go',
+        'bin/',
+        'pkg/',
+        '*.exe',
+        '*.exe~',
+        '*.dll',
+        '*.so',
+        '*.dylib',
+        '*.test',
+        '*.out',
+        'go.work',
+        'go.work.sum',
+        'vendor/'
+      ]
+    },
+    Rust: {
+      group: 'lang',
+      body: [
+        '# Rust',
+        '/target/',
+        '**/*.rs.bk',
+        'Cargo.lock'
+      ]
+    },
+    Java: {
+      group: 'lang',
+      body: [
+        '# Java / JVM',
+        '*.class',
+        '*.jar',
+        '*.war',
+        '*.ear',
+        '*.nar',
+        'hs_err_pid*',
+        'replay_pid*',
+        '.mtj.tmp/',
+        'target/',
+        '.gradle/',
+        'build/',
+        'out/',
+        '.idea/'
+      ]
+    },
+    Dotnet: {
+      group: 'lang',
+      body: [
+        '# .NET',
+        'bin/',
+        'obj/',
+        '*.user',
+        '*.userosscache',
+        '*.suo',
+        '*.sln.docstates',
+        '[Dd]ebug/',
+        '[Rr]elease/',
+        'x64/',
+        'x86/',
+        '[Bb]in/',
+        '[Oo]bj/',
+        '.vs/',
+        'project.lock.json',
+        'project.fragment.lock.json',
+        'artifacts/'
+      ]
+    },
+    Ruby: {
+      group: 'lang',
+      body: [
+        '# Ruby',
+        '*.gem',
+        '*.rbc',
+        '/.config',
+        '/coverage/',
+        '/InstalledFiles',
+        '/pkg/',
+        '/spec/reports/',
+        '/spec/examples.txt',
+        '/test/tmp/',
+        '/test/version_tmp/',
+        '/tmp/',
+        '/.bundle/',
+        '/vendor/bundle',
+        '/lib/bundler/man/',
+        '.rvmrc',
+        '.ruby-version',
+        '.ruby-gemset'
+      ]
+    },
+    PHP: {
+      group: 'lang',
+      body: [
+        '# PHP',
+        '/vendor/',
+        'composer.phar',
+        'composer.lock',
+        '.phpunit.result.cache',
+        'phpunit.xml',
+        '/.php-cs-fixer.cache'
+      ]
+    },
+    Flutter: {
+      group: 'fw',
+      body: [
+        '# Flutter / Dart',
+        '.dart_tool/',
+        '.flutter-plugins',
+        '.flutter-plugins-dependencies',
+        '.packages',
+        '.pub-cache/',
+        '.pub/',
+        'build/',
+        '**/ios/Pods/',
+        '**/ios/.symlinks/',
+        '**/macos/Flutter/ephemeral/',
+        '**/linux/flutter/ephemeral/',
+        '**/windows/flutter/ephemeral/'
+      ]
+    },
+    Unity: {
+      group: 'fw',
+      body: [
+        '# Unity',
+        '/[Ll]ibrary/',
+        '/[Tt]emp/',
+        '/[Oo]bj/',
+        '/[Bb]uild/',
+        '/[Bb]uilds/',
+        '/[Ll]ogs/',
+        '/[Uu]ser[Ss]ettings/',
+        '*.csproj',
+        '*.unityproj',
+        '*.sln',
+        '*.suo',
+        '*.tmp',
+        '*.user',
+        '*.userprefs',
+        '*.pidb',
+        '*.booproj',
+        '*.svd',
+        '*.pdb',
+        '*.mdb',
+        '*.opendb',
+        '*.VC.db',
+        '/[Mm]emoryCaptures/'
+      ]
+    },
+    Terraform: {
+      group: 'fw',
+      body: [
+        '# Terraform',
+        '.terraform/',
+        '*.tfstate',
+        '*.tfstate.*',
+        'crash.log',
+        'crash.*.log',
+        'override.tf',
+        'override.tf.json',
+        '*_override.tf',
+        '*_override.tf.json',
+        '.terraformrc',
+        'terraform.rc',
+        '*.tfvars',
+        '*.tfvars.json'
+      ]
+    },
+    Docker: {
+      group: 'fw',
+      body: [
+        '# Docker',
+        '.docker/',
+        'docker-compose.override.yml'
+      ]
+    },
+    macOS: {
+      group: 'env',
+      body: [
+        '# macOS',
+        '.DS_Store',
+        '.AppleDouble',
+        '.LSOverride',
+        'Icon\r',
+        '._*',
+        '.DocumentRevisions-V100',
+        '.fseventsd',
+        '.Spotlight-V100',
+        '.TemporaryItems',
+        '.Trashes',
+        '.VolumeIcon.icns',
+        '.com.apple.timemachine.donotpresent'
+      ]
+    },
+    Windows: {
+      group: 'env',
+      body: [
+        '# Windows',
+        'Thumbs.db',
+        'Thumbs.db:encryptable',
+        'ehthumbs.db',
+        'ehthumbs_vista.db',
+        '[Dd]esktop.ini',
+        '$RECYCLE.BIN/',
+        '*.cab',
+        '*.msi',
+        '*.msix',
+        '*.msm',
+        '*.msp',
+        '*.lnk'
+      ]
+    },
+    Linux: {
+      group: 'env',
+      body: [
+        '# Linux',
+        '*~',
+        '.fuse_hidden*',
+        '.directory',
+        '.Trash-*',
+        '.nfs*'
+      ]
+    },
+    VSCode: {
+      group: 'env',
+      body: [
+        '# VS Code',
+        '.vscode/*',
+        '!.vscode/settings.json',
+        '!.vscode/tasks.json',
+        '!.vscode/launch.json',
+        '!.vscode/extensions.json',
+        '!.vscode/*.code-snippets',
+        '*.code-workspace',
+        '.history/'
+      ]
+    },
+    JetBrains: {
+      group: 'env',
+      body: [
+        '# JetBrains',
+        '.idea/',
+        '*.iml',
+        '*.iws',
+        '*.ipr',
+        'out/'
+      ]
+    },
+    VimEmacs: {
+      group: 'env',
+      body: [
+        '# Vim / Emacs',
+        '[._]*.s[a-v][a-z]',
+        '[._]*.sw[a-p]',
+        '[._]s[a-rt-v][a-z]',
+        '[._]ss[a-gi-w][a-z]',
+        '[._]sw[a-p]',
+        'Session.vim',
+        'Sessionx.vim',
+        '.netrwhist',
+        '*~',
+        'tags',
+        '[._]*.un~',
+        '*~',
+        '\\#*\\#',
+        '/.emacs.desktop',
+        '/.emacs.desktop.lock',
+        '*.elc',
+        'auto-save-list',
+        'tramp',
+        '.\\#*'
+      ]
+    },
+    Secrets: {
+      group: 'env',
+      body: [
+        '# Secrets / local env (review before commit)',
+        '.env',
+        '.env.*',
+        '!.env.example',
+        '!.env.sample',
+        '*.pem',
+        '*.key',
+        'id_rsa',
+        'id_rsa.pub',
+        'credentials.json',
+        'service-account*.json',
+        'secrets/',
+        '*.p12',
+        '*.pfx'
+      ]
+    },
+    LogsArchives: {
+      group: 'env',
+      body: [
+        '# Logs / archives / junk',
+        'logs/',
+        '*.log',
+        '*.tmp',
+        '*.temp',
+        '*.bak',
+        '*.swp',
+        '*.swo',
+        '*.zip',
+        '*.tar',
+        '*.tar.gz',
+        '*.tgz',
+        '*.rar',
+        '*.7z'
+      ]
+    }
+  };
+
+  function $(id) { return document.getElementById(id); }
+
+  function mountChecks() {
+    var lang = $('langChecks'), fw = $('fwChecks'), env = $('envChecks');
+    Object.keys(PRESETS).forEach(function (name) {
+      var p = PRESETS[name];
+      var lab = document.createElement('label');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = name;
+      cb.dataset.group = p.group;
+      cb.addEventListener('change', function () {
+        lab.classList.toggle('on', cb.checked);
+        build();
+      });
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(name === 'Dotnet' ? '.NET' : name === 'VimEmacs' ? 'Vim/Emacs' : name === 'LogsArchives' ? 'Logs/Archives' : name));
+      if (p.group === 'lang') lang.appendChild(lab);
+      else if (p.group === 'fw') fw.appendChild(lab);
+      else env.appendChild(lab);
+    });
+  }
+
+  function selectedNames() {
+    return Array.prototype.slice.call(document.querySelectorAll('.checks input:checked')).map(function (el) { return el.value; });
+  }
+
+  function mergeLines(blocks) {
+    var seen = Object.create(null);
+    var out = [];
+    var header = '# Generated by Veriton .gitignore Builder (browser-only)\n# https://veriton-dev.github.io/veriton-micro-dev/tools/gitignore-builder.html\n';
+    out.push(header.trimEnd());
+    blocks.forEach(function (block) {
+      if (!block || !block.length) return;
+      out.push('');
+      block.forEach(function (line) {
+        var t = String(line);
+        if (t.charAt(0) === '#') {
+          out.push(t);
+          return;
+        }
+        if (!t.trim()) return;
+        var key = t.trim();
+        if (seen[key]) return;
+        seen[key] = 1;
+        out.push(t);
+      });
+    });
+    return out.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
+  }
+
+  function customBlock() {
+    var raw = $('custom').value || '';
+    var lines = raw.split(/\r?\n/).map(function (l) { return l.replace(/\s+$/,''); });
+    var nonempty = lines.filter(function (l) { return l.trim().length; });
+    if (!nonempty.length) return null;
+    return ['# Custom'].concat(nonempty);
+  }
+
+  function build() {
+    var names = selectedNames();
+    var blocks = names.map(function (n) { return PRESETS[n].body.slice(); });
+    var custom = customBlock();
+    if (custom) blocks.push(custom);
+    var text = mergeLines(blocks);
+    if (!names.length && !custom) {
+      text = '# select presets or add custom rules…\n';
+    }
+    $('out').textContent = text;
+    window.__gi = text;
+    var ruleCount = text.split('\n').filter(function (l) {
+      l = l.trim();
+      return l && l.charAt(0) !== '#';
+    }).length;
+    $('stats').textContent = names.length + ' presets · ' + ruleCount + ' rules';
+    var w = $('warn');
+    if (names.indexOf('Secrets') >= 0) {
+      w.style.display = 'block';
+      w.textContent = 'Secrets preset ignores .env and key material. Keep !.env.example if your team commits samples.';
+    } else {
+      w.style.display = 'none';
+    }
+  }
+
+  function copyText() {
+    var t = window.__gi || '';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function () {
+        $('copy').textContent = 'Copied';
+        setTimeout(function () { $('copy').textContent = 'Copy'; }, 1200);
+      }).catch(fallback);
+    } else fallback();
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      $('copy').textContent = 'Copied';
+      setTimeout(function () { $('copy').textContent = 'Copy'; }, 1200);
+    }
+  }
+
+  function download() {
+    var blob = new Blob([window.__gi || ''], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '.gitignore';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 0);
+  }
+
+  function setChecked(names, on) {
+    document.querySelectorAll('.checks input').forEach(function (el) {
+      if (names.indexOf(el.value) >= 0) {
+        el.checked = !!on;
+        el.parentElement.classList.toggle('on', !!on);
+      }
+    });
+  }
+
+  mountChecks();
+  // sensible defaults for common agent/bootstrap work
+  setChecked(['Node', 'Python', 'macOS', 'Linux', 'Windows', 'VSCode', 'Secrets', 'LogsArchives'], true);
+  $('custom').addEventListener('input', build);
+  $('buildBtn').addEventListener('click', build);
+  $('copy').addEventListener('click', copyText);
+  $('download').addEventListener('click', download);
+  $('clear').addEventListener('click', function () {
+    setChecked(Object.keys(PRESETS), false);
+    $('custom').value = '';
+    build();
+  });
+  $('nodePy').addEventListener('click', function () {
+    setChecked(Object.keys(PRESETS), false);
+    setChecked(['Node', 'Python', 'Docker', 'macOS', 'Linux', 'Windows', 'VSCode', 'Secrets', 'LogsArchives'], true);
+    $('custom').value = '# project\n.tmp/\nmedia/gens/\n.local/\n';
+    build();
+  });
+  build();
+})();
+</script>
+</body>
+</html>
