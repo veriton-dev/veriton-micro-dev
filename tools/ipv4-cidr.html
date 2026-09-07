@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free IPv4 / CIDR Calculator — Veriton</title>
+<meta name="description" content="Free browser-only IPv4 and CIDR calculator. Network, broadcast, netmask, wildcard, host range, binary, contains check, batch lines. No upload, no account."/>
+<meta property="og:title" content="Free IPv4 / CIDR Calculator — network · mask · hosts — Veriton"/>
+<meta property="og:description" content="Paste an IP or CIDR → network, broadcast, first/last host, netmask, wildcard, binary, host count. Batch + contains check. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/ipv4-cidr-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/ipv4-cidr-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/ipv4-cidr.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:110px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.grid{display:grid;gap:.65rem;margin-top:.55rem}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox .v{color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;white-space:pre-wrap;min-height:1.2em}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.55rem}
+.pill{background:#dbeafe;color:#1e3a8a;font-size:.75rem;font-weight:800;border-radius:999px;padding:.15rem .55rem}
+.pill.g{background:#dcfce7;color:#14532d}.pill.a{background:#fef3c7;color:#92400e}.pill.r{background:#fee2e2;color:#991b1b}
+table.batch{width:100%;border-collapse:collapse;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin-top:.6rem}
+table.batch th,table.batch td{border:1px solid #e5e7eb;padding:.35rem .45rem;text-align:left;vertical-align:top}
+table.batch th{background:#f3f4f6;font-size:.72rem;text-transform:uppercase;letter-spacing:.03em}
+table.batch tr.bad td{background:#fef2f2;color:#991b1b}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="number-base.html">Number Base</a> · <a href="chmod-calc.html">Chmod</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · IPv4</span>
+    <h1>IPv4 / CIDR Calculator</h1>
+    <p>Network, broadcast, netmask, wildcard, first/last host, binary, host count, RFC1918/special class, and “is IP in CIDR?” checks. Batch paste for allowlists and ACL reviews. Nothing leaves your tab.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/ipv4-cidr-og.jpg" alt="Free IPv4 / CIDR Calculator" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need a network ACL review? $1 Review →</a>
+       <a class="btn ghost" href="number-base.html">Number Base →</a>
+       <a class="btn ghost" href="user-agent-parse.html">UA Parser →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="input">IP or CIDR (one per line; bare IP uses prefix below)</label>
+    <textarea id="input" spellcheck="false" placeholder="192.168.1.10/24
+10.0.0.0/8
+172.16.5.20
+203.0.113.50/28
+0.0.0.0/0"></textarea>
+    <div class="opts">
+      <div class="opt">
+        <label for="defPrefix">Default prefix (bare IP)</label>
+        <select id="defPrefix">
+          <option value="32" selected>/32 host</option>
+          <option value="24">/24</option>
+          <option value="16">/16</option>
+          <option value="8">/8</option>
+          <option value="0">/0</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="checkIp">Contains check (optional IP)</label>
+        <input type="text" id="checkIp" placeholder="e.g. 192.168.1.55" autocomplete="off"/>
+      </div>
+      <div class="opt">
+        <label for="splitTo">Optional split to prefix</label>
+        <select id="splitTo">
+          <option value="" selected>off</option>
+          <option value="25">/25</option>
+          <option value="26">/26</option>
+          <option value="27">/27</option>
+          <option value="28">/28</option>
+          <option value="29">/29</option>
+          <option value="30">/30</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="primary" id="run" type="button">Calculate</button>
+      <button class="secondary" id="sample" type="button">Load sample</button>
+      <button class="secondary" id="clear" type="button">Clear</button>
+      <button class="secondary" id="copyAll" type="button">Copy JSON</button>
+      <button class="secondary" id="copyTsv" type="button">Copy TSV</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="meta" id="meta"></div>
+    <div class="grid" id="outs">
+      <div class="outbox"><div class="k">CIDR <button class="tiny" data-k="cidr" type="button">copy</button></div><div class="v" id="o-cidr">—</div></div>
+      <div class="outbox"><div class="k">Network <button class="tiny" data-k="network" type="button">copy</button></div><div class="v" id="o-network">—</div></div>
+      <div class="outbox"><div class="k">Broadcast <button class="tiny" data-k="broadcast" type="button">copy</button></div><div class="v" id="o-broadcast">—</div></div>
+      <div class="outbox"><div class="k">Netmask <button class="tiny" data-k="netmask" type="button">copy</button></div><div class="v" id="o-netmask">—</div></div>
+      <div class="outbox"><div class="k">Wildcard <button class="tiny" data-k="wildcard" type="button">copy</button></div><div class="v" id="o-wildcard">—</div></div>
+      <div class="outbox"><div class="k">First / last host <button class="tiny" data-k="hosts" type="button">copy</button></div><div class="v" id="o-hosts">—</div></div>
+      <div class="outbox"><div class="k">Host count <button class="tiny" data-k="count" type="button">copy</button></div><div class="v" id="o-count">—</div></div>
+      <div class="outbox"><div class="k">Binary (net · mask) <button class="tiny" data-k="binary" type="button">copy</button></div><div class="v" id="o-binary">—</div></div>
+      <div class="outbox"><div class="k">Class / special <button class="tiny" data-k="klass" type="button">copy</button></div><div class="v" id="o-klass">—</div></div>
+      <div class="outbox"><div class="k">Contains / split <button class="tiny" data-k="extra" type="button">copy</button></div><div class="v" id="o-extra">—</div></div>
+    </div>
+    <div id="batchWrap" style="display:none;margin-top:.8rem">
+      <label>Batch results</label>
+      <div style="overflow:auto">
+        <table class="batch" id="batch"><thead><tr>
+          <th>input</th><th>cidr</th><th>network</th><th>broadcast</th><th>hosts</th><th>count</th><th>class</th><th>in?</th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">What this is for</h2>
+    <p class="muted" style="margin:.25rem 0">Quick ACL / allowlist math while reviewing firewall rules, CDN IP ranges, or docker/k8s network policy. Pair with a <strong>$1 code review</strong> when you need human-readable findings on a real PR. IPv6 not included (yet).</p>
+  </div>
+
+  <footer>Veriton · free IPv4/CIDR calculator · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · nothing uploaded · <a href="./">more tools</a></footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const state = { last: null, batch: [], fields: {} };
+
+  function showErr(msg){
+    const e = $('err');
+    if(!msg){ e.style.display='none'; e.textContent=''; return; }
+    e.style.display='block'; e.textContent=msg;
+  }
+
+  function parseIPv4(s){
+    s = String(s||'').trim();
+    const m = s.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+    if(!m) return null;
+    const oct = [m[1],m[2],m[3],m[4]].map(Number);
+    if(oct.some(n => n>255)) return null;
+    return ((oct[0]<<24)>>>0) + ((oct[1]<<16)>>>0) + ((oct[2]<<8)>>>0) + (oct[3]>>>0);
+  }
+
+  function toIP(n){
+    n = n>>>0;
+    return [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');
+  }
+
+  function toBin(n){
+    n = n>>>0;
+    const b = n.toString(2).padStart(32,'0');
+    return b.match(/.{8}/g).join('.');
+  }
+
+  function maskFromPrefix(p){
+    p = Number(p);
+    if(p===0) return 0;
+    if(p===32) return 0xFFFFFFFF>>>0;
+    return (0xFFFFFFFF << (32-p)) >>> 0;
+  }
+
+  function classify(ip){
+    const n = ip>>>0;
+    const a = (n>>>24)&255;
+    const tags = [];
+    if(a===0) tags.push('this-net / unspecified');
+    if(a===127) tags.push('loopback');
+    if(a>=224 && a<=239) tags.push('multicast');
+    if(a>=240) tags.push('reserved/class E');
+    // RFC1918
+    if(a===10) tags.push('RFC1918 private (10/8)');
+    if(a===172 && ((n>>>16)&255)>=16 && ((n>>>16)&255)<=31) tags.push('RFC1918 private (172.16/12)');
+    if(a===192 && ((n>>>16)&255)===168) tags.push('RFC1918 private (192.168/16)');
+    // CGNAT
+    if(a===100 && ((n>>>16)&255)>=64 && ((n>>>16)&255)<=127) tags.push('CGNAT 100.64/10');
+    // link-local
+    if(a===169 && ((n>>>16)&255)===254) tags.push('link-local 169.254/16');
+    // docs
+    if(a===192 && ((n>>>16)&255)===0 && ((n>>>8)&255)===2) tags.push('TEST-NET-1 192.0.2/24');
+    if(a===198 && ((n>>>16)&255)===51 && ((n>>>8)&255)===100) tags.push('TEST-NET-2 198.51.100/24');
+    if(a===203 && ((n>>>16)&255)===0 && ((n>>>8)&255)===113) tags.push('TEST-NET-3 203.0.113/24');
+    if(n===0xFFFFFFFF) tags.push('limited broadcast');
+    // classful label (legacy)
+    let klass = 'classless';
+    if(a<128) klass='legacy class A';
+    else if(a<192) klass='legacy class B';
+    else if(a<224) klass='legacy class C';
+    else if(a<240) klass='legacy class D (multicast)';
+    else klass='legacy class E';
+    tags.unshift(klass);
+    return tags;
+  }
+
+  function parseLine(line, defPrefix){
+    line = String(line||'').trim();
+    if(!line || line.startsWith('#')) return null;
+    let ipStr, pref;
+    if(line.includes('/')){
+      const parts = line.split('/');
+      if(parts.length!==2) throw new Error('bad CIDR: '+line);
+      ipStr = parts[0].trim();
+      pref = Number(parts[1].trim());
+      if(!Number.isInteger(pref) || pref<0 || pref>32) throw new Error('bad prefix: '+line);
+    } else {
+      ipStr = line;
+      pref = Number(defPrefix);
+    }
+    const ip = parseIPv4(ipStr);
+    if(ip===null) throw new Error('bad IPv4: '+line);
+    return calc(ip, pref, line);
+  }
+
+  function calc(ip, pref, raw){
+    const mask = maskFromPrefix(pref);
+    const network = (ip & mask) >>> 0;
+    const wildcard = (~mask) >>> 0;
+    const broadcast = (network | wildcard) >>> 0;
+    const size = pref===32 ? 1 : Math.pow(2, 32 - pref); // avoid uint32 overflow on /0
+    let firstHost, lastHost, usable;
+    if(pref >= 31){
+      // /31 point-to-point (RFC3021) and /32 host
+      firstHost = network;
+      lastHost = broadcast;
+      usable = size;
+    } else {
+      firstHost = (network + 1) >>> 0;
+      lastHost = (broadcast - 1) >>> 0;
+      usable = size - 2;
+    }
+    return {
+      raw: raw || (toIP(ip)+'/'+pref),
+      inputIp: toIP(ip),
+      prefix: pref,
+      cidr: toIP(network)+'/'+pref,
+      network: toIP(network),
+      broadcast: toIP(broadcast),
+      netmask: toIP(mask),
+      wildcard: toIP(wildcard),
+      firstHost: toIP(firstHost),
+      lastHost: toIP(lastHost),
+      totalAddresses: size,
+      usableHosts: usable,
+      binaryNet: toBin(network),
+      binaryMask: toBin(mask),
+      classTags: classify(network),
+      _network: network,
+      _broadcast: broadcast,
+      _mask: mask
+    };
+  }
+
+  function contains(block, ipNum){
+    return ipNum >= block._network && ipNum <= block._broadcast;
+  }
+
+  function split(block, toPref){
+    toPref = Number(toPref);
+    if(!toPref || toPref <= block.prefix || toPref > 32) return null;
+    const step = 1 << (32 - toPref);
+    const count = 1 << (toPref - block.prefix);
+    if(count > 64) return { note: count+' subnets (showing first 8)', list: null, count, firstFew: true };
+    const list = [];
+    let cur = block._network;
+    for(let i=0;i<count;i++){
+      list.push(toIP(cur)+'/'+toPref);
+      cur = (cur + step) >>> 0;
+    }
+    return { list, count };
+  }
+
+  function setOut(r, extra){
+    const f = {
+      cidr: r.cidr,
+      network: r.network,
+      broadcast: r.broadcast,
+      netmask: r.netmask + '  (/'+r.prefix+')',
+      wildcard: r.wildcard,
+      hosts: r.prefix>=31 ? (r.firstHost+'  (all addresses usable)') : (r.firstHost+'  →  '+r.lastHost),
+      count: r.totalAddresses+' addresses · '+r.usableHosts+' usable hosts',
+      binary: r.binaryNet+'\n'+r.binaryMask,
+      klass: r.classTags.join(' · '),
+      extra: extra || '—'
+    };
+    state.fields = f;
+    state.last = r;
+    for(const k of Object.keys(f)){
+      const el = $('o-'+k);
+      if(el) el.textContent = f[k];
+    }
+  }
+
+  function renderBatch(rows, checkNum){
+    const wrap = $('batchWrap');
+    const tb = $('batch').querySelector('tbody');
+    tb.innerHTML = '';
+    if(rows.length <= 1){ wrap.style.display='none'; return; }
+    wrap.style.display='block';
+    for(const row of rows){
+      const tr = document.createElement('tr');
+      if(row.error){
+        tr.className='bad';
+        tr.innerHTML = '<td>'+esc(row.raw)+'</td><td colspan="7">'+esc(row.error)+'</td>';
+      } else {
+        const r = row.r;
+        const inn = (checkNum===null) ? '—' : (contains(r, checkNum) ? 'yes' : 'no');
+        tr.innerHTML = [
+          esc(r.raw), esc(r.cidr), esc(r.network), esc(r.broadcast),
+          esc(r.prefix>=31 ? r.firstHost : (r.firstHost+'–'+r.lastHost)),
+          String(r.usableHosts), esc(r.classTags[0]||''), inn
+        ].map(x=>'<td>'+x+'</td>').join('');
+      }
+      tb.appendChild(tr);
+    }
+  }
+
+  function esc(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function run(){
+    showErr('');
+    const defP = $('defPrefix').value;
+    const lines = $('input').value.split(/\r?\n/);
+    const checkStr = $('checkIp').value.trim();
+    let checkNum = null;
+    if(checkStr){
+      checkNum = parseIPv4(checkStr);
+      if(checkNum===null){ showErr('Contains-check IP is invalid'); return; }
+    }
+    const splitTo = $('splitTo').value;
+    const rows = [];
+    let first = null;
+    let ok = 0, bad = 0;
+    for(const line of lines){
+      const t = line.trim();
+      if(!t || t.startsWith('#')) continue;
+      try{
+        const r = parseLine(t, defP);
+        if(!r) continue;
+        rows.push({ r });
+        if(!first) first = r;
+        ok++;
+      }catch(e){
+        rows.push({ raw: t, error: e.message||String(e) });
+        bad++;
+      }
+    }
+    state.batch = rows;
+    if(!first){
+      setOut({
+        cidr:'—',network:'—',broadcast:'—',netmask:'—',wildcard:'—',
+        firstHost:'—',lastHost:'—',prefix:0,totalAddresses:0,usableHosts:0,
+        binaryNet:'—',binaryMask:'—',classTags:[]
+      }, '—');
+      $('meta').innerHTML='';
+      $('stat').textContent = bad ? ('0 ok · '+bad+' error') : 'Ready';
+      renderBatch([], checkNum);
+      if(bad) showErr('No valid lines');
+      return;
+    }
+    let extraParts = [];
+    if(checkNum!==null){
+      extraParts.push(contains(first, checkNum) ? (toIP(checkNum)+' is INSIDE '+first.cidr) : (toIP(checkNum)+' is OUTSIDE '+first.cidr));
+    }
+    if(splitTo){
+      const sp = split(first, splitTo);
+      if(!sp) extraParts.push('split N/A (need longer prefix)');
+      else if(sp.list) extraParts.push('split /'+splitTo+' ('+sp.count+'): '+sp.list.slice(0,16).join(', ')+(sp.list.length>16?' …':''));
+      else extraParts.push('split /'+splitTo+': '+sp.note);
+    }
+    if(!extraParts.length) extraParts.push('tip: set contains-check IP or split-to prefix');
+    setOut(first, extraParts.join('\n'));
+    const pills = [];
+    pills.push('<span class="pill g">'+esc(first.cidr)+'</span>');
+    pills.push('<span class="pill">/'+first.prefix+'</span>');
+    pills.push('<span class="pill a">'+first.usableHosts+' hosts</span>');
+    first.classTags.slice(0,3).forEach(t => pills.push('<span class="pill">'+esc(t)+'</span>'));
+    if(checkNum!==null){
+      pills.push(contains(first, checkNum)
+        ? '<span class="pill g">contains '+esc(toIP(checkNum))+'</span>'
+        : '<span class="pill r">excludes '+esc(toIP(checkNum))+'</span>');
+    }
+    $('meta').innerHTML = pills.join('');
+    $('stat').textContent = ok+' ok'+(bad?(' · '+bad+' error'):'')+(rows.length>1?' · batch':'');
+    renderBatch(rows, checkNum);
+  }
+
+  function copyText(t){
+    return navigator.clipboard.writeText(t).then(()=>true).catch(()=>{
+      const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); }catch(_){}
+      ta.remove(); return true;
+    });
+  }
+
+  $('run').addEventListener('click', run);
+  $('input').addEventListener('input', ()=>{ /* live on idle */ clearTimeout(window.__ipv4t); window.__ipv4t=setTimeout(run, 180); });
+  $('defPrefix').addEventListener('change', run);
+  $('checkIp').addEventListener('input', ()=>{ clearTimeout(window.__ipv4t); window.__ipv4t=setTimeout(run, 180); });
+  $('splitTo').addEventListener('change', run);
+  $('sample').addEventListener('click', ()=>{
+    $('input').value = '192.168.1.10/24\n10.0.0.0/8\n172.16.5.20\n203.0.113.50/28\n127.0.0.1/8\n0.0.0.0/0';
+    $('checkIp').value = '192.168.1.55';
+    $('splitTo').value = '26';
+    run();
+  });
+  $('clear').addEventListener('click', ()=>{
+    $('input').value=''; $('checkIp').value=''; $('splitTo').value='';
+    showErr(''); $('meta').innerHTML=''; $('stat').textContent='Ready';
+    state.batch=[]; state.last=null; state.fields={};
+    for(const k of ['cidr','network','broadcast','netmask','wildcard','hosts','count','binary','klass','extra']){
+      $('o-'+k).textContent='—';
+    }
+    $('batchWrap').style.display='none';
+  });
+  $('copyAll').addEventListener('click', ()=>{
+    const payload = state.batch.length
+      ? state.batch.map(x => x.error ? {input:x.raw,error:x.error} : {
+          input:x.r.raw, cidr:x.r.cidr, network:x.r.network, broadcast:x.r.broadcast,
+          netmask:x.r.netmask, wildcard:x.r.wildcard, firstHost:x.r.firstHost, lastHost:x.r.lastHost,
+          total:x.r.totalAddresses, usable:x.r.usableHosts, class:x.r.classTags
+        })
+      : (state.last ? [{
+          input:state.last.raw, cidr:state.last.cidr, network:state.last.network, broadcast:state.last.broadcast,
+          netmask:state.last.netmask, wildcard:state.last.wildcard, firstHost:state.last.firstHost, lastHost:state.last.lastHost,
+          total:state.last.totalAddresses, usable:state.last.usableHosts, class:state.last.classTags
+        }] : []);
+    copyText(JSON.stringify(payload, null, 2)).then(()=>{ $('stat').textContent='JSON copied'; });
+  });
+  $('copyTsv').addEventListener('click', ()=>{
+    const rows = state.batch.length ? state.batch : (state.last?[{r:state.last}]:[]);
+    const lines = ['input\tcidr\tnetwork\tbroadcast\tnetmask\tfirst\tlast\tusable\tclass'];
+    for(const x of rows){
+      if(x.error){ lines.push([x.raw,'ERROR',x.error].join('\t')); continue; }
+      const r=x.r;
+      lines.push([r.raw,r.cidr,r.network,r.broadcast,r.netmask,r.firstHost,r.lastHost,r.usableHosts,(r.classTags||[]).join('|')].join('\t'));
+    }
+    copyText(lines.join('\n')).then(()=>{ $('stat').textContent='TSV copied'; });
+  });
+  document.querySelectorAll('button.tiny[data-k]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const k = btn.getAttribute('data-k');
+      const t = (state.fields&&state.fields[k]) || '';
+      copyText(String(t)).then(()=>{ $('stat').textContent=k+' copied'; });
+    });
+  });
+
+  // deep link ?q=
+  const q = new URLSearchParams(location.search).get('q');
+  if(q){ $('input').value = q; run(); }
+
+  // export helpers for smoke tests
+  window.__ipv4 = { parseIPv4, toIP, calc, parseLine, contains, maskFromPrefix, classify };
+})();
+</script>
+</body>
+</html>
