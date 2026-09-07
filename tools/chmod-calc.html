@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Chmod Calculator — octal · symbolic · rwx — Veriton</title>
+<meta name="description" content="Free browser-only chmod calculator. Toggle rwx for user/group/other, special bits (setuid/setgid/sticky), convert octal ↔ symbolic. No upload, no account."/>
+<meta property="og:title" content="Free Chmod Calculator — octal · symbolic · rwx — Veriton"/>
+<meta property="og:description" content="Click rwx bits or type 755 / u+rwx,g+rx,o+rx. Live octal, symbolic, and ls-style mode. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/chmod-calc-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/chmod-calc-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/chmod-calc.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],pre{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+pre{margin:0;background:#0b1220;color:#a7f3d0;min-height:1.2em;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.grid3{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.6rem 0}
+.who{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:.75rem}
+.who h3{margin:0 0 .5rem;font-size:.95rem}
+.bits{display:flex;gap:.35rem;flex-wrap:wrap}
+.bit{appearance:none;border:1px solid #d1d5db;background:#fff;border-radius:8px;padding:.45rem .55rem;min-width:2.6rem;font:700 13px ui-monospace,Menlo,Consolas,monospace;cursor:pointer;color:#374151}
+.bit.on{background:#111827;color:#a7f3d0;border-color:#111827}
+.special{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+.special label{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.88rem;margin:0;background:#f9fafb;border:1px solid #e5e7eb;border-radius:999px;padding:.3rem .7rem}
+.outgrid{display:grid;gap:.65rem;margin-top:.55rem}
+@media(min-width:720px){.outgrid{grid-template-columns:1fr 1fr}}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox .v{color:#a7f3d0;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;white-space:pre-wrap;min-height:1.2em}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.presets button{font-size:.82rem;padding:.4rem .65rem}
+.ls{font-size:1.05rem;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="number-base.html">Number Base</a> · <a href="slug-case.html">Slug/Case</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · unix mode</span>
+    <h1>Chmod Calculator</h1>
+    <p>Toggle read/write/execute for user, group, and other. Special bits (setuid, setgid, sticky). Live octal, symbolic, and <code>ls -l</code> style. Nothing leaves your tab — handy next to Dockerfile <code>chmod</code>, CI scripts, and bootstrap scaffolds.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/chmod-calc-og.jpg" alt="Free Chmod Calculator" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a repo scaffold? $3 Bootstrap →</a>
+       <a class="btn ghost" href="number-base.html">Number Base →</a>
+       <a class="btn ghost" href="slug-case.html">Slug/Case →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="octal">Octal mode (3 or 4 digits)</label>
+    <input id="octal" type="text" inputmode="numeric" spellcheck="false" value="0755" placeholder="0755 or 755"/>
+    <div class="row">
+      <button class="primary" id="applyOct" type="button">Apply octal</button>
+      <button class="secondary" id="clear" type="button">Reset 0644</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+
+    <div class="special">
+      <label><input type="checkbox" id="setuid"/> setuid (4xxx)</label>
+      <label><input type="checkbox" id="setgid"/> setgid (2xxx)</label>
+      <label><input type="checkbox" id="sticky"/> sticky (1xxx)</label>
+    </div>
+
+    <div class="grid3" id="who">
+      <div class="who" data-who="u"><h3>User (owner)</h3><div class="bits">
+        <button type="button" class="bit" data-bit="r">r</button>
+        <button type="button" class="bit" data-bit="w">w</button>
+        <button type="button" class="bit" data-bit="x">x</button>
+      </div></div>
+      <div class="who" data-who="g"><h3>Group</h3><div class="bits">
+        <button type="button" class="bit" data-bit="r">r</button>
+        <button type="button" class="bit" data-bit="w">w</button>
+        <button type="button" class="bit" data-bit="x">x</button>
+      </div></div>
+      <div class="who" data-who="o"><h3>Other</h3><div class="bits">
+        <button type="button" class="bit" data-bit="r">r</button>
+        <button type="button" class="bit" data-bit="w">w</button>
+        <button type="button" class="bit" data-bit="x">x</button>
+      </div></div>
+    </div>
+
+    <p class="muted" style="margin:.2rem 0">Presets</p>
+    <div class="presets" id="presets">
+      <button type="button" class="secondary" data-mode="0755">755 dirs/exec</button>
+      <button type="button" class="secondary" data-mode="0644">644 files</button>
+      <button type="button" class="secondary" data-mode="0600">600 private</button>
+      <button type="button" class="secondary" data-mode="0700">700 owner-only</button>
+      <button type="button" class="secondary" data-mode="0666">666 rw all</button>
+      <button type="button" class="secondary" data-mode="0777">777 open</button>
+      <button type="button" class="secondary" data-mode="04755">4755 setuid</button>
+      <button type="button" class="secondary" data-mode="02755">2755 setgid</button>
+      <button type="button" class="secondary" data-mode="01777">1777 sticky tmp</button>
+    </div>
+
+    <div class="outgrid">
+      <div class="outbox"><div class="k">Octal <button class="tiny" data-k="oct" type="button">copy</button></div><div class="v" id="o-oct">—</div></div>
+      <div class="outbox"><div class="k">Symbolic (chmod) <button class="tiny" data-k="sym" type="button">copy</button></div><div class="v" id="o-sym">—</div></div>
+      <div class="outbox"><div class="k">ls -l style <button class="tiny" data-k="ls" type="button">copy</button></div><div class="v ls" id="o-ls">—</div></div>
+      <div class="outbox"><div class="k">Commands <button class="tiny" data-k="cmd" type="button">copy</button></div><div class="v" id="o-cmd">—</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <label for="symIn">Parse symbolic (optional)</label>
+    <input id="symIn" type="text" spellcheck="false" placeholder="u=rwx,g=rx,o=rx  or  a+x  or  go-w"/>
+    <div class="row">
+      <button class="primary" id="applySym" type="button">Apply symbolic</button>
+      <button class="secondary" id="copySym" type="button">Copy current symbolic</button>
+    </div>
+    <p class="muted">Supports <code>u/g/o/a</code> with <code>= + -</code> and <code>rwxXst</code>. Relative ops apply on current mode.</p>
+  </div>
+
+  <footer>
+    Veriton free tool · nothing uploaded · <a href="./">all tools</a> ·
+    <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">$3 Repo Bootstrap</a> ·
+    source <a href="https://github.com/veriton-dev/veriton-micro-dev">github</a>
+  </footer>
+</div>
+<script>
+(function () {
+  const R = 4, W = 2, X = 1;
+  const state = { u: 7, g: 5, o: 5, special: 0 }; // default 0755
+  const err = document.getElementById('err');
+  const stat = document.getElementById('stat');
+  const octalEl = document.getElementById('octal');
+  const outs = {
+    oct: document.getElementById('o-oct'),
+    sym: document.getElementById('o-sym'),
+    ls: document.getElementById('o-ls'),
+    cmd: document.getElementById('o-cmd')
+  };
+
+  function showErr(msg) {
+    if (!msg) { err.style.display = 'none'; err.textContent = ''; return; }
+    err.style.display = 'block'; err.textContent = msg;
+  }
+
+  function triadBits(n) {
+    return { r: !!(n & R), w: !!(n & W), x: !!(n & X) };
+  }
+
+  function bitsToTriad(b) {
+    return (b.r ? R : 0) | (b.w ? W : 0) | (b.x ? X : 0);
+  }
+
+  function modeNumber() {
+    return ((state.special & 7) << 9) | ((state.u & 7) << 6) | ((state.g & 7) << 3) | (state.o & 7);
+  }
+
+  function octalString() {
+    const n = modeNumber();
+    const s = n.toString(8);
+    return s.length >= 4 ? s.padStart(4, '0') : s.padStart(3, '0');
+  }
+
+  function triadSym(n, who) {
+    const b = triadBits(n);
+    let s = '';
+    s += b.r ? 'r' : '-';
+    s += b.w ? 'w' : '-';
+    // special overlays on x slot in ls
+    let xch = b.x ? 'x' : '-';
+    if (who === 'u' && (state.special & 4)) xch = b.x ? 's' : 'S';
+    if (who === 'g' && (state.special & 2)) xch = b.x ? 's' : 'S';
+    if (who === 'o' && (state.special & 1)) xch = b.x ? 't' : 'T';
+    s += xch;
+    return s;
+  }
+
+  function lsStyle() {
+    return '-' + triadSym(state.u, 'u') + triadSym(state.g, 'g') + triadSym(state.o, 'o');
+  }
+
+  function whoSym(n) {
+    const b = triadBits(n);
+    return (b.r ? 'r' : '') + (b.w ? 'w' : '') + (b.x ? 'x' : '') || '';
+  }
+
+  function symbolicAbsolute() {
+    const parts = [];
+    const u = whoSym(state.u);
+    const g = whoSym(state.g);
+    const o = whoSym(state.o);
+    parts.push('u=' + (u || ''));
+    parts.push('g=' + (g || ''));
+    parts.push('o=' + (o || ''));
+    // specials as +s/+t on classes
+    const sp = [];
+    if (state.special & 4) sp.push('u+s');
+    if (state.special & 2) sp.push('g+s');
+    if (state.special & 1) sp.push('o+t');
+    return parts.join(',') + (sp.length ? ',' + sp.join(',') : '');
+  }
+
+  function commands() {
+    const oct = octalString();
+    const sym = symbolicAbsolute();
+    return 'chmod ' + oct + ' PATH\nchmod ' + sym + ' PATH';
+  }
+
+  function syncUIFromState() {
+    document.querySelectorAll('.who').forEach(function (box) {
+      const who = box.getAttribute('data-who');
+      const n = state[who];
+      const b = triadBits(n);
+      box.querySelectorAll('.bit').forEach(function (btn) {
+        const bit = btn.getAttribute('data-bit');
+        btn.classList.toggle('on', !!b[bit]);
+      });
+    });
+    document.getElementById('setuid').checked = !!(state.special & 4);
+    document.getElementById('setgid').checked = !!(state.special & 2);
+    document.getElementById('sticky').checked = !!(state.special & 1);
+    const oct = octalString();
+    if (document.activeElement !== octalEl) octalEl.value = oct.length === 3 ? '0' + oct : oct;
+    outs.oct.textContent = oct.length === 3 ? '0' + oct : oct;
+    outs.sym.textContent = symbolicAbsolute();
+    outs.ls.textContent = lsStyle();
+    outs.cmd.textContent = commands();
+    stat.textContent = 'mode ' + (oct.length === 3 ? '0' + oct : oct) + ' · ' + lsStyle();
+  }
+
+  function setFromMode(mode) {
+    const n = mode & 0xfff;
+    state.special = (n >> 9) & 7;
+    state.u = (n >> 6) & 7;
+    state.g = (n >> 3) & 7;
+    state.o = n & 7;
+    showErr('');
+    syncUIFromState();
+  }
+
+  function parseOctal(raw) {
+    const s = String(raw || '').trim();
+    if (!/^[0-7]{3,4}$/.test(s)) throw new Error('Octal must be 3–4 digits (0-7), e.g. 755 or 4755');
+    return parseInt(s, 8) & 0xfff;
+  }
+
+  function applyOctalInput() {
+    try {
+      setFromMode(parseOctal(octalEl.value));
+    } catch (e) {
+      showErr(e.message || String(e));
+    }
+  }
+
+  // symbolic parser: clauses like u=rwx,g+rx,o-w,a+x,u+s
+  function applySymbolic(src, baseMode) {
+    let mode = baseMode & 0xfff;
+    const text = String(src || '').trim();
+    if (!text) throw new Error('Empty symbolic mode');
+    const clauses = text.split(',').map(function (c) { return c.trim(); }).filter(Boolean);
+    if (!clauses.length) throw new Error('No symbolic clauses');
+
+    function maskWho(ch) {
+      if (ch === 'u') return 0o700;
+      if (ch === 'g') return 0o070;
+      if (ch === 'o') return 0o007;
+      if (ch === 'a') return 0o777;
+      return 0;
+    }
+    function permsMask(str, whoMask) {
+      let m = 0;
+      for (let i = 0; i < str.length; i++) {
+        const c = str[i];
+        if (c === 'r') m |= 0o444 & whoMask;
+        else if (c === 'w') m |= 0o222 & whoMask;
+        else if (c === 'x' || c === 'X') m |= 0o111 & whoMask;
+        else if (c === 's') {
+          if (whoMask & 0o700) m |= 0o4000;
+          if (whoMask & 0o070) m |= 0o2000;
+        } else if (c === 't') {
+          if (whoMask & 0o007 || whoMask === 0o777) m |= 0o1000;
+        } else if (c === '-') {
+          // ignore placeholder
+        } else {
+          throw new Error('Unknown permission char: ' + c);
+        }
+      }
+      return m;
+    }
+
+    clauses.forEach(function (cl) {
+      const m = cl.match(/^([ugoa]+)([=+-])([rwxXst-]*)$/);
+      if (!m) throw new Error('Bad clause: ' + cl);
+      const whos = m[1];
+      const op = m[2];
+      const perms = m[3];
+      let whoMask = 0;
+      for (let i = 0; i < whos.length; i++) whoMask |= maskWho(whos[i]);
+      if (!whoMask) throw new Error('No who in clause: ' + cl);
+      const pm = permsMask(perms, whoMask);
+      // separate special vs rwx
+      const specialBits = pm & 0o7000;
+      const rwxBits = pm & 0o777;
+      if (op === '=') {
+        // clear rwx for selected whos, then set
+        mode = (mode & ~whoMask) | rwxBits;
+        // special: if s/t present in perms, set; if = and no s/t, clear specials for those whos
+        if (whos.indexOf('u') >= 0 || whos.indexOf('a') >= 0) {
+          if (perms.indexOf('s') >= 0) mode |= 0o4000; else if (op === '=') mode &= ~0o4000;
+        }
+        if (whos.indexOf('g') >= 0 || whos.indexOf('a') >= 0) {
+          if (perms.indexOf('s') >= 0) mode |= 0o2000; else if (op === '=') mode &= ~0o2000;
+        }
+        if (whos.indexOf('o') >= 0 || whos.indexOf('a') >= 0) {
+          if (perms.indexOf('t') >= 0) mode |= 0o1000; else if (op === '=') mode &= ~0o1000;
+        }
+        // when perms empty with =, specials already cleared above for those whos
+        if (!perms) {
+          // already cleared rwx via whoMask
+        }
+      } else if (op === '+') {
+        mode |= rwxBits | specialBits;
+      } else if (op === '-') {
+        mode &= ~(rwxBits | specialBits);
+      }
+    });
+    return mode & 0xfff;
+  }
+
+  document.querySelectorAll('.who .bit').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const who = btn.closest('.who').getAttribute('data-who');
+      const bit = btn.getAttribute('data-bit');
+      const cur = triadBits(state[who]);
+      cur[bit] = !cur[bit];
+      state[who] = bitsToTriad(cur);
+      showErr('');
+      syncUIFromState();
+    });
+  });
+
+  function readSpecial() {
+    let s = 0;
+    if (document.getElementById('setuid').checked) s |= 4;
+    if (document.getElementById('setgid').checked) s |= 2;
+    if (document.getElementById('sticky').checked) s |= 1;
+    state.special = s;
+    showErr('');
+    syncUIFromState();
+  }
+  ['setuid', 'setgid', 'sticky'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', readSpecial);
+  });
+
+  document.getElementById('applyOct').addEventListener('click', applyOctalInput);
+  octalEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') applyOctalInput();
+  });
+  octalEl.addEventListener('change', applyOctalInput);
+
+  document.getElementById('clear').addEventListener('click', function () {
+    setFromMode(0o644);
+  });
+
+  document.getElementById('presets').addEventListener('click', function (e) {
+    const btn = e.target.closest('button[data-mode]');
+    if (!btn) return;
+    try {
+      setFromMode(parseOctal(btn.getAttribute('data-mode')));
+    } catch (err2) {
+      showErr(err2.message || String(err2));
+    }
+  });
+
+  document.getElementById('applySym').addEventListener('click', function () {
+    try {
+      const next = applySymbolic(document.getElementById('symIn').value, modeNumber());
+      setFromMode(next);
+    } catch (e) {
+      showErr(e.message || String(e));
+    }
+  });
+  document.getElementById('copySym').addEventListener('click', function () {
+    const t = symbolicAbsolute();
+    navigator.clipboard.writeText(t).then(function () {
+      stat.textContent = 'copied symbolic';
+    }).catch(function () {
+      stat.textContent = t;
+    });
+  });
+
+  document.querySelectorAll('.outbox button.tiny').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const k = btn.getAttribute('data-k');
+      const map = { oct: outs.oct, sym: outs.sym, ls: outs.ls, cmd: outs.cmd };
+      const t = map[k] ? map[k].textContent : '';
+      navigator.clipboard.writeText(t).then(function () {
+        stat.textContent = 'copied ' + k;
+      }).catch(function () {
+        stat.textContent = t;
+      });
+    });
+  });
+
+  // init
+  setFromMode(0o755);
+
+  // export for node smoke via jsdom-less eval of pure helpers
+  window.__chmodCalc = {
+    parseOctal: parseOctal,
+    applySymbolic: applySymbolic,
+    setFromMode: setFromMode,
+    modeNumber: modeNumber,
+    octalString: octalString,
+    lsStyle: lsStyle,
+    symbolicAbsolute: symbolicAbsolute
+  };
+})();
+</script>
+</body>
+</html>
