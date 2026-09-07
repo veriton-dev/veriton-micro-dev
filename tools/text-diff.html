@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Text Diff — line diff in browser — Veriton</title>
+<meta name="description" content="Free browser-only text/line diff. Paste left and right plain text, get unified patch and side-by-side view. Ignore whitespace, ignore case. No upload, no account. Pair with Veriton $1 Code Review Sprint."/>
+<meta property="og:title" content="Free Text Diff — Veriton"/>
+<meta property="og:description" content="Paste two texts. Get unified + side-by-side line diffs in-browser. Free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/text-diff-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/text-diff-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/text-diff.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:58rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,.diffview{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:240px;resize:vertical}
+pre{min-height:160px;overflow:auto;background:#0b1220;color:#e2e8f0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.chk{display:flex;gap:.45rem;align-items:center;font-size:.9rem;font-weight:600}
+.summary-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0}
+.summary-row span{font-size:.85rem;font-weight:700;border-radius:8px;padding:.35rem .55rem;border:1px solid #e5e7eb;background:#fff}
+.diffview{background:#0b1220;color:#e2e8f0;min-height:200px;overflow:auto;padding:0;border-radius:10px}
+.diffview table{width:100%;border-collapse:collapse;table-layout:fixed}
+.diffview td{vertical-align:top;padding:.12rem .55rem;white-space:pre-wrap;word-break:break-word;border-bottom:1px solid #1e293b}
+.diffview .ln{width:3.2rem;color:#64748b;text-align:right;user-select:none;background:#0f172a}
+.diffview .op{width:1.4rem;text-align:center;user-select:none;font-weight:800}
+.diffview tr.eq td{color:#cbd5e1}
+.diffview tr.add td{background:#052e16;color:#bbf7d0}
+.diffview tr.del td{background:#450a0a;color:#fecaca}
+.diffview tr.meta td{color:#94a3b8;background:#111827;font-style:italic}
+.sidegrid{display:grid;gap:.6rem}@media(min-width:900px){.sidegrid{grid-template-columns:1fr 1fr}}
+.sidepane{background:#0b1220;border-radius:10px;overflow:auto;min-height:180px;border:1px solid #1e293b}
+.sidepane .rowline{display:grid;grid-template-columns:3rem 1fr;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.sidepane .n{color:#64748b;text-align:right;padding:.12rem .4rem;background:#0f172a;user-select:none}
+.sidepane .t{padding:.12rem .55rem;white-space:pre-wrap;word-break:break-word;color:#e2e8f0}
+.sidepane .add .t{background:#052e16;color:#bbf7d0}
+.sidepane .del .t{background:#450a0a;color:#fecaca}
+.sidepane .pad .t{background:#1e293b;color:transparent}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0}
+.tabs button.active{background:#111827;color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="json-diff.html">JSON Diff</a> · <a href="diff-risk.html">Diff Risk</a> · <a href="index.html">All tools</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · line-level</span>
+    <h1>Text Diff</h1>
+    <p>Paste left (before) and right (after) plain text. Get a <strong>unified patch</strong> and optional <strong>side-by-side</strong> view with line numbers. Ignore trailing whitespace or case when needed. Runs entirely in your browser — nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/text-diff-og.jpg" alt="Free Text Diff browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need risk + fix diff? $1 review →</a>
+       <a class="btn ghost" href="diff-risk.html">Unified Diff Risk →</a>
+       <a class="btn ghost" href="json-diff.html">JSON Diff →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="run">Diff text</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="swap">Swap L/R</button>
+      <button class="secondary" id="copy">Copy unified</button>
+      <button class="secondary" id="clear">Clear</button>
+      <label class="chk"><input type="checkbox" id="ignoreWs"/> ignore trailing whitespace</label>
+      <label class="chk"><input type="checkbox" id="ignoreCase"/> ignore case</label>
+      <label class="chk"><input type="checkbox" id="context3" checked/> unified context 3</label>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="left">Left (before)</label>
+        <textarea id="left" spellcheck="false" placeholder="old text…"></textarea>
+      </div>
+      <div>
+        <label for="right">Right (after)</label>
+        <textarea id="right" spellcheck="false" placeholder="new text…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Summary</h2>
+    <div id="summary" class="muted">Run a diff to see added / removed / equal line counts.</div>
+    <div class="summary-row" id="counts"></div>
+    <div class="tabs">
+      <button class="secondary active" data-tab="unified" id="tabUnified">Unified</button>
+      <button class="secondary" data-tab="side" id="tabSide">Side-by-side</button>
+      <button class="secondary" data-tab="patch" id="tabPatch">Raw patch</button>
+    </div>
+    <div id="panelUnified" class="diffview" aria-label="unified diff view"></div>
+    <div id="panelSide" class="sidegrid" style="display:none">
+      <div><div class="muted" style="margin:.2rem 0 .35rem;font-weight:700">Left</div><div class="sidepane" id="sideLeft"></div></div>
+      <div><div class="muted" style="margin:.2rem 0 .35rem;font-weight:700">Right</div><div class="sidepane" id="sideRight"></div></div>
+    </div>
+    <div id="panelPatch" style="display:none;margin-top:.6rem">
+      <label>Unified patch text</label>
+      <pre id="out"># text diff
+</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a local line-oriented Myers/LCS text comparator for configs, prompts, logs, and small code snippets.</li>
+      <li><strong>Is:</strong> unified patch export + side-by-side with line numbers; optional ignore trailing whitespace / case.</li>
+      <li><strong>Isn't:</strong> a full git binary/word-level merge tool — very large pastes may feel slow in-browser.</li>
+      <li><strong>Isn't:</strong> risk scoring. Paste a unified git/patch diff into <a href="diff-risk.html">Diff Risk</a>, or order the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">$1 Code Review Sprint</a> for HIGH/MED/LOW + fix diffs.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Veriton free tools · no cookies · no analytics · <a href="../">hire micro-dev</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a></p>
+    <p class="muted">Updated 2026-09-07 · pairs with free <a href="diff-risk.html">Diff Risk</a> + <a href="json-diff.html">JSON Diff</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const err = (m) => { const e=$('err'); if(!m){e.style.display='none';e.textContent='';return;} e.style.display='block'; e.textContent=m; };
+
+  const SAMPLE_L = `server:
+  host: 0.0.0.0
+  port: 8080
+  workers: 2
+features:
+  auth: true
+  cache: false
+  metrics: false
+# deploy notes
+timeout_sec: 30
+`;
+  const SAMPLE_R = `server:
+  host: 0.0.0.0
+  port: 8443
+  workers: 4
+features:
+  auth: true
+  cache: true
+  metrics: true
+  tracing: true
+# deploy notes (prod)
+timeout_sec: 45
+retry: 3
+`;
+
+  function splitLines(s){
+    // keep empty trailing line behavior like git: no extra blank if no final NL
+    if (s === '') return [];
+    const parts = s.split('\n');
+    if (s.endsWith('\n')) parts.pop();
+    return parts;
+  }
+
+  function normLine(line, ignoreWs, ignoreCase){
+    let s = line;
+    if (ignoreWs) s = s.replace(/[ \t]+$/g, '');
+    if (ignoreCase) s = s.toLowerCase();
+    return s;
+  }
+
+  // Myers O(ND) line diff → list of {type:'eq'|'del'|'add', left?, right?, a?, b?}
+  function myers(a, b){
+    const N = a.length, M = b.length;
+    if (N + M === 0) return [];
+    if (N === 0) return b.map((line,i)=>({type:'add', right:line, b:i+1}));
+    if (M === 0) return a.map((line,i)=>({type:'del', left:line, a:i+1}));
+
+    const max = N + M;
+    const offset = max;
+    const v = new Int32Array(2 * max + 1);
+    v.fill(-(2**30));
+    v[offset + 1] = 0;
+    const trace = [];
+
+    let doneD = -1;
+    outer:
+    for (let d = 0; d <= max; d++) {
+      const snap = new Int32Array(v);
+      trace.push(snap);
+      for (let k = -d; k <= d; k += 2) {
+        let x;
+        if (k === -d || (k !== d && snap[offset + k - 1] < snap[offset + k + 1])) {
+          x = snap[offset + k + 1];
+        } else {
+          x = snap[offset + k - 1] + 1;
+        }
+        let y = x - k;
+        while (x < N && y < M && a[x] === b[y]) { x++; y++; }
+        v[offset + k] = x;
+        if (x >= N && y >= M) { doneD = d; break outer; }
+      }
+    }
+
+    // backtrack
+    let x = N, y = M;
+    const ops = [];
+    for (let d = doneD; d > 0; d--) {
+      const vPrev = trace[d];
+      const k = x - y;
+      let prevK;
+      if (k === -d || (k !== d && vPrev[offset + k - 1] < vPrev[offset + k + 1])) {
+        prevK = k + 1;
+      } else {
+        prevK = k - 1;
+      }
+      const prevX = vPrev[offset + prevK];
+      const prevY = prevX - prevK;
+      while (x > prevX && y > prevY) {
+        ops.push({type:'eq', a:x, b:y});
+        x--; y--;
+      }
+      if (x === prevX) {
+        ops.push({type:'add', b:y});
+        y--;
+      } else {
+        ops.push({type:'del', a:x});
+        x--;
+      }
+    }
+    while (x > 0 && y > 0) { ops.push({type:'eq', a:x, b:y}); x--; y--; }
+    while (x > 0) { ops.push({type:'del', a:x}); x--; }
+    while (y > 0) { ops.push({type:'add', b:y}); y--; }
+    ops.reverse();
+
+    // map indices to lines (1-based a/b already)
+    const out = [];
+    for (const op of ops) {
+      if (op.type === 'eq') out.push({type:'eq', left: a[op.a-1], right: b[op.b-1], a:op.a, b:op.b});
+      else if (op.type === 'del') out.push({type:'del', left: a[op.a-1], a:op.a});
+      else out.push({type:'add', right: b[op.b-1], b:op.b});
+    }
+    return out;
+  }
+
+  function buildHunks(ops, ctx){
+    // mark change indices
+    const change = ops.map(o => o.type !== 'eq');
+    const keep = new Array(ops.length).fill(false);
+    for (let i=0;i<ops.length;i++){
+      if (!change[i]) continue;
+      for (let j=Math.max(0,i-ctx); j<=Math.min(ops.length-1,i+ctx); j++) keep[j]=true;
+    }
+    const hunks = [];
+    let i=0;
+    while (i < ops.length) {
+      while (i < ops.length && !keep[i]) i++;
+      if (i >= ops.length) break;
+      let j = i;
+      while (j < ops.length && keep[j]) j++;
+      // expand to contiguous
+      const slice = ops.slice(i,j);
+      let aStart=0,bStart=0,aCount=0,bCount=0;
+      for (const o of slice) {
+        if (o.type==='eq' || o.type==='del') { if(!aStart) aStart=o.a; aCount++; }
+        if (o.type==='eq' || o.type==='add') { if(!bStart) bStart=o.b; bCount++; }
+      }
+      // if only adds, aStart stays 0 → use nearest
+      if (!aStart) {
+        // find last a before i
+        for (let k=i-1;k>=0;k--){ if (ops[k].a){ aStart=ops[k].a+ (ops[k].type==='del'?0:0); break; } }
+        if (!aStart) aStart = 1;
+        aCount = 0;
+      }
+      if (!bStart) {
+        for (let k=i-1;k>=0;k--){ if (ops[k].b){ bStart=ops[k].b; break; } }
+        if (!bStart) bStart = 1;
+        bCount = 0;
+      }
+      hunks.push({aStart, bStart, aCount, bCount, ops: slice});
+      i = j;
+    }
+    return hunks;
+  }
+
+  function renderUnifiedView(hunks){
+    const table = document.createElement('table');
+    const addRow = (cls, lnA, lnB, op, text) => {
+      const tr = document.createElement('tr');
+      tr.className = cls;
+      tr.innerHTML = `<td class="ln">${lnA||''}</td><td class="ln">${lnB||''}</td><td class="op">${op}</td><td>${escapeHtml(text)}</td>`;
+      table.appendChild(tr);
+    };
+    if (!hunks.length) {
+      addRow('meta','','','','No differences');
+      return table;
+    }
+    for (const h of hunks) {
+      addRow('meta','','','',`@@ -${h.aStart},${h.aCount} +${h.bStart},${h.bCount} @@`);
+      for (const o of h.ops) {
+        if (o.type==='eq') addRow('eq', o.a, o.b, ' ', o.left);
+        else if (o.type==='del') addRow('del', o.a, '', '-', o.left);
+        else addRow('add', '', o.b, '+', o.right);
+      }
+    }
+    return table;
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderSide(ops){
+    const L = $('sideLeft'), R = $('sideRight');
+    L.innerHTML = ''; R.innerHTML = '';
+    const mk = (parent, cls, n, text) => {
+      const d = document.createElement('div');
+      d.className = 'rowline ' + cls;
+      d.innerHTML = `<div class="n">${n||''}</div><div class="t">${escapeHtml(text)}</div>`;
+      parent.appendChild(d);
+    };
+    for (const o of ops) {
+      if (o.type==='eq') { mk(L,'eq',o.a,o.left); mk(R,'eq',o.b,o.right); }
+      else if (o.type==='del') { mk(L,'del',o.a,o.left); mk(R,'pad','',''); }
+      else { mk(L,'pad','',''); mk(R,'add',o.b,o.right); }
+    }
+    if (!ops.length) { mk(L,'eq','','(empty)'); mk(R,'eq','','(empty)'); }
+  }
+
+  function toPatch(hunks, leftName, rightName){
+    let out = `--- a/${leftName}\n+++ b/${rightName}\n`;
+    if (!hunks.length) return out + '\\ No differences\n';
+    for (const h of hunks) {
+      out += `@@ -${h.aStart},${h.aCount} +${h.bStart},${h.bCount} @@\n`;
+      for (const o of h.ops) {
+        if (o.type==='eq') out += ' ' + o.left + '\n';
+        else if (o.type==='del') out += '-' + o.left + '\n';
+        else out += '+' + o.right + '\n';
+      }
+    }
+    return out;
+  }
+
+  let lastPatch = '';
+  let lastOps = [];
+
+  function run(){
+    err('');
+    const ignoreWs = $('ignoreWs').checked;
+    const ignoreCase = $('ignoreCase').checked;
+    const ctx = $('context3').checked ? 3 : 0;
+    const leftRaw = $('left').value;
+    const rightRaw = $('right').value;
+    const leftLines = splitLines(leftRaw);
+    const rightLines = splitLines(rightRaw);
+    if (leftLines.length > 8000 || rightLines.length > 8000) {
+      err('Cap is 8,000 lines per side for browser performance. Split the paste or use git diff locally.');
+      return;
+    }
+    const aKey = leftLines.map(l => normLine(l, ignoreWs, ignoreCase));
+    const bKey = rightLines.map(l => normLine(l, ignoreWs, ignoreCase));
+    // myers on keys, then attach original lines
+    const keyOps = myers(aKey, bKey);
+    const ops = keyOps.map(o => {
+      if (o.type==='eq') return {type:'eq', left:leftLines[o.a-1], right:rightLines[o.b-1], a:o.a, b:o.b};
+      if (o.type==='del') return {type:'del', left:leftLines[o.a-1], a:o.a};
+      return {type:'add', right:rightLines[o.b-1], b:o.b};
+    });
+    lastOps = ops;
+    const adds = ops.filter(o=>o.type==='add').length;
+    const dels = ops.filter(o=>o.type==='del').length;
+    const eqs = ops.filter(o=>o.type==='eq').length;
+    $('summary').textContent = `Compared ${leftLines.length} → ${rightLines.length} lines` + (ignoreWs||ignoreCase ? ' (normalized)' : '') + '.';
+    $('counts').innerHTML = `
+      <span style="border-color:#a7f3d0;background:#ecfdf5;color:#065f46">+${adds} added</span>
+      <span style="border-color:#fecaca;background:#fef2f2;color:#991b1b">-${dels} removed</span>
+      <span>=${eqs} equal</span>`;
+    const hunks = buildHunks(ops, ctx);
+    const uv = $('panelUnified');
+    uv.innerHTML = '';
+    uv.appendChild(renderUnifiedView(hunks));
+    renderSide(ops);
+    lastPatch = toPatch(hunks, 'left.txt', 'right.txt');
+    $('out').textContent = lastPatch;
+    $('stat').textContent = adds+dels === 0 ? 'Identical' : `${hunks.length} hunk(s) · +${adds}/-${dels}`;
+  }
+
+  function setTab(name){
+    $('panelUnified').style.display = name==='unified' ? '' : 'none';
+    $('panelSide').style.display = name==='side' ? '' : 'none';
+    $('panelPatch').style.display = name==='patch' ? '' : 'none';
+    ['tabUnified','tabSide','tabPatch'].forEach(id => {
+      const b = $(id);
+      b.classList.toggle('active', b.dataset.tab === name);
+    });
+  }
+
+  $('run').onclick = run;
+  $('sample').onclick = () => { $('left').value = SAMPLE_L; $('right').value = SAMPLE_R; run(); };
+  $('swap').onclick = () => { const t=$('left').value; $('left').value=$('right').value; $('right').value=t; run(); };
+  $('clear').onclick = () => { $('left').value=''; $('right').value=''; err(''); $('summary').textContent='Cleared.'; $('counts').innerHTML=''; $('panelUnified').innerHTML=''; $('sideLeft').innerHTML=''; $('sideRight').innerHTML=''; $('out').textContent='# text diff\n'; lastPatch=''; $('stat').textContent='Ready'; };
+  $('copy').onclick = async () => {
+    if (!lastPatch) run();
+    try { await navigator.clipboard.writeText(lastPatch); $('stat').textContent='Copied unified patch'; }
+    catch { $('out').focus(); document.getSelection().selectAllChildren($('out')); $('stat').textContent='Select+copy patch manually'; }
+  };
+  $('tabUnified').onclick = () => setTab('unified');
+  $('tabSide').onclick = () => setTab('side');
+  $('tabPatch').onclick = () => setTab('patch');
+  ['ignoreWs','ignoreCase','context3'].forEach(id => $(id).addEventListener('change', () => { if ($('left').value || $('right').value) run(); }));
+})();
+</script>
+</body>
+</html>
