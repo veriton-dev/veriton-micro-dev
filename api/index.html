@@ -3,90 +3,114 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Veriton HTML→JSON Agent API — prepaid USDC / x402-shaped 402</title>
-<meta name="description" content="Metered HTML to JSON API for agents. $0.02/call. Pay USDC on Base, claim credits, call. HTTP 402 payment required."/>
-<meta property="og:title" content="Veriton HTML→JSON Agent API"/>
-<meta property="og:description" content="Agent-paid HTML→JSON. $0.02 body / $0.05 fetch. Base USDC prepaid credits. x402-shaped 402 responses."/>
+<title>Veriton HTML→JSON Agent API — $0.02 USDC · x402</title>
+<meta name="description" content="Metered HTML→structured JSON for agents. USDC on Base, HTTP 402 x402 gate, prepaid credits. Not hire-me."/>
+<meta property="og:title" content="Veriton HTML→JSON Agent API (x402)"/>
+<meta property="og:description" content="$0.02/call HTML→JSON · $0.05 fetch+extract · USDC on Base · demo free"/>
+<meta property="og:type" content="website"/>
 <link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/api/"/>
 <style>
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.55}
-.wrap{max-width:46rem;margin:0 auto;padding:1.2rem 1rem 3rem}
-.hero{background:#111827;color:#fff;border-radius:14px;padding:1.5rem 1.3rem;margin-top:.6rem}
-.hero h1{margin:0 0 .35rem;font-size:1.55rem}.hero p{margin:.4rem 0;color:#cbd5e1}
-.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.78rem;padding:.18rem .55rem;border-radius:999px;margin-bottom:.5rem}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.1rem;margin:1rem 0}
-code,pre{font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-pre{background:#0b1220;color:#a7f3d0;padding:.85rem;border-radius:10px;overflow:auto}
-code.addr{display:block;background:#052e16;color:#a7f3d0;padding:.55rem .7rem;border-radius:8px;word-break:break-all}
-.price{font-size:1.35rem;font-weight:800}
-table{width:100%;border-collapse:collapse;font-size:.95rem}td,th{border-bottom:1px solid #e5e7eb;padding:.45rem .3rem;text-align:left}
-.muted{color:#6b7280;font-size:.9rem}
-a{color:#2563eb}
-.live{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:.7rem .85rem;margin:1rem 0}
+:root{--bg:#0b1020;--card:#121a2f;--fg:#e8eefc;--muted:#9aa8c7;--acc:#6ea8ff;--ok:#3dd68c;--line:#243152}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+main{max-width:860px;margin:0 auto;padding:2rem 1.2rem 4rem}
+h1{font-size:1.55rem;margin:.3rem 0 .5rem}h2{font-size:1.12rem;margin:1.8rem 0 .7rem;color:var(--acc)}
+p,li,td,th{color:var(--muted)}a{color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;margin:1rem 0}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem}
+pre{background:#0a0f1c;padding:1rem;border-radius:10px;overflow:auto;border:1px solid #1c2744;color:#d7e3ff}
+.badge{display:inline-block;background:#1a2744;color:var(--acc);padding:.12rem .5rem;border-radius:999px;font-size:.72rem;margin:0 .3rem .3rem 0}
+.price{font-size:1.35rem;color:var(--ok);font-weight:700}
+table{width:100%;border-collapse:collapse;margin:.5rem 0}td,th{border-bottom:1px solid var(--line);padding:.45rem .3rem;text-align:left}
+.k{color:#c9d7ff}.ok{color:var(--ok)}
+.cta{display:inline-block;margin-top:.6rem;background:var(--acc);color:#061018;text-decoration:none;font-weight:700;padding:.6rem .95rem;border-radius:10px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <p class="muted"><a href="../">← Veriton</a> · Track A · agent API (not hire-me)</p>
-  <div class="hero">
-    <span class="badge">METERED · BASE USDC · HTTP 402</span>
-    <h1>HTML → JSON Agent API</h1>
-    <p>One boring capability other agents need: turn HTML into stable structured JSON. Pay-as-you-go. No sales call.</p>
-    <p class="price">$0.02 / body extract · $0.05 / fetch+extract</p>
-  </div>
-
-  <div class="live">
-    <strong>Live host (tunnel, may rotate):</strong>
-    <div><a id="host" href="https://trees-lopez-laws-responded.trycloudflare.com">https://trees-lopez-laws-responded.trycloudflare.com</a></div>
-    <div class="muted">Health: <code>/health</code> · OpenAPI: <code>/v1/openapi.json</code> · Free demo: <code>POST /v1/demo/html-to-json</code></div>
-  </div>
+<main>
+  <span class="badge">Track A</span>
+  <span class="badge">x402 v1</span>
+  <span class="badge">USDC · Base</span>
+  <span class="badge">agent-paid</span>
+  <h1>HTML → structured JSON API</h1>
+  <p>Sell machines, not meetings. Prepaid USDC credits on <strong style="color:var(--fg)">Base</strong>. Unauthenticated paid routes return <strong style="color:var(--fg)">HTTP 402</strong> with an x402 body.</p>
 
   <div class="card">
-    <h2 style="margin-top:0;font-size:1.1rem">Pay to (Base USDC)</h2>
-    <code class="addr">0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code>
-    <p class="muted">Asset: Base USDC <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code> · network <code>eip155:8453</code> · min pack $0.50</p>
+    <div class="price">$0.02 / html-to-json · $0.05 / fetch-to-json</div>
+    <p style="margin:.45rem 0 0"><span class="k">Live host</span><br>
+      <code id="host">https://trees-lopez-laws-responded.trycloudflare.com</code>
+      <button type="button" id="ping" style="margin-left:.5rem;cursor:pointer">ping</button>
+      <span id="pingOut" class="ok"></span>
+    </p>
+    <p style="margin:.45rem 0 0"><span class="k">Pay to (USDC on Base)</span><br>
+      <code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></p>
+    <p style="margin:.45rem 0 0"><span class="k">USDC token</span><br>
+      <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code></p>
+    <p style="margin:.45rem 0 0"><span class="k">Docs OpenAPI</span> · <code>/v1/openapi.json</code> on host</p>
+    <a class="cta" href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20API%20credit%5D">Email if claim stuck</a>
   </div>
 
-  <div class="card">
-    <h2 style="margin-top:0;font-size:1.1rem">Prices</h2>
-    <table>
-      <tr><th>Endpoint</th><th>USD</th></tr>
-      <tr><td><code>POST /v1/html-to-json</code></td><td>$0.02</td></tr>
-      <tr><td><code>POST /v1/fetch-to-json</code></td><td>$0.05</td></tr>
-      <tr><td><code>POST /v1/demo/html-to-json</code></td><td>free (8KB, 10/hr/IP)</td></tr>
-    </table>
-  </div>
+  <h2>Prices</h2>
+  <table>
+    <tr><th>Endpoint</th><th>Price</th></tr>
+    <tr><td><code>POST /v1/html-to-json</code></td><td>$0.02 USDC</td></tr>
+    <tr><td><code>POST /v1/fetch-to-json</code></td><td>$0.05 USDC</td></tr>
+    <tr><td><code>POST /v1/demo/html-to-json</code></td><td>free (rate-limited)</td></tr>
+    <tr><td>Credit pack</td><td>min $0.50 USDC on Base</td></tr>
+  </table>
 
-  <div class="card">
-    <h2 style="margin-top:0;font-size:1.1rem">Buy credits → call</h2>
-<pre># quote $1 pack (50 html calls)
-curl -s HOST/v1/credits/quote -H 'content-type: application/json' -d '{"usd":1}'
+  <h2>Buy + call</h2>
+  <pre id="flow">HOST=https://trees-lopez-laws-responded.trycloudflare.com
 
-# send quoted USDC on Base to payTo, then:
-curl -s HOST/v1/credits/claim -H 'content-type: application/json' -d '{"tx":"0x…"}'
-# → { "token": "vk_…", "credit_units": 100 }
+# free demo
+curl -s $HOST/v1/demo/html-to-json -H 'content-type: application/json' \
+  -d '{"html":"<html><title>Hi</title><h1>X</h1></html>"}'
 
-# paid extract
-curl -s HOST/v1/html-to-json \
+# quote $1 pack
+curl -s $HOST/v1/credits/quote -H 'content-type: application/json' -d '{"usd":1}'
+
+# send exact USDC on Base to payTo, then claim
+curl -s $HOST/v1/credits/claim -H 'content-type: application/json' \
+  -d '{"tx":"0xYOUR_BASE_USDC_TX"}'
+
+# paid call
+curl -s $HOST/v1/html-to-json \
   -H "authorization: Bearer vk_…" \
   -H 'content-type: application/json' \
-  -d '{"html":"<html><title>Hi</title><h1>X</h1></html>","selector":"h1"}'
+  -d '{"html":"<html><title>Hi</title><h1>X</h1></html>"}'
 
-# unauthenticated paid route → HTTP 402 + x402-shaped JSON
-curl -si HOST/v1/html-to-json -H 'content-type: application/json' -d '{"html":"<p>x</p>"}' | head
-</pre>
-  </div>
+# no auth → HTTP 402 x402 body
+curl -si $HOST/v1/html-to-json -H 'content-type: application/json' \
+  -d '{"html":"<html></html>"}' | head</pre>
 
+  <h2>What you get</h2>
   <div class="card">
-    <h2 style="margin-top:0;font-size:1.1rem">Why this exists</h2>
-    <ul class="muted">
-      <li>Machines pay machines — no human sales cycle.</li>
-      <li>v0 settlement is prepaid Base USDC + credit token (facilitator-free). 402 body is x402-shaped for agent discovery.</li>
-      <li>Contact: <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a></li>
-    </ul>
+    <p>title · canonical · meta · headings · links · images · optional selector. 402 body includes <code>x402Version</code>, <code>accepts[]</code> (network eip155:8453, asset USDC, payTo, maxAmountRequired).</p>
   </div>
 
-  <footer class="muted">Veriton · Track A kill clock 2026-09-14 · signal = ≥1 paid call</footer>
-</div>
+  <h2>Why</h2>
+  <p>Track A of Veriton multi-track earn: agent-metered API beats cold hire CTAs. Kill clock signal by <strong style="color:var(--fg)">2026-09-14</strong> = ≥1 paid call or serious integration.</p>
+  <p><a href="https://veriton-dev.github.io/veriton-micro-dev/">offer home</a> ·
+     <a href="https://github.com/veriton-dev/veriton-micro-dev">repo</a> ·
+     listing <code>veriton-micro-dev</code> on auto.exchange ·
+     contact <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a></p>
+</main>
+<script>
+(async () => {
+  const host = document.getElementById('host').textContent.trim();
+  const out = document.getElementById('pingOut');
+  const ping = async () => {
+    out.textContent = '…';
+    try {
+      const r = await fetch(host + '/health', {mode:'cors'});
+      const j = await r.json();
+      out.textContent = r.ok ? (' live · calls=' + (j.calls|0)) : (' http ' + r.status);
+    } catch (e) {
+      out.textContent = ' tunnel offline — restart api-x402/run.sh';
+    }
+  };
+  document.getElementById('ping').onclick = ping;
+  ping();
+})();
+</script>
 </body>
 </html>

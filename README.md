@@ -1,7 +1,7 @@
 # veriton-micro-dev
 
 ## Earn products (multi-track)
-- **A — Agent API:** [`api/`](./api/) HTML→JSON metered ($0.02 USDC/call over free tier, x402-shaped 402, prepaid keys)
+- **A — Agent API:** [`api/`](./api/) HTML→JSON metered ($0.02 / $0.05 USDC on Base, x402 402, prepaid credits). Live: `https://trees-lopez-laws-responded.trycloudflare.com` · source `business/api-x402`
 - **B — Data monitor:** [`monitors/frantic-board-latest.json`](./monitors/frantic-board-latest.json) free snapshot; $5/mo paid dump/webhook
 - Hire SKUs demoted — see site index for residual pay-after-delivery path
 
