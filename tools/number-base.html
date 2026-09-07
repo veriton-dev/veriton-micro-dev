@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Number Base Converter — BIN OCT DEC HEX — Veriton</title>
+<meta name="description" content="Free browser-only number base converter. Binary, octal, decimal, hexadecimal with bit length, two's complement, and batch lines. No upload, no account."/>
+<meta property="og:title" content="Free Number Base Converter — BIN · OCT · DEC · HEX — Veriton"/>
+<meta property="og:description" content="Paste a number in any base → live binary, octal, decimal, hex. Bit width + two's complement helpers. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/number-base-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/number-base-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/number-base.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:110px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.grid{display:grid;gap:.65rem;margin-top:.55rem}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox .v{color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all;white-space:pre-wrap;min-height:1.2em}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.55rem}
+.pill{background:#dbeafe;color:#1e3a8a;font-size:.75rem;font-weight:800;border-radius:999px;padding:.15rem .55rem}
+.pill.g{background:#dcfce7;color:#14532d}.pill.a{background:#fef3c7;color:#92400e}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="base64-url.html">Base64/URL</a> · <a href="hash.html">Hash</a> · <a href="slug-case.html">Slug/Case</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · bases</span>
+    <h1>Number Base Converter</h1>
+    <p>Convert between binary, octal, decimal, and hexadecimal. Optional bit width, two's complement view, and multi-line batch. Nothing leaves your tab — useful next to bitmasks, protocol IDs, and low-level review.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/number-base-og.jpg" alt="Free Number Base Converter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need a bit-level review? $1 Review →</a>
+       <a class="btn ghost" href="base64-url.html">Base64/URL →</a>
+       <a class="btn ghost" href="hash.html">Hash →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="input">Input (one number per line; 0b / 0o / 0x prefixes auto-detected)</label>
+    <textarea id="input" spellcheck="false" placeholder="255
+0xFF
+0b10101010
+0o755
+DEADBEEF"></textarea>
+    <div class="opts">
+      <div class="opt">
+        <label for="baseIn">Assume base (if no prefix)</label>
+        <select id="baseIn">
+          <option value="10" selected>10 decimal</option>
+          <option value="16">16 hex</option>
+          <option value="2">2 binary</option>
+          <option value="8">8 octal</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="bits">Bit width (0 = auto)</label>
+        <select id="bits">
+          <option value="0" selected>auto</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+          <option value="32">32</option>
+          <option value="64">64</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="group">Group binary bits</label>
+        <select id="group">
+          <option value="4" selected>4</option>
+          <option value="8">8</option>
+          <option value="0">none</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="signed">Signed view</label>
+        <select id="signed">
+          <option value="0" selected>unsigned</option>
+          <option value="1">two's complement</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="primary" id="run" type="button">Convert</button>
+      <button class="secondary" id="sample" type="button">Load sample</button>
+      <button class="secondary" id="clear" type="button">Clear</button>
+      <button class="secondary" id="copyAll" type="button">Copy table</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="meta" id="meta"></div>
+    <div class="grid" id="outs">
+      <div class="outbox"><div class="k">Decimal <button class="tiny" data-k="dec" type="button">copy</button></div><div class="v" id="o-dec">—</div></div>
+      <div class="outbox"><div class="k">Hexadecimal <button class="tiny" data-k="hex" type="button">copy</button></div><div class="v" id="o-hex">—</div></div>
+      <div class="outbox"><div class="k">Binary <button class="tiny" data-k="bin" type="button">copy</button></div><div class="v" id="o-bin">—</div></div>
+      <div class="outbox"><div class="k">Octal <button class="tiny" data-k="oct" type="button">copy</button></div><div class="v" id="o-oct">—</div></div>
+      <div class="outbox"><div class="k">Bytes (BE hex) <button class="tiny" data-k="bytes" type="button">copy</button></div><div class="v" id="o-bytes">—</div></div>
+      <div class="outbox"><div class="k">Notes <button class="tiny" data-k="notes" type="button">copy</button></div><div class="v" id="o-notes">—</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">What this is for</h2>
+    <p class="muted" style="margin:0">Flag masks, protocol IDs, permissions (e.g. <code>0755</code>), color channels, and agent harness bitfields. For live scrapes of public pages or a human-reviewed diff, use the paid SKUs — free tools stay offline in your browser.</p>
+  </div>
+
+  <footer>
+    Veriton free tool · <a href="./">all tools</a> · <a href="../">offer</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a><br/>
+    Nothing is uploaded. Values use BigInt; bit width pads/truncates for display only.
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const state = { dec:'', hex:'', bin:'', oct:'', bytes:'', notes:'' };
+
+  function showErr(msg){
+    const e = $('err');
+    if(!msg){ e.style.display='none'; e.textContent=''; return; }
+    e.style.display='block'; e.textContent=msg;
+  }
+
+  function groupBits(s, n){
+    if(!n || n<=0) return s;
+    const out=[];
+    for(let i=s.length;i>0;i-=n) out.unshift(s.slice(Math.max(0,i-n), i));
+    return out.join(' ');
+  }
+
+  function detect(raw, assume){
+    let s = String(raw||'').trim();
+    if(!s) throw new Error('empty');
+    // strip common separators / underscores
+    s = s.replace(/[_\s,]/g,'');
+    let base = assume;
+    let body = s;
+    const lower = s.toLowerCase();
+    if(lower.startsWith('0b')){ base=2; body=s.slice(2); }
+    else if(lower.startsWith('0o')){ base=8; body=s.slice(2); }
+    else if(lower.startsWith('0x')){ base=16; body=s.slice(2); }
+    else if(/^0[0-7]+$/.test(s) && assume===8){ base=8; body=s; }
+    if(!body) throw new Error('missing digits');
+    // allow leading +
+    if(body[0]==='+') body=body.slice(1);
+    const neg = body[0]==='-';
+    if(neg) body=body.slice(1);
+    if(!body) throw new Error('missing digits');
+    // validate charset
+    const re = base===2 ? /^[01]+$/i
+      : base===8 ? /^[0-7]+$/i
+      : base===10 ? /^[0-9]+$/
+      : /^[0-9a-f]+$/i;
+    if(!re.test(body)) throw new Error('invalid digits for base '+base+': '+raw);
+    let v = BigInt('0x0');
+    // parse via BigInt with proper prefix
+    try {
+      if(base===10) v = BigInt(body);
+      else if(base===16) v = BigInt('0x'+body);
+      else if(base===2) v = BigInt('0b'+body);
+      else if(base===8) v = BigInt('0o'+body);
+    } catch(e){ throw new Error('parse failed: '+raw); }
+    if(neg) v = -v;
+    return { v, base, raw:s };
+  }
+
+  function bitWidthFor(v, forced){
+    if(forced && forced>0) return forced;
+    if(v === 0n) return 1;
+    const abs = v < 0n ? -v : v;
+    let n = 0;
+    let x = abs;
+    while(x > 0n){ x >>= 1n; n++; }
+    // round up common widths for readability when auto
+    if(n <= 8) return 8;
+    if(n <= 16) return 16;
+    if(n <= 32) return 32;
+    if(n <= 64) return 64;
+    return n;
+  }
+
+  function toTwos(v, bits){
+    if(bits<=0) return v < 0n ? null : v;
+    const mod = 1n << BigInt(bits);
+    if(v >= 0n) return v % mod;
+    return (mod + (v % mod)) % mod;
+  }
+
+  function fmtHex(v, bits){
+    let x = v < 0n ? -v : v;
+    let h = x.toString(16).toUpperCase();
+    if(bits>0){
+      const width = Math.ceil(bits/4);
+      h = h.padStart(width,'0');
+      if(h.length > width) h = h.slice(-width);
+    }
+    return (v < 0n ? '-' : '') + '0x' + h;
+  }
+
+  function fmtBin(v, bits, group){
+    const signedNeg = v < 0n;
+    let x = signedNeg ? -v : v;
+    let b = x.toString(2);
+    if(bits>0){
+      b = b.padStart(bits,'0');
+      if(b.length > bits) b = b.slice(-bits);
+    }
+    return (signedNeg ? '-' : '') + '0b' + groupBits(b, group);
+  }
+
+  function fmtOct(v){
+    const neg = v < 0n;
+    const x = neg ? -v : v;
+    return (neg ? '-' : '') + '0o' + x.toString(8);
+  }
+
+  function toBytesBE(v, bits){
+    const neg = v < 0n;
+    let x = neg ? -v : v;
+    let width = bits>0 ? Math.ceil(bits/8) : Math.max(1, Math.ceil(x.toString(16).length/2));
+    const parts=[];
+    for(let i=width-1;i>=0;i--){
+      const b = Number((x >> BigInt(i*8)) & 0xffn);
+      parts.push(b.toString(16).toUpperCase().padStart(2,'0'));
+    }
+    return (neg?'-':'') + parts.join(' ');
+  }
+
+  function convertLine(line, assume, bitsForced, group, signed){
+    const { v } = detect(line, assume);
+    const bits = bitWidthFor(v, bitsForced);
+    const display = signed ? (toTwos(v, bits) ?? v) : v;
+    const notes = [];
+    notes.push('bits='+bits+(bitsForced?' (forced)':' (auto)'));
+    if(signed && bits>0){
+      const tw = toTwos(v, bits);
+      notes.push("two's="+tw.toString());
+      const maxPos = (1n << BigInt(bits-1)) - 1n;
+      const minNeg = -(1n << BigInt(bits-1));
+      if(v > maxPos || v < minNeg) notes.push('WARN outside signed range');
+    } else if(v < 0n){
+      notes.push('negative magnitude shown with leading -');
+    }
+    return {
+      dec: v.toString(10),
+      hex: fmtHex(signed && bits>0 ? display : v, bits),
+      bin: fmtBin(signed && bits>0 ? display : v, bits, group),
+      oct: fmtOct(signed && bits>0 ? display : v),
+      bytes: toBytesBE(signed && bits>0 ? display : (v<0n?-v:v), bits),
+      notes: notes.join('; '),
+      bits
+    };
+  }
+
+  function run(){
+    showErr('');
+    const raw = $('input').value;
+    const lines = raw.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    if(!lines.length){
+      state.dec=state.hex=state.bin=state.oct=state.bytes=state.notes='';
+      ['dec','hex','bin','oct','bytes','notes'].forEach(k => $('o-'+k).textContent='—');
+      $('meta').innerHTML='';
+      $('stat').textContent='Empty';
+      return;
+    }
+    const assume = parseInt($('baseIn').value,10);
+    const bitsForced = parseInt($('bits').value,10)||0;
+    const group = parseInt($('group').value,10)||0;
+    const signed = $('signed').value==='1';
+    const rows = [];
+    const errs = [];
+    lines.forEach((line,i)=>{
+      try { rows.push(convertLine(line, assume, bitsForced, group, signed)); }
+      catch(e){ errs.push('L'+(i+1)+': '+e.message); }
+    });
+    if(!rows.length){
+      showErr(errs.join(' · ')||'no valid lines');
+      $('stat').textContent='Error';
+      return;
+    }
+    if(errs.length) showErr(errs.join(' · '));
+    state.dec = rows.map(r=>r.dec).join('\n');
+    state.hex = rows.map(r=>r.hex).join('\n');
+    state.bin = rows.map(r=>r.bin).join('\n');
+    state.oct = rows.map(r=>r.oct).join('\n');
+    state.bytes = rows.map(r=>r.bytes).join('\n');
+    state.notes = rows.map(r=>r.notes).join('\n');
+    $('o-dec').textContent = state.dec;
+    $('o-hex').textContent = state.hex;
+    $('o-bin').textContent = state.bin;
+    $('o-oct').textContent = state.oct;
+    $('o-bytes').textContent = state.bytes;
+    $('o-notes').textContent = state.notes;
+    const maxBits = Math.max(...rows.map(r=>r.bits));
+    $('meta').innerHTML =
+      '<span class="pill g">'+rows.length+' value'+(rows.length===1?'':'s')+'</span>'+
+      '<span class="pill">max bits '+maxBits+'</span>'+
+      (signed?'<span class="pill a">two\'s complement</span>':'<span class="pill">unsigned</span>');
+    $('stat').textContent = 'OK · '+rows.length+(errs.length?' · '+errs.length+' skipped':'');
+  }
+
+  function copyText(t){
+    if(!t) return;
+    navigator.clipboard.writeText(t).catch(()=>{});
+  }
+
+  $('run').addEventListener('click', run);
+  $('input').addEventListener('input', ()=>{ /* live */ run(); });
+  ['baseIn','bits','group','signed'].forEach(id => $(id).addEventListener('change', run));
+  $('sample').addEventListener('click', ()=>{
+    $('input').value = '255\n0xFF\n0b10101010\n0o755\nDEADBEEF\n-1';
+    run();
+  });
+  $('clear').addEventListener('click', ()=>{
+    $('input').value=''; run();
+  });
+  $('copyAll').addEventListener('click', ()=>{
+    const t = ['dec\thex\tbin\toct\tbytes\tnotes']
+      .concat(state.dec.split('\n').map((d,i)=>[d, state.hex.split('\n')[i], state.bin.split('\n')[i], state.oct.split('\n')[i], state.bytes.split('\n')[i], state.notes.split('\n')[i]].join('\t')))
+      .join('\n');
+    copyText(t);
+    $('stat').textContent='Copied table';
+  });
+  document.querySelectorAll('button.tiny').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const k = btn.getAttribute('data-k');
+      copyText(state[k]||'');
+      $('stat').textContent='Copied '+k;
+    });
+  });
+
+  // auto-run empty state
+  run();
+})();
+</script>
+</body>
+</html>
