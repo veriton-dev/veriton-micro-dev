@@ -120,6 +120,670 @@ skills = ["scaffold", "ci", "readme"]'></textarea>
     updated 2026-09-06
   </footer>
 </div>
-<script src="./toml-json.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const errEl = $("err"),
+    outEl = $("out"),
+    inpEl = $("inp"),
+    statEl = $("stat"),
+    metaEl = $("meta");
+
+  function showErr(msg) {
+    errEl.style.display = msg ? "block" : "none";
+    errEl.textContent = msg || "";
+  }
+  function setStat(t) {
+    statEl.textContent = t;
+  }
+
+  function isBareKey(s) {
+    return /^[A-Za-z0-9_-]+$/.test(s);
+  }
+  function escapeBasic(s) {
+    return String(s)
+      .replace(/\\/g, "\\\\")
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, "\\n")
+      .replace(/\t/g, "\\t")
+      .replace(/\r/g, "\\r");
+  }
+  function quoteKey(k) {
+    k = String(k);
+    return isBareKey(k) ? k : '"' + escapeBasic(k) + '"';
+  }
+
+  function skipWs(src, i) {
+    while (i < src.length) {
+      const c = src[i];
+      if (c === " " || c === "\t") {
+        i++;
+        continue;
+      }
+      if (c === "#") {
+        while (i < src.length && src[i] !== "\n" && src[i] !== "\r") i++;
+        continue;
+      }
+      break;
+    }
+    return i;
+  }
+
+  function parseString(src, i) {
+    if (src.startsWith('"""', i)) {
+      i += 3;
+      let out = "",
+        closed = false;
+      while (i < src.length) {
+        if (src.startsWith('"""', i)) {
+          i += 3;
+          closed = true;
+          break;
+        }
+        if (src[i] === "\\") {
+          const n = src[i + 1];
+          const map = {
+            n: "\n",
+            t: "\t",
+            r: "\r",
+            '"': '"',
+            "\\": "\\",
+            b: "\b",
+            f: "\f",
+          };
+          if (n === "u" || n === "U") {
+            const len = n === "u" ? 4 : 8;
+            const hex = src.slice(i + 2, i + 2 + len);
+            out += String.fromCodePoint(parseInt(hex, 16));
+            i += 2 + len;
+            continue;
+          }
+          if (n === "\n" || n === "\r") {
+            i += 2;
+            if (src[i - 1] === "\r" && src[i] === "\n") i++;
+            while (i < src.length && (src[i] === " " || src[i] === "\t")) i++;
+            continue;
+          }
+          out += map[n] !== undefined ? map[n] : n;
+          i += 2;
+          continue;
+        }
+        out += src[i++];
+      }
+      if (!closed) throw new Error("Unterminated multiline string");
+      if (out.startsWith("\n")) out = out.slice(1);
+      else if (out.startsWith("\r\n")) out = out.slice(2);
+      return { value: out, i };
+    }
+    if (src.startsWith("'''", i)) {
+      i += 3;
+      let out = "",
+        closed = false;
+      while (i < src.length) {
+        if (src.startsWith("'''", i)) {
+          i += 3;
+          closed = true;
+          break;
+        }
+        out += src[i++];
+      }
+      if (!closed) throw new Error("Unterminated multiline literal string");
+      if (out.startsWith("\n")) out = out.slice(1);
+      else if (out.startsWith("\r\n")) out = out.slice(2);
+      return { value: out, i };
+    }
+    if (src[i] === '"') {
+      i++;
+      let out = "";
+      while (i < src.length) {
+        const c = src[i];
+        if (c === '"') {
+          i++;
+          return { value: out, i };
+        }
+        if (c === "\n" || c === "\r") throw new Error("Newline in basic string");
+        if (c === "\\") {
+          const n = src[++i];
+          const map = {
+            n: "\n",
+            t: "\t",
+            r: "\r",
+            '"': '"',
+            "\\": "\\",
+            b: "\b",
+            f: "\f",
+          };
+          if (n === "u" || n === "U") {
+            const len = n === "u" ? 4 : 8;
+            const hex = src.slice(i + 1, i + 1 + len);
+            out += String.fromCodePoint(parseInt(hex, 16));
+            i += 1 + len;
+            continue;
+          }
+          out += map[n] !== undefined ? map[n] : n;
+          i++;
+          continue;
+        }
+        out += c;
+        i++;
+      }
+      throw new Error("Unterminated string");
+    }
+    if (src[i] === "'") {
+      i++;
+      let out = "";
+      while (i < src.length) {
+        const c = src[i];
+        if (c === "'") {
+          i++;
+          return { value: out, i };
+        }
+        if (c === "\n" || c === "\r") throw new Error("Newline in literal string");
+        out += c;
+        i++;
+      }
+      throw new Error("Unterminated literal string");
+    }
+    throw new Error("Expected string at " + i);
+  }
+
+  function parseArray(src, i) {
+    i++;
+    const arr = [];
+    i = skipWs(src, i);
+    if (src[i] === "]") return { value: arr, i: i + 1 };
+    while (i < src.length) {
+      i = skipWs(src, i);
+      if (src[i] === "]") {
+        i++;
+        break;
+      }
+      const r = parseValue(src, i);
+      arr.push(r.value);
+      i = skipWs(src, r.i);
+      if (src[i] === ",") {
+        i++;
+        continue;
+      }
+      if (src[i] === "]") {
+        i++;
+        break;
+      }
+      throw new Error("Expected , or ] in array");
+    }
+    return { value: arr, i };
+  }
+
+  function parseInlineTable(src, i) {
+    i++;
+    const obj = {};
+    i = skipWs(src, i);
+    if (src[i] === "}") return { value: obj, i: i + 1 };
+    while (i < src.length) {
+      i = skipWs(src, i);
+      if (src[i] === "}") {
+        i++;
+        break;
+      }
+      const k = parseKeyPath(src, i);
+      i = skipWs(src, k.i);
+      if (src[i] !== "=") throw new Error("Expected = in inline table");
+      i = skipWs(src, i + 1);
+      const v = parseValue(src, i);
+      setPath(obj, k.keys, v.value, false);
+      i = skipWs(src, v.i);
+      if (src[i] === ",") {
+        i++;
+        continue;
+      }
+      if (src[i] === "}") {
+        i++;
+        break;
+      }
+      throw new Error("Expected , or } in inline table");
+    }
+    return { value: obj, i };
+  }
+
+  function parseValue(src, i) {
+    i = skipWs(src, i);
+    if (i >= src.length) throw new Error("Unexpected EOF in value");
+    const c = src[i];
+    if (c === '"' || c === "'") return parseString(src, i);
+    if (c === "[") return parseArray(src, i);
+    if (c === "{") return parseInlineTable(src, i);
+    let j = i;
+    while (j < src.length) {
+      const ch = src[j];
+      if (
+        ch === "," ||
+        ch === "]" ||
+        ch === "}" ||
+        ch === "#" ||
+        ch === "\n" ||
+        ch === "\r"
+      )
+        break;
+      j++;
+    }
+    let tok = src.slice(i, j).trim();
+    const low = tok.toLowerCase();
+    if (low === "true") return { value: true, i: j };
+    if (low === "false") return { value: false, i: j };
+    if (low === "inf" || low === "+inf") return { value: Infinity, i: j };
+    if (low === "-inf") return { value: -Infinity, i: j };
+    if (low === "nan" || low === "+nan" || low === "-nan")
+      return { value: NaN, i: j };
+    const numTok = tok.replace(/_/g, "");
+    if (/^[-+]?(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/.test(numTok)) {
+      const n = Number(numTok);
+      if (!Number.isNaN(n)) return { value: n, i: j };
+    }
+    throw new Error("Invalid value: " + tok);
+  }
+
+  function parseKeyPart(src, i) {
+    i = skipWs(src, i);
+    if (src[i] === '"' || src[i] === "'") {
+      const s = parseString(src, i);
+      return { key: s.value, i: s.i };
+    }
+    let j = i;
+    while (j < src.length && /[A-Za-z0-9_-]/.test(src[j])) j++;
+    if (j === i) throw new Error("Expected key at " + i);
+    return { key: src.slice(i, j), i: j };
+  }
+
+  function parseKeyPath(src, i) {
+    const keys = [];
+    while (true) {
+      const p = parseKeyPart(src, i);
+      keys.push(p.key);
+      i = skipWs(src, p.i);
+      if (src[i] === ".") {
+        i++;
+        continue;
+      }
+      break;
+    }
+    return { keys, i };
+  }
+
+  function ensureTable(root, path, arrayTable) {
+    let cur = root;
+    for (let n = 0; n < path.length; n++) {
+      const k = path[n];
+      const last = n === path.length - 1;
+      if (last && arrayTable) {
+        if (cur[k] === undefined) cur[k] = [];
+        if (!Array.isArray(cur[k]))
+          throw new Error("Key path conflict for [[" + path.join(".") + "]]");
+        const obj = {};
+        cur[k].push(obj);
+        return obj;
+      }
+      if (cur[k] === undefined) {
+        cur[k] = {};
+      } else if (Array.isArray(cur[k])) {
+        if (!cur[k].length) throw new Error("Empty array table for " + k);
+        cur = cur[k][cur[k].length - 1];
+        continue;
+      } else if (typeof cur[k] !== "object" || cur[k] === null) {
+        throw new Error("Key path conflict at " + k);
+      }
+      if (last) return cur[k];
+      cur = cur[k];
+    }
+    return cur;
+  }
+
+  function setPath(root, path, value) {
+    let cur = root;
+    for (let n = 0; n < path.length - 1; n++) {
+      const k = path[n];
+      if (cur[k] === undefined) cur[k] = {};
+      else if (Array.isArray(cur[k])) cur = cur[k][cur[k].length - 1];
+      else if (typeof cur[k] !== "object" || cur[k] === null)
+        throw new Error("Cannot nest under " + k);
+      else cur = cur[k];
+      if (Array.isArray(cur)) cur = cur[cur.length - 1];
+    }
+    const last = path[path.length - 1];
+    if (
+      typeof value === "object" &&
+      value !== null &&
+      !Array.isArray(value) &&
+      typeof cur[last] === "object" &&
+      cur[last] !== null &&
+      !Array.isArray(cur[last])
+    ) {
+      Object.assign(cur[last], value);
+    } else {
+      cur[last] = value;
+    }
+  }
+
+  function parseToml(text) {
+    const src = String(text).replace(/^\uFEFF/, "");
+    const root = {};
+    let current = root;
+    let i = 0;
+    while (i < src.length) {
+      while (i < src.length) {
+        if (
+          src[i] === " " ||
+          src[i] === "\t" ||
+          src[i] === "\r" ||
+          src[i] === "\n"
+        ) {
+          i++;
+          continue;
+        }
+        if (src[i] === "#") {
+          while (i < src.length && src[i] !== "\n") i++;
+          continue;
+        }
+        break;
+      }
+      if (i >= src.length) break;
+
+      if (src[i] === "[") {
+        const isArr = src.startsWith("[[", i);
+        i += isArr ? 2 : 1;
+        const kp = parseKeyPath(src, i);
+        i = skipWs(src, kp.i);
+        if (isArr) {
+          if (!src.startsWith("]]", i)) throw new Error("Expected ]]");
+          i += 2;
+          current = ensureTable(root, kp.keys, true);
+        } else {
+          if (src[i] !== "]") throw new Error("Expected ]");
+          i += 1;
+          current = ensureTable(root, kp.keys, false);
+        }
+        i = skipWs(src, i);
+        while (i < src.length && src[i] !== "\n") {
+          if (src[i] === "#") {
+            while (i < src.length && src[i] !== "\n") i++;
+            break;
+          }
+          if (src[i] !== " " && src[i] !== "\t" && src[i] !== "\r")
+            throw new Error("Trailing junk after table header");
+          i++;
+        }
+        continue;
+      }
+
+      const kp = parseKeyPath(src, i);
+      i = skipWs(src, kp.i);
+      if (src[i] !== "=") throw new Error("Expected = after key");
+      i = skipWs(src, i + 1);
+      const val = parseValue(src, i);
+      setPath(current, kp.keys, val.value);
+      i = val.i;
+      while (i < src.length && src[i] !== "\n") {
+        if (src[i] === "#") {
+          while (i < src.length && src[i] !== "\n") i++;
+          break;
+        }
+        if (src[i] === " " || src[i] === "\t" || src[i] === "\r") {
+          i++;
+          continue;
+        }
+        throw new Error("Trailing junk after value near: " + src.slice(i, i + 20));
+      }
+    }
+    return root;
+  }
+
+  function tomlString(s) {
+    s = String(s);
+    if (/[\n\r]/.test(s)) {
+      const body = s.replace(/\\/g, "\\\\").replace(/"""/g, '\\"""');
+      return '"""\n' + body + '"""';
+    }
+    return '"' + escapeBasic(s) + '"';
+  }
+
+  function isPlainObject(v) {
+    return v && typeof v === "object" && !Array.isArray(v);
+  }
+  function isArrayOfTables(v) {
+    return Array.isArray(v) && v.length > 0 && v.every(isPlainObject);
+  }
+  function isPrimitive(v) {
+    return v === null || ["string", "number", "boolean"].includes(typeof v);
+  }
+  function smallInline(obj) {
+    if (!isPlainObject(obj)) return false;
+    const keys = Object.keys(obj);
+    if (keys.length === 0 || keys.length > 4) return false;
+    return keys.every(
+      (k) =>
+        isPrimitive(obj[k]) ||
+        (Array.isArray(obj[k]) && obj[k].every(isPrimitive))
+    );
+  }
+
+  function emitValue(v) {
+    if (v === null) return '""';
+    if (typeof v === "boolean") return v ? "true" : "false";
+    if (typeof v === "number") {
+      if (Number.isNaN(v)) return "nan";
+      if (v === Infinity) return "inf";
+      if (v === -Infinity) return "-inf";
+      return String(v);
+    }
+    if (typeof v === "string") return tomlString(v);
+    if (Array.isArray(v)) {
+      if (v.length === 0) return "[]";
+      return (
+        "[ " +
+        v
+          .map((x) => {
+            if (isPlainObject(x)) return emitInlineTable(x);
+            return emitValue(x);
+          })
+          .join(", ") +
+        " ]"
+      );
+    }
+    if (isPlainObject(v)) return emitInlineTable(v);
+    return tomlString(String(v));
+  }
+
+  function emitInlineTable(obj) {
+    const keys = Object.keys(obj);
+    if (!keys.length) return "{ }";
+    return (
+      "{ " +
+      keys.map((k) => quoteKey(k) + " = " + emitValue(obj[k])).join(", ") +
+      " }"
+    );
+  }
+
+  function orderKeys(obj, sort) {
+    const keys = Object.keys(obj);
+    if (sort) keys.sort();
+    return keys;
+  }
+
+  function toToml(obj, opts) {
+    if (!isPlainObject(obj)) {
+      throw new Error("JSON root must be an object for JSON → TOML");
+    }
+    const sort = opts.sort;
+    const preferInline = opts.inline;
+    const lines = [];
+
+    function emitTable(path, table, isRoot) {
+      const keys = orderKeys(table, sort);
+      const arrTables = [];
+      const realNested = [];
+      const realScalars = [];
+      for (const k of keys) {
+        const v = table[k];
+        if (isArrayOfTables(v)) arrTables.push(k);
+        else if (isPlainObject(v)) {
+          if (preferInline && smallInline(v)) realScalars.push(k);
+          else realNested.push(k);
+        } else realScalars.push(k);
+      }
+
+      if (!isRoot) {
+        lines.push("");
+        lines.push("[" + path.map(quoteKey).join(".") + "]");
+      }
+      for (const k of sort ? realScalars.slice().sort() : realScalars) {
+        const v = table[k];
+        if (isPlainObject(v) && preferInline && smallInline(v)) {
+          lines.push(quoteKey(k) + " = " + emitInlineTable(v));
+        } else {
+          lines.push(quoteKey(k) + " = " + emitValue(v));
+        }
+      }
+      for (const k of sort ? realNested.slice().sort() : realNested) {
+        emitTable(path.concat(k), table[k], false);
+      }
+      for (const k of sort ? arrTables.slice().sort() : arrTables) {
+        const arr = table[k];
+        for (const item of arr) {
+          lines.push("");
+          lines.push("[[" + path.concat(k).map(quoteKey).join(".") + "]]");
+          const itemKeys = orderKeys(item, sort);
+          const itemScalars = [];
+          const itemNested = [];
+          const itemArr = [];
+          for (const ik of itemKeys) {
+            const iv = item[ik];
+            if (isArrayOfTables(iv)) itemArr.push(ik);
+            else if (isPlainObject(iv) && !(preferInline && smallInline(iv)))
+              itemNested.push(ik);
+            else itemScalars.push(ik);
+          }
+          for (const ik of itemScalars) {
+            const iv = item[ik];
+            if (isPlainObject(iv))
+              lines.push(quoteKey(ik) + " = " + emitInlineTable(iv));
+            else lines.push(quoteKey(ik) + " = " + emitValue(iv));
+          }
+          for (const ik of itemNested)
+            emitTable(path.concat(k, ik), item[ik], false);
+          for (const ik of itemArr) {
+            for (const sub of item[ik]) {
+              lines.push("");
+              lines.push(
+                "[[" + path.concat(k, ik).map(quoteKey).join(".") + "]]"
+              );
+              for (const sk of orderKeys(sub, sort)) {
+                lines.push(quoteKey(sk) + " = " + emitValue(sub[sk]));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    emitTable([], obj, true);
+    while (lines.length && lines[0] === "") lines.shift();
+    return lines.join("\n") + "\n";
+  }
+
+  const SAMPLE = `# Veriton micro-dev sample
+name = "veriton-micro-dev"
+contact = "acer-openclaw@agentmail.to"
+price_usd = 3
+skills = ["code-review", "scrape-to-json", "repo-bootstrap"]
+
+[sku.review]
+price = 1
+sla_hours = 24
+
+[sku.scrape]
+price = 2
+sla_hours = 24
+
+[[tools]]
+name = "toml-json"
+free = true
+
+[[tools]]
+name = "yaml-json"
+free = true
+`;
+
+  $("sample").onclick = () => {
+    inpEl.value = SAMPLE;
+    showErr("");
+    setStat("Sample loaded");
+    metaEl.textContent = "toml sample";
+  };
+  $("clear").onclick = () => {
+    inpEl.value = "";
+    outEl.textContent = "# Convert TOML ↔ JSON";
+    showErr("");
+    setStat("Cleared");
+    metaEl.textContent = "idle";
+  };
+  $("fmt").onclick = () => {
+    try {
+      const v = JSON.parse(inpEl.value);
+      const pretty = Number($("pretty").value);
+      inpEl.value = JSON.stringify(v, null, pretty);
+      setStat("JSON formatted");
+      showErr("");
+    } catch (e) {
+      showErr("Format failed: " + e.message);
+    }
+  };
+  $("copy").onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(outEl.textContent);
+      setStat("Copied");
+    } catch {
+      setStat("Copy failed");
+    }
+  };
+
+  $("toJson").onclick = () => {
+    try {
+      const obj = parseToml(inpEl.value);
+      const pretty = Number($("pretty").value);
+      outEl.textContent = JSON.stringify(obj, null, pretty || 0);
+      metaEl.textContent = "json";
+      setStat("TOML → JSON OK · " + Object.keys(obj).length + " top keys");
+      showErr("");
+    } catch (e) {
+      showErr(String(e.message || e));
+      setStat("Error");
+      metaEl.textContent = "error";
+    }
+  };
+
+  $("toToml").onclick = () => {
+    try {
+      let obj;
+      try {
+        obj = JSON.parse(inpEl.value);
+      } catch {
+        obj = parseToml(inpEl.value);
+      }
+      const toml = toToml(obj, {
+        sort: $("sortk").value === "yes",
+        inline: $("inline").value === "yes",
+      });
+      outEl.textContent = toml;
+      metaEl.textContent = "toml";
+      setStat("JSON → TOML OK");
+      showErr("");
+    } catch (e) {
+      showErr(String(e.message || e));
+      setStat("Error");
+      metaEl.textContent = "error";
+    }
+  };
+})();
+
+</script>
 </body>
 </html>
