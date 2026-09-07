@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free bcrypt Cost Explainer — work factor · hash parse — Veriton</title>
+<meta name="description" content="Free browser-only bcrypt cost/work-factor explainer. Parse $2a$/$2b$/$2y$ hashes, estimate relative work (2^cost), compare cost levels, auth review notes. No upload, no account."/>
+<meta property="og:title" content="Free bcrypt Cost Explainer — Veriton"/>
+<meta property="og:description" content="Parse bcrypt hashes, read cost factor, estimate relative CPU work, and pick sane cost targets. Runs in your tab — nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/bcrypt-cost-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/bcrypt-cost-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/bcrypt-cost.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,input[type=text],input[type=number],select{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:9rem;resize:vertical}
+pre{min-height:12rem;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+.err{display:none;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:8px;padding:.55rem .7rem;margin:.5rem 0;font-size:.9rem}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+.ok{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.kv{display:grid;gap:.35rem;margin-top:.45rem}
+.kv div{display:grid;grid-template-columns:10rem 1fr;gap:.5rem;font-size:.88rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-word}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:.12rem .5rem;background:#e5e7eb;color:#374151;margin-right:.3rem}
+.pill.low{background:#fee2e2;color:#991b1b}.pill.mid{background:#ffedd5;color:#9a3412}
+.pill.ok{background:#d1fae5;color:#065f46}.pill.high{background:#dbeafe;color:#1e3a8a}
+.meter{height:.55rem;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:.45rem 0}
+.meter > span{display:block;height:100%;width:0;background:#22c55e;transition:width .15s,background .15s}
+table{width:100%;border-collapse:collapse;font-size:.86rem;margin:.5rem 0}
+th,td{border:1px solid #e5e7eb;padding:.4rem .55rem;text-align:left}
+th{background:#f3f4f6}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.chip{background:#eef2ff;color:#312e81;border:1px solid #c7d2fe;border-radius:999px;padding:.2rem .65rem;font-size:.8rem;font-weight:700;cursor:pointer}
+.chip:hover{background:#e0e7ff}
+.grid2{display:grid;gap:.8rem}@media(min-width:860px){.grid2{grid-template-columns:1fr 1fr}}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.hint{color:#6b7280;font-size:.78rem;margin:.2rem 0 0;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="password-gen.html">Password Gen</a> · <a href="hash.html">Hash</a> · <a href="jwt-build.html">JWT Builder</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · auth review adjacent</span>
+    <h1>bcrypt Cost Explainer</h1>
+    <p>Read a bcrypt hash’s cost/work factor, estimate relative CPU work (<code>2^cost</code>), compare recommended cost levels, and batch-parse <code>$2a$</code>/<code>$2b$</code>/<code>$2y$</code> strings. Educational — does <strong>not</strong> hash or crack passwords. Nothing leaves your tab.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/bcrypt-cost-og.jpg" alt="Free bcrypt cost explainer" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need auth/hash review? $1 Review →</a>
+       <a class="btn ghost" href="password-gen.html">Password Generator →</a>
+       <a class="btn ghost" href="hash.html">SHA/HMAC →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="note">This tool <strong>parses and explains</strong> bcrypt parameters. It never derives password hashes and never attempts verification against candidates. Use your language’s bcrypt library for production hashing.</div>
+    <div class="opts">
+      <div class="opt">
+        <label for="cost">Cost factor (log₂ rounds)</label>
+        <input id="cost" type="number" min="4" max="31" value="12"/>
+        <p class="hint">Work units ≈ 2<sup>cost</sup> expensive Blowfish expansions</p>
+      </div>
+      <div class="opt">
+        <label for="refMs">Reference ms @ cost 12 (your machine)</label>
+        <input id="refMs" type="number" min="1" max="60000" value="250" step="1"/>
+        <p class="hint">Calibrate: time one hash on your host, paste ms here</p>
+      </div>
+      <div class="opt">
+        <label for="hw">Hardware label (display)</label>
+        <input id="hw" type="text" value="mid laptop CPU (1 core)"/>
+      </div>
+      <div class="opt">
+        <label for="targetMs">Login budget (ms)</label>
+        <input id="targetMs" type="number" min="50" max="5000" value="350"/>
+        <p class="hint">Aim: interactive login stays under this</p>
+      </div>
+    </div>
+    <div class="row">
+      <button class="primary" id="runCost">Estimate cost</button>
+      <button class="secondary" id="costDown">−1 cost</button>
+      <button class="secondary" id="costUp">+1 cost</button>
+      <button class="secondary" id="copyCost">Copy estimate</button>
+      <span class="stat" id="statCost">Ready</span>
+    </div>
+    <div class="meter" aria-hidden="true"><span id="meterBar"></span></div>
+    <div class="kv" id="costKv"></div>
+    <div id="costVerdict" class="ok" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">Parse bcrypt hash(es)</h2>
+    <p class="muted" style="margin:.2rem 0 .5rem">One hash per line. Accepts modular crypt: <code>$2a$10$…</code>, <code>$2b$</code>, <code>$2y$</code>, <code>$2x$</code>.</p>
+    <div class="chips" id="samples">
+      <span class="chip" data-h="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.G2oQ.YqKzqKzqK">sample $2b$12</span>
+      <span class="chip" data-h="$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy">known test $2a$10</span>
+      <span class="chip" data-h="$2y$08$abcdefghijklmnopqrstuuABCDEFGHIJKLMNOPQRSTUVWXYZ01234">low cost $2y$08</span>
+    </div>
+    <label for="hashes">Hashes</label>
+    <textarea id="hashes" spellcheck="false" placeholder="$2b$12$..."></textarea>
+    <div class="row">
+      <button class="primary" id="runParse">Parse</button>
+      <button class="secondary" id="clearH">Clear</button>
+      <button class="secondary" id="copyParse">Copy JSON</button>
+      <span class="stat" id="statParse">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <pre id="out">{}</pre>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">Cost comparison table</h2>
+    <p class="muted">Relative work vs cost 10. Times scale from your reference ms @ cost 12.</p>
+    <div style="overflow:auto">
+      <table>
+        <thead><tr><th>Cost</th><th>Rounds (2^c)</th><th>vs cost 10</th><th>Est. time</th><th>Typical use</th></tr></thead>
+        <tbody id="tbl"></tbody>
+      </table>
+    </div>
+    <div class="note">OWASP-class guidance (2024–2026 ballpark): prefer <strong>≥12</strong> for new password stores on modern servers; raise until login stays within your SLA. Mobile/edge may need lower cost + rate limits. Always salt (bcrypt does). Prefer Argon2id when you control the stack end-to-end.</div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .4rem;font-size:1.05rem">Auth-review checklist</h2>
+    <ul style="margin:.3rem 0;padding-left:1.15rem;font-size:.92rem">
+      <li>Cost too low (<10) on internet-facing logins → flag HIGH.</li>
+      <li>Cost so high it DoS’s your auth workers under burst → flag MED (queue/rate-limit).</li>
+      <li>Truncation bugs (bcrypt secret >72 bytes silently ignored) → flag HIGH for long passphrases.</li>
+      <li>Wrong identifier (<code>$2a$</code> vs <code>$2b$</code> null-byte edge cases in old libs) → note compatibility.</li>
+      <li>Missing pepper is OK; missing rate limit + lockout is not.</li>
+      <li>Reversible “encryption” of passwords or MD5/SHA1-only stores → CRITICAL.</li>
+    </ul>
+    <p class="muted">Pairs with free <a href="password-gen.html">Password Generator</a> and <a href="hash.html">SHA/HMAC</a>. Paid path: $1 Code Review Sprint on your auth diff.</p>
+  </div>
+
+  <footer>Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · browser-only · updated 2026-09-07 · +bcrypt Cost Explainer · <a href="./">all tools</a></footer>
+</div>
+<script>
+(function () {
+  const BCRYPT_RE = /^\$((?:2a|2b|2y|2x))\$(\d{2})\$([\.\/A-Za-z0-9]{22})([\.\/A-Za-z0-9]{31})$/;
+  const costEl = document.getElementById('cost');
+  const refMsEl = document.getElementById('refMs');
+  const hwEl = document.getElementById('hw');
+  const targetMsEl = document.getElementById('targetMs');
+  const costKv = document.getElementById('costKv');
+  const costVerdict = document.getElementById('costVerdict');
+  const statCost = document.getElementById('statCost');
+  const meterBar = document.getElementById('meterBar');
+  const hashesEl = document.getElementById('hashes');
+  const outEl = document.getElementById('out');
+  const errEl = document.getElementById('err');
+  const statParse = document.getElementById('statParse');
+  const tbl = document.getElementById('tbl');
+  let lastEstimate = null;
+  let lastParse = null;
+
+  function showErr(msg) {
+    if (!msg) { errEl.style.display = 'none'; errEl.textContent = ''; return; }
+    errEl.style.display = 'block'; errEl.textContent = msg;
+  }
+
+  function fmtNum(n) {
+    if (!isFinite(n)) return '—';
+    if (n >= 1e12) return (n / 1e12).toFixed(2) + 'T';
+    if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(2) + 'K';
+    return String(Math.round(n * 100) / 100);
+  }
+
+  function fmtMs(ms) {
+    if (!isFinite(ms) || ms < 0) return '—';
+    if (ms < 1) return (ms * 1000).toFixed(1) + ' µs';
+    if (ms < 1000) return ms.toFixed(ms < 10 ? 2 : 0) + ' ms';
+    if (ms < 60000) return (ms / 1000).toFixed(2) + ' s';
+    return (ms / 60000).toFixed(2) + ' min';
+  }
+
+  function rating(cost) {
+    if (cost < 8) return { label: 'unsafe-low', cls: 'low' };
+    if (cost < 10) return { label: 'legacy-low', cls: 'low' };
+    if (cost < 12) return { label: 'acceptable-min', cls: 'mid' };
+    if (cost <= 14) return { label: 'good-2026', cls: 'ok' };
+    if (cost <= 16) return { label: 'strong / slow', cls: 'high' };
+    return { label: 'extreme', cls: 'high' };
+  }
+
+  function estimateMs(cost, refMs, refCost) {
+    const delta = cost - refCost;
+    return refMs * Math.pow(2, delta);
+  }
+
+  function typicalUse(c) {
+    if (c <= 7) return 'broken / lab only';
+    if (c <= 9) return 'legacy apps (upgrade)';
+    if (c === 10 || c === 11) return 'older defaults; raise if SLA allows';
+    if (c === 12 || c === 13) return 'modern interactive login default';
+    if (c === 14 || c === 15) return 'high-value accounts / offline-ish';
+    return 'KDF-heavy / batch-only';
+  }
+
+  function renderTable() {
+    const refMs = Math.max(1, Number(refMsEl.value) || 250);
+    const refCost = 12;
+    const rows = [];
+    for (let c = 8; c <= 16; c++) {
+      const rounds = Math.pow(2, c);
+      const vs10 = Math.pow(2, c - 10);
+      const ms = estimateMs(c, refMs, refCost);
+      const r = rating(c);
+      rows.push('<tr><td><strong>' + c + '</strong> <span class="pill ' + r.cls + '">' + r.label + '</span></td><td>' + fmtNum(rounds) + '</td><td>×' + fmtNum(vs10) + '</td><td>' + fmtMs(ms) + '</td><td>' + typicalUse(c) + '</td></tr>');
+    }
+    tbl.innerHTML = rows.join('');
+  }
+
+  function runCost() {
+    const cost = Math.max(4, Math.min(31, parseInt(costEl.value, 10) || 12));
+    costEl.value = String(cost);
+    const refMs = Math.max(1, Number(refMsEl.value) || 250);
+    const target = Math.max(50, Number(targetMsEl.value) || 350);
+    const hw = (hwEl.value || 'CPU').trim();
+    const rounds = Math.pow(2, cost);
+    const ms = estimateMs(cost, refMs, 12);
+    const vs10 = Math.pow(2, cost - 10);
+    const vs12 = Math.pow(2, cost - 12);
+    const r = rating(cost);
+    const hashesPerSec = ms > 0 ? 1000 / ms : 0;
+    // rough offline attack: 1 GPU-class ~ 10–100× laptop single-core for bcrypt (order-of-mag)
+    const gpuFactor = 40;
+    const gpuHps = hashesPerSec * gpuFactor;
+    const yearHashes = gpuHps * 86400 * 365;
+
+    let suggest = cost;
+    // find highest cost still under target given calibration
+    for (let c = 4; c <= 31; c++) {
+      if (estimateMs(c, refMs, 12) <= target) suggest = c;
+      else break;
+    }
+
+    const pct = Math.max(4, Math.min(100, (ms / Math.max(target * 2, 1)) * 100));
+    meterBar.style.width = pct + '%';
+    meterBar.style.background = ms > target * 1.5 ? '#ef4444' : ms > target ? '#f59e0b' : '#22c55e';
+
+    costKv.innerHTML = [
+      ['Cost factor', cost + ' <span class="pill ' + r.cls + '">' + r.label + '</span>'],
+      ['Work units', '2^' + cost + ' = ' + fmtNum(rounds)],
+      ['Est. time (' + hw + ')', fmtMs(ms) + ' (calibrated from ' + refMs + ' ms @ cost 12)'],
+      ['Relative vs cost 10', '×' + fmtNum(vs10)],
+      ['Relative vs cost 12', '×' + fmtNum(vs12)],
+      ['Throughput (1 core)', fmtNum(hashesPerSec) + ' hash/s'],
+      ['Ballpark GPU-class', '~' + fmtNum(gpuHps) + ' hash/s (×' + gpuFactor + ' fudge — not a cracker)'],
+      ['GPU-year guesses', '~' + fmtNum(yearHashes) + ' (still tiny vs password entropy if strong)'],
+      ['Login budget', target + ' ms'],
+      ['Max cost under budget', String(suggest) + ' (est ' + fmtMs(estimateMs(suggest, refMs, 12)) + ')']
+    ].map(function (pair) {
+      return '<div><span class="k">' + pair[0] + '</span><span class="v">' + pair[1] + '</span></div>';
+    }).join('');
+
+    let verdict;
+    if (cost < 10) verdict = 'Cost ' + cost + ' is below modern baselines for public login. Raise toward ' + suggest + ' if SLA allows.';
+    else if (ms > target * 1.5) verdict = 'Cost ' + cost + ' likely exceeds your ' + target + ' ms budget (~' + fmtMs(ms) + '). Consider ' + suggest + ' or scale auth workers.';
+    else if (cost >= 12 && ms <= target) verdict = 'Cost ' + cost + ' looks aligned with a ~' + target + ' ms interactive budget on this calibration.';
+    else verdict = 'Cost ' + cost + ' is usable; preferred floor for new systems is often 12+. Suggested under budget: ' + suggest + '.';
+
+    costVerdict.style.display = 'block';
+    costVerdict.textContent = verdict;
+    statCost.textContent = 'cost ' + cost + ' · ' + fmtMs(ms);
+    lastEstimate = {
+      cost: cost,
+      rounds: rounds,
+      est_ms: Math.round(ms * 1000) / 1000,
+      ref_ms_at_12: refMs,
+      hardware: hw,
+      target_ms: target,
+      suggested_cost_under_budget: suggest,
+      rating: r.label,
+      hashes_per_sec_1core: Math.round(hashesPerSec * 1000) / 1000,
+      note: 'Educational estimate only; wall time varies by lib/CPU/SIMD.'
+    };
+    renderTable();
+  }
+
+  function parseOne(line, idx) {
+    const raw = line.trim();
+    if (!raw) return null;
+    // allow optional trailing junk / spaces
+    const m = raw.match(BCRYPT_RE);
+    if (!m) {
+      // try looser: cost only
+      const loose = raw.match(/^\$((?:2a|2b|2y|2x))\$(\d{1,2})\$(.*)$/);
+      if (loose) {
+        const cost = parseInt(loose[2], 10);
+        const rest = loose[3] || '';
+        const salt = rest.slice(0, 22);
+        const hash = rest.slice(22, 53);
+        return {
+          line: idx + 1,
+          ok: salt.length === 22 && hash.length === 31,
+          raw: raw,
+          algorithm: 'bcrypt',
+          identifier: loose[1],
+          cost: cost,
+          cost_padded: String(cost).padStart(2, '0'),
+          salt22: salt || null,
+          hash31: hash || null,
+          salt_len: salt.length,
+          hash_len: hash.length,
+          work_units: Math.pow(2, cost),
+          rating: rating(cost).label,
+          warning: salt.length !== 22 || hash.length !== 31 ? 'salt/hash length unexpected (want 22 + 31 bcrypt-base64)' : null
+        };
+      }
+      return { line: idx + 1, ok: false, raw: raw, error: 'not a modular-crypt bcrypt hash' };
+    }
+    const cost = parseInt(m[2], 10);
+    return {
+      line: idx + 1,
+      ok: true,
+      raw: raw,
+      algorithm: 'bcrypt',
+      identifier: m[1],
+      cost: cost,
+      cost_padded: m[2],
+      salt22: m[3],
+      hash31: m[4],
+      work_units: Math.pow(2, cost),
+      rating: rating(cost).label,
+      modular_crypt: '$' + m[1] + '$' + m[2] + '$' + m[3] + m[4],
+      notes: [
+        'Salt and checksum are bcrypt-base64 (./A-Za-z0-9), not standard Base64.',
+        'Password input truncated at 72 bytes by bcrypt design.'
+      ]
+    };
+  }
+
+  function runParse() {
+    showErr('');
+    const lines = hashesEl.value.split(/\r?\n/);
+    const results = [];
+    lines.forEach(function (line, i) {
+      const p = parseOne(line, i);
+      if (p) results.push(p);
+    });
+    if (!results.length) {
+      showErr('Paste at least one bcrypt hash.');
+      statParse.textContent = 'empty';
+      outEl.textContent = '{}';
+      lastParse = null;
+      return;
+    }
+    const ok = results.filter(function (r) { return r.ok; }).length;
+    const summary = {
+      count: results.length,
+      ok: ok,
+      failed: results.length - ok,
+      cost_histogram: results.reduce(function (acc, r) {
+        if (r.cost != null) acc[String(r.cost)] = (acc[String(r.cost)] || 0) + 1;
+        return acc;
+      }, {}),
+      results: results
+    };
+    lastParse = summary;
+    outEl.textContent = JSON.stringify(summary, null, 2);
+    statParse.textContent = ok + '/' + results.length + ' ok';
+    // if single ok hash, sync cost slider
+    if (ok === 1) {
+      const c = results.find(function (r) { return r.ok; }).cost;
+      if (c >= 4 && c <= 31) {
+        costEl.value = String(c);
+        runCost();
+      }
+    }
+  }
+
+  document.getElementById('runCost').addEventListener('click', runCost);
+  document.getElementById('costUp').addEventListener('click', function () {
+    costEl.value = String(Math.min(31, (parseInt(costEl.value, 10) || 12) + 1));
+    runCost();
+  });
+  document.getElementById('costDown').addEventListener('click', function () {
+    costEl.value = String(Math.max(4, (parseInt(costEl.value, 10) || 12) - 1));
+    runCost();
+  });
+  ['cost', 'refMs', 'targetMs'].forEach(function (id) {
+    document.getElementById(id).addEventListener('change', runCost);
+  });
+  document.getElementById('copyCost').addEventListener('click', async function () {
+    runCost();
+    const text = JSON.stringify(lastEstimate, null, 2);
+    try { await navigator.clipboard.writeText(text); statCost.textContent = 'copied JSON'; }
+    catch (e) { statCost.textContent = 'copy failed'; }
+  });
+  document.getElementById('runParse').addEventListener('click', runParse);
+  document.getElementById('clearH').addEventListener('click', function () {
+    hashesEl.value = ''; outEl.textContent = '{}'; showErr(''); statParse.textContent = 'cleared'; lastParse = null;
+  });
+  document.getElementById('copyParse').addEventListener('click', async function () {
+    runParse();
+    if (!lastParse) return;
+    try { await navigator.clipboard.writeText(JSON.stringify(lastParse, null, 2)); statParse.textContent = 'copied JSON'; }
+    catch (e) { statParse.textContent = 'copy failed'; }
+  });
+  document.getElementById('samples').addEventListener('click', function (ev) {
+    const t = ev.target.closest('.chip');
+    if (!t) return;
+    const h = t.getAttribute('data-h') || '';
+    hashesEl.value = (hashesEl.value ? hashesEl.value.replace(/\s+$/, '') + '\n' : '') + h;
+    runParse();
+  });
+
+  // load a clean known vector by default
+  hashesEl.value = '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy';
+  runCost();
+  runParse();
+})();
+</script>
+</body>
+</html>
