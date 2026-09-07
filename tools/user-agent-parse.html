@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free User-Agent Parser — browser · OS · bot · client hints — Veriton</title>
+<meta name="description" content="Free browser-only User-Agent parser. Detect browser, engine, OS, device, bots/crawlers, and Client Hints. Batch lines + JSON export. No upload, no account."/>
+<meta property="og:title" content="Free User-Agent Parser — browser · OS · bot · client hints — Veriton"/>
+<meta property="og:description" content="Paste a User-Agent (or Sec-CH-UA hints). Get browser, engine, OS, device class, bot flags, and structured JSON. Nothing leaves the tab."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/user-agent-parse-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/user-agent-parse-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/user-agent-parse.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],textarea,pre,select{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:7.5rem;resize:vertical}
+pre{overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-word;min-height:8rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+.err{display:none;background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:8px;padding:.55rem .7rem;margin:.5rem 0;font-size:.9rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.grid2{display:grid;gap:.75rem}@media(min-width:800px){.grid2{grid-template-columns:1fr 1fr}}
+.kv{display:grid;gap:.35rem}.kv div{display:grid;grid-template-columns:8.5rem 1fr;gap:.45rem;font-size:.88rem;align-items:start}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-word}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:.12rem .5rem;background:#e5e7eb;color:#374151;margin-right:.25rem}
+.pill.bot{background:#fee2e2;color:#991b1b}.pill.mobile{background:#dbeafe;color:#1e3a8a}
+.pill.desktop{background:#d1fae5;color:#065f46}.pill.tablet{background:#fef3c7;color:#92400e}
+.pill.tv{background:#ede9fe;color:#5b21b6}.pill.unknown{background:#f3f4f6;color:#4b5563}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.35rem 0}
+.chip{appearance:none;border:1px solid #d1d5db;background:#fff;border-radius:999px;padding:.28rem .7rem;font-size:.78rem;font-weight:700;cursor:pointer;color:#374151}
+.chip:hover{border-color:#111827}
+.hint{color:#6b7280;font-size:.78rem;margin:.25rem 0 0}
+.table-wrap{overflow:auto;border:1px solid #e5e7eb;border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.82rem}
+th,td{border-bottom:1px solid #e5e7eb;padding:.45rem .55rem;text-align:left;vertical-align:top}
+th{background:#f9fafb;font-weight:700;position:sticky;top:0}
+td.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-word}
+.checks label{font-weight:600;font-size:.88rem;display:inline-flex;gap:.4rem;align-items:center;margin-right:.9rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="http-status.html">HTTP Status</a> · <a href="jwt-decode.html">JWT</a> · <a href="query-string.html">Query String</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · no upload</span>
+    <h1>User-Agent Parser</h1>
+    <p>Paste classic <code>User-Agent</code> strings (and optional Client Hints). Get browser, engine, OS, device class, bot/crawler flags, and structured JSON. Useful for log triage, scrape QA, and client-routing reviews. Parsing stays in your tab.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/user-agent-parse-og.jpg" alt="Free User-Agent parser" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need client/UA routing review? $1 Review →</a>
+       <a class="btn ghost" href="http-status.html">HTTP Status →</a>
+       <a class="btn ghost" href="query-string.html">Query String →</a></p>
+  </div>
+
+  <div class="card">
+    <label for="ua">User-Agent (one per line for batch)</label>
+    <textarea id="ua" spellcheck="false" placeholder="Mozilla/5.0 (…)"></textarea>
+    <div class="chips" id="samples" aria-label="Sample user agents"></div>
+    <div class="row checks">
+      <label><input type="checkbox" id="useNav" checked/> Prefill from this browser</label>
+      <label><input type="checkbox" id="mergeHints" checked/> Merge Client Hints when present</label>
+    </div>
+    <div class="grid2" style="margin-top:.5rem">
+      <div>
+        <label for="chUa">Sec-CH-UA (optional)</label>
+        <input id="chUa" type="text" placeholder='"Chromium";v="128", "Not.A/Brand";v="99"'/>
+      </div>
+      <div>
+        <label for="chPlatform">Sec-CH-UA-Platform / Mobile / Model</label>
+        <input id="chPlatform" type="text" placeholder='"Windows"; mobile=?0; model=""'/>
+      </div>
+    </div>
+    <p class="hint">Hints are optional. Full Client Hints need HTTPS + Permissions-Policy; this tool accepts pasted header values for offline analysis.</p>
+    <div class="row">
+      <button type="button" class="primary" id="btnParse">Parse</button>
+      <button type="button" class="secondary" id="btnCopyJson">Copy JSON</button>
+      <button type="button" class="secondary" id="btnCopyTable">Copy TSV</button>
+      <button type="button" class="secondary" id="btnClear">Clear</button>
+      <span class="stat" id="stat">0 parsed</span>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="card">
+    <div id="summaryPills" class="row" style="margin-top:0"></div>
+    <div class="grid2">
+      <div>
+        <h2 style="margin:.1rem 0 .5rem;font-size:1.05rem">Primary parse</h2>
+        <div class="kv" id="primaryKv"></div>
+      </div>
+      <div>
+        <h2 style="margin:.1rem 0 .5rem;font-size:1.05rem">JSON</h2>
+        <pre id="outJson">[]</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:.1rem 0 .5rem;font-size:1.05rem">Batch table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Browser</th><th>Engine</th><th>OS</th><th>Device</th><th>Bot</th><th>UA (trim)</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="muted">Heuristic parser — good for triage, not a full uap-core replacement. Bot lists cover common crawlers; unknown bots may slip. Client Hints reduce spoof surface when available.</p>
+  <footer>Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · free tool · nothing uploaded · updated 2026-09-07</footer>
+</div>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const errEl = $("err");
+  const samples = [
+    { label: "Chrome Win", ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" },
+    { label: "Safari iPhone", ua: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1" },
+    { label: "Firefox Mac", ua: "Mozilla/5.0 (Macintosh; Intel Mac OS X 14.5; rv:129.0) Gecko/20100101 Firefox/129.0" },
+    { label: "Edge Android", ua: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36 EdgA/128.0.0.0" },
+    { label: "Googlebot", ua: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" },
+    { label: "curl", ua: "curl/8.7.1" },
+    { label: "OpenAI bot", ua: "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)" },
+    { label: "Bot-like Chrome", ua: "Mozilla/5.0 (compatible; HeadlessChrome/128.0.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" }
+  ];
+
+  const BOTS = [
+    [/googlebot/i, "Googlebot"],
+    [/bingbot|msnbot/i, "Bingbot"],
+    [/duckduckbot/i, "DuckDuckBot"],
+    [/yandex(bot|images)/i, "Yandex"],
+    [/baiduspider/i, "Baiduspider"],
+    [/slurp/i, "Yahoo Slurp"],
+    [/facebookexternalhit|facebot/i, "Facebook"],
+    [/twitterbot/i, "Twitterbot"],
+    [/linkedinbot/i, "LinkedInBot"],
+    [/embedly/i, "Embedly"],
+    [/quora link preview/i, "Quora"],
+    [/showyoubot/i, "Showyoubot"],
+    [/outbrain/i, "Outbrain"],
+    [/pinterest/i, "Pinterest"],
+    [/slackbot/i, "Slackbot"],
+    [/vkshare/i, "VKShare"],
+    [/w3c_validator/i, "W3C Validator"],
+    [/whatsapp/i, "WhatsApp"],
+    [/applebot/i, "Applebot"],
+    [/semrushbot/i, "SemrushBot"],
+    [/ahrefsbot/i, "AhrefsBot"],
+    [/mj12bot/i, "MJ12bot"],
+    [/dotbot/i, "DotBot"],
+    [/petalbot/i, "PetalBot"],
+    [/bytespider/i, "Bytespider"],
+    [/gptbot|chatgpt-user|oai-searchbot/i, "OpenAI bot"],
+    [/claudebot|anthropic-ai|claude-web/i, "Anthropic bot"],
+    [/ccbot/i, "CCBot"],
+    [/amazonbot/i, "Amazonbot"],
+    [/perplexitybot/i, "PerplexityBot"],
+    [/meta-externalagent|meta-externalfetcher/i, "Meta AI"],
+    [/headlesschrome/i, "HeadlessChrome"],
+    [/phantomjs/i, "PhantomJS"],
+    [/selenium|webdriver/i, "WebDriver/Selenium"],
+    [/puppeteer/i, "Puppeteer"],
+    [/playwright/i, "Playwright"],
+    [/curl\//i, "curl"],
+    [/wget\//i, "wget"],
+    [/python-requests|httpx|aiohttp|urllib/i, "Python HTTP"],
+    [/go-http-client|Go-http-client/i, "Go HTTP"],
+    [/java\//i, "Java"],
+    [/okhttp/i, "OkHttp"],
+    [/axios\//i, "Axios"],
+    [/node-fetch|undici|got\//i, "Node HTTP"],
+    [/postmanruntime|insomnia|httpie/i, "API client"],
+    [/\bbot\b|\bcrawler\b|\bspider\b|\bscraper\b/i, "Generic bot"]
+  ];
+
+  function showErr(msg) {
+    errEl.style.display = msg ? "block" : "none";
+    errEl.textContent = msg || "";
+  }
+
+  function firstMatch(ua, pairs) {
+    for (const [re, name] of pairs) {
+      const m = ua.match(re);
+      if (m) return { name, match: m };
+    }
+    return null;
+  }
+
+  function versionFrom(ua, re) {
+    const m = ua.match(re);
+    return m ? m[1] : null;
+  }
+
+  function parseHints(chUa, chPlatformLine) {
+    const hints = { brands: [], platform: null, mobile: null, model: null, raw: {} };
+    if (chUa && chUa.trim()) {
+      hints.raw.secChUa = chUa.trim();
+      const brandRe = /"([^"]+)";v="([^"]+)"/g;
+      let m;
+      while ((m = brandRe.exec(chUa))) {
+        hints.brands.push({ brand: m[1], version: m[2] });
+      }
+    }
+    if (chPlatformLine && chPlatformLine.trim()) {
+      const line = chPlatformLine.trim();
+      hints.raw.secChUaPlatformLine = line;
+      const plat = line.match(/"([^"]+)"/);
+      if (plat) hints.platform = plat[1];
+      const mob = line.match(/mobile=\?([01])/i) || line.match(/mobile[=:]?\s*([01])/i);
+      if (mob) hints.mobile = mob[1] === "1";
+      const model = line.match(/model="([^"]*)"/i);
+      if (model) hints.model = model[1] || null;
+      // also accept JSON-ish key=value pairs
+      const p2 = line.match(/platform[=:]\s*"?([^";]+)"?/i);
+      if (!hints.platform && p2) hints.platform = p2[1].replace(/^"|"$/g, "");
+    }
+    return hints;
+  }
+
+  function detectBot(ua) {
+    for (const [re, name] of BOTS) {
+      if (re.test(ua)) return { isBot: true, name };
+    }
+    return { isBot: false, name: null };
+  }
+
+  function detectOS(ua, hints) {
+    let name = "Unknown", version = null, arch = null;
+    if (/windows nt 10\.0/i.test(ua)) { name = "Windows"; version = "10/11"; }
+    else if (/windows nt 6\.3/i.test(ua)) { name = "Windows"; version = "8.1"; }
+    else if (/windows nt 6\.2/i.test(ua)) { name = "Windows"; version = "8"; }
+    else if (/windows nt 6\.1/i.test(ua)) { name = "Windows"; version = "7"; }
+    else if (/windows phone/i.test(ua)) { name = "Windows Phone"; version = versionFrom(ua, /windows phone(?: os)? ([0-9.]+)/i); }
+    else if (/android/i.test(ua)) { name = "Android"; version = versionFrom(ua, /android ([0-9.]+)/i); }
+    else if (/(ipad|iphone|ipod).*os ([0-9_]+)/i.test(ua)) {
+      const m = ua.match(/(ipad|iphone|ipod).*os ([0-9_]+)/i);
+      name = "iOS"; version = m[2].replace(/_/g, ".");
+    }
+    else if (/cpu os ([0-9_]+)/i.test(ua) && /ipad/i.test(ua)) { name = "iPadOS"; version = versionFrom(ua, /cpu os ([0-9_]+)/i).replace(/_/g, "."); }
+    else if (/mac os x ([0-9_]+)/i.test(ua)) { name = "macOS"; version = versionFrom(ua, /mac os x ([0-9_]+)/i).replace(/_/g, "."); }
+    else if (/cros /i.test(ua)) { name = "Chrome OS"; version = versionFrom(ua, /cros [^ ]+ ([0-9.]+)/i); }
+    else if (/linux/i.test(ua)) { name = "Linux"; version = null; }
+    else if (/freebsd/i.test(ua)) { name = "FreeBSD"; }
+    else if (/openbsd/i.test(ua)) { name = "OpenBSD"; }
+    else if (/sunos/i.test(ua)) { name = "SunOS"; }
+    if (/win64|x64|amd64|x86_64/i.test(ua)) arch = "x86_64";
+    else if (/arm64|aarch64/i.test(ua)) arch = "arm64";
+    else if (/i686|x86(?!_64)/i.test(ua)) arch = "x86";
+    else if (/arm/i.test(ua)) arch = "arm";
+    if (hints && hints.platform) {
+      // prefer Client Hint platform when present
+      name = hints.platform;
+    }
+    return { name, version, arch };
+  }
+
+  function detectDevice(ua, os, hints) {
+    let type = "desktop";
+    if (hints && typeof hints.mobile === "boolean") {
+      type = hints.mobile ? "mobile" : "desktop";
+    } else if (/ipad|tablet|kindle|silk|playbook/i.test(ua)) type = "tablet";
+    else if (/mobi|iphone|ipod|android.*mobile|windows phone|opera mini|iemobile/i.test(ua)) type = "mobile";
+    else if (/smart-tv|smarttv|googletv|appletv|hbbtv|pov_tv|netcast|roku/i.test(ua)) type = "tv";
+    else if (/bot|spider|crawler|curl\/|wget\//i.test(ua)) type = "bot";
+    if (os.name === "Android" && !/mobile/i.test(ua) && type === "desktop") type = "tablet";
+    let model = hints && hints.model ? hints.model : null;
+    if (!model) {
+      const mAndroid = ua.match(/Android [^;]+; ([^)]+)\)/i);
+      if (mAndroid && !/wv\)|Build/i.test(mAndroid[1])) {
+        // often "Pixel 8" or "SM-S911B Build/..."
+        model = mAndroid[1].replace(/\s+Build\/.*/, "").trim();
+      }
+      const mIphone = /iPhone/i.test(ua) ? "iPhone" : (/iPad/i.test(ua) ? "iPad" : null);
+      if (mIphone) model = mIphone;
+    }
+    return { type, model };
+  }
+
+  function detectBrowserEngine(ua, hints) {
+    let browser = { name: "Unknown", version: null };
+    let engine = { name: "Unknown", version: null };
+
+    // Order matters (Edge/Opera/Samsung before Chrome; Firefox before Gecko generic)
+    const browsers = [
+      [/edg(?:e|a|ios)?\/([0-9.]+)/i, "Edge"],
+      [/opr\/([0-9.]+)|opera\/([0-9.]+)/i, "Opera"],
+      [/samsungbrowser\/([0-9.]+)/i, "Samsung Internet"],
+      [/ucbrowser\/([0-9.]+)/i, "UC Browser"],
+      [/vivaldi\/([0-9.]+)/i, "Vivaldi"],
+      [/brave\/([0-9.]+)/i, "Brave"],
+      [/yabrowser\/([0-9.]+)/i, "Yandex Browser"],
+      [/firefox\/([0-9.]+)|fxios\/([0-9.]+)/i, "Firefox"],
+      [/crios\/([0-9.]+)/i, "Chrome"],
+      [/chrome\/([0-9.]+)/i, "Chrome"],
+      [/version\/([0-9.]+).*safari\//i, "Safari"],
+      [/safari\/([0-9.]+)/i, "Safari"],
+      [/msie ([0-9.]+)|trident\/.*rv:([0-9.]+)/i, "IE"],
+      [/curl\/([0-9.]+)/i, "curl"],
+      [/wget\/([0-9.]+)/i, "wget"],
+      [/postmanruntime\/([0-9.]+)/i, "Postman"],
+      [/python-requests\/([0-9.]+)/i, "python-requests"]
+    ];
+    for (const [re, name] of browsers) {
+      const m = ua.match(re);
+      if (m) {
+        browser = { name, version: m[1] || m[2] || null };
+        break;
+      }
+    }
+
+    if (/gecko\//i.test(ua) && /firefox/i.test(ua)) engine = { name: "Gecko", version: versionFrom(ua, /rv:([0-9.]+)/i) || versionFrom(ua, /gecko\/([0-9.]+)/i) };
+    else if (/applewebkit\//i.test(ua)) engine = { name: "WebKit", version: versionFrom(ua, /applewebkit\/([0-9.]+)/i) };
+    else if (/trident\//i.test(ua)) engine = { name: "Trident", version: versionFrom(ua, /trident\/([0-9.]+)/i) };
+    else if (/goanna\//i.test(ua)) engine = { name: "Goanna", version: versionFrom(ua, /goanna\/([0-9.]+)/i) };
+    else if (/blink/i.test(ua) || /chrome\//i.test(ua)) engine = { name: "Blink", version: browser.version };
+
+    // Blink is Chromium's engine even when UA says AppleWebKit
+    if (/chrome\/|crios\/|edg(?:e|a|ios)?\/|opr\//i.test(ua) && engine.name === "WebKit") {
+      engine = { name: "Blink", version: browser.version };
+    }
+
+    // Client Hints brands can refine browser name when UA is frozen/reduced
+    if (hints && hints.brands && hints.brands.length) {
+      const brands = hints.brands.filter(b => !/not.?a.?brand/i.test(b.brand));
+      const prefer = brands.find(b => /google chrome|chromium|microsoft edge|opera|brave/i.test(b.brand)) || brands[0];
+      if (prefer) {
+        let n = prefer.brand;
+        if (/google chrome/i.test(n)) n = "Chrome";
+        else if (/microsoft edge/i.test(n)) n = "Edge";
+        else if (/chromium/i.test(n) && browser.name === "Unknown") n = "Chromium";
+        if (browser.name === "Unknown" || /chrome|chromium/i.test(browser.name)) {
+          browser = { name: n, version: prefer.version || browser.version };
+        }
+      }
+    }
+    return { browser, engine };
+  }
+
+  function parseOne(uaRaw, hints) {
+    const ua = (uaRaw || "").trim();
+    if (!ua) return null;
+    const bot = detectBot(ua);
+    const os = detectOS(ua, hints);
+    const device = detectDevice(ua, os, hints);
+    const { browser, engine } = detectBrowserEngine(ua, hints);
+    const reduced = /chrome\/\d+\.0\.0\.0/i.test(ua) && !/edg/i.test(ua);
+    return {
+      userAgent: ua,
+      browser,
+      engine,
+      os,
+      device,
+      bot,
+      flags: {
+        reducedUA: reduced,
+        isMobile: device.type === "mobile",
+        isTablet: device.type === "tablet",
+        isDesktop: device.type === "desktop",
+        isBot: bot.isBot,
+        hasClientHints: !!(hints && ((hints.brands && hints.brands.length) || hints.platform))
+      },
+      clientHints: hints || null,
+      length: ua.length
+    };
+  }
+
+  function pill(cls, text) {
+    return `<span class="pill ${cls || ""}">${text}</span>`;
+  }
+
+  function renderPrimary(row) {
+    if (!row) {
+      $("primaryKv").innerHTML = `<div><span class="k">status</span><span class="v">No UA yet</span></div>`;
+      $("summaryPills").innerHTML = "";
+      return;
+    }
+    const pills = [];
+    pills.push(pill(row.device.type, row.device.type));
+    if (row.bot.isBot) pills.push(pill("bot", "bot · " + row.bot.name));
+    else pills.push(pill("desktop", "human-ish"));
+    if (row.flags.reducedUA) pills.push(pill("unknown", "reduced UA"));
+    if (row.flags.hasClientHints) pills.push(pill("tablet", "client hints"));
+    $("summaryPills").innerHTML = pills.join("");
+    const cells = [
+      ["browser", `${row.browser.name}${row.browser.version ? " " + row.browser.version : ""}`],
+      ["engine", `${row.engine.name}${row.engine.version ? " " + row.engine.version : ""}`],
+      ["os", `${row.os.name}${row.os.version ? " " + row.os.version : ""}${row.os.arch ? " · " + row.os.arch : ""}`],
+      ["device", `${row.device.type}${row.device.model ? " · " + row.device.model : ""}`],
+      ["bot", row.bot.isBot ? row.bot.name : "no"],
+      ["length", String(row.length)]
+    ];
+    $("primaryKv").innerHTML = cells.map(([k, v]) => `<div><span class="k">${k}</span><span class="v">${escapeHtml(v)}</span></div>`).join("");
+  }
+
+  function escapeHtml(s) {
+    const map = {
+      "&": "&" + "amp;",
+      "<": "&" + "lt;",
+      ">": "&" + "gt;",
+      '"': "&" + "quot;",
+      "'": "&" + "#39;"
+    };
+    return String(s).replace(/[&<>"']/g, c => map[c]);
+  }
+
+  function trimUa(ua) {
+    return ua.length > 72 ? ua.slice(0, 69) + "…" : ua;
+  }
+
+  let lastRows = [];
+
+  function run() {
+    showErr("");
+    const lines = $("ua").value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    if (!lines.length) {
+      showErr("Paste at least one User-Agent string.");
+      lastRows = [];
+      $("outJson").textContent = "[]";
+      $("tbody").innerHTML = "";
+      $("stat").textContent = "0 parsed";
+      renderPrimary(null);
+      return;
+    }
+    const hints = $("mergeHints").checked
+      ? parseHints($("chUa").value, $("chPlatform").value)
+      : { brands: [], platform: null, mobile: null, model: null, raw: {} };
+
+    lastRows = lines.map(ua => parseOne(ua, hints)).filter(Boolean);
+    $("outJson").textContent = JSON.stringify(lastRows, null, 2);
+    $("stat").textContent = lastRows.length + " parsed";
+    renderPrimary(lastRows[0]);
+    $("tbody").innerHTML = lastRows.map((r, i) => {
+      return `<tr>
+        <td>${i + 1}</td>
+        <td>${escapeHtml(r.browser.name + (r.browser.version ? " " + r.browser.version : ""))}</td>
+        <td>${escapeHtml(r.engine.name)}</td>
+        <td>${escapeHtml(r.os.name + (r.os.version ? " " + r.os.version : ""))}</td>
+        <td>${escapeHtml(r.device.type)}</td>
+        <td>${escapeHtml(r.bot.isBot ? r.bot.name : "—")}</td>
+        <td class="mono">${escapeHtml(trimUa(r.userAgent))}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      $("stat").textContent = lastRows.length + " parsed · copied";
+    } catch {
+      showErr("Clipboard blocked — select the JSON manually.");
+    }
+  }
+
+  // samples UI
+  const box = $("samples");
+  samples.forEach(s => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = s.label;
+    b.addEventListener("click", () => {
+      const cur = $("ua").value.trim();
+      $("ua").value = cur ? (cur + "\n" + s.ua) : s.ua;
+      run();
+    });
+    box.appendChild(b);
+  });
+
+  $("btnParse").addEventListener("click", run);
+  $("btnClear").addEventListener("click", () => {
+    $("ua").value = "";
+    $("chUa").value = "";
+    $("chPlatform").value = "";
+    run();
+    showErr("");
+  });
+  $("btnCopyJson").addEventListener("click", () => copyText(JSON.stringify(lastRows, null, 2)));
+  $("btnCopyTable").addEventListener("click", () => {
+    const header = ["n", "browser", "engine", "os", "device", "bot", "ua"].join("\t");
+    const lines = lastRows.map((r, i) => [i + 1, r.browser.name + (r.browser.version ? " " + r.browser.version : ""), r.engine.name, r.os.name + (r.os.version ? " " + r.os.version : ""), r.device.type, r.bot.isBot ? r.bot.name : "", r.userAgent].join("\t"));
+    copyText([header].concat(lines).join("\n"));
+  });
+  $("ua").addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "Enter") run();
+  });
+
+  // prefill from navigator when allowed
+  try {
+    if ($("useNav").checked && navigator.userAgent) {
+      $("ua").value = navigator.userAgent;
+      // best-effort client hints (may be empty without permissions)
+      if (navigator.userAgentData) {
+        const uad = navigator.userAgentData;
+        if (uad.brands && uad.brands.length) {
+          $("chUa").value = uad.brands.map(b => `"${b.brand}";v="${b.version}"`).join(", ");
+        }
+        const parts = [];
+        if (uad.platform) parts.push(`"${uad.platform}"`);
+        if (typeof uad.mobile === "boolean") parts.push(`mobile=?${uad.mobile ? 1 : 0}`);
+        $("chPlatform").value = parts.join("; ");
+      }
+    }
+  } catch (_) {}
+  run();
+})();
+</script>
+</body>
+</html>
