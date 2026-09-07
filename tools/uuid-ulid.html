@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free UUID / ULID Generator & Inspector — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only UUID v4/v7 and ULID generator. Inspect version/variant, decode ULID timestamps, validate and batch. No upload, no account."/>
+<meta property="og:title" content="Free UUID / ULID Generator — Veriton"/>
+<meta property="og:description" content="Generate UUID v4/v7 and ULIDs in-browser. Inspect bits, decode ULID time, batch paste. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/uuid-ulid-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/uuid-ulid-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/uuid-ulid.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text],input[type=number]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:180px;resize:vertical}
+pre{min-height:140px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.kv{display:grid;gap:.4rem;margin-top:.35rem}
+.kv div{display:grid;grid-template-columns:9.5rem 1fr;gap:.5rem;align-items:start;font-size:.9rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="timestamp.html">Timestamp</a> · <a href="jwt-decode.html">JWT</a> · <a href="yaml-json.html">YAML↔JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · UUID + ULID</span>
+    <h1>UUID / ULID Generator & Inspector</h1>
+    <p>Generate UUID v4, UUID v7, and ULIDs in your browser. Inspect version/variant bits, decode ULID timestamps, validate and batch. Nothing is uploaded. Handy next to entity IDs, claim refs, and bootstrap scaffolds.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/uuid-ulid-og.jpg" alt="Free UUID ULID generator" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need ID + CI scaffolding? $3 Repo Bootstrap →</a>
+       <a class="btn ghost" href="timestamp.html">Unix Timestamp →</a>
+       <a class="btn ghost" href="jwt-decode.html">JWT Decoder →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="gen">Generate</button>
+      <button class="primary" id="inspect">Inspect input</button>
+      <button class="secondary" id="sample">Load samples</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="kind">Generate</label>
+        <select id="kind">
+          <option value="uuid4" selected>UUID v4 (random)</option>
+          <option value="uuid7">UUID v7 (time-ordered)</option>
+          <option value="ulid">ULID (Crockford Base32)</option>
+          <option value="all">All three (one each)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="count">Count</label>
+        <input id="count" type="number" min="1" max="200" value="5"/>
+      </div>
+      <div class="opt">
+        <label for="casefmt">UUID case</label>
+        <select id="casefmt">
+          <option value="lower" selected>lowercase</option>
+          <option value="upper">UPPERCASE</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="hyphen">UUID hyphens</label>
+        <select id="hyphen">
+          <option value="yes" selected>8-4-4-4-12</option>
+          <option value="no">compact hex</option>
+        </select>
+      </div>
+    </div>
+    <div class="note">Crypto-backed when available (<code>crypto.getRandomValues</code>). UUID v7 uses Unix-ms + random per draft-style layout. ULID time is 48-bit ms since epoch; Crockford alphabet excludes I L O U.</div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (one ID per line to inspect)</label>
+      <textarea id="inp" spellcheck="false" placeholder="550e8400-e29b-41d4-a716-446655440000
+01J8Y8K7ZQ0EXAMPLEULID0000"></textarea>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output <span class="pill" id="meta">idle</span></label>
+      <pre id="out"># Generate or inspect UUIDs / ULIDs</pre>
+      <div class="kv" id="detail" style="margin-top:.7rem"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Agents mint entity IDs, claim refs, and correlation keys constantly. Local generation + inspection beats pasting secrets into random websites. If you need a full repo scaffold with ID conventions, CI, and README, that is the paid <strong>$3 Repo Bootstrap</strong> SKU.</p>
+  </div>
+
+  <footer>
+    Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="./">all free tools</a> ·
+    contact <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a> ·
+    updated 2026-09-06
+  </footer>
+</div>
+<script>
+(function () {
+  const CROCK = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+  const errEl = document.getElementById("err");
+  const outEl = document.getElementById("out");
+  const meta = document.getElementById("meta");
+  const stat = document.getElementById("stat");
+  const detail = document.getElementById("detail");
+  const inp = document.getElementById("inp");
+
+  function showErr(msg) {
+    if (!msg) { errEl.style.display = "none"; errEl.textContent = ""; return; }
+    errEl.style.display = "block"; errEl.textContent = msg;
+  }
+  function setStat(t) { stat.textContent = t; }
+  function randBytes(n) {
+    const a = new Uint8Array(n);
+    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a);
+    else for (let i = 0; i < n; i++) a[i] = Math.floor(Math.random() * 256);
+    return a;
+  }
+  function toHex(bytes) {
+    return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+  }
+  function formatUuid(hex32, upper, hyphens) {
+    let h = hex32.toLowerCase();
+    if (h.length !== 32) throw new Error("uuid hex must be 32 chars");
+    let s = hyphens ? h.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5") : h;
+    return upper ? s.toUpperCase() : s;
+  }
+  function uuidV4() {
+    const b = randBytes(16);
+    b[6] = (b[6] & 0x0f) | 0x40;
+    b[8] = (b[8] & 0x3f) | 0x80;
+    return toHex(b);
+  }
+  function uuidV7(nowMs) {
+    const ms = BigInt(nowMs == null ? Date.now() : nowMs);
+    const b = randBytes(16);
+    // 48-bit unix ms big-endian into first 6 bytes
+    for (let i = 5; i >= 0; i--) {
+      b[i] = Number((ms >> BigInt(8 * (5 - i))) & 0xffn);
+    }
+    b[6] = (b[6] & 0x0f) | 0x70; // version 7
+    b[8] = (b[8] & 0x3f) | 0x80; // RFC variant
+    return toHex(b);
+  }
+  function encodeCrock(bytes) {
+    // encode full bit string of bytes as Crockford base32 without padding
+    let bits = "";
+    for (const byte of bytes) bits += byte.toString(2).padStart(8, "0");
+    // ULID is 128 bits → 26 chars
+    while (bits.length % 5 !== 0) bits += "0";
+    let out = "";
+    for (let i = 0; i < bits.length; i += 5) {
+      const idx = parseInt(bits.slice(i, i + 5), 2);
+      out += CROCK[idx];
+    }
+    return out.slice(0, 26);
+  }
+  function ulid(nowMs) {
+    const ms = BigInt(nowMs == null ? Date.now() : nowMs);
+    const time = new Uint8Array(6);
+    for (let i = 5; i >= 0; i--) time[i] = Number((ms >> BigInt(8 * (5 - i))) & 0xffn);
+    const rand = randBytes(10);
+    const all = new Uint8Array(16);
+    all.set(time, 0); all.set(rand, 6);
+    return encodeCrock(all);
+  }
+  function parseUuid(raw) {
+    const s = String(raw).trim();
+    const compact = s.replace(/-/g, "").toLowerCase();
+    if (!/^[0-9a-f]{32}$/.test(compact)) return null;
+    const version = parseInt(compact[12], 16);
+    const variantNibble = parseInt(compact[16], 16);
+    let variant = "unknown";
+    if (variantNibble >= 0 && variantNibble <= 7) variant = "NCS";
+    else if (variantNibble >= 8 && variantNibble <= 11) variant = "RFC 4122";
+    else if (variantNibble >= 12 && variantNibble <= 13) variant = "Microsoft";
+    else if (variantNibble >= 14) variant = "future";
+    const dashed = compact.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
+    const info = {
+      kind: "uuid",
+      input: s,
+      canonical: dashed,
+      compact,
+      version,
+      variant,
+      version_nibble: compact[12],
+      variant_nibble: compact[16]
+    };
+    if (version === 7) {
+      const ms = parseInt(compact.slice(0, 12), 16);
+      info.timestamp_ms = ms;
+      info.timestamp_iso = new Date(ms).toISOString();
+    }
+    return info;
+  }
+  function decodeCrock(str) {
+    const s = String(str).trim().toUpperCase().replace(/-/g, "");
+    if (!/^[0-9A-HJKMNP-TV-Z]{26}$/.test(s)) return null;
+    let bits = "";
+    for (const ch of s) {
+      const idx = CROCK.indexOf(ch);
+      if (idx < 0) return null;
+      bits += idx.toString(2).padStart(5, "0");
+    }
+    // 130 bits padded; take 128
+    bits = bits.slice(0, 128);
+    const bytes = new Uint8Array(16);
+    for (let i = 0; i < 16; i++) bytes[i] = parseInt(bits.slice(i * 8, i * 8 + 8), 2);
+    let ms = 0n;
+    for (let i = 0; i < 6; i++) ms = (ms << 8n) | BigInt(bytes[i]);
+    const msNum = Number(ms);
+    return {
+      kind: "ulid",
+      input: str.trim(),
+      canonical: s,
+      timestamp_ms: msNum,
+      timestamp_iso: new Date(msNum).toISOString(),
+      randomness_hex: toHex(bytes.slice(6))
+    };
+  }
+  function inspectLine(line) {
+    const t = line.trim();
+    if (!t) return null;
+    const u = parseUuid(t);
+    if (u) return u;
+    const l = decodeCrock(t);
+    if (l) return l;
+    return { kind: "invalid", input: t, error: "not a UUID (32 hex) or ULID (26 Crockford)" };
+  }
+  function fmtDetail(obj) {
+    if (!obj) { detail.innerHTML = ""; return; }
+    const rows = Object.entries(obj).map(([k, v]) =>
+      `<div><span class="k">${k}</span><span class="v">${String(v)}</span></div>`
+    ).join("");
+    detail.innerHTML = rows;
+  }
+  function generate() {
+    showErr("");
+    const kind = document.getElementById("kind").value;
+    let count = parseInt(document.getElementById("count").value, 10) || 1;
+    count = Math.max(1, Math.min(200, count));
+    const upper = document.getElementById("casefmt").value === "upper";
+    const hyphens = document.getElementById("hyphen").value === "yes";
+    const lines = [];
+    const now = Date.now();
+    for (let i = 0; i < count; i++) {
+      // slight ms bump keeps time-ordered ids distinct in batch
+      const t = now + i;
+      if (kind === "uuid4") lines.push(formatUuid(uuidV4(), upper, hyphens));
+      else if (kind === "uuid7") lines.push(formatUuid(uuidV7(t), upper, hyphens));
+      else if (kind === "ulid") lines.push(ulid(t));
+      else {
+        lines.push("uuid4: " + formatUuid(uuidV4(), upper, hyphens));
+        lines.push("uuid7: " + formatUuid(uuidV7(t), upper, hyphens));
+        lines.push("ulid:  " + ulid(t));
+        if (i < count - 1) lines.push("");
+      }
+    }
+    outEl.textContent = lines.join("\n");
+    meta.textContent = kind + " × " + count;
+    setStat("Generated " + lines.filter(Boolean).length + " line(s)");
+    // auto-inspect first pure id
+    const first = lines.find(l => l && !l.includes(": "));
+    if (first) fmtDetail(inspectLine(first));
+    else if (kind === "all") fmtDetail(inspectLine(lines[0].split(": ").pop()));
+    else fmtDetail(null);
+  }
+  function inspectAll() {
+    showErr("");
+    const lines = inp.value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    if (!lines.length) { showErr("Paste one or more IDs to inspect."); return; }
+    const results = lines.map(inspectLine);
+    outEl.textContent = JSON.stringify(results, null, 2);
+    meta.textContent = results.length + " inspected";
+    const bad = results.filter(r => r.kind === "invalid").length;
+    setStat(bad ? (results.length - bad) + " ok, " + bad + " invalid" : results.length + " ok");
+    fmtDetail(results[0]);
+  }
+  document.getElementById("gen").onclick = generate;
+  document.getElementById("inspect").onclick = inspectAll;
+  document.getElementById("sample").onclick = function () {
+    const u4 = formatUuid(uuidV4(), false, true);
+    const u7 = formatUuid(uuidV7(), false, true);
+    const u = ulid();
+    inp.value = [u4, u7, u, "not-an-id"].join("\n");
+    outEl.textContent = "# Samples loaded — click Inspect input";
+    meta.textContent = "samples";
+    setStat("Samples ready");
+    showErr("");
+    fmtDetail(null);
+  };
+  document.getElementById("copy").onclick = async function () {
+    try {
+      await navigator.clipboard.writeText(outEl.textContent);
+      setStat("Copied");
+    } catch (e) {
+      showErr("Clipboard blocked — select output manually.");
+    }
+  };
+  document.getElementById("clear").onclick = function () {
+    inp.value = ""; outEl.textContent = "# Generate or inspect UUIDs / ULIDs";
+    meta.textContent = "idle"; setStat("Cleared"); showErr(""); fmtDetail(null);
+  };
+  // generate once so page is useful immediately
+  generate();
+})();
+</script>
+</body>
+</html>
