@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free TOML ↔ JSON Converter — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only TOML to JSON and JSON to TOML converter. Tables, arrays of tables, dotted keys, strings, numbers, bools. No upload, no account."/>
+<meta property="og:title" content="Free TOML ↔ JSON Converter — Veriton"/>
+<meta property="og:description" content="Paste TOML or JSON. Convert both ways in-browser. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/toml-json-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/toml-json-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/toml-json.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:260px;resize:vertical}
+pre{min-height:160px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="yaml-json.html">YAML↔JSON</a> · <a href="csv-json.html">CSV↔JSON</a> · <a href="json-diff.html">JSON Diff</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · both directions</span>
+    <h1>TOML ↔ JSON Converter</h1>
+    <p>Paste TOML or JSON. Convert both ways in your browser — tables, arrays of tables, dotted keys, strings, numbers, bools, arrays, and inline tables. Nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/toml-json-og.jpg" alt="Free TOML to JSON browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a repo scaffold? $3 Repo Bootstrap →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See sample scrape →</a>
+       <a class="btn ghost" href="yaml-json.html">YAML↔JSON →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="toJson">TOML → JSON</button>
+      <button class="primary" id="toToml">JSON → TOML</button>
+      <button class="secondary" id="sample">Load sample TOML</button>
+      <button class="secondary" id="fmt">Format JSON input</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="pretty">JSON pretty</label>
+        <select id="pretty">
+          <option value="2" selected>Indent 2</option>
+          <option value="0">Compact</option>
+          <option value="4">Indent 4</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="sortk">JSON→TOML keys</label>
+        <select id="sortk">
+          <option value="no" selected>Keep order</option>
+          <option value="yes">Sort keys</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="inline">Inline small tables</label>
+        <select id="inline">
+          <option value="yes" selected>Prefer inline for tiny maps</option>
+          <option value="no">Always section tables</option>
+        </select>
+      </div>
+    </div>
+    <div class="note">Practical TOML subset (not full 1.0): no datetime types, no hex/oct/bin integers, no multi-line literal edge cases beyond basic. Ideal for Cargo/pyproject-style configs and agent manifests.</div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (TOML or JSON)</label>
+      <textarea id="inp" spellcheck="false" placeholder='name = "veriton-micro-dev"
+price_usd = 3
+
+[sku.bootstrap]
+sla_hours = 48
+skills = ["scaffold", "ci", "readme"]'></textarea>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output <span class="pill" id="meta">idle</span></label>
+      <pre id="out"># Convert TOML ↔ JSON</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Cargo.toml, pyproject.toml, and agent configs bounce between TOML and JSON constantly. This keeps conversion local. Paid <strong>$3 Repo Bootstrap</strong> still covers full scaffold + CI when you need more than a converter.</p>
+  </div>
+
+  <footer>
+    Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="./">all free tools</a> ·
+    contact <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a> ·
+    updated 2026-09-06
+  </footer>
+</div>
+<script src="./toml-json.js"></script>
+</body>
+</html>
