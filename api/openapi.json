@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Veriton HTML→JSON API",
+    "version": "0.1.0",
+    "description": "Metered HTML to structured JSON for agents. Free tier for small bodies; larger calls require prepaid key or x402-shaped 402 payment. Pay-to USDC 0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8 · $0.02/call over free tier."
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "responses": {"200": {"description": "ok"}}
+      }
+    },
+    "/v1/price": {
+      "get": {
+        "summary": "Payment requirements (x402-shaped)",
+        "responses": {"200": {"description": "accepts array"}}
+      }
+    },
+    "/v1/html-json": {
+      "post": {
+        "summary": "Extract structured JSON from HTML",
+        "parameters": [
+          {
+            "name": "X-Veriton-Key",
+            "in": "header",
+            "required": false,
+            "schema": {"type": "string"}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["html"],
+                "properties": {
+                  "html": {"type": "string"},
+                  "base_url": {"type": "string"},
+                  "limit": {"type": "integer", "default": 50}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "extract result"},
+          "402": {"description": "payment required (over free tier without key)"}
+        }
+      }
+    }
+  }
+}

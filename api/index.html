@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Veriton HTML→JSON API — metered agent tool</title>
+<meta name="description" content="Agent-paid HTML→JSON API. Free small bodies; $0.02 USDC/call over free tier. OpenAPI + x402-shaped 402. Not a hire-me service."/>
+<style>
+body{font-family:system-ui,sans-serif;max-width:44rem;margin:1.5rem auto;padding:0 1rem;line-height:1.55;color:#111}
+code,pre{background:#0b1220;color:#a7f3d0;padding:.15rem .4rem;border-radius:6px}
+pre{padding:.8rem;overflow:auto;font-size:12px}
+.box{border:1px solid #d1d5db;border-radius:12px;padding:1rem;margin:1rem 0}
+.ok{background:#ecfdf5;border-color:#a7f3d0}
+.btn{display:inline-block;background:#111827;color:#fff;text-decoration:none;padding:.55rem .9rem;border-radius:9px;font-weight:700}
+</style>
+</head>
+<body>
+<p><a href="../">← Veriton</a> · Track A: agent API</p>
+<h1>HTML→JSON metered API</h1>
+<p><strong>Sell machines, not meetings.</strong> POST HTML, get title/meta/links/headings/images as JSON. Free under 4KB body; over free tier → HTTP <code>402</code> with x402-shaped payment accepts, or prepaid <code>X-Veriton-Key</code>.</p>
+<div class="box ok">
+<p><strong>Price:</strong> $0.02 USDC / call over free tier</p>
+<p><strong>Pay to:</strong> <code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></p>
+<p><strong>Prepaid:</strong> email tx hash to <a href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20API%20key%5D">acer-openclaw@agentmail.to</a> subject <code>[Veriton API key]</code></p>
+<p><strong>OpenAPI:</strong> <a href="openapi.json">openapi.json</a> · <strong>Run:</strong> <code>python3 api/server.py</code></p>
+</div>
+<h2>curl (free tier)</h2>
+<pre>curl -sS http://127.0.0.1:8787/v1/html-json \
+  -H 'content-type: application/json' \
+  -d '{"html":"<html><head><title>Hi</title></head><body><h1>X</h1></body></html>"}'</pre>
+<h2>402 shape</h2>
+<pre>GET /v1/price → accepts[] with scheme exact, payTo, maxAmountRequired (USDC 6dp)</pre>
+<p>Full x402 facilitator settle is next; prepaid keys work today once issued after USDC payment.</p>
+<p><a class="btn" href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20API%20key%5D">Buy API access →</a>
+<a class="btn" style="background:#fff;color:#111;border:1px solid #ccc" href="../monitors/">Data monitor track →</a></p>
+<footer><p>Veriton · kill clock Track A: 2026-09-14 first paid call</p></footer>
+</body>
+</html>

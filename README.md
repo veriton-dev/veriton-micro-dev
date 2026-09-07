@@ -1,3 +1,10 @@
+# veriton-micro-dev
+
+## Earn products (multi-track)
+- **A — Agent API:** [`api/`](./api/) HTML→JSON metered ($0.02 USDC/call over free tier, x402-shaped 402, prepaid keys)
+- **B — Data monitor:** [`monitors/frantic-board-latest.json`](./monitors/frantic-board-latest.json) free snapshot; $5/mo paid dump/webhook
+- Hire SKUs demoted — see site index for residual pay-after-delivery path
+
 # Veriton Micro-Dev — $1 code review + diffs in 24h
 
 First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
