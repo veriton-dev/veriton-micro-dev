@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free sitemap.xml Builder — URL list · lastmod · changefreq · priority — Veriton</title>
+<meta name="description" content="Free browser-only sitemap.xml builder. Paste paths or full URLs, set lastmod/changefreq/priority, optional image/news stubs, validate, copy or download. No upload, no account."/>
+<meta property="og:title" content="Free sitemap.xml Builder — URL list · lastmod · changefreq · priority — Veriton"/>
+<meta property="og:description" content="Compose a clean urlset sitemap from paths or URLs. Browser-only. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/sitemap-xml-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/sitemap-xml-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/sitemap-xml.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],input[type=url],input[type=number],input[type=date],textarea,select{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:9rem;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.grid2{display:grid;gap:.75rem;margin:.55rem 0}@media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;gap:.75rem;margin:.55rem 0}@media(min-width:720px){.grid3{grid-template-columns:1fr 1fr 1fr}}
+.field{margin:.55rem 0}
+.hint{color:#6b7280;font-size:.78rem;margin:.2rem 0 0;font-weight:500}
+.sec{font-size:.78rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b7280;margin:1rem 0 .35rem}
+.checks{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+.checks label{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.88rem;margin:0;background:#f9fafb;border:1px solid #e5e7eb;border-radius:999px;padding:.35rem .75rem;cursor:pointer;user-select:none}
+.checks label.on{background:#ecfdf5;border-color:#6ee7b7;color:#065f46}
+.checks input{margin:0}
+.outbox{background:#0b1220;border-radius:10px;padding:.65rem .75rem;border:1px solid #1f2937;margin-top:.55rem}
+.outbox .k{color:#94a3b8;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem;display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.outbox pre{margin:0;color:#a7f3d0;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:12rem;max-height:28rem;overflow:auto}
+.outbox button.tiny{appearance:none;border:1px solid #334155;background:#111827;color:#e2e8f0;border-radius:6px;padding:.15rem .45rem;font-size:.7rem;font-weight:700;cursor:pointer}
+.warn{color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:.45rem .65rem;font-size:.85rem;margin:.45rem 0;display:none}
+.ok{color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem;font-size:.85rem;margin:.45rem 0;display:none}
+table.urls{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:.5rem}
+table.urls th,table.urls td{border:1px solid #e5e7eb;padding:.35rem .45rem;text-align:left;vertical-align:top}
+table.urls th{background:#f9fafb;font-size:.75rem;text-transform:uppercase;letter-spacing:.03em;color:#6b7280}
+table.urls input,table.urls select{width:100%;font:12px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #e5e7eb;border-radius:6px;padding:.3rem .4rem}
+table.urls .rm{appearance:none;border:1px solid #fecaca;background:#fef2f2;color:#991b1b;border-radius:6px;padding:.2rem .45rem;font-size:.72rem;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="robots-txt.html">robots.txt</a> · <a href="meta-tags.html">Meta Tags</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · SEO bootstrap</span>
+    <h1>sitemap.xml Builder</h1>
+    <p>Compose a clean <code>urlset</code> sitemap from paths or full URLs. Set <code>lastmod</code>, <code>changefreq</code>, and <code>priority</code>, optional image tags, validate, then copy or download. Nothing leaves your tab — handy next to <strong>$3</strong> repo/SEO bootstrap and the free robots.txt builder.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/sitemap-xml-og.jpg" alt="Free sitemap.xml Builder" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need a full scaffold? $3 Bootstrap →</a>
+       <a class="btn ghost" href="robots-txt.html">robots.txt →</a>
+       <a class="btn ghost" href="meta-tags.html">Meta Tags →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="sec">Presets</div>
+    <div class="row">
+      <button class="secondary" type="button" data-preset="landing">Landing site</button>
+      <button class="secondary" type="button" data-preset="blog">Blog + posts</button>
+      <button class="secondary" type="button" data-preset="docs">Docs site</button>
+      <button class="secondary" type="button" data-preset="clear">Clear rows</button>
+    </div>
+
+    <div class="sec">Site base</div>
+    <div class="grid2">
+      <div class="field">
+        <label for="base">Base origin (for relative paths)</label>
+        <input type="url" id="base" placeholder="https://example.com" value="https://example.com"/>
+        <p class="hint">Paths like <code>/about</code> expand with this origin. Full URLs keep their host.</p>
+      </div>
+      <div class="field">
+        <label for="defaultLastmod">Default lastmod</label>
+        <input type="date" id="defaultLastmod"/>
+        <p class="hint">Applied to new rows / empty cells. ISO date only (W3C Datetime date).</p>
+        <div class="checks" style="margin-top:.55rem">
+          <label class="on"><input type="checkbox" id="todayLastmod" checked/> Use today when empty</label>
+          <label class="on"><input type="checkbox" id="includeOptional" checked/> Emit changefreq + priority</label>
+          <label><input type="checkbox" id="pretty"/> Pretty-indent XML</label>
+          <label><input type="checkbox" id="trailingSlash"/> Force trailing / on paths</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">Bulk paste (one URL or path per line)</div>
+    <div class="field">
+      <label for="bulk">Paths / URLs</label>
+      <textarea id="bulk" placeholder="/
+/about
+/blog
+/blog/hello-world
+https://example.com/contact"></textarea>
+      <p class="hint">Optional TSV: <code>loc[TAB]lastmod[TAB]changefreq[TAB]priority[TAB]image</code></p>
+      <div class="row">
+        <button class="secondary" type="button" id="parseBulk">Parse into table</button>
+        <button class="secondary" type="button" id="appendBulk">Append</button>
+      </div>
+    </div>
+
+    <div class="sec">URL table</div>
+    <div class="grid3">
+      <div class="field">
+        <label for="defFreq">Default changefreq</label>
+        <select id="defFreq">
+          <option value="">(omit)</option>
+          <option>always</option>
+          <option>hourly</option>
+          <option>daily</option>
+          <option selected>weekly</option>
+          <option>monthly</option>
+          <option>yearly</option>
+          <option>never</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="defPri">Default priority (0.0–1.0)</label>
+        <input type="number" id="defPri" min="0" max="1" step="0.1" value="0.5"/>
+      </div>
+      <div class="field">
+        <label> </label>
+        <button class="secondary" type="button" id="addRow">+ Add row</button>
+      </div>
+    </div>
+    <div style="overflow:auto">
+      <table class="urls" id="urlTable">
+        <thead>
+          <tr><th style="min-width:12rem">loc</th><th style="min-width:7rem">lastmod</th><th style="min-width:6rem">changefreq</th><th style="min-width:4.5rem">priority</th><th style="min-width:9rem">image (opt)</th><th></th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <button class="primary" type="button" id="buildBtn">Rebuild sitemap</button>
+      <button class="secondary" type="button" id="sortBtn">Sort by loc</button>
+      <button class="secondary" type="button" id="dedupeBtn">Dedupe loc</button>
+      <span class="stat" id="stats">0 URLs</span>
+    </div>
+    <div class="warn" id="warn"></div>
+    <div class="ok" id="ok"></div>
+
+    <div class="outbox">
+      <div class="k"><span>sitemap.xml</span>
+        <span>
+          <button class="tiny" type="button" id="copyBtn">Copy</button>
+          <button class="tiny" type="button" id="dlBtn">Download</button>
+        </span>
+      </div>
+      <pre id="out" spellcheck="false"></pre>
+    </div>
+    <p class="muted" style="margin-top:.6rem">Notes: Google treats <code>changefreq</code>/<code>priority</code> as weak signals — keep them honest. Cap practical sitemaps near 50k URLs / 50MB; split into a sitemap index if larger. This tool does not crawl your site or ping search engines. Pair with robots.txt <code>Sitemap:</code> lines.</p>
+  </div>
+
+  <footer>Veriton · free browser-only tool · <a href="./">hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · adjacent to $3 bootstrap SEO</footer>
+</div>
+<script>
+(function(){
+  const tbody = document.getElementById('tbody');
+  const out = document.getElementById('out');
+  const stats = document.getElementById('stats');
+  const warn = document.getElementById('warn');
+  const ok = document.getElementById('ok');
+  const baseEl = document.getElementById('base');
+  const bulk = document.getElementById('bulk');
+  const defFreq = document.getElementById('defFreq');
+  const defPri = document.getElementById('defPri');
+  const defaultLastmod = document.getElementById('defaultLastmod');
+  const FREQS = ['','always','hourly','daily','weekly','monthly','yearly','never'];
+
+  function todayISO(){
+    const d = new Date();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return d.getFullYear()+'-'+m+'-'+day;
+  }
+  defaultLastmod.value = todayISO();
+
+  function escXml(s){
+    return String(s)
+      .replace(/&/g, '&' + 'amp;')
+      .replace(/</g, '&' + 'lt;')
+      .replace(/>/g, '&' + 'gt;')
+      .replace(/"/g, '&' + 'quot;')
+      .replace(/'/g, '&' + '#39;');
+  }
+
+  function normalizeLoc(raw){
+    let s = String(raw||'').trim();
+    if(!s) return '';
+    const base = (baseEl.value||'').trim().replace(/\/$/,'');
+    const forceSlash = document.getElementById('trailingSlash').checked;
+    try{
+      let u;
+      if(/^https?:\/\//i.test(s)) u = new URL(s);
+      else if(s.startsWith('//')) u = new URL('https:'+s);
+      else {
+        if(!base) throw new Error('base required for relative path');
+        if(!s.startsWith('/')) s = '/'+s;
+        u = new URL(base + s);
+      }
+      // drop fragment; keep query if present
+      u.hash = '';
+      let path = u.pathname || '/';
+      if(forceSlash && !path.endsWith('/') && !/\.[a-z0-9]{1,8}$/i.test(path)) path += '/';
+      u.pathname = path;
+      return u.toString();
+    }catch(e){
+      return '';
+    }
+  }
+
+  function freqSelect(val){
+    return FREQS.map(f => '<option value="'+f+'"'+(f===(val||'')?' selected':'')+'>'+(f||'(omit)')+'</option>').join('');
+  }
+
+  function addRow(data){
+    data = data || {};
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><input class="loc" type="text" placeholder="/about or https://…" value="'+escAttr(data.loc||'')+'"/></td>'+
+      '<td><input class="lastmod" type="date" value="'+escAttr(data.lastmod||'')+'"/></td>'+
+      '<td><select class="freq">'+freqSelect(data.changefreq)+'</select></td>'+
+      '<td><input class="pri" type="number" min="0" max="1" step="0.1" value="'+escAttr(data.priority!=null?data.priority:'')+'"/></td>'+
+      '<td><input class="img" type="text" placeholder="https://…/og.jpg" value="'+escAttr(data.image||'')+'"/></td>'+
+      '<td><button type="button" class="rm" title="Remove">×</button></td>';
+    tr.querySelector('.rm').onclick = () => { tr.remove(); rebuild(); };
+    ['input','change'].forEach(ev => tr.addEventListener(ev, () => rebuild()));
+    tbody.appendChild(tr);
+  }
+  function escAttr(s){
+    return String(s)
+      .replace(/&/g, '&' + 'amp;')
+      .replace(/"/g, '&' + 'quot;')
+      .replace(/</g, '&' + 'lt;');
+  }
+
+  function readRows(){
+    return Array.from(tbody.querySelectorAll('tr')).map(tr => ({
+      loc: tr.querySelector('.loc').value.trim(),
+      lastmod: tr.querySelector('.lastmod').value.trim(),
+      changefreq: tr.querySelector('.freq').value,
+      priority: tr.querySelector('.pri').value,
+      image: tr.querySelector('.img').value.trim()
+    }));
+  }
+
+  function parseLines(text, replace){
+    const lines = String(text||'').split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    const rows = [];
+    const today = document.getElementById('todayLastmod').checked ? todayISO() : (defaultLastmod.value||'');
+    const dFreq = defFreq.value;
+    const dPri = defPri.value;
+    for(const line of lines){
+      const parts = line.split(/\t/);
+      let loc = parts[0];
+      // support "path, lastmod, …" lightly
+      if(parts.length===1 && line.includes(',') && !/^https?:\/\//i.test(line)){
+        const c = line.split(',').map(x=>x.trim());
+        if(c.length>=2 && c[0]){ parts.length=0; parts.push(...c); loc=parts[0]; }
+      }
+      rows.push({
+        loc: loc||'',
+        lastmod: parts[1] || today || '',
+        changefreq: parts[2] || dFreq || '',
+        priority: parts[3] != null && parts[3] !== '' ? parts[3] : (dPri||''),
+        image: parts[4] || ''
+      });
+    }
+    if(replace) tbody.innerHTML = '';
+    rows.forEach(addRow);
+    rebuild();
+  }
+
+  function showWarn(msg){
+    if(!msg){ warn.style.display='none'; warn.textContent=''; return; }
+    warn.style.display='block'; warn.textContent=msg;
+  }
+  function showOk(msg){
+    if(!msg){ ok.style.display='none'; ok.textContent=''; return; }
+    ok.style.display='block'; ok.textContent=msg;
+  }
+
+  function rebuild(){
+    const includeOpt = document.getElementById('includeOptional').checked;
+    const pretty = document.getElementById('pretty').checked;
+    const today = document.getElementById('todayLastmod').checked ? todayISO() : '';
+    const raw = readRows();
+    const issues = [];
+    const seen = new Set();
+    const urls = [];
+
+    for(const r of raw){
+      if(!r.loc) continue;
+      const loc = normalizeLoc(r.loc);
+      if(!loc){ issues.push('Bad loc: '+r.loc); continue; }
+      if(seen.has(loc)){ issues.push('Duplicate loc skipped: '+loc); continue; }
+      seen.add(loc);
+      let lastmod = r.lastmod || today || '';
+      if(lastmod && !/^\d{4}-\d{2}-\d{2}$/.test(lastmod)){
+        issues.push('lastmod must be YYYY-MM-DD for '+loc);
+        lastmod = '';
+      }
+      let pri = r.priority;
+      if(pri !== '' && pri != null){
+        const n = Number(pri);
+        if(Number.isNaN(n) || n < 0 || n > 1){ issues.push('priority out of range for '+loc); pri=''; }
+        else pri = (Math.round(n*10)/10).toFixed(1).replace(/\.0$/,'') === String(Math.round(n)) ? n.toFixed(1) : (Math.round(n*10)/10).toFixed(1);
+        // normalize display to one decimal commonly used
+        pri = (Math.round(Number(pri)*10)/10).toFixed(1);
+      } else pri = '';
+      let freq = r.changefreq || '';
+      if(freq && FREQS.indexOf(freq)<1){ issues.push('bad changefreq for '+loc); freq=''; }
+      let image = r.image || '';
+      if(image){
+        try{ image = new URL(image).toString(); }catch(e){ issues.push('bad image URL for '+loc); image=''; }
+      }
+      urls.push({loc, lastmod, changefreq: freq, priority: pri, image});
+    }
+
+    const nl = pretty ? '\n' : '';
+    const ind = pretty ? '  ' : '';
+    const ind2 = pretty ? '    ' : '';
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>'+nl;
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"';
+    const hasImg = urls.some(u=>u.image);
+    if(hasImg) xml += nl+ind+'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
+    xml += '>'+nl;
+
+    for(const u of urls){
+      xml += ind+'<url>'+nl;
+      xml += ind2+'<loc>'+escXml(u.loc)+'</loc>'+nl;
+      if(u.lastmod) xml += ind2+'<lastmod>'+escXml(u.lastmod)+'</lastmod>'+nl;
+      if(includeOpt && u.changefreq) xml += ind2+'<changefreq>'+escXml(u.changefreq)+'</changefreq>'+nl;
+      if(includeOpt && u.priority !== '') xml += ind2+'<priority>'+escXml(u.priority)+'</priority>'+nl;
+      if(u.image){
+        xml += ind2+'<image:image>'+nl;
+        xml += ind2+ind+'<image:loc>'+escXml(u.image)+'</image:loc>'+nl;
+        xml += ind2+'</image:image>'+nl;
+      }
+      xml += ind+'</url>'+nl;
+    }
+    xml += '</urlset>'+nl;
+    out.textContent = xml;
+    stats.textContent = urls.length+' URL'+(urls.length===1?'':'s')+(hasImg?' · image tags':'');
+    showWarn(issues.length ? issues.slice(0,6).join(' · ')+(issues.length>6?' · +'+(issues.length-6)+' more':'') : '');
+    showOk(urls.length ? 'Valid urlset · '+urls.length+' loc · ~'+new Blob([xml]).size+' bytes' : '');
+  }
+
+  document.getElementById('addRow').onclick = () => {
+    const today = document.getElementById('todayLastmod').checked ? todayISO() : (defaultLastmod.value||'');
+    addRow({loc:'', lastmod: today, changefreq: defFreq.value, priority: defPri.value});
+    rebuild();
+  };
+  document.getElementById('parseBulk').onclick = () => parseLines(bulk.value, true);
+  document.getElementById('appendBulk').onclick = () => parseLines(bulk.value, false);
+  document.getElementById('buildBtn').onclick = rebuild;
+  document.getElementById('sortBtn').onclick = () => {
+    const rows = readRows().filter(r=>r.loc);
+    rows.sort((a,b)=> normalizeLoc(a.loc).localeCompare(normalizeLoc(b.loc)));
+    tbody.innerHTML='';
+    rows.forEach(addRow);
+    rebuild();
+  };
+  document.getElementById('dedupeBtn').onclick = () => {
+    const rows = readRows();
+    const seen = new Set();
+    const keep = [];
+    for(const r of rows){
+      const loc = normalizeLoc(r.loc) || r.loc;
+      if(!loc || seen.has(loc)) continue;
+      seen.add(loc); keep.push(r);
+    }
+    tbody.innerHTML='';
+    keep.forEach(addRow);
+    rebuild();
+  };
+
+  document.querySelectorAll('[data-preset]').forEach(btn => {
+    btn.onclick = () => {
+      const p = btn.getAttribute('data-preset');
+      const today = todayISO();
+      if(p==='clear'){ tbody.innerHTML=''; rebuild(); return; }
+      let lines = [];
+      if(p==='landing') lines = ['/\t'+today+'\tdaily\t1.0','/about\t'+today+'\tmonthly\t0.6','/pricing\t'+today+'\tweekly\t0.8','/contact\t'+today+'\tmonthly\t0.5','/blog\t'+today+'\tweekly\t0.7'];
+      if(p==='blog') lines = ['/\t'+today+'\tdaily\t1.0','/blog\t'+today+'\tdaily\t0.9','/blog/hello-world\t'+today+'\tmonthly\t0.6','/blog/shipping-notes\t'+today+'\tmonthly\t0.6','/tags\t'+today+'\tweekly\t0.4'];
+      if(p==='docs') lines = ['/\t'+today+'\tweekly\t1.0','/docs\t'+today+'\tweekly\t0.9','/docs/getting-started\t'+today+'\tmonthly\t0.8','/docs/api\t'+today+'\tweekly\t0.8','/docs/changelog\t'+today+'\tweekly\t0.7'];
+      bulk.value = lines.join('\n');
+      parseLines(bulk.value, true);
+    };
+  });
+
+  document.querySelectorAll('.checks input').forEach(c => {
+    c.addEventListener('change', () => {
+      c.parentElement.classList.toggle('on', c.checked);
+      rebuild();
+    });
+  });
+  baseEl.addEventListener('input', rebuild);
+  defFreq.addEventListener('change', rebuild);
+  defPri.addEventListener('change', rebuild);
+  defaultLastmod.addEventListener('change', rebuild);
+
+  document.getElementById('copyBtn').onclick = async () => {
+    try{ await navigator.clipboard.writeText(out.textContent); showOk('Copied sitemap.xml'); }catch(e){ showWarn('Clipboard blocked — select the XML manually'); }
+  };
+  document.getElementById('dlBtn').onclick = () => {
+    const blob = new Blob([out.textContent], {type:'application/xml'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'sitemap.xml';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1500);
+  };
+
+  // seed landing preset
+  document.querySelector('[data-preset="landing"]').click();
+})();
+</script>
+</body>
+</html>
