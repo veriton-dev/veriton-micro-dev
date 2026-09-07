@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free HTTP Status Codes — lookup · categories · copy — Veriton</title>
+<meta name="description" content="Free browser-only HTTP status code reference. Search 1xx–5xx, filter by class, see meaning + typical causes, copy code/phrase/JSON. No upload, no account."/>
+<meta property="og:title" content="Free HTTP Status Codes — lookup · categories · copy — Veriton"/>
+<meta property="og:description" content="Search and filter HTTP status codes with short meanings and typical causes. Copy code, phrase, or JSON. Browser-only, free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/http-status-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/http-status-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/http-status.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+input[type=text],input[type=search],select,textarea,pre{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea,pre{min-height:8rem;resize:vertical}
+pre{overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-word}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.checks{display:flex;flex-wrap:wrap;gap:.55rem;margin:.35rem 0}
+.chip{appearance:none;border:1px solid #d1d5db;background:#fff;border-radius:999px;padding:.28rem .7rem;font-size:.8rem;font-weight:700;cursor:pointer;color:#374151}
+.chip.on{background:#111827;color:#fff;border-color:#111827}
+.chip.c1.on{background:#1d4ed8}.chip.c2.on{background:#047857}.chip.c3.on{background:#a16207}.chip.c4.on{background:#b45309}.chip.c5.on{background:#b91c1c}
+.list{display:grid;gap:.55rem;margin-top:.6rem}
+.item{border:1px solid #e5e7eb;border-radius:12px;padding:.75rem .85rem;background:#fff;cursor:pointer;transition:border-color .12s,box-shadow .12s}
+.item:hover,.item.active{border-color:#94a3b8;box-shadow:0 1px 0 rgba(15,23,42,.04)}
+.item.active{border-color:#111827;background:#f8fafc}
+.top{display:flex;flex-wrap:wrap;gap:.45rem .7rem;align-items:baseline}
+.code{font:800 1.15rem/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.02em}
+.phrase{font-weight:700;font-size:1rem}
+.cls{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:.12rem .5rem}
+.c1{background:#dbeafe;color:#1e3a8a}.c2{background:#d1fae5;color:#065f46}.c3{background:#fef3c7;color:#92400e}
+.c4{background:#ffedd5;color:#9a3412}.c5{background:#fee2e2;color:#991b1b}
+.mean{margin:.35rem 0 0;color:#374151;font-size:.92rem}
+.cause{margin:.25rem 0 0;color:#6b7280;font-size:.85rem}
+.detail .kv{display:grid;gap:.4rem;margin-top:.5rem}
+.detail .kv div{display:grid;grid-template-columns:7.5rem 1fr;gap:.5rem;font-size:.9rem}
+.detail .k{color:#6b7280;font-weight:700}.detail .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-word}
+.empty{padding:1rem;text-align:center;color:#6b7280;border:1px dashed #d1d5db;border-radius:12px}
+.hint{color:#6b7280;font-size:.78rem;margin:.2rem 0 0;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="query-string.html">Query String</a> · <a href="jwt-decode.html">JWT</a> · <a href="base64-url.html">Base64/URL</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · HTTP reference</span>
+    <h1>HTTP Status Codes</h1>
+    <p>Search 1xx–5xx, filter by class, read a short meaning + typical causes, then copy the code, reason phrase, or JSON. Nothing leaves your tab. Handy next to API debug, scrape review, and $1 status-handling diffs.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/http-status-og.jpg" alt="Free HTTP status codes lookup" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Need status-handling review? $1 Review →</a>
+       <a class="btn ghost" href="query-string.html">Query String →</a>
+       <a class="btn ghost" href="jwt-decode.html">JWT Decoder →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="opts">
+      <div class="opt" style="grid-column:1/-1">
+        <label for="q">Search code, phrase, or keyword</label>
+        <input id="q" type="search" placeholder="e.g. 429, unauthorized, redirect, timeout…" spellcheck="false" autofocus/>
+        <p class="hint">Matches code, reason phrase, meaning, and causes. Press / to focus.</p>
+      </div>
+      <div class="opt">
+        <label for="sort">Sort</label>
+        <select id="sort">
+          <option value="code" selected>Code ascending</option>
+          <option value="name">Phrase A–Z</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="quick">Quick jump</label>
+        <select id="quick">
+          <option value="">— pick a common code —</option>
+          <option value="200">200 OK</option>
+          <option value="201">201 Created</option>
+          <option value="204">204 No Content</option>
+          <option value="301">301 Moved Permanently</option>
+          <option value="302">302 Found</option>
+          <option value="304">304 Not Modified</option>
+          <option value="400">400 Bad Request</option>
+          <option value="401">401 Unauthorized</option>
+          <option value="403">403 Forbidden</option>
+          <option value="404">404 Not Found</option>
+          <option value="409">409 Conflict</option>
+          <option value="422">422 Unprocessable Entity</option>
+          <option value="429">429 Too Many Requests</option>
+          <option value="500">500 Internal Server Error</option>
+          <option value="502">502 Bad Gateway</option>
+          <option value="503">503 Service Unavailable</option>
+          <option value="504">504 Gateway Timeout</option>
+        </select>
+      </div>
+    </div>
+    <div class="checks" id="classes" aria-label="Status classes">
+      <button type="button" class="chip on c1" data-cls="1">1xx Informational</button>
+      <button type="button" class="chip on c2" data-cls="2">2xx Success</button>
+      <button type="button" class="chip on c3" data-cls="3">3xx Redirection</button>
+      <button type="button" class="chip on c4" data-cls="4">4xx Client</button>
+      <button type="button" class="chip on c5" data-cls="5">5xx Server</button>
+      <button type="button" class="chip" id="allOn">All on</button>
+      <button type="button" class="chip" id="allOff">All off</button>
+    </div>
+    <div class="row">
+      <button class="primary" id="copyCode" type="button">Copy code</button>
+      <button class="secondary" id="copyPhrase" type="button">Copy phrase</button>
+      <button class="secondary" id="copyLine" type="button">Copy “code phrase”</button>
+      <button class="secondary" id="copyJson" type="button">Copy JSON</button>
+      <button class="secondary" id="copyList" type="button">Copy filtered JSON</button>
+      <button class="secondary" id="clear" type="button">Clear search</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+  </div>
+
+  <div class="card detail" id="detail">
+    <div class="muted">Select a status to inspect.</div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="justify-content:space-between;margin-top:0">
+      <strong id="count">0 codes</strong>
+      <span class="muted">Click a row to pin it above</span>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="empty" id="empty" hidden>No codes match. Try another keyword or turn a class back on.</div>
+  </div>
+
+  <div class="card">
+    <label for="out">Selection / export</label>
+    <pre id="out">{}</pre>
+  </div>
+
+  <footer>
+    Veriton free tool · browser-only · not a substitute for RFC 9110 / IANA registry ·
+    <a href="./">tools hub</a> ·
+    <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    adjacent SKUs: $1 review · $2 scrape · $3 bootstrap
+  </footer>
+</div>
+<script>
+(function () {
+  const CODES = [
+    // 1xx
+    {c:100,p:"Continue",m:"Client may continue with the request body.",x:"Expect: 100-continue handshake; large uploads."},
+    {c:101,p:"Switching Protocols",m:"Server is switching protocols as requested.",x:"Upgrade: websocket / h2c negotiation."},
+    {c:102,p:"Processing",m:"Server accepted the request and is still working (WebDAV).",x:"Long-running PROPFIND/MOVE without final response yet."},
+    {c:103,p:"Early Hints",m:"Interim headers (often Link preload) before the final response.",x:"CDN/edge sending preload hints while origin computes HTML."},
+    // 2xx
+    {c:200,p:"OK",m:"Request succeeded. Payload depends on method.",x:"GET returned representation; POST may return result body."},
+    {c:201,p:"Created",m:"Resource was created. Often includes Location.",x:"POST/PUT created a new entity; check Location header."},
+    {c:202,p:"Accepted",m:"Request accepted for async processing, not done yet.",x:"Job queues, batch imports, background agent tasks."},
+    {c:203,p:"Non-Authoritative Information",m:"Payload transformed by a transforming proxy.",x:"Corporate proxy or CDN rewritten metadata."},
+    {c:204,p:"No Content",m:"Success with empty body. Headers still matter.",x:"DELETE success, PUT ack, or action endpoints."},
+    {c:205,p:"Reset Content",m:"Success; client should reset the document view.",x:"Form clear after successful submit."},
+    {c:206,p:"Partial Content",m:"Partial range of the resource was returned.",x:"Range requests, resumable downloads, media streaming."},
+    {c:207,p:"Multi-Status",m:"Multiple independent status results (WebDAV).",x:"Batch PROPFIND with per-href status XML."},
+    {c:208,p:"Already Reported",m:"Members already enumerated in a prior multi-status.",x:"WebDAV binding/collection responses."},
+    {c:226,p:"IM Used",m:"Response reflects instance manipulations applied.",x:"Delta encoding / IM negotiation (rare)."},
+    // 3xx
+    {c:300,p:"Multiple Choices",m:"Multiple representations; client should choose.",x:"Content negotiation without a preferred variant."},
+    {c:301,p:"Moved Permanently",m:"Resource has a new permanent URI. Method may change to GET on some clients for POST.",x:"Site migrations; update bookmarks and SEO canonicals."},
+    {c:302,p:"Found",m:"Temporary redirect. Historical clients often switch POST→GET.",x:"Login bounce, temporary path moves; prefer 307/308 when method must stick."},
+    {c:303,p:"See Other",m:"Redirect to a different resource, typically via GET.",x:"PRG pattern after POST to avoid double-submit."},
+    {c:304,p:"Not Modified",m:"Cached representation is still valid.",x:"If-None-Match / If-Modified-Since conditional GET."},
+    {c:305,p:"Use Proxy",m:"Deprecated. Must access via proxy (almost unused).",x:"Legacy; do not mint new 305 responses."},
+    {c:307,p:"Temporary Redirect",m:"Temporary redirect that preserves the request method.",x:"Maintenance path moves without changing POST/PUT semantics."},
+    {c:308,p:"Permanent Redirect",m:"Permanent redirect that preserves the request method.",x:"API root moves where POST must remain POST."},
+    // 4xx
+    {c:400,p:"Bad Request",m:"Server cannot or will not process due to client error.",x:"Malformed JSON, invalid query, schema fail."},
+    {c:401,p:"Unauthorized",m:"Authentication required or failed. (Misnamed: means unauthenticated.)",x:"Missing/invalid Bearer, API key, session cookie."},
+    {c:402,p:"Payment Required",m:"Reserved for digital payment / paywalled access.",x:"x402 and similar pay-to-play APIs; some SaaS gates."},
+    {c:403,p:"Forbidden",m:"Authenticated but not allowed, or policy denied.",x:"RBAC miss, IP allowlist, CSRF, geo block."},
+    {c:404,p:"Not Found",m:"No current representation for the target resource.",x:"Wrong path, deleted entity, hidden private resource."},
+    {c:405,p:"Method Not Allowed",m:"Method known but not supported for this target. Allow header lists valid methods.",x:"POST to read-only route; check Allow."},
+    {c:406,p:"Not Acceptable",m:"No representation matches Accept* headers.",x:"Client demands application/xml but API only serves JSON."},
+    {c:407,p:"Proxy Authentication Required",m:"Client must authenticate with a proxy.",x:"Corporate forward-proxy credentials."},
+    {c:408,p:"Request Timeout",m:"Server closed idle connection waiting for the request.",x:"Slow clients, stalled uploads, middlebox delays."},
+    {c:409,p:"Conflict",m:"Request conflicts with current resource state.",x:"Optimistic concurrency, duplicate slug, state machine clash."},
+    {c:410,p:"Gone",m:"Resource is permanently unavailable; no forwarding address.",x:"Intentional removal; stronger than 404 for SEO."},
+    {c:411,p:"Length Required",m:"Content-Length required and missing.",x:"Chunked upload rejected by strict origin."},
+    {c:412,p:"Precondition Failed",m:"If-Match / If-Unmodified-Since (etc.) failed.",x:"Lost update prevention; ETag mismatch."},
+    {c:413,p:"Content Too Large",m:"Request body larger than the server is willing to process.",x:"Upload limits, body size middleware."},
+    {c:414,p:"URI Too Long",m:"Request URI longer than the server accepts.",x:"Giant query strings; move filters to body."},
+    {c:415,p:"Unsupported Media Type",m:"Payload format not supported for this method/resource.",x:"Sent text/plain to JSON-only endpoint."},
+    {c:416,p:"Range Not Satisfiable",m:"Requested Range not satisfiable for the selected representation.",x:"Bad byte range past end of file."},
+    {c:417,p:"Expectation Failed",m:"Expect header requirements could not be met.",x:"Expect: 100-continue rejected by origin."},
+    {c:418,p:"I'm a teapot",m:"April Fools joke from HTCPCP; not for production APIs.",x:"Easter eggs only; never rely on it."},
+    {c:421,p:"Misdirected Request",m:"Request directed at a server unable to produce a response.",x:"HTTP/2 connection coalescing / SNI mismatch."},
+    {c:422,p:"Unprocessable Content",m:"Well-formed syntax but semantic errors prevent processing.",x:"Validation errors, domain-rule failures (common in APIs)."},
+    {c:423,p:"Locked",m:"Resource is locked (WebDAV).",x:"Exclusive lock held by another client."},
+    {c:424,p:"Failed Dependency",m:"Request failed because a prior dependency failed (WebDAV).",x:"Multi-op batch where step N-1 failed."},
+    {c:425,p:"Too Early",m:"Server unwilling to risk replay on early data.",x:"TLS 1.3 0-RTT rejected for non-idempotent request."},
+    {c:426,p:"Upgrade Required",m:"Client should switch protocols (Upgrade header).",x:"Force TLS or HTTP/2 upgrade."},
+    {c:428,p:"Precondition Required",m:"Origin requires conditional request to prevent lost updates.",x:"Require If-Match on PUT."},
+    {c:429,p:"Too Many Requests",m:"Rate limit exceeded. Often includes Retry-After.",x:"API quotas, bot protection, agent fan-out."},
+    {c:431,p:"Request Header Fields Too Large",m:"Combined header size rejected.",x:"Huge cookies, runaway Authorization/trace headers."},
+    {c:451,p:"Unavailable For Legal Reasons",m:"Denied for legal/demand reasons.",x:"DMCA, court order, sanctioned jurisdiction."},
+    // 5xx
+    {c:500,p:"Internal Server Error",m:"Server hit an unexpected condition.",x:"Unhandled exception, nil deref, misconfig."},
+    {c:501,p:"Not Implemented",m:"Server does not support the requested functionality.",x:"Unimplemented method or feature flag off."},
+    {c:502,p:"Bad Gateway",m:"Gateway/proxy got an invalid response from upstream.",x:"Origin crash mid-response, protocol mismatch."},
+    {c:503,p:"Service Unavailable",m:"Temporary overload or maintenance. May include Retry-After.",x:"Deploys, dependency outage, circuit open."},
+    {c:504,p:"Gateway Timeout",m:"Gateway/proxy timed out waiting for upstream.",x:"Slow DB, stuck worker, short proxy timeout."},
+    {c:505,p:"HTTP Version Not Supported",m:"Server refuses the major HTTP version used.",x:"HTTP/1.0-only client vs modern edge."},
+    {c:506,p:"Variant Also Negotiates",m:"Content negotiation misconfiguration loop.",x:"Broken transparent negotiation setup (rare)."},
+    {c:507,p:"Insufficient Storage",m:"Server cannot store the representation (WebDAV).",x:"Disk full, quota exceeded on write."},
+    {c:508,p:"Loop Detected",m:"Infinite loop while processing (WebDAV).",x:"Circular collection bindings."},
+    {c:510,p:"Not Extended",m:"Further extensions to the request are required.",x:"HTTP Extension Framework (rare)."},
+    {c:511,p:"Network Authentication Required",m:"Client must authenticate to gain network access.",x:"Captive portal / Wi-Fi login intercept."}
+  ];
+
+  const classMeta = {
+    1: {name: "Informational", tip: "Interim responses before the final message."},
+    2: {name: "Success", tip: "Request received, understood, and accepted."},
+    3: {name: "Redirection", tip: "Further action needed to complete the request."},
+    4: {name: "Client Error", tip: "Apparently client-side problem with the request."},
+    5: {name: "Server Error", tip: "Server failed to fulfill an apparently valid request."}
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const q = $("q"), sort = $("sort"), quick = $("quick");
+  const list = $("list"), empty = $("empty"), count = $("count");
+  const detail = $("detail"), out = $("out"), stat = $("stat");
+  const enabled = new Set([1, 2, 3, 4, 5]);
+  let selected = null;
+  let filtered = CODES.slice();
+
+  function clsOf(code) { return Math.floor(code / 100); }
+  function clsLabel(n) {
+    const m = classMeta[n] || {name: "Other"};
+    return n + "xx " + m.name;
+  }
+
+  function matches(item, query) {
+    if (!query) return true;
+    const hay = (item.c + " " + item.p + " " + item.m + " " + item.x).toLowerCase();
+    return query.split(/\s+/).filter(Boolean).every((t) => hay.includes(t));
+  }
+
+  function setStat(msg) { stat.textContent = msg; }
+
+  function renderDetail(item) {
+    if (!item) {
+      detail.innerHTML = '<div class="muted">Select a status to inspect.</div>';
+      out.textContent = "{}";
+      return;
+    }
+    const n = clsOf(item.c);
+    const meta = classMeta[n] || {name: "Other", tip: ""};
+    detail.innerHTML =
+      '<div class="top">' +
+        '<span class="code">' + item.c + '</span>' +
+        '<span class="phrase">' + escapeHtml(item.p) + '</span>' +
+        '<span class="cls c' + n + '">' + escapeHtml(clsLabel(n)) + '</span>' +
+      '</div>' +
+      '<p class="mean">' + escapeHtml(item.m) + '</p>' +
+      '<p class="cause"><strong>Typical causes:</strong> ' + escapeHtml(item.x) + '</p>' +
+      '<div class="kv">' +
+        '<div><span class="k">Class</span><span class="v">' + escapeHtml(meta.name) + (meta.tip ? " — " + escapeHtml(meta.tip) : "") + '</span></div>' +
+        '<div><span class="k">Line</span><span class="v">HTTP/1.1 ' + item.c + " " + escapeHtml(item.p) + '</span></div>' +
+        '<div><span class="k">JSON</span><span class="v">' + escapeHtml(JSON.stringify({code: item.c, phrase: item.p, class: n + "xx"})) + '</span></div>' +
+      '</div>';
+    out.textContent = JSON.stringify({
+      code: item.c,
+      phrase: item.p,
+      class: n + "xx",
+      className: meta.name,
+      meaning: item.m,
+      typicalCauses: item.x
+    }, null, 2);
+  }
+
+  function escapeHtml(s) {
+    const map = {"&":"&" + "amp;", "<":"&" + "lt;", ">":"&" + "gt;", '"':"&" + "quot;"};
+    return String(s).replace(/[&<>"]/g, (ch) => map[ch]);
+  }
+
+  function renderList() {
+    const query = q.value.trim().toLowerCase();
+    filtered = CODES.filter((item) => enabled.has(clsOf(item.c)) && matches(item, query));
+    if (sort.value === "name") {
+      filtered.sort((a, b) => a.p.localeCompare(b.p) || a.c - b.c);
+    } else {
+      filtered.sort((a, b) => a.c - b.c);
+    }
+    count.textContent = filtered.length + " code" + (filtered.length === 1 ? "" : "s");
+    list.innerHTML = "";
+    empty.hidden = filtered.length > 0;
+    filtered.forEach((item) => {
+      const n = clsOf(item.c);
+      const el = document.createElement("div");
+      el.className = "item" + (selected && selected.c === item.c ? " active" : "");
+      el.tabIndex = 0;
+      el.innerHTML =
+        '<div class="top">' +
+          '<span class="code">' + item.c + '</span>' +
+          '<span class="phrase">' + escapeHtml(item.p) + '</span>' +
+          '<span class="cls c' + n + '">' + n + "xx</span>" +
+        '</div>' +
+        '<p class="mean">' + escapeHtml(item.m) + '</p>' +
+        '<p class="cause">' + escapeHtml(item.x) + '</p>';
+      el.addEventListener("click", () => select(item));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(item); }
+      });
+      list.appendChild(el);
+    });
+    if (selected && !filtered.some((x) => x.c === selected.c)) {
+      // keep detail pinned even if filtered out
+    } else if (!selected && filtered.length === 1) {
+      select(filtered[0], true);
+    }
+  }
+
+  function select(item, quiet) {
+    selected = item;
+    renderDetail(item);
+    renderList();
+    if (!quiet) setStat("Selected " + item.c + " " + item.p);
+  }
+
+  async function copyText(text, label) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setStat("Copied " + label);
+    } catch (e) {
+      out.textContent = text;
+      setStat("Clipboard blocked — text placed in export box");
+    }
+  }
+
+  document.querySelectorAll("#classes .chip[data-cls]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const n = Number(btn.dataset.cls);
+      if (enabled.has(n)) { enabled.delete(n); btn.classList.remove("on"); }
+      else { enabled.add(n); btn.classList.add("on"); }
+      renderList();
+      setStat("Filter updated");
+    });
+  });
+  $("allOn").addEventListener("click", () => {
+    [1,2,3,4,5].forEach((n) => enabled.add(n));
+    document.querySelectorAll("#classes .chip[data-cls]").forEach((b) => b.classList.add("on"));
+    renderList();
+  });
+  $("allOff").addEventListener("click", () => {
+    enabled.clear();
+    document.querySelectorAll("#classes .chip[data-cls]").forEach((b) => b.classList.remove("on"));
+    renderList();
+  });
+
+  q.addEventListener("input", renderList);
+  sort.addEventListener("change", renderList);
+  quick.addEventListener("change", () => {
+    const code = Number(quick.value);
+    if (!code) return;
+    const item = CODES.find((x) => x.c === code);
+    if (!item) return;
+    enabled.add(clsOf(code));
+    document.querySelectorAll("#classes .chip[data-cls]").forEach((b) => {
+      if (Number(b.dataset.cls) === clsOf(code)) b.classList.add("on");
+    });
+    q.value = String(code);
+    select(item);
+    renderList();
+    quick.value = "";
+  });
+
+  $("clear").addEventListener("click", () => {
+    q.value = "";
+    renderList();
+    setStat("Search cleared");
+    q.focus();
+  });
+  $("copyCode").addEventListener("click", () => {
+    if (!selected) return setStat("Select a code first");
+    copyText(String(selected.c), "code");
+  });
+  $("copyPhrase").addEventListener("click", () => {
+    if (!selected) return setStat("Select a code first");
+    copyText(selected.p, "phrase");
+  });
+  $("copyLine").addEventListener("click", () => {
+    if (!selected) return setStat("Select a code first");
+    copyText(selected.c + " " + selected.p, "line");
+  });
+  $("copyJson").addEventListener("click", () => {
+    if (!selected) return setStat("Select a code first");
+    copyText(out.textContent, "JSON");
+  });
+  $("copyList").addEventListener("click", () => {
+    const payload = filtered.map((item) => ({
+      code: item.c,
+      phrase: item.p,
+      class: clsOf(item.c) + "xx",
+      meaning: item.m,
+      typicalCauses: item.x
+    }));
+    const text = JSON.stringify(payload, null, 2);
+    out.textContent = text;
+    copyText(text, filtered.length + " codes");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== q && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      q.focus();
+      q.select();
+    }
+  });
+
+  // deep link ?code=429 or #429
+  const params = new URLSearchParams(location.search);
+  const boot = params.get("code") || (location.hash || "").replace(/^#/, "");
+  if (/^\d{3}$/.test(boot)) {
+    const item = CODES.find((x) => x.c === Number(boot));
+    if (item) select(item, true);
+  } else {
+    const def = CODES.find((x) => x.c === 429) || CODES[0];
+    select(def, true);
+  }
+  renderList();
+  setStat(CODES.length + " codes loaded");
+})();
+</script>
+</body>
+</html>
