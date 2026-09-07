@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free CSV ↔ JSON Converter — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only CSV to JSON and JSON to CSV converter. Delimiter detect, header row, nested flatten, typed cells. No upload, no account."/>
+<meta property="og:title" content="Free CSV ↔ JSON Converter — Veriton"/>
+<meta property="og:description" content="Paste CSV or JSON. Convert both ways in-browser with delimiter detect and typed cells. Free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/csv-json-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/csv-json-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/csv-json.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:220px;resize:vertical}
+pre{min-height:120px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+table.preview{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:.5rem}
+table.preview th,table.preview td{border:1px solid #e5e7eb;padding:.35rem .45rem;text-align:left;max-width:12rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+table.preview th{background:#f3f4f6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="json-diff.html">JSON Diff</a> · <a href="json-schema.html">JSON→Schema</a> · <a href="html-to-json.html">HTML→JSON</a> · <a href="jwt-decode.html">JWT</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · both directions</span>
+    <h1>CSV ↔ JSON Converter</h1>
+    <p>Paste CSV or a JSON array/object. Convert both ways in your browser — delimiter auto-detect, header row, typed cells (number/bool/null), nested flatten on JSON→CSV. Nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/csv-json-og.jpg" alt="Free CSV to JSON browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need a live URL scrape? $2 Scrape-to-JSON →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See sample scrape →</a>
+       <a class="btn ghost" href="json-diff.html">JSON Diff →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="toJson">CSV → JSON</button>
+      <button class="primary" id="toCsv">JSON → CSV</button>
+      <button class="secondary" id="sample">Load sample CSV</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="delim">Delimiter</label>
+        <select id="delim">
+          <option value="auto" selected>Auto-detect</option>
+          <option value=",">Comma ,</option>
+          <option value=";">Semicolon ;</option>
+          <option value="\t">Tab</option>
+          <option value="|">Pipe |</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="header">Header row</label>
+        <select id="header">
+          <option value="yes" selected>First row = keys</option>
+          <option value="no">No header (col_0…)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="types">Cell typing</label>
+        <select id="types">
+          <option value="yes" selected>Auto number/bool/null</option>
+          <option value="no">All strings</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="pretty">JSON pretty</label>
+        <select id="pretty">
+          <option value="2" selected>Indent 2</option>
+          <option value="0">Compact</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (CSV or JSON)</label>
+      <textarea id="inp" spellcheck="false" placeholder='id,name,price
+1,widget,9.50
+2,"gizmo, large",12'></textarea>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output</label>
+      <pre id="out"># Convert CSV ↔ JSON</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Preview <span class="pill" id="meta">0 rows</span></h2>
+    <div id="preview" class="muted">Run a conversion to preview the first rows.</div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a local CSV↔JSON utility for agent pipelines, scrape cleanup, and schema checks.</li>
+      <li><strong>Is:</strong> RFC4180-ish quoted fields, escaped quotes, CRLF, delimiter auto-detect, nested flatten on JSON→CSV.</li>
+      <li><strong>Isn't:</strong> a live URL scraper (browser CORS). For 1 public URL → clean JSON + script, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 Scrape-to-JSON</a> SKU.</li>
+      <li><strong>Isn't:</strong> Excel formula engine / multi-sheet XLSX. Paste exported CSV text.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Veriton free tools · no cookies · no analytics · <a href="../">hire micro-dev</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a></p>
+    <p class="muted">Updated 2026-09-06 · pairs with free <a href="json-diff.html">JSON Diff</a> · <a href="json-schema.html">JSON→Schema</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const err = (m) => { const e=$('err'); if(!m){e.style.display='none';e.textContent='';return;} e.style.display='block'; e.textContent=m; };
+
+  const SAMPLE = [
+    'sku,name,price,active,tags',
+    'w-1,"Widget, blue",9.5,true,tools|kit',
+    'w-2,Gizmo,,false,',
+    'w-3,"Quote ""pro""",12.00,true,pro',
+    'w-4,Nullish,null,true,x'
+  ].join('\n');
+
+  function detectDelim(text){
+    const first = text.split(/\r?\n/).find(l => l.trim()) || '';
+    const cands = [',',';','\t','|'];
+    let best = ',', bestScore = -1;
+    for (const d of cands){
+      let score = 0, inQ = false;
+      for (let i=0;i<first.length;i++){
+        const ch = first[i];
+        if (ch === '"') inQ = !inQ;
+        else if (!inQ && ch === d) score++;
+      }
+      if (score > bestScore){ bestScore = score; best = d; }
+    }
+    return bestScore > 0 ? best : ',';
+  }
+
+  function parseCsv(text, delim, hasHeader){
+    const rows = [];
+    let row = [], field = '', i = 0, inQ = false;
+    const s = text.replace(/^\uFEFF/, '');
+    while (i < s.length){
+      const ch = s[i];
+      if (inQ){
+        if (ch === '"'){
+          if (s[i+1] === '"'){ field += '"'; i += 2; continue; }
+          inQ = false; i++; continue;
+        }
+        field += ch; i++; continue;
+      }
+      if (ch === '"'){ inQ = true; i++; continue; }
+      if (ch === delim){ row.push(field); field = ''; i++; continue; }
+      if (ch === '\n' || (ch === '\r' && s[i+1] === '\n')){
+        row.push(field); field = ''; rows.push(row); row = [];
+        if (ch === '\r') i++;
+        i++; continue;
+      }
+      if (ch === '\r'){ row.push(field); field=''; rows.push(row); row=[]; i++; continue; }
+      field += ch; i++;
+    }
+    if (field.length || row.length){ row.push(field); rows.push(row); }
+    // drop trailing empty line
+    if (rows.length && rows[rows.length-1].every(c => c === '')) rows.pop();
+    if (!rows.length) return { headers: [], records: [] };
+
+    let headers, body;
+    if (hasHeader){
+      headers = rows[0].map((h, idx) => (String(h).trim() || ('col_'+idx)));
+      // uniquify
+      const seen = {};
+      headers = headers.map(h => {
+        let k = h, n = 2;
+        while (seen[k]) { k = h + '_' + n++; }
+        seen[k] = 1; return k;
+      });
+      body = rows.slice(1);
+    } else {
+      const width = Math.max(...rows.map(r => r.length));
+      headers = Array.from({length:width}, (_,i)=>'col_'+i);
+      body = rows;
+    }
+    // normalize width
+    const records = body.map(r => {
+      const o = {};
+      for (let j=0;j<headers.length;j++) o[headers[j]] = r[j] != null ? r[j] : '';
+      return o;
+    });
+    return { headers, records };
+  }
+
+  function typeCell(v, enable){
+    if (!enable) return v;
+    if (v === null || v === undefined) return null;
+    const t = String(v).trim();
+    if (t === '') return '';
+    if (/^(null|NULL|None)$/.test(t)) return null;
+    if (/^(true|TRUE|True)$/.test(t)) return true;
+    if (/^(false|FALSE|False)$/.test(t)) return false;
+    if (/^-?\d+$/.test(t)) {
+      const n = Number(t);
+      if (Number.isSafeInteger(n)) return n;
+    }
+    if (/^-?\d+\.\d+$/.test(t)) {
+      const n = Number(t);
+      if (!Number.isNaN(n)) return n;
+    }
+    return v;
+  }
+
+  function flatten(obj, prefix, out){
+    out = out || {};
+    if (obj === null || obj === undefined){ out[prefix || 'value'] = obj; return out; }
+    if (Array.isArray(obj)){
+      if (!prefix) {
+        // top-level array handled by caller
+        return out;
+      }
+      obj.forEach((v,i) => flatten(v, prefix + '[' + i + ']', out));
+      return out;
+    }
+    if (typeof obj === 'object'){
+      const keys = Object.keys(obj);
+      if (!keys.length){ out[prefix || 'value'] = ''; return out; }
+      for (const k of keys){
+        const p = prefix ? (prefix + '.' + k) : k;
+        flatten(obj[k], p, out);
+      }
+      return out;
+    }
+    out[prefix || 'value'] = obj;
+    return out;
+  }
+
+  function escapeCsv(v, delim){
+    if (v === null || v === undefined) return '';
+    let s = typeof v === 'object' ? JSON.stringify(v) : String(v);
+    const needs = s.includes('"') || s.includes(delim) || s.includes('\n') || s.includes('\r');
+    if (s.includes('"')) s = s.replace(/"/g, '""');
+    return needs ? '"' + s + '"' : s;
+  }
+
+  function recordsToCsv(records, delim){
+    if (!records.length) return '';
+    const keySet = [];
+    const seen = {};
+    for (const r of records){
+      for (const k of Object.keys(r)){
+        if (!seen[k]){ seen[k]=1; keySet.push(k); }
+      }
+    }
+    const lines = [keySet.map(k => escapeCsv(k, delim)).join(delim)];
+    for (const r of records){
+      lines.push(keySet.map(k => escapeCsv(r[k], delim)).join(delim));
+    }
+    return lines.join('\n');
+  }
+
+  function previewTable(records){
+    const box = $('preview');
+    if (!records.length){ box.innerHTML = '<span class="muted">0 rows</span>'; $('meta').textContent='0 rows'; return; }
+    const keys = [];
+    const seen={};
+    for (const r of records.slice(0,20)){
+      for (const k of Object.keys(r)){ if(!seen[k]){seen[k]=1;keys.push(k);} }
+    }
+    const show = records.slice(0, 8);
+    let html = '<table class="preview"><thead><tr>' + keys.map(k=>'<th>'+esc(k)+'</th>').join('') + '</tr></thead><tbody>';
+    for (const r of show){
+      html += '<tr>' + keys.map(k => '<td>'+esc(fmt(r[k]))+'</td>').join('') + '</tr>';
+    }
+    html += '</tbody></table>';
+    if (records.length > 8) html += '<p class="muted">Showing 8 of '+records.length+' rows</p>';
+    box.innerHTML = html;
+    $('meta').textContent = records.length + ' rows · ' + keys.length + ' cols';
+  }
+
+  function esc(s){ return String(s).replace(/&/g,'&'+'amp;').replace(/</g,'&'+'lt;').replace(/>/g,'&'+'gt;').replace(/"/g,'&'+'quot;').replace(/'/g,'&'+'#39;'); }[c])); }
+  function fmt(v){ if (v===null) return 'null'; if (v===undefined) return ''; if (typeof v==='object') return JSON.stringify(v); return String(v); }
+
+  function delimChoice(){
+    const v = $('delim').value;
+    if (v === '\\t') return '\t';
+    return v;
+  }
+
+  function csvToJson(){
+    err('');
+    const text = $('inp').value;
+    if (!text.trim()){ err('Paste CSV first.'); return; }
+    let d = delimChoice();
+    if (d === 'auto') d = detectDelim(text);
+    const hasHeader = $('header').value === 'yes';
+    const typed = $('types').value === 'yes';
+    const { records } = parseCsv(text, d, hasHeader);
+    const out = records.map(r => {
+      const o = {};
+      for (const k of Object.keys(r)) o[k] = typeCell(r[k], typed);
+      return o;
+    });
+    const indent = Number($('pretty').value);
+    $('out').textContent = JSON.stringify(out, null, indent === 0 ? undefined : indent);
+    previewTable(out);
+    $('stat').textContent = out.length + ' objects · delim ' + JSON.stringify(d);
+  }
+
+  function jsonToCsv(){
+    err('');
+    const text = $('inp').value.trim();
+    if (!text){ err('Paste JSON first.'); return; }
+    let data;
+    try { data = JSON.parse(text); }
+    catch(e){ err('Invalid JSON: ' + e.message); return; }
+
+    let records;
+    if (Array.isArray(data)){
+      records = data.map(item => {
+        if (item !== null && typeof item === 'object' && !Array.isArray(item)) return flatten(item);
+        if (Array.isArray(item)) {
+          const o = {}; item.forEach((v,i)=> o['col_'+i]=v); return o;
+        }
+        return { value: item };
+      });
+    } else if (data !== null && typeof data === 'object'){
+      // object of arrays (columnar) OR single object OR map of objects
+      const vals = Object.values(data);
+      if (vals.length && vals.every(v => Array.isArray(v)) && new Set(vals.map(v=>v.length)).size === 1){
+        const keys = Object.keys(data);
+        const n = vals[0].length;
+        records = [];
+        for (let i=0;i<n;i++){
+          const o={}; for (const k of keys) o[k]=data[k][i]; records.push(o);
+        }
+      } else {
+        records = [flatten(data)];
+      }
+    } else {
+      err('JSON must be an array or object.'); return;
+    }
+
+    let d = delimChoice();
+    if (d === 'auto') d = ',';
+    const csv = recordsToCsv(records, d);
+    $('out').textContent = csv;
+    previewTable(records);
+    $('stat').textContent = records.length + ' rows · delim ' + JSON.stringify(d);
+  }
+
+  $('toJson').onclick = csvToJson;
+  $('toCsv').onclick = jsonToCsv;
+  $('sample').onclick = () => { $('inp').value = SAMPLE; err(''); csvToJson(); };
+  $('clear').onclick = () => { $('inp').value=''; $('out').textContent='# Convert CSV ↔ JSON'; $('preview').innerHTML='Run a conversion to preview the first rows.'; $('meta').textContent='0 rows'; $('stat').textContent='Ready'; err(''); };
+  $('copy').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText($('out').textContent);
+      $('stat').textContent = 'Copied';
+      setTimeout(()=>{}, 800);
+    } catch(e){ err('Clipboard blocked — select output manually.'); }
+  };
+})();
+</script>
+</body>
+</html>

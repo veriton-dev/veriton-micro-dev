@@ -20,7 +20,8 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **[JSON → Schema generator](./tools/json-schema.html)** — browser-only draft-07 schema from sample JSON (types, required, formats, enums).
 - **[JWT Decoder](./tools/jwt-decode.html)** — browser-only header + claims inspector with exp/nbf flags (decode ≠ verify). Demo adjacent to **$1** auth/review work.
 - **[JSON Diff](./tools/json-diff.html)** — browser-only structural left/right JSON diff (added/removed/changed paths). Demo for scrape regressions + **$1**/**$2** checks.
-- Share cards: [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg)
+- **[CSV ↔ JSON](./tools/csv-json.html)** — browser-only bidirectional converter (delimiter detect, typed cells, nested flatten). Demo adjacent to **$2** scrape cleanup.
+- Share cards: [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg) · [csv-json-og.jpg](./assets/csv-json-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)
