@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free JSON Diff — structural diff in browser — Veriton</title>
+<meta name="description" content="Free browser-only JSON structural diff. Paste left and right JSON, see added/removed/changed paths. No upload, no account. Pair with Veriton $1 review or $2 scrape-to-JSON."/>
+<meta property="og:title" content="Free JSON Diff — Veriton"/>
+<meta property="og:description" content="Paste two JSON documents. Get path-level added/removed/changed diffs in-browser. Free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/json-diff-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/json-diff-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/json-diff.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:240px;resize:vertical}
+pre{min-height:160px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem}
+.pill.A{background:#bbf7d0;color:#14532d}.pill.R{background:#fecaca;color:#7f1d1d}.pill.C{background:#fde68a;color:#78350f}.pill.T{background:#dbeafe;color:#1e3a8a}
+.find{border:1px solid #e5e7eb;border-radius:10px;padding:.65rem .75rem;margin:.45rem 0;background:#fafafa}
+.find h4{margin:0 0 .2rem;font-size:.92rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.find p{margin:.15rem 0;font-size:.88rem}
+.chk{display:flex;gap:.45rem;align-items:center;font-size:.9rem;font-weight:600}
+.summary-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0}
+.summary-row span{font-size:.85rem;font-weight:700;border-radius:8px;padding:.35rem .55rem;border:1px solid #e5e7eb;background:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="jwt-decode.html">JWT</a> · <a href="diff-risk.html">Diff Risk</a> · <a href="json-schema.html">JSON→Schema</a> · <a href="html-to-json.html">HTML→JSON</a> · <a href="cron-explain.html">Cron</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · structural</span>
+    <h1>JSON Diff</h1>
+    <p>Paste left (before) and right (after) JSON. Get path-level <strong>added</strong>, <strong>removed</strong>, and <strong>changed</strong> findings — including nested objects/arrays and type flips. Runs entirely in your browser — nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/json-diff-og.jpg" alt="Free JSON Diff browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Scrape broke schema? $2 re-extract →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See scrape sample →</a>
+       <a class="btn ghost" href="diff-risk.html">Unified Diff Risk →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="run">Diff JSON</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="swap">Swap L/R</button>
+      <button class="secondary" id="copy">Copy report</button>
+      <button class="secondary" id="clear">Clear</button>
+      <label class="chk"><input type="checkbox" id="sortKeys" checked/> sort object keys before compare</label>
+      <label class="chk"><input type="checkbox" id="ignoreNull" /> treat null≈missing</label>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="grid">
+      <div>
+        <label for="left">Left (before)</label>
+        <textarea id="left" spellcheck="false" placeholder='{"id":1,"name":"alpha"}'></textarea>
+      </div>
+      <div>
+        <label for="right">Right (after)</label>
+        <textarea id="right" spellcheck="false" placeholder='{"id":1,"name":"beta","active":true}'></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Summary</h2>
+    <div id="summary" class="muted">Run a diff to see added / removed / changed counts.</div>
+    <div class="summary-row" id="counts"></div>
+    <div id="finds"></div>
+  </div>
+
+  <div class="card">
+    <label>Markdown report</label>
+    <pre id="out"># JSON diff report
+</pre>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a local structural JSON comparator for scrape regressions, API contract drifts, and fixture reviews.</li>
+      <li><strong>Is:</strong> path-aware for objects and arrays (index paths like <code>items[2].price</code>).</li>
+      <li><strong>Isn't:</strong> a full semantic/merge tool — array reorders still show as remove+add at indices unless values match in place.</li>
+      <li><strong>Isn't:</strong> live URL fetch. For public URL → clean JSON + schema, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 Scrape-to-JSON</a> SKU. For PR-level risk + fix diff, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">$1 Code Review Sprint</a>.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Veriton free tools · no cookies · no analytics · <a href="../">hire micro-dev</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a></p>
+    <p class="muted">Updated 2026-09-06 · pairs with free <a href="json-schema.html">JSON→Schema</a> + <a href="html-to-json.html">HTML→JSON</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const err = (m) => { const e=$('err'); if(!m){e.style.display='none';e.textContent='';return;} e.style.display='block'; e.textContent=m; };
+
+  const SAMPLE_L = `{
+  "product": "widgets",
+  "version": 1,
+  "items": [
+    {"sku": "A-1", "price": 9.5, "tags": ["new"]},
+    {"sku": "B-2", "price": 12.0, "tags": ["sale"]}
+  ],
+  "meta": {"currency": "USD", "source": "legacy"}
+}`;
+  const SAMPLE_R = `{
+  "product": "widgets",
+  "version": 2,
+  "items": [
+    {"sku": "A-1", "price": 9.5, "tags": ["new", "featured"]},
+    {"sku": "B-2", "price": 11.0, "tags": ["sale"]},
+    {"sku": "C-3", "price": 4.25, "tags": []}
+  ],
+  "meta": {"currency": "USD", "source": "v2-api", "cached": true},
+  "active": true
+}`;
+
+  function typeOf(v){
+    if (v === null) return 'null';
+    if (Array.isArray(v)) return 'array';
+    return typeof v;
+  }
+
+  function sortDeep(v){
+    if (Array.isArray(v)) return v.map(sortDeep);
+    if (v && typeof v === 'object') {
+      const out = {};
+      Object.keys(v).sort().forEach(k => { out[k] = sortDeep(v[k]); });
+      return out;
+    }
+    return v;
+  }
+
+  function preview(v, n=80){
+    let s;
+    try { s = JSON.stringify(v); } catch { s = String(v); }
+    if (s.length > n) return s.slice(0, n-1) + '…';
+    return s;
+  }
+
+  function diff(left, right, path, opts, out){
+    const ignoreNull = opts.ignoreNull;
+    const lt = typeOf(left);
+    const rt = typeOf(right);
+
+    if (ignoreNull) {
+      if (left === null && right === undefined) return;
+      if (left === undefined && right === null) return;
+      if (left === null && (right === null || right === undefined)) return;
+      if (right === null && (left === null || left === undefined)) return;
+    }
+
+    if (left === undefined && right !== undefined) {
+      out.push({kind:'added', path, right, rightType: rt});
+      return;
+    }
+    if (right === undefined && left !== undefined) {
+      out.push({kind:'removed', path, left, leftType: lt});
+      return;
+    }
+    if (lt !== rt) {
+      out.push({kind:'type', path, left, right, leftType: lt, rightType: rt});
+      return;
+    }
+    if (lt === 'array') {
+      const max = Math.max(left.length, right.length);
+      for (let i=0;i<max;i++) {
+        const p = path + '[' + i + ']';
+        if (i >= left.length) out.push({kind:'added', path:p, right:right[i], rightType:typeOf(right[i])});
+        else if (i >= right.length) out.push({kind:'removed', path:p, left:left[i], leftType:typeOf(left[i])});
+        else diff(left[i], right[i], p, opts, out);
+      }
+      if (left.length !== right.length) {
+        out.push({kind:'changed', path: path + '.length', left: left.length, right: right.length, leftType:'number', rightType:'number'});
+      }
+      return;
+    }
+    if (lt === 'object') {
+      const keys = new Set([...Object.keys(left), ...Object.keys(right)]);
+      const sorted = [...keys].sort();
+      for (const k of sorted) {
+        const p = path ? path + '.' + k : k;
+        const hasL = Object.prototype.hasOwnProperty.call(left, k);
+        const hasR = Object.prototype.hasOwnProperty.call(right, k);
+        if (!hasL) out.push({kind:'added', path:p, right:right[k], rightType:typeOf(right[k])});
+        else if (!hasR) out.push({kind:'removed', path:p, left:left[k], leftType:typeOf(left[k])});
+        else diff(left[k], right[k], p, opts, out);
+      }
+      return;
+    }
+    // primitive
+    if (left !== right) {
+      // number NaN edge
+      if (typeof left === 'number' && typeof right === 'number' && Number.isNaN(left) && Number.isNaN(right)) return;
+      out.push({kind:'changed', path, left, right, leftType: lt, rightType: rt});
+    }
+  }
+
+  function parseMaybe(text, side){
+    const t = (text||'').trim();
+    if (!t) throw new Error(side + ' JSON is empty');
+    try { return JSON.parse(t); }
+    catch(e){ throw new Error(side + ' JSON parse error: ' + e.message); }
+  }
+
+  function kindPill(k){
+    if (k==='added') return '<span class="pill A">ADDED</span>';
+    if (k==='removed') return '<span class="pill R">REMOVED</span>';
+    if (k==='type') return '<span class="pill T">TYPE</span>';
+    return '<span class="pill C">CHANGED</span>';
+  }
+
+  function run(){
+    err('');
+    let L, R;
+    try {
+      L = parseMaybe($('left').value, 'Left');
+      R = parseMaybe($('right').value, 'Right');
+    } catch(e) {
+      err(e.message); $('stat').textContent = 'Parse error'; return;
+    }
+    const opts = {
+      sortKeys: $('sortKeys').checked,
+      ignoreNull: $('ignoreNull').checked
+    };
+    if (opts.sortKeys) { L = sortDeep(L); R = sortDeep(R); }
+    const changes = [];
+    diff(L, R, '', opts, changes);
+    // drop pure .length noise if child index diffs already cover? keep length as signal.
+    const added = changes.filter(c=>c.kind==='added').length;
+    const removed = changes.filter(c=>c.kind==='removed').length;
+    const changed = changes.filter(c=>c.kind==='changed').length;
+    const typed = changes.filter(c=>c.kind==='type').length;
+
+    $('counts').innerHTML = [
+      '<span style="border-color:#bbf7d0;background:#f0fdf4;color:#14532d">+' + added + ' added</span>',
+      '<span style="border-color:#fecaca;background:#fef2f2;color:#7f1d1d">−' + removed + ' removed</span>',
+      '<span style="border-color:#fde68a;background:#fffbeb;color:#78350f">~' + changed + ' changed</span>',
+      '<span style="border-color:#bfdbfe;background:#eff6ff;color:#1e3a8a">Δ' + typed + ' type</span>',
+      '<span>' + changes.length + ' total</span>'
+    ].join('');
+
+    if (!changes.length) {
+      $('summary').innerHTML = '<strong style="color:#065f46">Identical</strong> under current options.';
+      $('finds').innerHTML = '';
+      $('out').textContent = '# JSON diff report\n\nIdentical under current options.\n';
+      $('stat').textContent = '0 diffs';
+      return;
+    }
+
+    $('summary').textContent = changes.length + ' difference(s). Paths use dot + [index] notation from the document root.';
+    const maxShow = 200;
+    const show = changes.slice(0, maxShow);
+    $('finds').innerHTML = show.map(c => {
+      let body = '';
+      if (c.kind==='added') body = '<p><b>right</b> ('+c.rightType+'): <code>'+escapeHtml(preview(c.right,120))+'</code></p>';
+      else if (c.kind==='removed') body = '<p><b>left</b> ('+c.leftType+'): <code>'+escapeHtml(preview(c.left,120))+'</code></p>';
+      else body = '<p><b>left</b> ('+c.leftType+'): <code>'+escapeHtml(preview(c.left,90))+'</code></p><p><b>right</b> ('+c.rightType+'): <code>'+escapeHtml(preview(c.right,90))+'</code></p>';
+      return '<div class="find">'+kindPill(c.kind)+'<h4>'+escapeHtml(c.path||'(root)')+'</h4>'+body+'</div>';
+    }).join('') + (changes.length>maxShow ? '<p class="muted">Showing first '+maxShow+' of '+changes.length+'. Full list is in the Markdown report.</p>' : '');
+
+    const lines = ['# JSON diff report', '', '- added: ' + added, '- removed: ' + removed, '- changed: ' + changed, '- type: ' + typed, '- total: ' + changes.length, '- sortKeys: ' + opts.sortKeys, '- ignoreNull: ' + opts.ignoreNull, ''];
+    for (const c of changes) {
+      const p = c.path || '(root)';
+      if (c.kind==='added') lines.push('- ADDED `' + p + '` = `' + preview(c.right,100).replace(/`/g,"'") + '` (' + c.rightType + ')');
+      else if (c.kind==='removed') lines.push('- REMOVED `' + p + '` was `' + preview(c.left,100).replace(/`/g,"'") + '` (' + c.leftType + ')');
+      else if (c.kind==='type') lines.push('- TYPE `' + p + '` ' + c.leftType + ' → ' + c.rightType + ' (`' + preview(c.left,60).replace(/`/g,"'") + '` → `' + preview(c.right,60).replace(/`/g,"'") + '`)');
+      else lines.push('- CHANGED `' + p + '` `' + preview(c.left,60).replace(/`/g,"'") + '` → `' + preview(c.right,60).replace(/`/g,"'") + '`');
+    }
+    lines.push('', '_Generated in-browser by Veriton free JSON Diff. No data uploaded._');
+    $('out').textContent = lines.join('\n');
+    $('stat').textContent = changes.length + ' diffs';
+  }
+
+  function escapeHtml(s){
+    const map = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+    return String(s).replace(/[&<>"']/g, ch => map[ch]);
+  }
+
+  $('run').onclick = run;
+  $('sample').onclick = () => { $('left').value = SAMPLE_L; $('right').value = SAMPLE_R; err(''); run(); };
+  $('swap').onclick = () => { const a=$('left').value; $('left').value=$('right').value; $('right').value=a; run(); };
+  $('clear').onclick = () => { $('left').value=''; $('right').value=''; $('finds').innerHTML=''; $('counts').innerHTML=''; $('summary').textContent='Run a diff to see added / removed / changed counts.'; $('out').textContent='# JSON diff report\n'; $('stat').textContent='Ready'; err(''); };
+  $('copy').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText($('out').textContent);
+      $('stat').textContent = 'Copied';
+      setTimeout(()=>{$('stat').textContent = $('stat').dataset.prev || 'Ready';}, 1200);
+    } catch { err('Clipboard blocked — select the Markdown report manually.'); }
+  };
+  // store prior? skip
+})();
+</script>
+</body>
+</html>
