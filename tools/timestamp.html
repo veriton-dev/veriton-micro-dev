@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Unix Timestamp Converter — epoch ↔ ISO — Veriton</title>
+<meta name="description" content="Free browser-only Unix timestamp converter. Epoch seconds/ms ↔ ISO-8601 UTC/local, relative age, batch paste. No upload, no account."/>
+<meta property="og:title" content="Free Unix Timestamp Converter — Veriton"/>
+<meta property="og:description" content="Paste epoch seconds, milliseconds, or ISO dates. Convert both ways in-browser with relative age and batch mode. Free forever."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/timestamp-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/timestamp-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/timestamp.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:180px;resize:vertical}
+pre{min-height:140px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.kv{display:grid;gap:.45rem;margin-top:.4rem}
+.kv div{display:grid;grid-template-columns:9.5rem 1fr;gap:.5rem;align-items:start;font-size:.9rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+table.batch{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:.5rem}
+table.batch th,table.batch td{border:1px solid #e5e7eb;padding:.35rem .45rem;text-align:left}
+table.batch th{background:#f3f4f6}
+table.batch td.bad{color:#991b1b;background:#fef2f2}
+.live{font-size:1.05rem;font-weight:800;letter-spacing:.02em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="cron-explain.html">Cron</a> · <a href="jwt-decode.html">JWT</a> · <a href="csv-json.html">CSV↔JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · epoch ↔ ISO</span>
+    <h1>Unix Timestamp Converter</h1>
+    <p>Paste epoch seconds, milliseconds, or ISO-8601. Convert both ways in your browser — UTC + local, relative age, batch lines. Nothing is uploaded. Handy next to cron / JWT exp checks.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/timestamp-og.jpg" alt="Free Unix timestamp converter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Repo%20Bootstrap%20%243">Need cron/CI scaffolding? $3 Repo Bootstrap →</a>
+       <a class="btn ghost" href="cron-explain.html">Cron Explainer →</a>
+       <a class="btn ghost" href="jwt-decode.html">JWT Decoder →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="convert">Convert</button>
+      <button class="primary" id="now">Use now</button>
+      <button class="secondary" id="sample">Load samples</button>
+      <button class="secondary" id="copy">Copy JSON</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="unit">Numeric unit</label>
+        <select id="unit">
+          <option value="auto" selected>Auto (s vs ms by magnitude)</option>
+          <option value="s">Force seconds</option>
+          <option value="ms">Force milliseconds</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="mode">Input mode</label>
+        <select id="mode">
+          <option value="single" selected>Single value</option>
+          <option value="batch">Batch (one per line)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="outfmt">Primary output</label>
+        <select id="outfmt">
+          <option value="iso" selected>ISO-8601 UTC</option>
+          <option value="local">Local string</option>
+          <option value="s">Epoch seconds</option>
+          <option value="ms">Epoch milliseconds</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (epoch or ISO / date string)</label>
+      <textarea id="inp" spellcheck="false" placeholder="1725628800
+2026-09-07T01:17:00Z
+now"></textarea>
+      <p class="muted" style="margin:.45rem 0 0">Accepts bare numbers, <code>now</code>, ISO-8601, and common date strings. Multi-line when Batch is on.</p>
+    </div>
+    <div class="card" style="margin:0">
+      <label>Live clock <span class="pill" id="tzpill">local</span></label>
+      <div class="live" id="live">—</div>
+      <div class="kv" id="single" style="margin-top:.8rem">
+        <div><span class="k">Status</span><span class="v">Convert a value</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">JSON / batch <span class="pill" id="meta">0 rows</span></h2>
+    <pre id="out"># Convert epoch ↔ ISO</pre>
+    <div id="batchWrap" style="display:none;margin-top:.7rem"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Notes</h2>
+    <ul class="muted" style="margin:.2rem 0 0 1.1rem">
+      <li>Auto unit: absolute values ≥ 1e12 treated as ms; ≥ 1e9 as seconds; smaller magnitudes as seconds unless forced.</li>
+      <li>Relative age uses wall clock at convert time (updates when you hit Convert / Use now).</li>
+      <li>JWT <code>exp</code>/<code>nbf</code> are usually <strong>seconds</strong>. Pair with the free <a href="jwt-decode.html">JWT Decoder</a>.</li>
+      <li>Cron next-fire math pairs with the free <a href="cron-explain.html">Cron Explainer</a>.</li>
+      <li>Nothing leaves this tab. No cookies, no network after page load.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Veriton free tool · <a href="./">all tools</a> ·
+    <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    $1 review / $2 scrape / $3 bootstrap via <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a>
+  </footer>
+</div>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const inp = $("inp"), out = $("out"), err = $("err"), stat = $("stat");
+  const single = $("single"), meta = $("meta"), batchWrap = $("batchWrap");
+  const live = $("live"), tzpill = $("tzpill");
+
+  function showErr(msg) {
+    if (!msg) { err.style.display = "none"; err.textContent = ""; return; }
+    err.style.display = "block"; err.textContent = msg;
+  }
+
+  function pad(n, w) { return String(n).padStart(w || 2, "0"); }
+
+  function toISO(d) {
+    return d.toISOString().replace(/\.(\d{3})Z$/, (m, ms) => "." + ms + "Z");
+  }
+
+  function relative(ms, now) {
+    const delta = ms - now;
+    const abs = Math.abs(delta);
+    const sign = delta > 0 ? "in " : delta < 0 ? "" : "";
+    const ago = delta < 0 ? " ago" : delta > 0 ? "" : "";
+    const sec = Math.round(abs / 1000);
+    if (sec < 5 && delta === 0) return "now";
+    if (sec < 60) return sign + sec + "s" + ago;
+    const min = Math.round(sec / 60);
+    if (min < 60) return sign + min + "m" + ago;
+    const hr = Math.round(min / 60);
+    if (hr < 48) return sign + hr + "h" + ago;
+    const day = Math.round(hr / 24);
+    if (day < 60) return sign + day + "d" + ago;
+    const mo = Math.round(day / 30.437);
+    if (mo < 24) return sign + mo + "mo" + ago;
+    const yr = Math.round(day / 365.25);
+    return sign + yr + "y" + ago;
+  }
+
+  function detectUnit(n, force) {
+    if (force === "s" || force === "ms") return force;
+    const a = Math.abs(n);
+    if (a >= 1e14) return "us"; // microseconds rare
+    if (a >= 1e12) return "ms";
+    if (a >= 1e9) return "s";
+    // 1e9 seconds ~ 2001; values like 86400 are day-seconds
+    return "s";
+  }
+
+  function parseOne(raw, unitForce) {
+    const t = String(raw || "").trim();
+    if (!t) return { ok: false, error: "empty" };
+    if (/^now$/i.test(t)) {
+      const d = new Date();
+      return { ok: true, date: d, source: "now", unit: "ms" };
+    }
+    // pure number (optional sign, optional decimal)
+    if (/^[+-]?\d+(\.\d+)?$/.test(t)) {
+      const n = Number(t);
+      if (!Number.isFinite(n)) return { ok: false, error: "not a finite number" };
+      let unit = detectUnit(n, unitForce);
+      let ms;
+      if (unit === "ms") ms = n;
+      else if (unit === "us") { ms = n / 1000; unit = "us→ms"; }
+      else ms = n * 1000;
+      const d = new Date(ms);
+      if (Number.isNaN(d.getTime())) return { ok: false, error: "out of range" };
+      return { ok: true, date: d, source: "epoch", unit, inputNumber: n };
+    }
+    // strip common wrappers
+    let s = t.replace(/^["']|["']$/g, "");
+    // trailing Z already ok; try Date parse
+    const d = new Date(s);
+    if (!Number.isNaN(d.getTime())) {
+      return { ok: true, date: d, source: "date-string", unit: "ms" };
+    }
+    // numeric with unit suffix
+    const m = s.match(/^([+-]?\d+(?:\.\d+)?)\s*(s|sec|secs|seconds|ms|msec|millis|milliseconds)$/i);
+    if (m) {
+      const n = Number(m[1]);
+      const u = /ms|msec|milli/i.test(m[2]) ? "ms" : "s";
+      const ms = u === "ms" ? n : n * 1000;
+      const dd = new Date(ms);
+      if (Number.isNaN(dd.getTime())) return { ok: false, error: "out of range" };
+      return { ok: true, date: dd, source: "epoch+unit", unit: u, inputNumber: n };
+    }
+    return { ok: false, error: "unrecognized input" };
+  }
+
+  function pack(parsed, now) {
+    const d = parsed.date;
+    const ms = d.getTime();
+    const s = Math.floor(ms / 1000);
+    return {
+      input_ok: true,
+      source: parsed.source,
+      detected_unit: parsed.unit,
+      epoch_seconds: s,
+      epoch_milliseconds: ms,
+      iso_utc: toISO(d),
+      iso_utc_date: d.toISOString().slice(0, 10),
+      local: d.toString(),
+      local_iso_like: formatLocal(d),
+      utc_day: d.getUTCDay(),
+      relative: relative(ms, now),
+      is_past: ms < now,
+      is_future: ms > now
+    };
+  }
+
+  function formatLocal(d) {
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
+      "T" + pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds()) +
+      offsetString(d);
+  }
+
+  function offsetString(d) {
+    const off = -d.getTimezoneOffset();
+    const sign = off >= 0 ? "+" : "-";
+    const a = Math.abs(off);
+    return sign + pad(Math.floor(a / 60)) + ":" + pad(a % 60);
+  }
+
+  function primaryOf(row, fmt) {
+    if (fmt === "local") return row.local_iso_like;
+    if (fmt === "s") return String(row.epoch_seconds);
+    if (fmt === "ms") return String(row.epoch_milliseconds);
+    return row.iso_utc;
+  }
+
+  function renderSingle(row) {
+    single.innerHTML = [
+      kv("Epoch s", row.epoch_seconds),
+      kv("Epoch ms", row.epoch_milliseconds),
+      kv("ISO UTC", row.iso_utc),
+      kv("Local", row.local_iso_like),
+      kv("Relative", row.relative),
+      kv("Source", row.source + " · unit " + row.detected_unit)
+    ].join("");
+  }
+
+  function kv(k, v) {
+    return '<div><span class="k">' + esc(k) + '</span><span class="v">' + esc(String(v)) + "</span></div>";
+  }
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function convert() {
+    showErr("");
+    const unitForce = $("unit").value;
+    const mode = $("mode").value;
+    const fmt = $("outfmt").value;
+    const now = Date.now();
+    const text = inp.value;
+    const lines = mode === "batch"
+      ? text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean)
+      : [text.trim()].filter(Boolean);
+
+    if (!lines.length) {
+      showErr("Paste an epoch number, ISO date, or click Use now.");
+      stat.textContent = "Empty";
+      return;
+    }
+
+    const rows = [];
+    const failures = [];
+    for (const line of lines) {
+      const p = parseOne(line, unitForce === "auto" ? "auto" : unitForce);
+      if (!p.ok) {
+        failures.push({ input: line, error: p.error });
+        rows.push({ input: line, input_ok: false, error: p.error });
+      } else {
+        const packed = pack(p, now);
+        packed.input = line;
+        packed.primary = primaryOf(packed, fmt);
+        rows.push(packed);
+      }
+    }
+
+    const okRows = rows.filter((r) => r.input_ok);
+    meta.textContent = okRows.length + " ok · " + failures.length + " err";
+
+    if (mode === "single" && okRows[0]) {
+      renderSingle(okRows[0]);
+      out.textContent = JSON.stringify(okRows[0], null, 2);
+      batchWrap.style.display = "none";
+      batchWrap.innerHTML = "";
+      stat.textContent = okRows[0].iso_utc + " · " + okRows[0].relative;
+    } else {
+      if (okRows[0]) renderSingle(okRows[0]);
+      else single.innerHTML = '<div><span class="k">Status</span><span class="v">No valid rows</span></div>';
+      out.textContent = JSON.stringify(rows, null, 2);
+      // batch table
+      let html = "<table class='batch'><thead><tr><th>Input</th><th>Primary</th><th>Epoch s</th><th>Relative</th></tr></thead><tbody>";
+      for (const r of rows) {
+        if (!r.input_ok) {
+          html += "<tr><td>" + esc(r.input) + "</td><td class='bad' colspan='3'>" + esc(r.error) + "</td></tr>";
+        } else {
+          html += "<tr><td>" + esc(r.input) + "</td><td>" + esc(r.primary) + "</td><td>" + esc(r.epoch_seconds) + "</td><td>" + esc(r.relative) + "</td></tr>";
+        }
+      }
+      html += "</tbody></table>";
+      batchWrap.style.display = "block";
+      batchWrap.innerHTML = html;
+      stat.textContent = okRows.length + "/" + rows.length + " converted";
+    }
+
+    if (!okRows.length) showErr(failures[0] ? failures[0].error + ": " + failures[0].input : "No valid input");
+  }
+
+  function tick() {
+    const d = new Date();
+    live.textContent = toISO(d) + "  ·  " + formatLocal(d);
+    try { tzpill.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || "local"; }
+    catch (_) { tzpill.textContent = "local"; }
+  }
+
+  $("convert").onclick = convert;
+  $("now").onclick = () => {
+    $("mode").value = "single";
+    inp.value = "now";
+    convert();
+  };
+  $("sample").onclick = () => {
+    $("mode").value = "batch";
+    inp.value = [
+      "0",
+      "1000000000",
+      "1725628800",
+      "1725628800000",
+      "2026-09-07T01:17:00.000Z",
+      "now"
+    ].join("\n");
+    convert();
+  };
+  $("copy").onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(out.textContent);
+      stat.textContent = "Copied JSON";
+    } catch (_) {
+      stat.textContent = "Copy failed";
+    }
+  };
+  $("clear").onclick = () => {
+    inp.value = "";
+    out.textContent = "# Convert epoch ↔ ISO";
+    single.innerHTML = '<div><span class="k">Status</span><span class="v">Cleared</span></div>';
+    batchWrap.style.display = "none";
+    batchWrap.innerHTML = "";
+    meta.textContent = "0 rows";
+    showErr("");
+    stat.textContent = "Cleared";
+  };
+
+  // Enter in single mode
+  inp.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey && $("mode").value === "single") {
+      e.preventDefault();
+      convert();
+    }
+  });
+
+  tick();
+  setInterval(tick, 1000);
+  // default seed
+  if (!inp.value.trim()) {
+    inp.value = String(Math.floor(Date.now() / 1000));
+    convert();
+  }
+})();
+</script>
+</body>
+</html>
