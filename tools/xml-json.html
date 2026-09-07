@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free XML ↔ JSON Converter — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only XML to JSON and JSON to XML converter. Attributes, text nodes, repeated elements as arrays, pretty print. No upload, no account."/>
+<meta property="og:title" content="Free XML ↔ JSON Converter — Veriton"/>
+<meta property="og:description" content="Paste XML or JSON. Convert both ways in-browser. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/xml-json-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/xml-json-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/xml-json.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:260px;resize:vertical}
+pre{min-height:160px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-word}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .7rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="yaml-json.html">YAML↔JSON</a> · <a href="toml-json.html">TOML↔JSON</a> · <a href="html-to-json.html">HTML→JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · both directions</span>
+    <h1>XML ↔ JSON Converter</h1>
+    <p>Paste XML or JSON. Convert both ways in your browser — element names, attributes, text nodes, and repeated siblings as arrays. Nothing is uploaded. Useful next to feed/API payloads and scrape cleanup.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/xml-json-og.jpg" alt="Free XML to JSON browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need a live URL scrape? $2 Scrape-to-JSON →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See sample scrape →</a>
+       <a class="btn ghost" href="html-to-json.html">HTML→JSON →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="toJson">XML → JSON</button>
+      <button class="primary" id="toXml">JSON → XML</button>
+      <button class="secondary" id="sample">Load sample XML</button>
+      <button class="secondary" id="fmt">Format JSON input</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="pretty">JSON pretty</label>
+        <select id="pretty">
+          <option value="2" selected>Indent 2</option>
+          <option value="0">Compact</option>
+          <option value="4">Indent 4</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="attr">Attributes key</label>
+        <select id="attr">
+          <option value="@" selected>@attrs object</option>
+          <option value="_">_attrs object</option>
+          <option value="prefix">@name prefix on keys</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="textk">Text node key</label>
+        <select id="textk">
+          <option value="#text" selected>#text</option>
+          <option value="_">_text</option>
+          <option value="$">$</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="root">JSON → XML root</label>
+        <input id="root" type="text" value="root" spellcheck="false"/>
+      </div>
+      <div class="opt">
+        <label for="decl">XML declaration</label>
+        <select id="decl">
+          <option value="yes" selected>Include <?xml …?></option>
+          <option value="no">Omit</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="coerce">Coerce numbers/bools</label>
+        <select id="coerce">
+          <option value="yes" selected>Yes on pure text leaves</option>
+          <option value="no">Keep strings</option>
+        </select>
+      </div>
+    </div>
+    <div class="note">Practical subset via browser <code>DOMParser</code>: no DTD/XInclude, namespaces kept as literal names, CDATA becomes text. Repeated same-name siblings collapse to arrays. Ideal for RSS/Atom snippets, API XML, and agent scrape cleanup.</div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (XML or JSON)</label>
+      <textarea id="inp" spellcheck="false" placeholder='<?xml version="1.0"?>
+<catalog>
+  <item id="1" sku="review">
+    <name>Code Review Sprint</name>
+    <price currency="USD">1</price>
+  </item>
+  <item id="2" sku="scrape">
+    <name>Scrape-to-JSON</name>
+    <price currency="USD">2</price>
+  </item>
+</catalog>'></textarea>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output <span class="pill" id="meta">idle</span></label>
+      <pre id="out"># Convert XML ↔ JSON</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Feeds, legacy APIs, and vendor exports still ship XML. Agents and scrapers want JSON. This keeps conversion local. Paid <strong>$2 Scrape-to-JSON</strong> still covers live public URLs when CORS blocks the browser.</p>
+  </div>
+
+  <footer>
+    Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="./">all free tools</a> ·
+    contact <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a> ·
+    updated 2026-09-07
+  </footer>
+</div>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const errEl = $("err"),
+    outEl = $("out"),
+    inpEl = $("inp"),
+    statEl = $("stat"),
+    metaEl = $("meta");
+
+  function showErr(msg) {
+    errEl.style.display = msg ? "block" : "none";
+    errEl.textContent = msg || "";
+  }
+  function setStat(t) {
+    statEl.textContent = t;
+  }
+  function setMeta(t) {
+    metaEl.textContent = t;
+  }
+
+  function coerceScalar(s) {
+    if ($("coerce").value !== "yes") return s;
+    const t = s.trim();
+    if (t === "") return s;
+    if (t === "true") return true;
+    if (t === "false") return false;
+    if (t === "null") return null;
+    if (/^[+-]?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(t)) {
+      const n = Number(t);
+      if (Number.isFinite(n)) return n;
+    }
+    return s;
+  }
+
+  function attrMode() {
+    return $("attr").value;
+  }
+  function textKey() {
+    return $("textk").value;
+  }
+
+  function elementToJson(el) {
+    const mode = attrMode();
+    const tk = textKey();
+    const obj = {};
+    let hasAttrs = false;
+    const attrsObj = {};
+
+    if (el.attributes && el.attributes.length) {
+      for (let i = 0; i < el.attributes.length; i++) {
+        const a = el.attributes[i];
+        hasAttrs = true;
+        if (mode === "prefix") obj["@" + a.name] = a.value;
+        else attrsObj[a.name] = a.value;
+      }
+      if (hasAttrs && mode !== "prefix") {
+        obj[mode === "_" ? "_attrs" : "@attrs"] = attrsObj;
+      }
+    }
+
+    const kids = [];
+    for (let n = el.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType === 1) kids.push(n);
+      else if (n.nodeType === 3 || n.nodeType === 4) {
+        const raw = n.nodeValue;
+        if (raw && raw.trim()) kids.push({ __text: raw });
+      }
+    }
+
+    if (!kids.length) {
+      if (hasAttrs) {
+        obj[tk] = "";
+        return obj;
+      }
+      return "";
+    }
+
+    const onlyText =
+      kids.length === 1 && kids[0].__text !== undefined && !hasAttrs;
+    if (onlyText) return coerceScalar(kids[0].__text);
+
+    const childMap = {};
+    let textParts = [];
+    for (const k of kids) {
+      if (k.__text !== undefined) {
+        textParts.push(k.__text);
+        continue;
+      }
+      const name = k.nodeName;
+      const val = elementToJson(k);
+      if (Object.prototype.hasOwnProperty.call(childMap, name)) {
+        if (!Array.isArray(childMap[name])) childMap[name] = [childMap[name]];
+        childMap[name].push(val);
+      } else childMap[name] = val;
+    }
+
+    if (textParts.length) {
+      const joined = textParts.join("").replace(/\s+/g, " ").trim();
+      if (joined) obj[tk] = coerceScalar(joined);
+    }
+    Object.assign(obj, childMap);
+
+    if (
+      Object.keys(obj).length === 1 &&
+      Object.prototype.hasOwnProperty.call(obj, tk) &&
+      !hasAttrs
+    ) {
+      return obj[tk];
+    }
+    return obj;
+  }
+
+  function xmlToJson(src) {
+    const text = String(src || "").trim();
+    if (!text) throw new Error("Empty input");
+    const doc = new DOMParser().parseFromString(text, "application/xml");
+    const errNode = doc.querySelector("parsererror");
+    if (errNode) {
+      const msg = (errNode.textContent || "XML parse error").replace(/\s+/g, " ").trim();
+      throw new Error(msg.slice(0, 280));
+    }
+    const root = doc.documentElement;
+    if (!root) throw new Error("No document element");
+    return { [root.nodeName]: elementToJson(root) };
+  }
+
+  function escXml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;");
+  }
+
+  function isPlainObject(v) {
+    return v !== null && typeof v === "object" && !Array.isArray(v);
+  }
+
+  function splitAttrsAndKids(obj) {
+    const mode = attrMode();
+    const tk = textKey();
+    const attrs = {};
+    const kids = {};
+    let text = undefined;
+
+    if (!isPlainObject(obj)) {
+      return { attrs, kids, text: obj };
+    }
+
+    for (const [k, v] of Object.entries(obj)) {
+      if (mode === "prefix" && k.startsWith("@") && k !== "@attrs") {
+        attrs[k.slice(1)] = v;
+        continue;
+      }
+      if (k === "@attrs" || k === "_attrs") {
+        if (isPlainObject(v)) Object.assign(attrs, v);
+        continue;
+      }
+      if (k === tk || k === "#text" || k === "_text" || k === "$") {
+        text = v;
+        continue;
+      }
+      kids[k] = v;
+    }
+    return { attrs, kids, text };
+  }
+
+  function jsonToXmlNodes(name, value, depth) {
+    const pad = "  ".repeat(depth);
+    const padIn = "  ".repeat(depth + 1);
+
+    if (Array.isArray(value)) {
+      return value.map((v) => jsonToXmlNodes(name, v, depth)).join("");
+    }
+
+    if (value === null || value === undefined) {
+      return pad + "<" + name + "/>\n";
+    }
+
+    if (typeof value !== "object") {
+      return pad + "<" + name + ">" + escXml(value) + "</" + name + ">\n";
+    }
+
+    const { attrs, kids, text } = splitAttrsAndKids(value);
+    let attrStr = "";
+    for (const [ak, av] of Object.entries(attrs)) {
+      if (av === undefined || av === null) continue;
+      if (typeof av === "object") continue;
+      attrStr += " " + ak + '="' + escXml(av) + '"';
+    }
+
+    const kidNames = Object.keys(kids);
+    const hasKids = kidNames.length > 0;
+    const hasText = text !== undefined && text !== null && String(text) !== "";
+
+    if (!hasKids && !hasText) {
+      return pad + "<" + name + attrStr + "/>\n";
+    }
+    if (!hasKids && hasText) {
+      return (
+        pad +
+        "<" +
+        name +
+        attrStr +
+        ">" +
+        escXml(text) +
+        "</" +
+        name +
+        ">\n"
+      );
+    }
+
+    let body = "";
+    if (hasText) body += padIn + escXml(text) + "\n";
+    for (const kn of kidNames) {
+      body += jsonToXmlNodes(kn, kids[kn], depth + 1);
+    }
+    return pad + "<" + name + attrStr + ">\n" + body + pad + "</" + name + ">\n";
+  }
+
+  function jsonToXml(data) {
+    let rootName = ($("root").value || "root").trim() || "root";
+    if (!/^[A-Za-z_][\w.-]*$/.test(rootName)) {
+      throw new Error("Root element name must be a simple XML name");
+    }
+
+    let payload = data;
+    let name = rootName;
+    if (isPlainObject(data)) {
+      const keys = Object.keys(data);
+      if (keys.length === 1) {
+        // Prefer single top-level key as element name when it looks like a tag
+        if (/^[A-Za-z_][\w.-]*$/.test(keys[0])) {
+          name = keys[0];
+          payload = data[keys[0]];
+        }
+      }
+    }
+
+    let out = "";
+    if ($("decl").value === "yes") {
+      out += '<?xml version="1.0" encoding="UTF-8"?>\n';
+    }
+    out += jsonToXmlNodes(name, payload, 0);
+    return out.trim() + "\n";
+  }
+
+  function runToJson() {
+    showErr("");
+    try {
+      const data = xmlToJson(inpEl.value);
+      const pretty = Number($("pretty").value);
+      outEl.textContent = JSON.stringify(data, null, pretty);
+      setMeta("json");
+      setStat("XML → JSON · " + outEl.textContent.length + " chars");
+    } catch (e) {
+      showErr(String(e.message || e));
+      setStat("Error");
+      setMeta("error");
+    }
+  }
+
+  function runToXml() {
+    showErr("");
+    try {
+      let raw = inpEl.value.trim();
+      if (!raw) throw new Error("Empty input");
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch (e) {
+        throw new Error("JSON parse failed: " + (e.message || e));
+      }
+      outEl.textContent = jsonToXml(data);
+      setMeta("xml");
+      setStat("JSON → XML · " + outEl.textContent.length + " chars");
+    } catch (e) {
+      showErr(String(e.message || e));
+      setStat("Error");
+      setMeta("error");
+    }
+  }
+
+  $("toJson").addEventListener("click", runToJson);
+  $("toXml").addEventListener("click", runToXml);
+  $("sample").addEventListener("click", () => {
+    inpEl.value = `<?xml version="1.0" encoding="UTF-8"?>
+<catalog generated="2026-09-07">
+  <item id="1" sku="review">
+    <name>Code Review Sprint</name>
+    <price currency="USD">1</price>
+    <tags>
+      <tag>diff</tag>
+      <tag>security</tag>
+    </tags>
+  </item>
+  <item id="2" sku="scrape">
+    <name>Scrape-to-JSON</name>
+    <price currency="USD">2</price>
+    <note>Live public URL → schema + sample</note>
+  </item>
+  <item id="3" sku="bootstrap">
+    <name>Repo Bootstrap</name>
+    <price currency="USD">3</price>
+  </item>
+</catalog>
+`;
+    showErr("");
+    setStat("Sample loaded");
+    setMeta("sample");
+  });
+  $("fmt").addEventListener("click", () => {
+    showErr("");
+    try {
+      const pretty = Number($("pretty").value) || 2;
+      inpEl.value = JSON.stringify(JSON.parse(inpEl.value), null, pretty);
+      setStat("Formatted JSON input");
+    } catch (e) {
+      showErr("Format needs valid JSON input: " + (e.message || e));
+    }
+  });
+  $("copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(outEl.textContent || "");
+      setStat("Copied");
+    } catch (e) {
+      showErr("Clipboard blocked");
+    }
+  });
+  $("clear").addEventListener("click", () => {
+    inpEl.value = "";
+    outEl.textContent = "# Convert XML ↔ JSON";
+    showErr("");
+    setStat("Cleared");
+    setMeta("idle");
+  });
+})();
+</script>
+</body>
+</html>
