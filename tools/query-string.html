@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Query String ↔ JSON — URL params encoder/decoder — Veriton</title>
+<meta name="description" content="Free browser-only URL query string ↔ JSON converter. Parse, edit, and rebuild search params with multi-value keys, nested brackets, and form-urlencoded. No upload, no account."/>
+<meta property="og:title" content="Free Query String ↔ JSON — Veriton"/>
+<meta property="og:description" content="Paste a URL or ?a=1&b=2 → JSON object. Edit keys, rebuild query or full URL. Multi-value + nested bracket keys. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/query-string-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/query-string-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/query-string.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:200px;resize:vertical}
+pre{min-height:120px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.kv{display:grid;gap:.45rem;margin-top:.4rem}
+.kv div{display:grid;grid-template-columns:9.5rem 1fr;gap:.5rem;align-items:start;font-size:.9rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+table.pairs{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:.5rem}
+table.pairs th,table.pairs td{border:1px solid #e5e7eb;padding:.35rem .45rem;text-align:left;vertical-align:top}
+table.pairs th{background:#f3f4f6}
+table.pairs td.k{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;width:32%}
+table.pairs td.v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.tabs{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.tabs button{background:#f3f4f6;color:#111827;border:1px solid #e5e7eb}.tabs button.on{background:#111827;color:#fff;border-color:#111827}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="base64-url.html">Base64/URL</a> · <a href="csv-json.html">CSV↔JSON</a> · <a href="html-to-json.html">HTML→JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · query ↔ JSON</span>
+    <h1>Query String ↔ JSON</h1>
+    <p>Paste a full URL or bare <code>?a=1&b=2</code>. Parse into JSON (multi-value arrays, nested bracket keys), edit the object, rebuild query or full URL. Form-urlencoded friendly. Nothing is uploaded. Handy next to scrape cleanup / API debugging.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/query-string-og.jpg" alt="Free Query String ↔ JSON converter" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need live URL → JSON? $2 Scrape →</a>
+       <a class="btn ghost" href="base64-url.html">Base64/URL →</a>
+       <a class="btn ghost" href="html-to-json.html">HTML→JSON →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button type="button" data-mode="parse" class="on">URL / query → JSON</button>
+      <button type="button" data-mode="build">JSON → query / URL</button>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Run</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="swap">Swap ↕</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="multi">Duplicate keys</label>
+        <select id="multi">
+          <option value="array" selected>Collect as arrays</option>
+          <option value="last">Last value wins</option>
+          <option value="first">First value wins</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="nested">Bracket nesting</label>
+        <select id="nested">
+          <option value="on" selected>Parse a[b][c] → nested</option>
+          <option value="off">Flat keys only</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="plus">+ as space</label>
+        <select id="plus">
+          <option value="on" selected>Yes (form-urlencoded)</option>
+          <option value="off">No (literal +)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="sort">Sort keys on build</label>
+        <select id="sort">
+          <option value="off" selected>Keep insertion order</option>
+          <option value="on">Alphabetical</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="base">Base URL (build mode)</label>
+        <input type="text" id="base" placeholder="https://example.com/path" value=""/>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp" id="inLabel">Input (URL or query string)</label>
+      <textarea id="inp" spellcheck="false" placeholder="https://api.example.com/v1/search?q=open+claw&page=1&tag=agent&tag=linux&filter[status]=active"></textarea>
+      <p class="muted" style="margin:.45rem 0 0" id="inHint">Accepts full URLs, bare <code>?…</code>, or <code>a=1&b=2</code>. Hash fragments ignored for param parse.</p>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output</label>
+      <pre id="out">{}</pre>
+      <div class="kv" id="meta" style="margin-top:.7rem">
+        <div><span class="k">Mode</span><span class="v" id="modev">parse</span></div>
+        <div><span class="k">Keys</span><span class="v" id="keyn">0</span></div>
+        <div><span class="k">Origin</span><span class="v" id="origin">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Pairs table <span class="pill" id="pairn">0</span></h2>
+    <div style="overflow:auto">
+      <table class="pairs" id="pairs">
+        <thead><tr><th>Key</th><th>Value</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:.55rem 0 0">Table is read-only. Edit the JSON (build mode) or the URL (parse mode), then Run.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Agents and scrapers constantly juggle query bags. This stays local so you can inspect multi-value tags, nested filters, and form bodies without a network hop. Live public-URL fetch + schema remains the <strong>$2 Scrape-to-JSON</strong> SKU (CORS blocks free in-tab fetch of arbitrary hosts).</p>
+  </div>
+
+  <footer>
+    Veriton free tools · <a href="./">hub</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · updated 2026-09-06 · Query String ↔ JSON<br/>
+    Nothing leaves your browser. Decode ≠ remote fetch.
+  </footer>
+</div>
+<script>
+(function () {
+  var mode = 'parse';
+  var $ = function (id) { return document.getElementById(id); };
+  var inp = $('inp'), out = $('out'), err = $('err'), stat = $('stat');
+  var inLabel = $('inLabel'), inHint = $('inHint');
+  var modev = $('modev'), keyn = $('keyn'), originEl = $('origin'), pairn = $('pairn');
+  var pairsBody = $('pairs').querySelector('tbody');
+  var lastOrigin = '';
+  var lastObj = {};
+
+  function showErr(msg) {
+    if (!msg) { err.style.display = 'none'; err.textContent = ''; return; }
+    err.style.display = 'block'; err.textContent = msg;
+  }
+  function setStat(t) { stat.textContent = t; }
+
+  function setMode(m) {
+    mode = m;
+    modev.textContent = m;
+    document.querySelectorAll('#tabs button').forEach(function (b) {
+      b.classList.toggle('on', b.getAttribute('data-mode') === m);
+    });
+    if (m === 'parse') {
+      inLabel.textContent = 'Input (URL or query string)';
+      inHint.innerHTML = 'Accepts full URLs, bare <code>?…</code>, or <code>a=1&b=2</code>. Hash fragments ignored for param parse.';
+    } else {
+      inLabel.textContent = 'Input (JSON object)';
+      inHint.textContent = 'JSON object of params. Arrays become repeated keys. Nested objects become bracket keys when nesting is on.';
+    }
+  }
+
+  document.querySelectorAll('#tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setMode(b.getAttribute('data-mode'));
+      showErr('');
+    });
+  });
+
+  function decodePlus(s, plusOn) {
+    if (!plusOn) return s;
+    return s.replace(/\+/g, ' ');
+  }
+
+  function safeDecode(s, plusOn) {
+    try {
+      return decodeURIComponent(decodePlus(s, plusOn));
+    } catch (e) {
+      try { return unescape(decodePlus(s, plusOn)); } catch (e2) { return s; }
+    }
+  }
+
+  function extractParts(raw) {
+    var s = String(raw || '').trim();
+    var origin = '';
+    var query = s;
+    if (!s) return { origin: '', query: '' };
+    // strip hash
+    var hashIdx = s.indexOf('#');
+    if (hashIdx >= 0) s = s.slice(0, hashIdx);
+    try {
+      if (/^https?:\/\//i.test(s) || /^\/\//.test(s)) {
+        var u = new URL(s, 'https://example.invalid');
+        origin = u.origin === 'https://example.invalid' ? '' : (u.origin + u.pathname);
+        // if protocol-relative, rebuild carefully
+        if (/^\/\//.test(String(raw || '').trim())) {
+          origin = u.protocol + '//' + u.host + u.pathname;
+        }
+        query = u.search ? u.search.slice(1) : '';
+        return { origin: origin, query: query };
+      }
+    } catch (e) { /* fall through */ }
+    if (s.charAt(0) === '?') query = s.slice(1);
+    else if (s.indexOf('=') >= 0 || s.indexOf('&') >= 0) query = s;
+    else if (s.indexOf('?') >= 0) {
+      var i = s.indexOf('?');
+      origin = s.slice(0, i);
+      query = s.slice(i + 1);
+    } else {
+      query = s;
+    }
+    return { origin: origin, query: query };
+  }
+
+  function setPath(obj, path, value, multi) {
+    if (!path.length) return;
+    var cur = obj;
+    for (var i = 0; i < path.length - 1; i++) {
+      var p = path[i];
+      var next = path[i + 1];
+      var wantArr = next === '' || /^\d+$/.test(next);
+      if (cur[p] == null || typeof cur[p] !== 'object') {
+        cur[p] = wantArr ? [] : {};
+      }
+      cur = cur[p];
+    }
+    var last = path[path.length - 1];
+    if (last === '') {
+      // a[] = push
+      if (!Array.isArray(cur)) { /* shouldn't */ return; }
+      cur.push(value);
+      return;
+    }
+    if (Object.prototype.hasOwnProperty.call(cur, last)) {
+      if (multi === 'array') {
+        if (!Array.isArray(cur[last])) cur[last] = [cur[last]];
+        cur[last].push(value);
+      } else if (multi === 'first') {
+        /* keep */
+      } else {
+        cur[last] = value;
+      }
+    } else {
+      cur[last] = value;
+    }
+  }
+
+  function parseKeyPath(key, nestedOn) {
+    if (!nestedOn) return [key];
+    // foo[bar][0][baz] or foo[]
+    var m = key.match(/^([^\[\]]+)(.*)$/);
+    if (!m) return [key];
+    var path = [m[1]];
+    var rest = m[2] || '';
+    var re = /\[([^\[\]]*)\]/g;
+    var mm;
+    while ((mm = re.exec(rest))) {
+      path.push(mm[1]);
+    }
+    if (path.length === 1 && rest && rest.indexOf('[') >= 0) {
+      // malformed brackets — flat
+      return [key];
+    }
+    return path;
+  }
+
+  function parseQuery(query, opts) {
+    var obj = {};
+    var flatPairs = [];
+    if (!query) return { obj: obj, pairs: flatPairs };
+    var parts = query.split('&');
+    for (var i = 0; i < parts.length; i++) {
+      var part = parts[i];
+      if (!part) continue;
+      var eq = part.indexOf('=');
+      var rawK = eq >= 0 ? part.slice(0, eq) : part;
+      var rawV = eq >= 0 ? part.slice(eq + 1) : '';
+      var k = safeDecode(rawK, opts.plus);
+      var v = safeDecode(rawV, opts.plus);
+      flatPairs.push({ key: k, value: v });
+      if (opts.nested) {
+        var path = parseKeyPath(k, true);
+        setPath(obj, path, v, opts.multi);
+      } else {
+        if (Object.prototype.hasOwnProperty.call(obj, k)) {
+          if (opts.multi === 'array') {
+            if (!Array.isArray(obj[k])) obj[k] = [obj[k]];
+            obj[k].push(v);
+          } else if (opts.multi === 'first') {
+            /* keep */
+          } else {
+            obj[k] = v;
+          }
+        } else {
+          obj[k] = v;
+        }
+      }
+    }
+    return { obj: obj, pairs: flatPairs };
+  }
+
+  function encodeComp(s) {
+    return encodeURIComponent(s == null ? '' : String(s)).replace(/%20/g, '+');
+  }
+
+  function flattenValue(key, val, out) {
+    if (val === null || val === undefined) {
+      out.push([key, '']);
+      return;
+    }
+    if (Array.isArray(val)) {
+      if (!val.length) {
+        out.push([key + '[]', '']);
+        return;
+      }
+      for (var i = 0; i < val.length; i++) {
+        var item = val[i];
+        if (item !== null && typeof item === 'object') {
+          if (Array.isArray(item)) flattenValue(key + '[' + i + ']', item, out);
+          else {
+            var ikeys = Object.keys(item);
+            for (var j = 0; j < ikeys.length; j++) {
+              flattenValue(key + '[' + i + '][' + ikeys[j] + ']', item[ikeys[j]], out);
+            }
+          }
+        } else {
+          out.push([key, item == null ? '' : String(item)]);
+        }
+      }
+      return;
+    }
+    if (typeof val === 'object') {
+      var keys = Object.keys(val);
+      if (!keys.length) {
+        out.push([key, '']);
+        return;
+      }
+      for (var k = 0; k < keys.length; k++) {
+        flattenValue(key + '[' + keys[k] + ']', val[keys[k]], out);
+      }
+      return;
+    }
+    out.push([key, String(val)]);
+  }
+
+  function flattenRoot(obj) {
+    if (obj == null || typeof obj !== 'object' || Array.isArray(obj)) {
+      throw new Error('JSON root must be a plain object of params');
+    }
+    var out = [];
+    var keys = Object.keys(obj);
+    for (var i = 0; i < keys.length; i++) flattenValue(keys[i], obj[keys[i]], out);
+    return out;
+  }
+
+  function buildQuery(obj, opts) {
+    var pairs = flattenRoot(obj);
+    if (opts.sort) {
+      pairs = pairs.slice().sort(function (a, b) {
+        if (a[0] < b[0]) return -1;
+        if (a[0] > b[0]) return 1;
+        return 0;
+      });
+    }
+    return pairs.map(function (p) {
+      return encodeComp(p[0]) + '=' + encodeComp(p[1]);
+    }).join('&');
+  }
+
+  function countKeys(o) {
+    try { return Object.keys(o || {}).length; } catch (e) { return 0; }
+  }
+
+  function renderPairs(pairs) {
+    pairsBody.innerHTML = '';
+    pairn.textContent = String(pairs.length);
+    for (var i = 0; i < pairs.length; i++) {
+      var tr = document.createElement('tr');
+      var tdK = document.createElement('td'); tdK.className = 'k'; tdK.textContent = pairs[i].key;
+      var tdV = document.createElement('td'); tdV.className = 'v'; tdV.textContent = pairs[i].value;
+      tr.appendChild(tdK); tr.appendChild(tdV);
+      pairsBody.appendChild(tr);
+    }
+  }
+
+  function opts() {
+    return {
+      multi: $('multi').value,
+      nested: $('nested').value === 'on',
+      plus: $('plus').value === 'on',
+      sort: $('sort').value === 'on'
+    };
+  }
+
+  function run() {
+    showErr('');
+    try {
+      var o = opts();
+      if (mode === 'parse') {
+        var parts = extractParts(inp.value);
+        lastOrigin = parts.origin || '';
+        var parsed = parseQuery(parts.query, o);
+        lastObj = parsed.obj;
+        out.textContent = JSON.stringify(lastObj, null, 2);
+        keyn.textContent = String(countKeys(lastObj));
+        originEl.textContent = lastOrigin || '—';
+        renderPairs(parsed.pairs);
+        setStat(parsed.pairs.length + ' pair(s) · ' + countKeys(lastObj) + ' top key(s)');
+      } else {
+        var raw = inp.value.trim();
+        if (!raw) throw new Error('Paste a JSON object');
+        var obj = JSON.parse(raw);
+        lastObj = obj;
+        var q = buildQuery(obj, o);
+        var base = ($('base').value || '').trim() || lastOrigin || '';
+        var built;
+        if (base) {
+          // attach query
+          if (base.indexOf('?') >= 0) base = base.replace(/\?.*$/, '');
+          built = base + (q ? ('?' + q) : '');
+        } else {
+          built = q ? ('?' + q) : '';
+        }
+        out.textContent = built;
+        keyn.textContent = String(countKeys(obj));
+        originEl.textContent = base || '—';
+        // pairs from rebuild
+        var flat = flattenRoot(obj).map(function (p) { return { key: p[0], value: p[1] }; });
+        renderPairs(flat);
+        setStat(flat.length + ' pair(s) built');
+      }
+    } catch (e) {
+      showErr(e.message || String(e));
+      setStat('Error');
+    }
+  }
+
+  $('run').addEventListener('click', run);
+  $('clear').addEventListener('click', function () {
+    inp.value = ''; out.textContent = '{}'; showErr(''); setStat('Cleared');
+    renderPairs([]); keyn.textContent = '0'; originEl.textContent = '—';
+  });
+  $('copy').addEventListener('click', function () {
+    var t = out.textContent || '';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(function () { setStat('Copied'); }).catch(function () { setStat('Copy failed'); });
+    } else {
+      var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); setStat('Copied'); } catch (e) { setStat('Copy failed'); }
+      document.body.removeChild(ta);
+    }
+  });
+  $('swap').addEventListener('click', function () {
+    var a = inp.value; inp.value = out.textContent; out.textContent = a;
+    setMode(mode === 'parse' ? 'build' : 'parse');
+    setStat('Swapped · switched to ' + mode);
+  });
+  $('sample').addEventListener('click', function () {
+    if (mode === 'parse') {
+      inp.value = 'https://api.example.com/v1/search?q=open+claw&page=1&tag=agent&tag=linux&filter[status]=active&filter[region][]=us&filter[region][]=eu';
+    } else {
+      inp.value = JSON.stringify({
+        q: 'open claw',
+        page: '1',
+        tag: ['agent', 'linux'],
+        filter: { status: 'active', region: ['us', 'eu'] }
+      }, null, 2);
+      $('base').value = 'https://api.example.com/v1/search';
+    }
+    run();
+  });
+
+  // Ctrl/Cmd-Enter
+  inp.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') run();
+  });
+
+  setMode('parse');
+})();
+</script>
+</body>
+</html>
