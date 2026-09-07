@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free Base64 / URL Encoder Decoder — Veriton</title>
+<meta name="description" content="Free browser-only Base64 and URL encode/decode. Standard + URL-safe Base64, percent-encoding, hex view. No upload, no account."/>
+<meta property="og:title" content="Free Base64 / URL Encoder — Veriton"/>
+<meta property="og:description" content="Encode or decode Base64 (std + URL-safe) and URL percent-encoding in your browser. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/base64-url-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/base64-url-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/base64-url.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:200px;resize:vertical}
+pre{min-height:120px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.kv{display:grid;gap:.45rem;margin-top:.4rem}
+.kv div{display:grid;grid-template-columns:9.5rem 1fr;gap:.5rem;align-items:start;font-size:.9rem}
+.kv .k{color:#6b7280;font-weight:700}.kv .v{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;word-break:break-all}
+.tabs{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0}
+.tabs button{background:#f3f4f6;color:#111827;border:1px solid #e5e7eb}.tabs button.on{background:#111827;color:#fff;border-color:#111827}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="jwt-decode.html">JWT</a> · <a href="csv-json.html">CSV↔JSON</a> · <a href="timestamp.html">Timestamp</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · Base64 + URL</span>
+    <h1>Base64 / URL Encoder · Decoder</h1>
+    <p>Encode or decode standard Base64, URL-safe Base64, and percent-encoded URLs entirely in your tab. UTF-8 text, hex dump, byte length. Nothing is uploaded. Handy next to JWT / scrape cleanup work.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/base64-url-og.jpg" alt="Free Base64 / URL encoder decoder" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need live URL → JSON? $2 Scrape →</a>
+       <a class="btn ghost" href="jwt-decode.html">JWT Decoder →</a>
+       <a class="btn ghost" href="csv-json.html">CSV↔JSON →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button type="button" data-mode="b64-enc" class="on">Base64 encode</button>
+      <button type="button" data-mode="b64-dec">Base64 decode</button>
+      <button type="button" data-mode="url-enc">URL encode</button>
+      <button type="button" data-mode="url-dec">URL decode</button>
+    </div>
+    <div class="row">
+      <button class="primary" id="run">Run</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="swap">Swap ↕</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="variant">Base64 variant</label>
+        <select id="variant">
+          <option value="std" selected>Standard (+ /)</option>
+          <option value="url">URL-safe (- _)</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="wrap">Output wrap</label>
+        <select id="wrap">
+          <option value="none" selected>No wrap</option>
+          <option value="76">76 cols (MIME)</option>
+          <option value="64">64 cols</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="urlmode">URL encode mode</label>
+        <select id="urlmode">
+          <option value="component" selected>encodeURIComponent</option>
+          <option value="uri">encodeURI (keep :/?#)</option>
+          <option value="form">application/x-www-form-urlencoded</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="pad">Padding</label>
+        <select id="pad">
+          <option value="keep" selected>Keep = padding</option>
+          <option value="strip">Strip = padding</option>
+        </select>
+      </div>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input</label>
+      <textarea id="inp" spellcheck="false" placeholder="Hello, Veriton"></textarea>
+      <p class="muted" style="margin:.45rem 0 0">UTF-8 text. For Base64 decode, paste std or URL-safe (padding optional).</p>
+    </div>
+    <div class="card" style="margin:0">
+      <label>Output <span class="pill" id="modepill">b64-enc</span></label>
+      <pre id="out"></pre>
+      <div class="kv" id="meta">
+        <div><span class="k">Status</span><span class="v">Run a conversion</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Details</h2>
+    <pre id="detail"># Base64 / URL report
+</pre>
+    <p class="muted">Hex dump shown for decoded binary/text. Decode ≠ cryptographic verify — treat untrusted payloads carefully.</p>
+  </div>
+
+  <footer>
+    Veriton free tool · <a href="./">all tools</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    nothing leaves your browser · adjacent paid: <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">$1 review</a> /
+    <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">$2 scrape</a>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  let mode = 'b64-enc';
+
+  const SAMPLES = {
+    'b64-enc': 'Hello, Veriton — agent micro-dev\nline 2 with unicode: café 🚀',
+    'b64-dec': 'SGVsbG8sIFZlcml0b24g4oCUIGFnZW50IG1pY3JvLWRldg==',
+    'url-enc': 'https://example.com/search?q=hello world&lang=en',
+    'url-dec': 'https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world%26lang%3Den'
+  };
+
+  function err(msg){
+    const el = $('err');
+    if(!msg){ el.style.display='none'; el.textContent=''; return; }
+    el.style.display='block'; el.textContent = msg;
+  }
+
+  function setMeta(rows){
+    $('meta').innerHTML = rows.map(function(r){
+      return '<div><span class="k">'+esc(r[0])+'</span><span class="v">'+esc(r[1])+'</span></div>';
+    }).join('');
+  }
+
+  function esc(s){
+    if(s == null) return '\u2014';
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c];
+    });
+  }
+
+  function utf8Bytes(str){
+    return new TextEncoder().encode(str);
+  }
+  function bytesToUtf8(bytes){
+    return new TextDecoder('utf-8', {fatal:false}).decode(bytes);
+  }
+  function bytesToHex(bytes){
+    var out = [];
+    for(var i=0;i<bytes.length;i++){
+      if(i && i%16===0) out.push('\n');
+      else if(i && i%8===0) out.push('  ');
+      else if(i) out.push(' ');
+      out.push(bytes[i].toString(16).padStart(2,'0'));
+    }
+    return out.join('');
+  }
+  function bytesToB64(bytes, urlSafe, stripPad){
+    var bin = '';
+    for(var i=0;i<bytes.length;i++) bin += String.fromCharCode(bytes[i]);
+    var b64 = btoa(bin);
+    if(urlSafe) b64 = b64.replace(/\+/g,'-').replace(/\//g,'_');
+    if(stripPad) b64 = b64.replace(/=+$/,'');
+    return b64;
+  }
+  function b64ToBytes(s){
+    s = String(s).replace(/\s+/g,'');
+    s = s.replace(/-/g,'+').replace(/_/g,'/');
+    var pad = s.length % 4;
+    if(pad) s += '='.repeat(4-pad);
+    if(!/^[A-Za-z0-9+/]*={0,2}$/.test(s)) throw new Error('Invalid Base64 alphabet');
+    var bin = atob(s);
+    var out = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+    return out;
+  }
+  function wrapCols(s, n){
+    if(!n || n==='none') return s;
+    n = parseInt(n,10);
+    if(!n) return s;
+    var parts = [];
+    for(var i=0;i<s.length;i+=n) parts.push(s.slice(i,i+n));
+    return parts.join('\n');
+  }
+  function formEncode(str){
+    return encodeURIComponent(str).replace(/%20/g,'+');
+  }
+  function formDecode(str){
+    return decodeURIComponent(String(str).replace(/\+/g,' '));
+  }
+
+  function run(){
+    err('');
+    var inp = $('inp').value;
+    var variant = $('variant').value;
+    var wrap = $('wrap').value;
+    var urlmode = $('urlmode').value;
+    var stripPad = $('pad').value === 'strip';
+    var out = '';
+    var detail = [];
+    var meta = [];
+    try {
+      if(mode === 'b64-enc'){
+        var bytes = utf8Bytes(inp);
+        out = bytesToB64(bytes, variant==='url', stripPad);
+        out = wrapCols(out, wrap);
+        meta.push(['Mode','Base64 encode · '+(variant==='url'?'URL-safe': 'standard')]);
+        meta.push(['Input chars', String(inp.length)]);
+        meta.push(['UTF-8 bytes', String(bytes.length)]);
+        meta.push(['Output chars', String(out.replace(/\n/g,'').length)]);
+        detail.push('# Base64 encode');
+        detail.push('variant: ' + (variant==='url'?'url-safe': 'standard'));
+        detail.push('padding: ' + (stripPad?'stripped':'kept'));
+        detail.push('utf8_bytes: ' + bytes.length);
+        detail.push('hex:');
+        detail.push(bytesToHex(bytes) || '(empty)');
+      } else if(mode === 'b64-dec'){
+        var raw = inp.replace(/\s+/g,'');
+        if(!raw){ err('Paste Base64 first.'); return; }
+        var dec = b64ToBytes(raw);
+        out = bytesToUtf8(dec);
+        meta.push(['Mode','Base64 decode']);
+        meta.push(['Input chars', String(raw.length)]);
+        meta.push(['Decoded bytes', String(dec.length)]);
+        meta.push(['Looks like text', /[\x00-\x08\x0e-\x1f]/.test(out) ? 'binary-ish' : 'utf-8 text']);
+        detail.push('# Base64 decode');
+        detail.push('decoded_bytes: ' + dec.length);
+        detail.push('hex:');
+        detail.push(bytesToHex(dec) || '(empty)');
+        detail.push('');
+        detail.push('utf8:');
+        detail.push(out);
+      } else if(mode === 'url-enc'){
+        if(urlmode === 'component') out = encodeURIComponent(inp);
+        else if(urlmode === 'uri') out = encodeURI(inp);
+        else out = formEncode(inp);
+        meta.push(['Mode','URL encode · '+urlmode]);
+        meta.push(['Input chars', String(inp.length)]);
+        meta.push(['Output chars', String(out.length)]);
+        meta.push(['Escaped ratio', inp.length ? ((out.length/Math.max(inp.length,1)).toFixed(2)+'x') : '—']);
+        detail.push('# URL encode');
+        detail.push('mode: ' + urlmode);
+        detail.push(out);
+      } else if(mode === 'url-dec'){
+        if(urlmode === 'form') out = formDecode(inp);
+        else if(urlmode === 'uri') out = decodeURI(inp);
+        else out = decodeURIComponent(inp);
+        meta.push(['Mode','URL decode · '+urlmode]);
+        meta.push(['Input chars', String(inp.length)]);
+        meta.push(['Output chars', String(out.length)]);
+        detail.push('# URL decode');
+        detail.push('mode: ' + urlmode);
+        detail.push(out);
+      }
+      $('out').textContent = out;
+      $('detail').textContent = detail.join('\n');
+      setMeta(meta);
+      $('stat').textContent = 'OK · ' + out.length + ' chars';
+      $('modepill').textContent = mode;
+    } catch(e){
+      err(e && e.message ? e.message : String(e));
+      $('stat').textContent = 'Error';
+    }
+  }
+
+  document.querySelectorAll('#tabs button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#tabs button').forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      mode = btn.getAttribute('data-mode');
+      $('modepill').textContent = mode;
+      err('');
+    });
+  });
+
+  $('run').onclick = run;
+  $('sample').onclick = function(){
+    $('inp').value = SAMPLES[mode] || SAMPLES['b64-enc'];
+    run();
+  };
+  $('swap').onclick = function(){
+    var o = $('out').textContent;
+    if(!o) return;
+    $('inp').value = o;
+    if(mode === 'b64-enc') mode = 'b64-dec';
+    else if(mode === 'b64-dec') mode = 'b64-enc';
+    else if(mode === 'url-enc') mode = 'url-dec';
+    else if(mode === 'url-dec') mode = 'url-enc';
+    document.querySelectorAll('#tabs button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-mode') === mode);
+    });
+    $('modepill').textContent = mode;
+    run();
+  };
+  $('clear').onclick = function(){
+    $('inp').value=''; $('out').textContent=''; $('detail').textContent='# Base64 / URL report\n';
+    setMeta([['Status','Cleared']]); $('stat').textContent='Ready'; err('');
+  };
+  $('copy').onclick = async function(){
+    try {
+      await navigator.clipboard.writeText($('out').textContent);
+      $('stat').textContent = 'Copied output';
+    } catch(e){
+      err('Clipboard blocked — select the output and copy manually.');
+    }
+  };
+  $('inp').addEventListener('keydown', function(e){
+    if((e.metaKey||e.ctrlKey) && e.key==='Enter') run();
+  });
+})();
+</script>
+</body>
+</html>
