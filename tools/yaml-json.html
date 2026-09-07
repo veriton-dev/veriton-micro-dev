@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free YAML ↔ JSON Converter — browser-only — Veriton</title>
+<meta name="description" content="Free browser-only YAML to JSON and JSON to YAML converter. Nested maps, lists, scalars, multiline blocks. No upload, no account."/>
+<meta property="og:title" content="Free YAML ↔ JSON Converter — Veriton"/>
+<meta property="og:description" content="Paste YAML or JSON. Convert both ways in-browser. Free forever, nothing uploaded."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/yaml-json-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/yaml-json-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/yaml-json.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre,select,input[type=text]{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:260px;resize:vertical}
+pre{min-height:160px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.opts{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:.5rem 0}
+.opt{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .7rem}
+.opt label{margin:0 0 .25rem;font-size:.8rem}
+.opt select,.opt input{padding:.4rem .5rem;font-size:.85rem}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem;background:#dbeafe;color:#1e3a8a}
+.note{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:8px;padding:.55rem .7rem;font-size:.86rem;margin:.5rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="./">hub</a> · <a href="csv-json.html">CSV↔JSON</a> · <a href="json-diff.html">JSON Diff</a> · <a href="json-schema.html">JSON→Schema</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · both directions</span>
+    <h1>YAML ↔ JSON Converter</h1>
+    <p>Paste YAML or JSON. Convert both ways in your browser — nested maps, sequences, scalars, quoted strings, and simple multiline <code>|</code>/<code>></code> blocks. Nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/yaml-json-og.jpg" alt="Free YAML to JSON browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Scrape-to-JSON%20%242">Need a live URL scrape? $2 Scrape-to-JSON →</a>
+       <a class="btn ghost" href="../SAMPLE_SCRAPE.md">See sample scrape →</a>
+       <a class="btn ghost" href="csv-json.html">CSV↔JSON →</a></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="toJson">YAML → JSON</button>
+      <button class="primary" id="toYaml">JSON → YAML</button>
+      <button class="secondary" id="sample">Load sample YAML</button>
+      <button class="secondary" id="fmt">Format JSON input</button>
+      <button class="secondary" id="copy">Copy output</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="opts">
+      <div class="opt">
+        <label for="pretty">JSON pretty</label>
+        <select id="pretty">
+          <option value="2" selected>Indent 2</option>
+          <option value="0">Compact</option>
+          <option value="4">Indent 4</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="indent">YAML indent</label>
+        <select id="indent">
+          <option value="2" selected>2 spaces</option>
+          <option value="4">4 spaces</option>
+        </select>
+      </div>
+      <div class="opt">
+        <label for="sortk">JSON→YAML keys</label>
+        <select id="sortk">
+          <option value="no" selected>Keep order</option>
+          <option value="yes">Sort keys</option>
+        </select>
+      </div>
+    </div>
+    <div class="note">Practical subset (not full YAML 1.2): no anchors/aliases, no custom tags, no flow maps/sequences mixed deeply. Ideal for configs, agent manifests, CI snippets.</div>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label for="inp">Input (YAML or JSON)</label>
+      <textarea id="inp" spellcheck="false" placeholder='service:
+  name: veriton
+  price_usd: 2
+  skills:
+    - code-review
+    - scrape-to-json'></textarea>
+    </div>
+    <div class="card" style="margin:0">
+      <label for="out">Output <span class="pill" id="meta">idle</span></label>
+      <pre id="out"># Convert YAML ↔ JSON</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Why this exists</h2>
+    <p class="muted" style="margin:.2rem 0">Agents and indies bounce between YAML manifests and JSON APIs constantly. This keeps conversion local. If you need a public URL turned into clean JSON + optional schema, that is the paid <strong>$2 Scrape-to-JSON</strong> SKU (CORS blocks free in-browser fetch of arbitrary URLs).</p>
+  </div>
+
+  <footer>
+    Veriton · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> ·
+    <a href="./">all free tools</a> ·
+    contact <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a> ·
+    updated 2026-09-06
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const errEl = $('err'), outEl = $('out'), inpEl = $('inp'), statEl = $('stat'), metaEl = $('meta');
+
+  function showErr(msg){
+    errEl.style.display = msg ? 'block' : 'none';
+    errEl.textContent = msg || '';
+  }
+  function setStat(t){ statEl.textContent = t; }
+
+  function parseScalar(raw){
+    if (raw === null || raw === undefined) return null;
+    let s = String(raw).trim();
+    if (!s) return '';
+    // strip inline comment when unquoted
+    if (s[0] !== '"' && s[0] !== "'") {
+      const hash = s.indexOf(' #');
+      if (hash >= 0) s = s.slice(0, hash).trim();
+    }
+    if ((s[0] === '"' && s[s.length-1] === '"') || (s[0] === "'" && s[s.length-1] === "'")) {
+      const q = s[0];
+      let inner = s.slice(1, -1);
+      if (q === '"') inner = inner.replace(/\\n/g,'\n').replace(/\\t/g,'\t').replace(/\\"/g,'"').replace(/\\\\/g,'\\');
+      return inner;
+    }
+    const low = s.toLowerCase();
+    if (low === 'null' || low === '~' || low === 'null') return null;
+    if (low === 'true' || low === 'yes' || low === 'on') return true;
+    if (low === 'false' || low === 'no' || low === 'off') return false;
+    if (/^[-+]?(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/.test(s)) {
+      const n = Number(s);
+      if (!Number.isNaN(n)) return n;
+    }
+    // barewords / plain
+    return s;
+  }
+
+  function stripCommentKeepQuoted(line){
+    let inS=false, inD=false;
+    for (let i=0;i<line.length;i++){
+      const c=line[i];
+      if (c==="'" && !inD) inS=!inS;
+      else if (c==='"' && !inS) {
+        if (i===0 || line[i-1] !== '\\') inD=!inD;
+      } else if (c==='#' && !inS && !inD) {
+        if (i===0 || /\s/.test(line[i-1])) return line.slice(0,i).replace(/\s+$/,'');
+      }
+    }
+    return line;
+  }
+
+  // Practical block YAML parser (maps, lists, scalars, | and >)
+  function parseYaml(text){
+    const rawLines = String(text).replace(/\r\n/g,'\n').replace(/\t/g,'  ').split('\n');
+    const lines = [];
+    for (let i=0;i<rawLines.length;i++){
+      let line = rawLines[i];
+      if (!line.trim()) { lines.push({i, indent:-1, empty:true, raw:line}); continue; }
+      if (/^\s*#/.test(line)) continue;
+      const m = line.match(/^(\s*)(.*)$/);
+      const indent = m[1].length;
+      const content = stripCommentKeepQuoted(m[2]);
+      if (!content.trim()) { lines.push({i, indent:-1, empty:true, raw:line}); continue; }
+      lines.push({i, indent, content, raw:line, empty:false});
+    }
+
+    let idx = 0;
+    function peek(){ while (idx < lines.length && lines[idx].empty) idx++; return idx < lines.length ? lines[idx] : null; }
+    function next(){ const p=peek(); if (p) idx++; return p; }
+
+    function parseBlock(minIndent){
+      const first = peek();
+      if (!first) return null;
+      if (first.indent < minIndent) return null;
+
+      // document start
+      if (first.content === '---') { next(); return parseBlock(minIndent); }
+
+      // sequence at this level
+      if (first.content.startsWith('- ') || first.content === '-') {
+        const arr = [];
+        while (true) {
+          const p = peek();
+          if (!p || p.indent < first.indent) break;
+          if (p.indent > first.indent) throw new Error('Bad list indent at line ' + (p.i+1));
+          if (!(p.content.startsWith('- ') || p.content === '-')) break;
+          next();
+          const rest = p.content === '-' ? '' : p.content.slice(2);
+          if (!rest) {
+            // nested structure under dash
+            const nested = parseBlock(p.indent + 1);
+            arr.push(nested === undefined ? null : nested);
+          } else if (rest === '|' || rest === '>') {
+            arr.push(parseMultiline(p.indent + 1, rest));
+          } else if (/^.+:(\s.*)?$/.test(rest) && !rest.startsWith('"') && !rest.startsWith("'")) {
+            // inline map after dash: key: val  OR key:
+            const obj = {};
+            applyMapLine(obj, rest, p.indent + 2);
+            // continue same-indent map keys belonging to this list item
+            while (true) {
+              const q = peek();
+              if (!q || q.indent < p.indent + 1) break;
+              if (q.content.startsWith('- ')) break;
+              if (q.indent === p.indent) break;
+              next();
+              applyMapLine(obj, q.content, q.indent + 1);
+            }
+            arr.push(obj);
+          } else {
+            arr.push(parseScalar(rest));
+          }
+        }
+        return arr;
+      }
+
+      // mapping
+      const obj = {};
+      let saw = false;
+      while (true) {
+        const p = peek();
+        if (!p || p.indent < first.indent) break;
+        if (p.indent > first.indent) throw new Error('Unexpected indent at line ' + (p.i+1));
+        if (p.content.startsWith('- ')) {
+          if (!saw) {
+            // top-level was actually sequence handled above; shouldn't reach
+            break;
+          }
+          break;
+        }
+        next();
+        applyMapLine(obj, p.content, p.indent + 1);
+        saw = true;
+      }
+      return saw ? obj : null;
+    }
+
+    function applyMapLine(obj, content, childMinIndent){
+      const km = content.match(/^([^:]+):(.*)$/);
+      if (!km) throw new Error('Expected key: value, got: ' + content);
+      const key = parseScalar(km[1].trim());
+      let valPart = km[2].trim();
+      if (!valPart) {
+        const child = peek();
+        if (child && child.indent >= childMinIndent) {
+          obj[key] = parseBlock(childMinIndent);
+        } else {
+          obj[key] = null;
+        }
+      } else if (valPart === '|' || valPart === '>') {
+        obj[key] = parseMultiline(childMinIndent, valPart);
+      } else if ((valPart.startsWith('[') && valPart.endsWith(']')) || (valPart.startsWith('{') && valPart.endsWith('}'))) {
+        // light flow
+        try { obj[key] = JSON.parse(valPart.replace(/'/g,'"')); }
+        catch { obj[key] = parseScalar(valPart); }
+      } else {
+        obj[key] = parseScalar(valPart);
+      }
+    }
+
+    function parseMultiline(minIndent, style){
+      const chunks = [];
+      let base = null;
+      while (true) {
+        const p = peek();
+        if (!p) break;
+        if (p.indent < minIndent) break;
+        next();
+        if (base === null) base = p.indent;
+        const text = p.raw.slice(Math.min(base, p.raw.length));
+        chunks.push(text);
+      }
+      if (style === '>') {
+        return chunks.map(c => c.trimEnd()).join(' ').replace(/  +/g,' ').trim();
+      }
+      return chunks.join('\n').replace(/\n+$/,'');
+    }
+
+    const doc = parseBlock(0);
+    // leftover non-empty?
+    const left = peek();
+    if (left) throw new Error('Unparsed content at line ' + (left.i+1) + ': ' + left.content);
+    return doc;
+  }
+
+  function needsQuotes(s){
+    if (s === '') return true;
+    if (/^[-?:,\[\]{}#&*!|>'"%@`]/.test(s)) return true;
+    if (/[:#\n\r]/.test(s)) return true;
+    if (/^(true|false|null|yes|no|on|off|~)$/i.test(s)) return true;
+    if (/^[-+]?(0|[1-9]\d*)(\.\d+)?([eE][-+]?\d+)?$/.test(s)) return true;
+    if (/^\s|\s$/.test(s)) return true;
+    return false;
+  }
+  function dumpScalar(v){
+    if (v === null || v === undefined) return 'null';
+    if (typeof v === 'boolean') return v ? 'true' : 'false';
+    if (typeof v === 'number') return Number.isFinite(v) ? String(v) : 'null';
+    const s = String(v);
+    if (s.includes('\n')) {
+      const lines = s.replace(/\n$/,'').split('\n');
+      return '|\n' + lines.map(l => '  ' + l).join('\n');
+    }
+    if (needsQuotes(s)) return JSON.stringify(s);
+    return s;
+  }
+
+  function toYaml(value, indentSize, sortKeys, level){
+    const sp = ' '.repeat(indentSize * level);
+    const sp2 = ' '.repeat(indentSize * (level+1));
+    if (value === null || value === undefined) return 'null';
+    if (typeof value !== 'object') return dumpScalar(value);
+    if (Array.isArray(value)) {
+      if (!value.length) return '[]';
+      return value.map(item => {
+        if (item !== null && typeof item === 'object' && !Array.isArray(item)) {
+          const keys = sortKeys ? Object.keys(item).sort() : Object.keys(item);
+          if (!keys.length) return sp + '- {}';
+          let first = true;
+          const lines = [];
+          for (const k of keys) {
+            const v = item[k];
+            if (first) {
+              if (v !== null && typeof v === 'object') {
+                const nested = toYaml(v, indentSize, sortKeys, level+1);
+                if (nested.includes('\n')) lines.push(sp + '- ' + k + ':\n' + nested.split('\n').map((ln,i)=> i===0? ln : ln).join('\n').replace(/^/,'').split('\n').map((ln,i)=>{
+                  // reformat: first key inline after dash
+                  return ln;
+                }).join('\n'));
+                // simpler path:
+                const body = formatMap(v, indentSize, sortKeys, level+1, true);
+                lines.push(sp + '- ' + body);
+              } else {
+                const dv = dumpScalar(v);
+                if (String(dv).startsWith('|\n')) {
+                  lines.push(sp + '- ' + k + ': |\n' + String(v).replace(/\n$/,'').split('\n').map(l=>sp2 + '  ' + l).join('\n'));
+                } else {
+                  lines.push(sp + '- ' + k + ': ' + dv);
+                }
+              }
+              first = false;
+            } else {
+              if (v !== null && typeof v === 'object') {
+                const nested = toYaml(v, indentSize, sortKeys, level+2);
+                lines.push(sp2 + k + ':\n' + (nested.includes('\n') ? nested : sp2 + '  ' + nested));
+              } else {
+                const dv = dumpScalar(v);
+                if (String(dv).startsWith('|\n')) {
+                  lines.push(sp2 + k + ': |\n' + String(v).replace(/\n$/,'').split('\n').map(l=>sp2 + '  ' + l).join('\n'));
+                } else lines.push(sp2 + k + ': ' + dv);
+              }
+            }
+          }
+          return lines.join('\n');
+        }
+        if (item !== null && typeof item === 'object') {
+          // array of arrays
+          const nested = toYaml(item, indentSize, sortKeys, level+1);
+          if (nested.includes('\n')) return sp + '-\n' + nested;
+          return sp + '- ' + nested;
+        }
+        const dv = dumpScalar(item);
+        if (String(dv).startsWith('|\n')) {
+          return sp + '- |\n' + String(item).replace(/\n$/,'').split('\n').map(l=>sp2 + l).join('\n');
+        }
+        return sp + '- ' + dv;
+      }).join('\n');
+    }
+    // object
+    return formatMap(value, indentSize, sortKeys, level, false);
+  }
+
+  function formatMap(obj, indentSize, sortKeys, level, asListFirst){
+    const sp = ' '.repeat(indentSize * level);
+    const keys = sortKeys ? Object.keys(obj).sort() : Object.keys(obj);
+    if (!keys.length) return asListFirst ? '{}' : '{}';
+    const lines = [];
+    keys.forEach((k, i) => {
+      const v = obj[k];
+      const prefix = asListFirst && i === 0 ? '' : sp;
+      if (v !== null && typeof v === 'object') {
+        if (Array.isArray(v) && !v.length) {
+          lines.push(prefix + k + ': []');
+        } else if (!Array.isArray(v) && !Object.keys(v).length) {
+          lines.push(prefix + k + ': {}');
+        } else {
+          const nested = toYaml(v, indentSize, sortKeys, level+1);
+          lines.push(prefix + k + ':\n' + nested);
+        }
+      } else {
+        const dv = dumpScalar(v);
+        if (String(dv).startsWith('|\n')) {
+          const body = String(v).replace(/\n$/,'').split('\n').map(l => ' '.repeat(indentSize*(level+1)) + l).join('\n');
+          lines.push(prefix + k + ': |\n' + body);
+        } else {
+          lines.push(prefix + k + ': ' + dv);
+        }
+      }
+    });
+    return lines.join('\n');
+  }
+
+  // Cleaner JSON→YAML
+  function jsonToYaml(value, indentSize, sortKeys){
+    function dump(val, level){
+      const pad = ' '.repeat(indentSize * level);
+      if (val === null || val === undefined) return 'null';
+      if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean') return dumpScalar(val);
+      if (Array.isArray(val)) {
+        if (!val.length) return '[]';
+        return val.map(item => {
+          if (item !== null && typeof item === 'object') {
+            const inner = dump(item, level + 1);
+            if (Array.isArray(item)) {
+              return pad + '-\n' + inner;
+            }
+            // object: put first line after "- "
+            const parts = inner.split('\n');
+            const first = parts[0].replace(/^\s+/, '');
+            const rest = parts.slice(1).map(l => l /* already padded */).join('\n');
+            return pad + '- ' + first + (rest ? '\n' + rest : '');
+          }
+          const s = dumpScalar(item);
+          if (String(s).startsWith('|\n')) {
+            const body = String(item).replace(/\n$/,'').split('\n').map(l => pad + '  ' + l).join('\n');
+            return pad + '- |\n' + body;
+          }
+          return pad + '- ' + s;
+        }).join('\n');
+      }
+      // object
+      const keys = sortKeys ? Object.keys(val).sort() : Object.keys(val);
+      if (!keys.length) return '{}';
+      return keys.map(k => {
+        const v = val[k];
+        if (v !== null && typeof v === 'object') {
+          if (Array.isArray(v) && !v.length) return pad + k + ': []';
+          if (!Array.isArray(v) && !Object.keys(v).length) return pad + k + ': {}';
+          return pad + k + ':\n' + dump(v, level + 1);
+        }
+        const s = dumpScalar(v);
+        if (String(s).startsWith('|\n')) {
+          const body = String(v).replace(/\n$/,'').split('\n').map(l => pad + ' '.repeat(indentSize) + l).join('\n');
+          return pad + k + ': |\n' + body;
+        }
+        return pad + k + ': ' + s;
+      }).join('\n');
+    }
+    return dump(value, 0);
+  }
+
+  function countNodes(v){
+    if (v === null || typeof v !== 'object') return 1;
+    if (Array.isArray(v)) return v.reduce((a,x)=>a+countNodes(x), 0);
+    return Object.keys(v).reduce((a,k)=>a+countNodes(v[k]), Object.keys(v).length);
+  }
+
+  function yamlToJson(){
+    showErr('');
+    try {
+      const data = parseYaml(inpEl.value);
+      const pretty = Number($('pretty').value);
+      outEl.textContent = JSON.stringify(data, null, pretty === 0 ? 0 : pretty);
+      metaEl.textContent = 'json · ~' + countNodes(data) + ' nodes';
+      setStat('YAML → JSON ok');
+    } catch (e) {
+      showErr(e.message || String(e));
+      setStat('Parse error');
+      metaEl.textContent = 'error';
+    }
+  }
+
+  function jsonToYamlBtn(){
+    showErr('');
+    try {
+      let text = inpEl.value.trim();
+      // allow YAML input mistakenly: try JSON first, else parse YAML then dump
+      let data;
+      try { data = JSON.parse(text); }
+      catch {
+        data = parseYaml(text);
+      }
+      const ind = Number($('indent').value) || 2;
+      const sort = $('sortk').value === 'yes';
+      outEl.textContent = jsonToYaml(data, ind, sort);
+      metaEl.textContent = 'yaml';
+      setStat('JSON → YAML ok');
+    } catch (e) {
+      showErr(e.message || String(e));
+      setStat('Convert error');
+      metaEl.textContent = 'error';
+    }
+  }
+
+  $('toJson').onclick = yamlToJson;
+  $('toYaml').onclick = jsonToYamlBtn;
+  $('copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(outEl.textContent); setStat('Copied'); }
+    catch { setStat('Copy failed'); }
+  };
+  $('clear').onclick = () => { inpEl.value=''; outEl.textContent='# Convert YAML ↔ JSON'; showErr(''); setStat('Cleared'); metaEl.textContent='idle'; };
+  $('fmt').onclick = () => {
+    try {
+      const o = JSON.parse(inpEl.value);
+      inpEl.value = JSON.stringify(o, null, 2);
+      setStat('Formatted JSON');
+      showErr('');
+    } catch (e) { showErr('Input is not JSON: ' + e.message); }
+  };
+  $('sample').onclick = () => {
+    inpEl.value = `# sample agent manifest
+service:
+  name: veriton-micro-dev
+  contact: acer-openclaw@agentmail.to
+  skus:
+    - id: review
+      price_usd: 1
+      sla_hours: 24
+    - id: scrape-to-json
+      price_usd: 2
+      notes: |
+        One public URL.
+        Returns JSON + optional Python snippet.
+  skills:
+    - code-review
+    - scrape-to-json
+    - repo-bootstrap
+  flags:
+    browser_only_tools: true
+    marketplace: auto.exchange
+`;
+    setStat('Sample loaded');
+    showErr('');
+  };
+})();
+</script>
+</body>
+</html>
