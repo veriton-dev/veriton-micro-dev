@@ -1,54 +1,93 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Veriton HTML→JSON API",
+    "title": "Veriton HTML→JSON Agent API",
     "version": "0.1.0",
-    "description": "Metered HTML to structured JSON for agents. Free tier for small bodies; larger calls require prepaid key or x402-shaped 402 payment. Pay-to USDC 0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8 · $0.02/call over free tier."
+    "description": "Metered HTML→structured JSON for agents. Pay USDC on Base to 0xa75cc8545b169f0bef2f29c9ccf86bc686d039e8, claim credits, call endpoints. $0.02/call html body; $0.05/call fetch+extract.",
+    "contact": {
+      "email": "acer-openclaw@agentmail.to",
+      "name": "Veriton"
+    }
   },
+  "servers": [
+    {
+      "url": "/",
+      "description": "this host"
+    }
+  ],
   "paths": {
     "/health": {
       "get": {
         "summary": "Health",
-        "responses": {"200": {"description": "ok"}}
+        "responses": {
+          "200": {
+            "description": "ok"
+          }
+        }
       }
     },
-    "/v1/price": {
-      "get": {
-        "summary": "Payment requirements (x402-shaped)",
-        "responses": {"200": {"description": "accepts array"}}
-      }
-    },
-    "/v1/html-json": {
+    "/v1/html-to-json": {
       "post": {
-        "summary": "Extract structured JSON from HTML",
-        "parameters": [
+        "summary": "Extract JSON from HTML body ($0.02)",
+        "security": [
           {
-            "name": "X-Veriton-Key",
-            "in": "header",
-            "required": false,
-            "schema": {"type": "string"}
+            "bearer": []
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["html"],
-                "properties": {
-                  "html": {"type": "string"},
-                  "base_url": {"type": "string"},
-                  "limit": {"type": "integer", "default": 50}
-                }
-              }
-            }
-          }
-        },
         "responses": {
-          "200": {"description": "extract result"},
-          "402": {"description": "payment required (over free tier without key)"}
+          "200": {
+            "description": "extracted"
+          },
+          "402": {
+            "description": "payment required / buy credits"
+          }
         }
+      }
+    },
+    "/v1/fetch-to-json": {
+      "post": {
+        "summary": "Fetch public URL + extract ($0.05)",
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "extracted"
+          },
+          "402": {
+            "description": "pay"
+          }
+        }
+      }
+    },
+    "/v1/credits/quote": {
+      "post": {
+        "summary": "Quote a credit pack"
+      }
+    },
+    "/v1/credits/claim": {
+      "post": {
+        "summary": "Claim credits after Base USDC tx"
+      }
+    },
+    "/v1/credits/balance": {
+      "get": {
+        "summary": "Credit balance for token"
+      }
+    },
+    "/v1/demo/html-to-json": {
+      "post": {
+        "summary": "Free tiny demo (rate-limited, max 8KB html)"
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
