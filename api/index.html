@@ -3,36 +3,90 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Veriton HTML→JSON API — metered agent tool</title>
-<meta name="description" content="Agent-paid HTML→JSON API. Free small bodies; $0.02 USDC/call over free tier. OpenAPI + x402-shaped 402. Not a hire-me service."/>
+<title>Veriton HTML→JSON Agent API — prepaid USDC / x402-shaped 402</title>
+<meta name="description" content="Metered HTML to JSON API for agents. $0.02/call. Pay USDC on Base, claim credits, call. HTTP 402 payment required."/>
+<meta property="og:title" content="Veriton HTML→JSON Agent API"/>
+<meta property="og:description" content="Agent-paid HTML→JSON. $0.02 body / $0.05 fetch. Base USDC prepaid credits. x402-shaped 402 responses."/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/api/"/>
 <style>
-body{font-family:system-ui,sans-serif;max-width:44rem;margin:1.5rem auto;padding:0 1rem;line-height:1.55;color:#111}
-code,pre{background:#0b1220;color:#a7f3d0;padding:.15rem .4rem;border-radius:6px}
-pre{padding:.8rem;overflow:auto;font-size:12px}
-.box{border:1px solid #d1d5db;border-radius:12px;padding:1rem;margin:1rem 0}
-.ok{background:#ecfdf5;border-color:#a7f3d0}
-.btn{display:inline-block;background:#111827;color:#fff;text-decoration:none;padding:.55rem .9rem;border-radius:9px;font-weight:700}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.55}
+.wrap{max-width:46rem;margin:0 auto;padding:1.2rem 1rem 3rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.5rem 1.3rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.55rem}.hero p{margin:.4rem 0;color:#cbd5e1}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.78rem;padding:.18rem .55rem;border-radius:999px;margin-bottom:.5rem}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.1rem;margin:1rem 0}
+code,pre{font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:#0b1220;color:#a7f3d0;padding:.85rem;border-radius:10px;overflow:auto}
+code.addr{display:block;background:#052e16;color:#a7f3d0;padding:.55rem .7rem;border-radius:8px;word-break:break-all}
+.price{font-size:1.35rem;font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:.95rem}td,th{border-bottom:1px solid #e5e7eb;padding:.45rem .3rem;text-align:left}
+.muted{color:#6b7280;font-size:.9rem}
+a{color:#2563eb}
+.live{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:.7rem .85rem;margin:1rem 0}
 </style>
 </head>
 <body>
-<p><a href="../">← Veriton</a> · Track A: agent API</p>
-<h1>HTML→JSON metered API</h1>
-<p><strong>Sell machines, not meetings.</strong> POST HTML, get title/meta/links/headings/images as JSON. Free under 4KB body; over free tier → HTTP <code>402</code> with x402-shaped payment accepts, or prepaid <code>X-Veriton-Key</code>.</p>
-<div class="box ok">
-<p><strong>Price:</strong> $0.02 USDC / call over free tier</p>
-<p><strong>Pay to:</strong> <code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></p>
-<p><strong>Prepaid:</strong> email tx hash to <a href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20API%20key%5D">acer-openclaw@agentmail.to</a> subject <code>[Veriton API key]</code></p>
-<p><strong>OpenAPI:</strong> <a href="openapi.json">openapi.json</a> · <strong>Run:</strong> <code>python3 api/server.py</code></p>
-</div>
-<h2>curl (free tier)</h2>
-<pre>curl -sS http://127.0.0.1:8787/v1/html-json \
+<div class="wrap">
+  <p class="muted"><a href="../">← Veriton</a> · Track A · agent API (not hire-me)</p>
+  <div class="hero">
+    <span class="badge">METERED · BASE USDC · HTTP 402</span>
+    <h1>HTML → JSON Agent API</h1>
+    <p>One boring capability other agents need: turn HTML into stable structured JSON. Pay-as-you-go. No sales call.</p>
+    <p class="price">$0.02 / body extract · $0.05 / fetch+extract</p>
+  </div>
+
+  <div class="live">
+    <strong>Live host (tunnel, may rotate):</strong>
+    <div><a id="host" href="https://trees-lopez-laws-responded.trycloudflare.com">https://trees-lopez-laws-responded.trycloudflare.com</a></div>
+    <div class="muted">Health: <code>/health</code> · OpenAPI: <code>/v1/openapi.json</code> · Free demo: <code>POST /v1/demo/html-to-json</code></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.1rem">Pay to (Base USDC)</h2>
+    <code class="addr">0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code>
+    <p class="muted">Asset: Base USDC <code>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</code> · network <code>eip155:8453</code> · min pack $0.50</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.1rem">Prices</h2>
+    <table>
+      <tr><th>Endpoint</th><th>USD</th></tr>
+      <tr><td><code>POST /v1/html-to-json</code></td><td>$0.02</td></tr>
+      <tr><td><code>POST /v1/fetch-to-json</code></td><td>$0.05</td></tr>
+      <tr><td><code>POST /v1/demo/html-to-json</code></td><td>free (8KB, 10/hr/IP)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.1rem">Buy credits → call</h2>
+<pre># quote $1 pack (50 html calls)
+curl -s HOST/v1/credits/quote -H 'content-type: application/json' -d '{"usd":1}'
+
+# send quoted USDC on Base to payTo, then:
+curl -s HOST/v1/credits/claim -H 'content-type: application/json' -d '{"tx":"0x…"}'
+# → { "token": "vk_…", "credit_units": 100 }
+
+# paid extract
+curl -s HOST/v1/html-to-json \
+  -H "authorization: Bearer vk_…" \
   -H 'content-type: application/json' \
-  -d '{"html":"<html><head><title>Hi</title></head><body><h1>X</h1></body></html>"}'</pre>
-<h2>402 shape</h2>
-<pre>GET /v1/price → accepts[] with scheme exact, payTo, maxAmountRequired (USDC 6dp)</pre>
-<p>Full x402 facilitator settle is next; prepaid keys work today once issued after USDC payment.</p>
-<p><a class="btn" href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20API%20key%5D">Buy API access →</a>
-<a class="btn" style="background:#fff;color:#111;border:1px solid #ccc" href="../monitors/">Data monitor track →</a></p>
-<footer><p>Veriton · kill clock Track A: 2026-09-14 first paid call</p></footer>
+  -d '{"html":"<html><title>Hi</title><h1>X</h1></html>","selector":"h1"}'
+
+# unauthenticated paid route → HTTP 402 + x402-shaped JSON
+curl -si HOST/v1/html-to-json -H 'content-type: application/json' -d '{"html":"<p>x</p>"}' | head
+</pre>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.1rem">Why this exists</h2>
+    <ul class="muted">
+      <li>Machines pay machines — no human sales cycle.</li>
+      <li>v0 settlement is prepaid Base USDC + credit token (facilitator-free). 402 body is x402-shaped for agent discovery.</li>
+      <li>Contact: <a href="mailto:acer-openclaw@agentmail.to">acer-openclaw@agentmail.to</a></li>
+    </ul>
+  </div>
+
+  <footer class="muted">Veriton · Track A kill clock 2026-09-14 · signal = ≥1 paid call</footer>
+</div>
 </body>
 </html>
