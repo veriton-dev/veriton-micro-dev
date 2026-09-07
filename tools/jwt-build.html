@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free JWT Builder — HS256/384/512 in browser — Veriton</title>
+<meta name="description" content="Free browser-only JWT builder. Edit header + claims, set exp/nbf/iat helpers, sign with HS256/HS384/HS512 (Web Crypto). No upload, no account. Secret stays in your tab."/>
+<meta property="og:title" content="Free JWT Builder — Veriton"/>
+<meta property="og:description" content="Build and sign JWTs in-browser with HS256/384/512. Claim helpers, round-trip verify. Free forever. Secret never leaves your tab."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/jwt-build-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/jwt-build-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/jwt-build.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:56rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,input,select,pre{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.65rem;background:#fff}
+textarea{min-height:150px;resize:vertical}
+input,select{font-size:.9rem}
+pre{min-height:90px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap;word-break:break-all}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.row label.inline{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.85rem;margin:0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.ok{color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.5rem .7rem;display:none;margin:.5rem 0}
+.warnbox{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:.7rem .85rem;font-size:.9rem;margin:.7rem 0}
+.helpers{display:grid;gap:.55rem;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));margin:.4rem 0 .7rem}
+.helpers .h{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:.55rem .6rem}
+.helpers .h span{display:block;font-size:.72rem;color:#6b7280;font-weight:600;margin-bottom:.25rem}
+.helpers input{padding:.4rem .5rem;font-size:.85rem}
+.kv{display:grid;grid-template-columns:6.5rem 1fr;gap:.2rem .55rem;font-size:.88rem;margin:.35rem 0}
+.kv b{color:#374151}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="jwt-decode.html">JWT Decoder</a> · <a href="hash.html">Hash/HMAC</a> · <a href="uuid-ulid.html">UUID/ULID</a> · <a href="timestamp.html">Timestamp</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · HS* sign</span>
+    <h1>JWT Builder</h1>
+    <p>Compose header + payload claims, apply <code>iat</code>/<code>exp</code>/<code>nbf</code> helpers, and sign with <strong>HS256 / HS384 / HS512</strong> via Web Crypto. Secret and token never leave this tab. Pairs with the free JWT Decoder.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/jwt-build-og.jpg" alt="Free JWT builder browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Auth path review $1 →</a>
+       <a class="btn ghost" href="jwt-decode.html">Decode a token →</a>
+       <a class="btn ghost" href="../SAMPLE_REVIEW.md">Sample review →</a></p>
+  </div>
+
+  <div class="warnbox"><strong>Local demo tool only.</strong> Do not paste production secrets into random websites — this page is static/client-side, but treat any shared host as untrusted. <code>alg=none</code> tokens are unsigned and forgeable. HS* is symmetric; anyone with the secret can mint tokens.</div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="build">Build + sign</button>
+      <button class="secondary" id="verify">Verify last token</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="copyTok">Copy JWT</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <div class="ok" id="ok"></div>
+
+    <div class="row" style="margin-top:.8rem">
+      <div style="flex:1;min-width:10rem">
+        <label for="alg">Algorithm</label>
+        <select id="alg">
+          <option value="HS256" selected>HS256 (HMAC-SHA256)</option>
+          <option value="HS384">HS384 (HMAC-SHA384)</option>
+          <option value="HS512">HS512 (HMAC-SHA512)</option>
+          <option value="none">none (unsigned — demo only)</option>
+        </select>
+      </div>
+      <div style="flex:2;min-width:14rem">
+        <label for="secret">HMAC secret (UTF-8 text)</label>
+        <input id="secret" type="password" autocomplete="off" placeholder="dev-only secret — stays in this tab" value=""/>
+      </div>
+      <div style="align-self:end">
+        <label class="inline"><input type="checkbox" id="showSec"/> show</label>
+      </div>
+    </div>
+
+    <h3 style="margin:1rem 0 .4rem;font-size:1rem">Claim helpers (merge into payload on Build)</h3>
+    <div class="helpers">
+      <div class="h"><span>sub</span><input id="h_sub" placeholder="user-123"/></div>
+      <div class="h"><span>iss</span><input id="h_iss" placeholder="https://issuer.example"/></div>
+      <div class="h"><span>aud</span><input id="h_aud" placeholder="api.example"/></div>
+      <div class="h"><span>jti</span><input id="h_jti" placeholder="auto UUID if blank+check"/></div>
+      <div class="h"><span>iat</span>
+        <select id="h_iat"><option value="now" selected>set now</option><option value="keep">leave as-is</option><option value="clear">clear</option></select>
+      </div>
+      <div class="h"><span>exp in</span>
+        <select id="h_exp">
+          <option value="3600" selected>1 hour</option>
+          <option value="300">5 min</option>
+          <option value="900">15 min</option>
+          <option value="86400">1 day</option>
+          <option value="604800">7 days</option>
+          <option value="keep">leave as-is</option>
+          <option value="clear">clear</option>
+        </select>
+      </div>
+      <div class="h"><span>nbf</span>
+        <select id="h_nbf"><option value="keep" selected>leave as-is</option><option value="now">set now</option><option value="clear">clear</option></select>
+      </div>
+      <div class="h"><span>auto jti</span>
+        <label class="inline" style="margin-top:.35rem"><input type="checkbox" id="h_jti_auto"/> UUID v4</label>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label for="header">Header JSON</label>
+        <textarea id="header" spellcheck="false">{
+  "alg": "HS256",
+  "typ": "JWT"
+}</textarea>
+      </div>
+      <div>
+        <label for="payload">Payload JSON (claims)</label>
+        <textarea id="payload" spellcheck="false">{
+  "sub": "user-123",
+  "name": "Ada",
+  "role": "dev"
+}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Token</h2>
+    <pre id="token"># Build to mint a JWT</pre>
+    <div id="meta" class="kv muted" style="margin-top:.6rem"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Parts (after build / verify)</h2>
+    <div class="grid">
+      <div>
+        <label>Header (decoded)</label>
+        <pre id="outH">—</pre>
+      </div>
+      <div>
+        <label>Payload (decoded)</label>
+        <pre id="outP">—</pre>
+      </div>
+    </div>
+  </div>
+
+  <footer>Veriton · browser-only · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a> · pairs with <a href="jwt-decode.html">JWT Decoder</a> · secret never uploaded</footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const enc = new TextEncoder();
+
+  function showErr(msg){
+    const el = $('err');
+    if (!msg){ el.style.display='none'; el.textContent=''; return; }
+    el.style.display='block'; el.textContent = msg;
+  }
+  function showOk(msg){
+    const el = $('ok');
+    if (!msg){ el.style.display='none'; el.textContent=''; return; }
+    el.style.display='block'; el.textContent = msg;
+  }
+  function setStat(s){ $('stat').textContent = s; }
+
+  function b64urlFromBytes(u8){
+    let s = '';
+    const chunk = 0x8000;
+    for (let i=0;i<u8.length;i+=chunk){
+      s += String.fromCharCode.apply(null, u8.subarray(i, i+chunk));
+    }
+    return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
+  function b64urlFromStr(str){
+    return b64urlFromBytes(enc.encode(str));
+  }
+  function bytesFromB64url(s){
+    s = s.replace(/-/g,'+').replace(/_/g,'/');
+    while (s.length % 4) s += '=';
+    const bin = atob(s);
+    const u8 = new Uint8Array(bin.length);
+    for (let i=0;i<bin.length;i++) u8[i] = bin.charCodeAt(i);
+    return u8;
+  }
+  function strFromB64url(s){
+    return new TextDecoder().decode(bytesFromB64url(s));
+  }
+  function pretty(obj){
+    return JSON.stringify(obj, null, 2);
+  }
+  function parseJSON(label, text){
+    try { return JSON.parse(text); }
+    catch(e){ throw new Error(label + ' JSON: ' + (e.message || e)); }
+  }
+  function nowSec(){ return Math.floor(Date.now()/1000); }
+  function uuidv4(){
+    const a = new Uint8Array(16);
+    crypto.getRandomValues(a);
+    a[6] = (a[6] & 0x0f) | 0x40;
+    a[8] = (a[8] & 0x3f) | 0x80;
+    const h = [...a].map(b => b.toString(16).padStart(2,'0')).join('');
+    return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20);
+  }
+  function algToHash(alg){
+    if (alg === 'HS256') return 'SHA-256';
+    if (alg === 'HS384') return 'SHA-384';
+    if (alg === 'HS512') return 'SHA-512';
+    return null;
+  }
+  async function hmacSign(alg, secret, dataBytes){
+    const hash = algToHash(alg);
+    if (!hash) throw new Error('Unsupported alg for HMAC: ' + alg);
+    if (!window.crypto || !crypto.subtle) throw new Error('Web Crypto unavailable');
+    const key = await crypto.subtle.importKey(
+      'raw', enc.encode(secret), { name:'HMAC', hash }, false, ['sign','verify']
+    );
+    const sig = await crypto.subtle.sign('HMAC', key, dataBytes);
+    return new Uint8Array(sig);
+  }
+  async function hmacVerify(alg, secret, dataBytes, sigBytes){
+    const hash = algToHash(alg);
+    if (!hash) return false;
+    const key = await crypto.subtle.importKey(
+      'raw', enc.encode(secret), { name:'HMAC', hash }, false, ['sign','verify']
+    );
+    // constant-time-ish via subtle when possible
+    try {
+      return await crypto.subtle.verify('HMAC', key, sigBytes, dataBytes);
+    } catch(_){
+      const expect = new Uint8Array(await crypto.subtle.sign('HMAC', key, dataBytes));
+      if (expect.length !== sigBytes.length) return false;
+      let d=0; for (let i=0;i<expect.length;i++) d |= expect[i]^sigBytes[i];
+      return d === 0;
+    }
+  }
+
+  function applyHelpers(payload){
+    const p = Object.assign({}, payload);
+    const sub = $('h_sub').value.trim();
+    const iss = $('h_iss').value.trim();
+    const aud = $('h_aud').value.trim();
+    const jti = $('h_jti').value.trim();
+    if (sub) p.sub = sub;
+    if (iss) p.iss = iss;
+    if (aud) p.aud = aud;
+    if (jti) p.jti = jti;
+    else if ($('h_jti_auto').checked) p.jti = uuidv4();
+
+    const t = nowSec();
+    const iatMode = $('h_iat').value;
+    if (iatMode === 'now') p.iat = t;
+    else if (iatMode === 'clear') delete p.iat;
+
+    const expMode = $('h_exp').value;
+    if (expMode === 'clear') delete p.exp;
+    else if (expMode !== 'keep') p.exp = t + parseInt(expMode, 10);
+
+    const nbfMode = $('h_nbf').value;
+    if (nbfMode === 'now') p.nbf = t;
+    else if (nbfMode === 'clear') delete p.nbf;
+
+    return p;
+  }
+
+  function setParts(header, payload){
+    $('outH').textContent = pretty(header);
+    $('outP').textContent = pretty(payload);
+    const lines = [];
+    if (payload.iat != null) lines.push(['iat', payload.iat + ' · ' + new Date(payload.iat*1000).toISOString()]);
+    if (payload.nbf != null) lines.push(['nbf', payload.nbf + ' · ' + new Date(payload.nbf*1000).toISOString()]);
+    if (payload.exp != null) {
+      const left = payload.exp - nowSec();
+      lines.push(['exp', payload.exp + ' · ' + new Date(payload.exp*1000).toISOString() + ' · ' + (left>=0? left+'s left':'expired '+(-left)+'s')]);
+    }
+    if (header.alg) lines.push(['alg', header.alg]);
+    $('meta').innerHTML = lines.map(([k,v]) => '<b>'+k+'</b><span>'+v+'</span>').join('') || '<span class="muted">—</span>';
+  }
+
+  async function build(){
+    showErr(''); showOk('');
+    try {
+      const alg = $('alg').value;
+      let header = parseJSON('Header', $('header').value);
+      let payload = parseJSON('Payload', $('payload').value);
+      header = Object.assign({}, header, { alg: alg, typ: header.typ || 'JWT' });
+      payload = applyHelpers(payload);
+      // reflect merged payload back into editor for transparency
+      $('payload').value = pretty(payload);
+      $('header').value = pretty(header);
+
+      const hB = b64urlFromStr(JSON.stringify(header));
+      const pB = b64urlFromStr(JSON.stringify(payload));
+      const signingInput = hB + '.' + pB;
+      let token;
+      if (alg === 'none'){
+        token = signingInput + '.';
+        showOk('Built unsigned token (alg=none). Forgeable — demo only.');
+      } else {
+        const secret = $('secret').value;
+        if (!secret) throw new Error('HMAC secret required for ' + alg);
+        const sig = await hmacSign(alg, secret, enc.encode(signingInput));
+        token = signingInput + '.' + b64urlFromBytes(sig);
+        showOk('Signed with ' + alg + '. Secret stayed in this tab.');
+      }
+      $('token').textContent = token;
+      setParts(header, payload);
+      setStat(alg + ' · ' + token.length + ' chars');
+    } catch(e){
+      showErr(e && e.message ? e.message : String(e));
+      setStat('Error');
+    }
+  }
+
+  async function verify(){
+    showErr(''); showOk('');
+    try {
+      const token = ($('token').textContent || '').trim();
+      if (!token || token.startsWith('#')) throw new Error('No token to verify — Build first');
+      const parts = token.split('.');
+      if (parts.length !== 3) throw new Error('JWT must have 3 dot-separated parts');
+      const header = JSON.parse(strFromB64url(parts[0]));
+      const payload = JSON.parse(strFromB64url(parts[1]));
+      setParts(header, payload);
+      const alg = header.alg || 'none';
+      const signingInput = parts[0] + '.' + parts[1];
+      if (alg === 'none'){
+        if (parts[2] !== '') throw new Error('alg=none but signature part is non-empty');
+        showOk('Structure OK. alg=none — no signature to verify (insecure).');
+        setStat('verify · none');
+        return;
+      }
+      if (!algToHash(alg)) throw new Error('This builder only verifies HS256/384/512 (got ' + alg + ')');
+      const secret = $('secret').value;
+      if (!secret) throw new Error('HMAC secret required to verify ' + alg);
+      const sigBytes = bytesFromB64url(parts[2] || '');
+      const ok = await hmacVerify(alg, secret, enc.encode(signingInput), sigBytes);
+      if (!ok) throw new Error('Signature MISMATCH for ' + alg);
+      const t = nowSec();
+      const notes = [];
+      if (payload.nbf != null && t < payload.nbf) notes.push('nbf in future');
+      if (payload.exp != null && t >= payload.exp) notes.push('token expired');
+      showOk('Signature VALID for ' + alg + (notes.length ? ' — warnings: ' + notes.join(', ') : ' — time claims OK or absent'));
+      setStat('verify · valid');
+    } catch(e){
+      showErr(e && e.message ? e.message : String(e));
+      setStat('verify · fail');
+    }
+  }
+
+  $('alg').addEventListener('change', () => {
+    try {
+      const h = parseJSON('Header', $('header').value);
+      h.alg = $('alg').value;
+      $('header').value = pretty(h);
+    } catch(_){}
+  });
+  $('showSec').addEventListener('change', () => {
+    $('secret').type = $('showSec').checked ? 'text' : 'password';
+  });
+  $('build').addEventListener('click', build);
+  $('verify').addEventListener('click', verify);
+  $('sample').addEventListener('click', () => {
+    $('alg').value = 'HS256';
+    $('secret').value = 'dev-only-secret';
+    $('header').value = pretty({ alg:'HS256', typ:'JWT' });
+    $('payload').value = pretty({ sub:'user-123', name:'Ada', role:'dev' });
+    $('h_sub').value = 'user-123';
+    $('h_iss').value = 'https://issuer.example';
+    $('h_aud').value = 'api.example';
+    $('h_jti').value = '';
+    $('h_jti_auto').checked = true;
+    $('h_iat').value = 'now';
+    $('h_exp').value = '3600';
+    $('h_nbf').value = 'keep';
+    showErr(''); showOk('');
+    setStat('Sample loaded');
+  });
+  $('copyTok').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(($('token').textContent||'').trim());
+      setStat('Copied JWT');
+    } catch(_){ setStat('Copy failed'); }
+  });
+  $('clear').addEventListener('click', () => {
+    $('secret').value='';
+    $('token').textContent='# Build to mint a JWT';
+    $('outH').textContent='—'; $('outP').textContent='—'; $('meta').innerHTML='';
+    showErr(''); showOk(''); setStat('Cleared');
+  });
+})();
+</script>
+</body>
+</html>
