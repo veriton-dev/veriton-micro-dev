@@ -14,6 +14,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **$3** Repo Bootstrap (scaffold + README + CI, 48h)
 
 ## Free tools
+- **[Color Converter](./tools/color-convert.html)** — browser-only HEX/RGB/HSL/HSV with live swatch, luminance, WCAG contrast vs white/black, batch lines. Demo adjacent to **$1** UI/a11y review.
 - **[Number Base Converter](./tools/number-base.html)** — browser-only BIN/OCT/DEC/HEX with bit width, two's complement, batch lines. Demo adjacent to **$1** bit-level review.
 - **[Slug / Case Converter](./tools/slug-case.html)** — browser-only snake/camel/kebab/Pascal/CONSTANT/Title/slug/path batch naming. Demo adjacent to **$3** repo bootstrap.
 - **[Query String ↔ JSON](./tools/query-string.html)** — browser-only URL query parse/rebuild (multi-value, nested brackets, form-urlencoded). Demo adjacent to **$2** scrape / API debug.
@@ -31,7 +32,7 @@ First 5 pay AFTER delivery. No account. Email + pay to address, get diff.
 - **[JWT Decoder](./tools/jwt-decode.html)** — browser-only header + claims inspector with exp/nbf flags (decode ≠ verify). Demo adjacent to **$1** auth/review work.
 - **[JSON Diff](./tools/json-diff.html)** — browser-only structural left/right JSON diff (added/removed/changed paths). Demo for scrape regressions + **$1**/**$2** checks.
 - **[CSV ↔ JSON](./tools/csv-json.html)** — browser-only bidirectional converter (delimiter detect, typed cells, nested flatten). Demo adjacent to **$2** scrape cleanup.
-- Share cards: [number-base-og.jpg](./assets/number-base-og.jpg) · [slug-case-og.jpg](./assets/slug-case-og.jpg) · [query-string-og.jpg](./assets/query-string-og.jpg) · [toml-json-og.jpg](./assets/toml-json-og.jpg) · [regex-og.jpg](./assets/regex-og.jpg) · [hash-og.jpg](./assets/hash-og.jpg) · [uuid-ulid-og.jpg](./assets/uuid-ulid-og.jpg) · [yaml-json-og.jpg](./assets/yaml-json-og.jpg) · [base64-url-og.jpg](./assets/base64-url-og.jpg) · [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg) · [csv-json-og.jpg](./assets/csv-json-og.jpg) · [timestamp-og.jpg](./assets/timestamp-og.jpg)
+- Share cards: [color-convert-og.jpg](./assets/color-convert-og.jpg) · [number-base-og.jpg](./assets/number-base-og.jpg) · [slug-case-og.jpg](./assets/slug-case-og.jpg) · [query-string-og.jpg](./assets/query-string-og.jpg) · [toml-json-og.jpg](./assets/toml-json-og.jpg) · [regex-og.jpg](./assets/regex-og.jpg) · [hash-og.jpg](./assets/hash-og.jpg) · [uuid-ulid-og.jpg](./assets/uuid-ulid-og.jpg) · [yaml-json-og.jpg](./assets/yaml-json-og.jpg) · [base64-url-og.jpg](./assets/base64-url-og.jpg) · [cron-explain-og.jpg](./assets/cron-explain-og.jpg) · [diff-risk-og.jpg](./assets/diff-risk-og.jpg) · [html-to-json-og.jpg](./assets/html-to-json-og.jpg) · [json-schema-og.jpg](./assets/json-schema-og.jpg) · [jwt-decode-og.jpg](./assets/jwt-decode-og.jpg) · [json-diff-og.jpg](./assets/json-diff-og.jpg) · [csv-json-og.jpg](./assets/csv-json-og.jpg) · [timestamp-og.jpg](./assets/timestamp-og.jpg)
 - Live URL scrape remains the **$2** paid SKU (CORS prevents free in-browser fetch of arbitrary URLs).
 
 ## Sample (proof of quality)
