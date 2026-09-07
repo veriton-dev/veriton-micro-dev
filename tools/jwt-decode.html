@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Free JWT Decoder — header + claims in browser — Veriton</title>
+<meta name="description" content="Free browser-only JWT decoder. Paste a JWT, inspect header + payload claims, exp/nbf/iat times, and risk flags. No upload, no account. Does not verify signatures."/>
+<meta property="og:title" content="Free JWT Decoder — Veriton"/>
+<meta property="og:description" content="Paste a JWT. Decode header + claims in-browser with expiry flags. Free forever. Does not verify signatures."/>
+<meta property="og:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/jwt-decode-og.jpg"/>
+<meta property="og:image:width" content="1280"/>
+<meta property="og:image:height" content="720"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://veriton-dev.github.io/veriton-micro-dev/assets/jwt-decode-og.jpg"/>
+<link rel="canonical" href="https://veriton-dev.github.io/veriton-micro-dev/tools/jwt-decode.html"/>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#14181f;background:#f7f8fa;line-height:1.5}
+.wrap{max-width:54rem;margin:0 auto;padding:1.1rem 1rem 2.5rem}
+.hero{background:#111827;color:#fff;border-radius:14px;padding:1.3rem 1.2rem;margin-top:.6rem}
+.hero h1{margin:0 0 .35rem;font-size:1.45rem}.hero p{margin:.35rem 0;color:#cbd5e1;font-size:.95rem}
+.badge{display:inline-block;background:#22c55e;color:#052e16;font-weight:700;font-size:.75rem;padding:.15rem .55rem;border-radius:999px;margin-bottom:.45rem}
+.grid{display:grid;gap:.8rem;margin:1rem 0}@media(min-width:900px){.grid{grid-template-columns:1.05fr .95fr}}
+label{display:block;font-weight:700;font-size:.9rem;margin:0 0 .35rem}
+textarea,pre{width:100%;font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border:1px solid #d1d5db;border-radius:10px;padding:.7rem;background:#fff}
+textarea{min-height:180px;resize:vertical}
+pre{min-height:140px;overflow:auto;background:#0b1220;color:#a7f3d0;margin:0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+button,.btn{appearance:none;border:0;border-radius:9px;padding:.55rem .9rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-size:.92rem}
+button.primary{background:#111827;color:#fff}button.secondary{background:#fff;color:#111827;border:1px solid #d1d5db}
+.btn.green{background:#22c55e;color:#052e16}.btn.ghost{background:#fff;color:#111827;border:1px solid #d1d5db}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem;margin:1rem 0}
+.muted{color:#6b7280;font-size:.88rem}
+.stat{font-size:.85rem;color:#065f46;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:.45rem .65rem}
+footer{color:#6b7280;font-size:.85rem;margin-top:1.4rem;border-top:1px solid #e5e7eb;padding-top:.9rem}
+.err{color:#991b1b;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:.5rem .7rem;display:none}
+.pill{display:inline-block;border-radius:999px;padding:.1rem .55rem;font-size:.72rem;font-weight:800;margin-right:.35rem}
+.pill.H{background:#fecaca;color:#7f1d1d}.pill.M{background:#fde68a;color:#78350f}.pill.L{background:#bbf7d0;color:#14532d}.pill.I{background:#dbeafe;color:#1e3a8a}
+.find{border:1px solid #e5e7eb;border-radius:10px;padding:.7rem .8rem;margin:.55rem 0;background:#fafafa}
+.find h4{margin:0 0 .25rem;font-size:.95rem}
+.find p{margin:.2rem 0;font-size:.9rem}
+.kv{display:grid;grid-template-columns:7.5rem 1fr;gap:.25rem .6rem;font-size:.9rem;margin:.4rem 0}
+.kv b{color:#374151}
+.warnbox{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:.7rem .85rem;font-size:.9rem;margin:.7rem 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="muted" style="margin:.2rem 0"><a href="../">← Veriton Micro-Dev</a> · free tool · <a href="diff-risk.html">Diff Risk</a> · <a href="json-schema.html">JSON→Schema</a> · <a href="cron-explain.html">Cron</a> · <a href="html-to-json.html">HTML→JSON</a></p>
+  <div class="hero">
+    <span class="badge">FREE · browser-only · decode only</span>
+    <h1>JWT Decoder</h1>
+    <p>Paste a JWT. Inspect header + payload claims, human-readable <code>exp</code>/<code>nbf</code>/<code>iat</code>, and quick risk flags (alg=none, missing exp, far-future lifetime, sensitive claims). Runs entirely in your browser — nothing is uploaded.</p>
+    <p style="margin:.8rem 0 0"><img src="../assets/jwt-decode-og.jpg" alt="Free JWT decoder browser tool" width="640" height="360" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155"/></p>
+    <p><a class="btn green" href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">Auth path looks off? $1 review sprint →</a>
+       <a class="btn ghost" href="../SAMPLE_REVIEW.md">See sample review →</a>
+       <a class="btn ghost" href="diff-risk.html">Diff Risk scanner →</a></p>
+  </div>
+
+  <div class="warnbox"><strong>Does not verify signatures.</strong> This tool only base64url-decodes the token. Anyone can forge claims in an unsigned/edited JWT. Use your issuer’s JWKS / HMAC secret to verify before trusting any claim.</div>
+
+  <div class="card">
+    <div class="row">
+      <button class="primary" id="run">Decode JWT</button>
+      <button class="secondary" id="sample">Load sample</button>
+      <button class="secondary" id="copy">Copy report</button>
+      <button class="secondary" id="clear">Clear</button>
+      <span class="stat" id="stat">Ready</span>
+    </div>
+    <div class="err" id="err"></div>
+    <label for="inp">JWT</label>
+    <textarea id="inp" spellcheck="false" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"></textarea>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">Summary</h2>
+    <div id="summary" class="muted">Decode a token to see alg, typ, subject, expiry, and flags.</div>
+    <div id="finds"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card" style="margin:0">
+      <label>Header (JSON)</label>
+      <pre id="header">{}</pre>
+    </div>
+    <div class="card" style="margin:0">
+      <label>Payload claims (JSON)</label>
+      <pre id="payload">{}</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <label>Markdown report</label>
+    <pre id="out"># JWT decode report
+</pre>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:1.05rem">What this is / isn't</h2>
+    <ul class="muted">
+      <li><strong>Is:</strong> a local JWT inspector for debugging auth cookies, Bearer headers, and agent tokens.</li>
+      <li><strong>Is:</strong> useful for spotting <code>alg=none</code>, missing <code>exp</code>, huge lifetimes, and sensitive PII claims before you paste a token into a ticket.</li>
+      <li><strong>Isn't:</strong> a verifier. Signature check needs the real secret/JWKS and belongs server-side.</li>
+      <li><strong>Isn't:</strong> a full auth review. For PR-level auth findings + fix diff, use the <a href="mailto:acer-openclaw@agentmail.to?subject=Veriton%20order%3A%20Code%20Review%20Sprint%20%241">$1 Code Review Sprint</a>.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Veriton free tools · no cookies · no analytics · <a href="../">hire micro-dev</a> · <a href="https://github.com/veriton-dev/veriton-micro-dev">source</a></p>
+    <p class="muted">Updated 2026-09-06 · pairs with free <a href="diff-risk.html">Diff Risk</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const err = (m) => { const e=$('err'); if(!m){e.style.display='none';e.textContent='';return;} e.style.display='block'; e.textContent=m; };
+
+  // sample: classic jwt.io HS256 demo shape (signature not verified here)
+  const SAMPLE = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRGV2IiwiYWRtaW4iOnRydWUsImlhdCI6MTcxMDAwMDAwMCwiZXhwIjoxNzEwMDM2MDAwLCJpc3MiOiJodHRwczovL2F1dGguZXhhbXBsZSIsImF1ZCI6InZlcml0b24tdG9vbHMifQ.placeholder_sig_not_verified";
+
+  function b64urlToBytes(s){
+    s = String(s).replace(/-/g,'+').replace(/_/g,'/');
+    const pad = s.length % 4; if(pad) s += '='.repeat(4-pad);
+    const bin = atob(s);
+    const out = new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+    return out;
+  }
+  function b64urlToJson(part){
+    const bytes = b64urlToBytes(part);
+    const text = new TextDecoder('utf-8', {fatal:false}).decode(bytes);
+    return JSON.parse(text);
+  }
+  function fmtTs(sec){
+    if(typeof sec !== 'number' || !isFinite(sec)) return null;
+    try {
+      const d = new Date(sec * 1000);
+      if(isNaN(d.getTime())) return null;
+      return d.toISOString() + ' (' + d.toString() + ')';
+    } catch { return null; }
+  }
+  function ago(sec){
+    if(typeof sec !== 'number' || !isFinite(sec)) return '';
+    const now = Date.now()/1000;
+    const d = Math.round(sec - now);
+    const abs = Math.abs(d);
+    const unit = abs < 90 ? abs + 's' : abs < 3600*2 ? Math.round(abs/60)+'m' : abs < 86400*2 ? Math.round(abs/3600)+'h' : Math.round(abs/86400)+'d';
+    return d >= 0 ? ('in ' + unit) : (unit + ' ago');
+  }
+  function looksSensitiveKey(k){
+    return /password|passwd|secret|token|api[_-]?key|private|ssn|credit|cvv|authorization/i.test(k);
+  }
+
+  function analyze(header, payload, parts){
+    const flags = [];
+    const alg = (header && header.alg != null) ? String(header.alg) : '';
+    const typ = header && header.typ != null ? String(header.typ) : '';
+
+    if(!alg) flags.push({sev:'H', title:'Missing alg', detail:'Header has no alg. Reject tokens with unspecified algorithm.'});
+    if(/^none$/i.test(alg)) flags.push({sev:'H', title:'alg=none', detail:'Unsigned token. Treat as fully attacker-controlled claims.'});
+    if(/^HS/i.test(alg)) flags.push({sev:'L', title:'HMAC alg ('+alg+')', detail:'Symmetric secret must never ship to browsers or public agent prompts.'});
+    if(/^RS|^ES|^PS/i.test(alg)) flags.push({sev:'L', title:'Asymmetric alg ('+alg+')', detail:'Verify against issuer JWKS; pin kid if present.'});
+    if(header && header.kid == null && /^RS|^ES|^PS/i.test(alg)) flags.push({sev:'M', title:'No kid', detail:'Asymmetric JWT without kid makes key rotation and JWKS selection harder to reason about.'});
+
+    if(parts.length !== 3) flags.push({sev:'H', title:'Not 3 segments', detail:'Expected header.payload.signature. Got '+parts.length+' part(s).'});
+    if(parts[2] === '' || parts[2] === 'placeholder_sig_not_verified') flags.push({sev:'M', title:'Empty / placeholder signature', detail:'Signature segment empty or demo placeholder — not a production token.'});
+
+    const exp = payload && payload.exp;
+    const nbf = payload && payload.nbf;
+    const iat = payload && payload.iat;
+    const now = Date.now()/1000;
+    if(exp == null) flags.push({sev:'H', title:'No exp claim', detail:'Missing expiry. Long-lived bearer tokens are high-impact if leaked.'});
+    else if(typeof exp === 'number' && exp < now) flags.push({sev:'M', title:'Expired', detail:'exp is '+fmtTs(exp)+' — '+ago(exp)+'.'});
+    else if(typeof exp === 'number' && exp - now > 86400*30) flags.push({sev:'M', title:'Very long lifetime', detail:'exp more than ~30 days out. Prefer short-lived access tokens + refresh.'});
+    if(typeof nbf === 'number' && nbf > now + 60) flags.push({sev:'M', title:'Not valid yet (nbf)', detail:'nbf is '+fmtTs(nbf)+' — '+ago(nbf)+'.'});
+    if(typeof iat === 'number' && iat > now + 300) flags.push({sev:'M', title:'iat in the future', detail:'Clock skew or forged iat: '+fmtTs(iat)});
+    if(typeof iat === 'number' && typeof exp === 'number' && exp - iat > 86400*90) flags.push({sev:'M', title:'iat→exp span > 90d', detail:'Lifetime ' + Math.round((exp-iat)/86400) + ' days from issued-at.'});
+
+    if(payload && payload.admin === true) flags.push({sev:'M', title:'admin:true claim', detail:'Privilege claim present. Confirm server enforces this from a trusted source, not client JWT alone.'});
+    if(payload && (payload.role === 'admin' || payload.roles && String(payload.roles).toLowerCase().includes('admin'))) flags.push({sev:'M', title:'Admin role claim', detail:'Role elevation claim visible in payload.'});
+
+    const sens = [];
+    if(payload && typeof payload === 'object'){
+      for(const k of Object.keys(payload)){
+        if(looksSensitiveKey(k)) sens.push(k);
+        const v = payload[k];
+        if(typeof v === 'string' && /@/.test(v) && v.length < 120) {/* email ok */}
+        if(typeof v === 'string' && /^(sk-|rk_|ghp_|xox[baprs]-)/i.test(v)) sens.push(k+'(value looks like secret)');
+      }
+    }
+    if(sens.length) flags.push({sev:'H', title:'Sensitive claim keys', detail:'Keys/values look secret-bearing: '+sens.join(', ')+'. Prefer opaque server sessions over stuffing secrets into JWTs.'});
+
+    if(payload && payload.sub == null && payload.email == null && payload.user_id == null) flags.push({sev:'L', title:'No obvious subject', detail:'No sub/email/user_id. Fine for some service tokens; odd for user sessions.'});
+
+    return flags;
+  }
+
+  function render(header, payload, parts, flags){
+    $('header').textContent = JSON.stringify(header, null, 2);
+    $('payload').textContent = JSON.stringify(payload, null, 2);
+
+    const exp = payload && payload.exp, nbf = payload && payload.nbf, iat = payload && payload.iat;
+    const lines = [];
+    lines.push('<div class="kv">');
+    lines.push('<b>alg</b><span>'+esc(header && header.alg)+'</span>');
+    lines.push('<b>typ</b><span>'+esc(header && header.typ)+'</span>');
+    if(header && header.kid != null) lines.push('<b>kid</b><span>'+esc(header.kid)+'</span>');
+    lines.push('<b>sub</b><span>'+esc(payload && payload.sub)+'</span>');
+    lines.push('<b>iss</b><span>'+esc(payload && payload.iss)+'</span>');
+    lines.push('<b>aud</b><span>'+esc(typeof (payload&&payload.aud)==='object' ? JSON.stringify(payload.aud) : (payload&&payload.aud))+'</span>');
+    lines.push('<b>iat</b><span>'+esc(fmtTs(iat) || iat)+ (iat!=null?' · '+ago(iat):'') +'</span>');
+    lines.push('<b>nbf</b><span>'+esc(fmtTs(nbf) || nbf)+ (nbf!=null?' · '+ago(nbf):'') +'</span>');
+    lines.push('<b>exp</b><span>'+esc(fmtTs(exp) || exp)+ (exp!=null?' · '+ago(exp):'') +'</span>');
+    lines.push('<b>segments</b><span>'+parts.length+' · sig bytes ~'+(parts[2]?parts[2].length:0)+'</span>');
+    lines.push('</div>');
+    $('summary').innerHTML = lines.join('');
+
+    const box = $('finds');
+    if(!flags.length){
+      box.innerHTML = '<p class="muted">No heuristic flags. Still verify the signature server-side before trust.</p>';
+    } else {
+      box.innerHTML = flags.map(f => '<div class="find"><h4><span class="pill '+f.sev+'">'+f.sev+'</span>'+esc(f.title)+'</h4><p>'+esc(f.detail)+'</p></div>').join('');
+    }
+
+    const md = [];
+    md.push('# JWT decode report');
+    md.push('');
+    md.push('> Decode only — signature **not** verified.');
+    md.push('');
+    md.push('## Header');
+    md.push('```json');
+    md.push(JSON.stringify(header, null, 2));
+    md.push('```');
+    md.push('');
+    md.push('## Payload');
+    md.push('```json');
+    md.push(JSON.stringify(payload, null, 2));
+    md.push('```');
+    md.push('');
+    md.push('## Time claims');
+    md.push('- iat: ' + (fmtTs(iat) || iat || '—'));
+    md.push('- nbf: ' + (fmtTs(nbf) || nbf || '—'));
+    md.push('- exp: ' + (fmtTs(exp) || exp || '—'));
+    md.push('');
+    md.push('## Flags');
+    if(!flags.length) md.push('- (none)');
+    else flags.forEach(f => md.push('- **'+f.sev+'** '+f.title+': '+f.detail));
+    md.push('');
+    md.push('_Generated locally by Veriton free JWT decoder_');
+    $('out').textContent = md.join('\n');
+    $('stat').textContent = flags.length ? (flags.length + ' flag(s)') : 'Decoded · 0 flags';
+  }
+
+  function esc(s){
+    if(s == null) return '\u2014';
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function decode(){
+    err('');
+    let raw = $('inp').value.trim();
+    // strip Bearer prefix / whitespace/newlines
+    raw = raw.replace(/^Bearer\s+/i,'').replace(/\s+/g,'');
+    if(!raw){ err('Paste a JWT first.'); return; }
+    const parts = raw.split('.');
+    if(parts.length < 2){ err('JWT must have at least header.payload'); return; }
+    let header, payload;
+    try { header = b64urlToJson(parts[0]); }
+    catch(e){ err('Header decode failed: '+e.message); return; }
+    try { payload = b64urlToJson(parts[1]); }
+    catch(e){ err('Payload decode failed: '+e.message); return; }
+    while(parts.length < 3) parts.push('');
+    const flags = analyze(header, payload, parts);
+    render(header, payload, parts, flags);
+  }
+
+  $('run').onclick = decode;
+  $('sample').onclick = () => { $('inp').value = SAMPLE; decode(); };
+  $('clear').onclick = () => {
+    $('inp').value=''; $('header').textContent='{}'; $('payload').textContent='{}';
+    $('summary').textContent='Decode a token to see alg, typ, subject, expiry, and flags.';
+    $('finds').innerHTML=''; $('out').textContent='# JWT decode report\n'; $('stat').textContent='Ready'; err('');
+  };
+  $('copy').onclick = async () => {
+    try { await navigator.clipboard.writeText($('out').textContent); $('stat').textContent='Copied report'; }
+    catch { err('Clipboard blocked — select the report and copy manually.'); }
+  };
+  $('inp').addEventListener('keydown', (e) => {
+    if((e.metaKey||e.ctrlKey) && e.key==='Enter') decode();
+  });
+})();
+</script>
+</body>
+</html>
