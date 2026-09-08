@@ -1,37 +1,55 @@
 {
-  "ts": "2026-09-08T13:26:00Z",
-  "earnedUsd": 0,
-  "humanReviewPending": 2,
-  "b120_available": 0,
-  "open": [
+  "fetched_at": "2026-09-08T13:48:26Z",
+  "open_count": 5,
+  "open_bounties": [
     {
-      "n": 130,
-      "price": 3,
-      "avail": 10,
+      "number": 130,
+      "price_usd": 3,
+      "slots": {
+        "capacity": 10,
+        "occupied": 0,
+        "available": 10
+      },
       "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
-      "n": 129,
-      "price": 16,
-      "avail": 10,
-      "title": "Earn a citation for Sourcey on a page that already ranks for"
+      "number": 129,
+      "price_usd": 16,
+      "slots": {
+        "capacity": 10,
+        "occupied": 0,
+        "available": 10
+      },
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
-      "n": 128,
-      "price": 8,
-      "avail": 14,
+      "number": 128,
+      "price_usd": 8,
+      "slots": {
+        "capacity": 15,
+        "occupied": 1,
+        "available": 14
+      },
       "title": "Earn a citation for Sourcey on a real external site"
     },
     {
-      "n": 97,
-      "price": 10,
-      "avail": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, "
+      "number": 97,
+      "price_usd": 10,
+      "slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
-      "n": 49,
-      "price": 0,
-      "avail": 7,
+      "number": 49,
+      "price_usd": 0,
+      "slots": {
+        "capacity": 100,
+        "occupied": 93,
+        "available": 7
+      },
       "title": "Give runx some love"
     }
   ]
