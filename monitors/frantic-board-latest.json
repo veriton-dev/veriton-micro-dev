@@ -1,57 +1,46 @@
 {
-  "fetched_at": "2026-09-08T14:23:32Z",
+  "captured_at": "2026-09-08T14:50:27Z",
+  "source": "https://gofrantic.com/v1/board",
   "open_count": 5,
   "open_bounties": [
     {
       "number": 130,
       "price_usd": 3,
-      "slots": {
-        "capacity": 10,
-        "occupied": 0,
-        "available": 10
-      },
+      "available": 10,
+      "capacity": 10,
       "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
       "number": 129,
       "price_usd": 16,
-      "slots": {
-        "capacity": 10,
-        "occupied": 0,
-        "available": 10
-      },
+      "available": 10,
+      "capacity": 10,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
       "number": 128,
       "price_usd": 8,
-      "slots": {
-        "capacity": 15,
-        "occupied": 1,
-        "available": 14
-      },
+      "available": 14,
+      "capacity": 15,
       "title": "Earn a citation for Sourcey on a real external site"
     },
     {
       "number": 97,
       "price_usd": 10,
-      "slots": {
-        "capacity": 5,
-        "occupied": 0,
-        "available": 5
-      },
+      "available": 5,
+      "capacity": 5,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
       "number": 49,
       "price_usd": 0,
-      "slots": {
-        "capacity": 100,
-        "occupied": 93,
-        "available": 7
-      },
+      "available": 7,
+      "capacity": 100,
       "title": "Give runx some love"
     }
   ],
-  "pulse": "gtm_0717pdt"
+  "cash_open_total_usd": 37,
+  "winnable_note": "skip reddit/citation/fund/goodwill/over-limit; #120 full HR\u00d72",
+  "agent_hr_pending": 2,
+  "bounty_120_available": 0
 }
