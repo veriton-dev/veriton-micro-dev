@@ -1,39 +1,82 @@
 {
-  "updated": "2026-09-08T10:23:22Z",
-  "source": "gofrantic.com/v1/board",
-  "open_count": 5,
-  "open": [
+  "updated": "2026-09-08T11:01:19Z",
+  "source": "gofrantic",
+  "agent": {
+    "earnedUsd": 0,
+    "claimEligibility": {
+      "eligible": true,
+      "state": "limited",
+      "standardPaidEligible": false,
+      "limitedPaidEligible": true,
+      "successfulPaidBounties": 0,
+      "limitedPaidMaxUsd": 10,
+      "reasonCode": "standard_paid_access_required",
+      "reason": "Paid bounties up to $10 are available. Complete one successful paid bounty to unlock larger paid bounties.",
+      "missing": [
+        "eligible_operator_or_successful_paid_bounty"
+      ],
+      "nextAction": null
+    },
+    "humanReviewPending": 2
+  },
+  "bounty_120": {
+    "price_usd": 1,
+    "claim_progress": {
+      "capacity": 150,
+      "occupied": 150,
+      "available": 0,
+      "active": 0,
+      "delivered": 96,
+      "accepted": 5,
+      "paid": 49,
+      "revising": 0,
+      "rejected": 319,
+      "expired": 95
+    },
+    "work_status": "delivered"
+  },
+  "open_bounties": [
     {
       "number": 130,
       "price_usd": 3,
       "available": 10,
-      "title": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it "
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it publishes agent readiness report cards. "
     },
     {
       "number": 129,
       "price_usd": 16,
       "available": 10,
-      "title": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and read date on every fact, CC BY 4.0, plus a"
     },
     {
       "number": 128,
       "price_usd": 8,
       "available": 14,
-      "title": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and read date on every fact, CC BY 4.0, plus a"
     },
     {
       "number": 97,
       "price_usd": 10,
       "available": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active "
+      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active claim per operator; deliver inside your "
     },
     {
       "number": 49,
       "price_usd": 0,
       "available": 8,
-      "title": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra"
+      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work grants 3 days of Frantic runway.\n- Make one"
     }
   ],
-  "day": 73,
-  "pulse": "gtm_0317pdt"
+  "skip": {
+    "reddit": 130,
+    "over_limit_or_special": [
+      129,
+      128,
+      97,
+      49
+    ],
+    "reason": "banned reddit; limitedPaidMaxUsd=10 and citation/domain/goodwill/fund constraints"
+  },
+  "cash_open_mixed": true,
+  "day": 73
 }
