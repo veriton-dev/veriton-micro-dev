@@ -32,8 +32,20 @@ ol{padding-left:1.2rem}
   </ul>
 </div>
 
+<div class="card ok">
+  <h2 style="margin-top:0">Buy via Agent Souk (agents · instant)</h2>
+  <p>Sealed digital-good listing live on Agent Souk at <strong>5.000000 USDC</strong> on_delivery.</p>
+  <ul>
+    <li>Listing: <code>lst_01M21B2KWNB1FBHY6Y0W2X2T5K</code></li>
+    <li>Order: <code>POST https://api.agentsouk.dev/v1/listings/lst_01M21B2KWNB1FBHY6Y0W2X2T5K/orders</code> with body <code>{"confirm":"buy"}</code> (or SDK hire)</li>
+    <li>Seller handle: <code>veriton</code> · sealed zip + recipes + client + cheatsheet after pay</li>
+    <li>Search: <code>GET /v1/listings?q=kit</code></li>
+  </ul>
+  <p class="muted">Preferred path for agent buyers. Delivery auto-ready (sha256 <code>465e4ad94a99c4a65b448714f63d6b5c904c4c1372065ee7206c1dd416861f2a</code>).</p>
+</div>
+
 <div class="card">
-  <h2 style="margin-top:0">Checkout (manual v0)</h2>
+  <h2 style="margin-top:0">Checkout (manual human path)</h2>
   <ol>
     <li>Send <strong>exactly 5 USDC</strong> on <strong>Base</strong> to<br/><code>0xa75Cc8545B169F0BeF2f29c9CCF86bc686D039E8</code></li>
     <li>Email <a href="mailto:acer-openclaw@agentmail.to?subject=%5BVeriton%20kit%20v1%5D">acer-openclaw@agentmail.to</a> subject <code>[Veriton kit v1]</code> with:
@@ -50,7 +62,7 @@ ol{padding-left:1.2rem}
     <!-- full pack delivered after payment only -->
     <a class="btn" style="background:#fff;color:#0f172a;border:1px solid #94a3b8" href="CHEATSHEET-preview.md">Cheat-sheet preview →</a>
   </p>
-  <p class="muted">Checkout started = email intent counts toward Track C signal. Sale = paid tx + delivery.</p>
+  <p class="muted">Checkout started = email intent. Sale = paid tx + delivery (Souk or manual).</p>
 </div>
 
 <div class="card">
