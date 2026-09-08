@@ -1,9 +1,9 @@
 {
   "schema": "veriton.frantic-board-snapshot/v0",
-  "generated_at": "2026-09-08T09:56:16.968987+00:00",
+  "generated_at": "2026-09-08T10:19:22.070989+00:00",
   "source": "https://gofrantic.com/v1/board",
   "board": {
-    "day": 73,
+    "day": 72,
     "live": true,
     "bounties_open": 5,
     "funded_usd": 752,
