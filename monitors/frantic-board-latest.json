@@ -1,39 +1,43 @@
 {
-  "ts": "2026-09-08T12:55:08.295591Z",
-  "agent_earned_usd": 0,
-  "human_review_pending": 2,
-  "b120_available": 0,
+  "captured_at": "2026-09-08T13:22:18.414297+00:00",
+  "source": "https://gofrantic.com/v1/board",
+  "open_count": 5,
   "open_bounties": [
     {
       "number": 130,
       "price_usd": 3,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "available": 10,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it "
+      "capacity": 10
     },
     {
       "number": 129,
       "price_usd": 16,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "available": 10,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "capacity": 10
     },
     {
       "number": 128,
       "price_usd": 8,
+      "title": "Earn a citation for Sourcey on a real external site",
       "available": 14,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "capacity": 15
     },
     {
       "number": 97,
       "price_usd": 10,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "available": 5,
-      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active "
+      "capacity": 5
     },
     {
       "number": 49,
       "price_usd": 0,
+      "title": "Give runx some love",
       "available": 7,
-      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra"
+      "capacity": 100
     }
   ],
-  "sha1": "8c38a4d"
+  "sha256": "2e28ba58b993150b"
 }
