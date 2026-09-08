@@ -1,44 +1,46 @@
 {
-  "updated": "2026-09-08T11:52:31.111215+00:00",
-  "source": "https://gofrantic.com/v1/board",
-  "bounties_open": 5,
-  "funded_usd": 752,
+  "captured_at": "2026-09-08T12:21:16Z",
+  "source": "gofrantic.com",
+  "agent": {
+    "earnedUsd": 0,
+    "humanReviewPending": 2,
+    "limitedPaidMaxUsd": 10
+  },
+  "bounty_120": {
+    "available": 0,
+    "capacity": 150,
+    "occupied": 150
+  },
   "open_bounties": [
     {
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3,
       "available": 10,
-      "note_head": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it "
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it "
     },
     {
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16,
       "available": 10,
-      "note_head": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
     },
     {
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8,
       "available": 14,
-      "note_head": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re"
     },
     {
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10,
       "available": 5,
-      "note_head": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active "
+      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active "
     },
     {
       "number": 49,
-      "title": "Give runx some love",
       "price_usd": 0,
       "available": 7,
-      "note_head": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra"
+      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra"
     }
-  ],
-  "agent_note": "HR x2 on #120; board #130 reddit-skip #129>$10 #128 citation #97 fund #49 goodwill"
+  ]
 }
