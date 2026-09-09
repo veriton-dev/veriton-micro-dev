@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "veriton-demo-1",
+      "use": "sig",
+      "alg": "RS256",
+      "n": "sgIghaLazJnFEmpp3NdnfDtRLJk3wdv5jlyQZPFo6cmxAgvtTVXP72jgPaD_psWJWxUrxK8yf3oQGXS7cLZsek8HxJw5CAgOH4xFPUUfRAw4zBbztZjS5Iq9R-2HfChr1XPtcTUERbR-I1QKUfP0pMQsPyZ27FK3VREmPxVo0HyMJly0cWBhCI2wkW5nARWZtqqbBdZkPXtaZHAIjr1j-MIg2JxKIIPIahOFuoAdiMZ31O5MjsR_edDQUmwxdICI8NRWOHGeH7G-x0TZXEjaEWDyVZF6J2fJC0bP7hAKPJqisl5nKeMh9jdL6Qh_Uj1cBwt8jF3D_zZpSvwc9nQ84w",
+      "e": "AQAB"
+    }
+  ]
+}
