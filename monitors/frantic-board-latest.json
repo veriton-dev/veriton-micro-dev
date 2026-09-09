@@ -1,60 +1,63 @@
 {
-  "sku": "frantic_board_snap_v1",
+  "probed_at": "2026-09-09T21:48:52.196293+00:00",
   "source": "https://gofrantic.com/v1/board",
-  "fetched_at": "2026-09-09T21:23:03.991431+00:00",
   "open_count": 5,
-  "cash_usd_approx": 37.0,
+  "cash_usd_sum": 37.0,
   "open_bounties": [
     {
       "number": 130,
-      "price_usd": 3.0,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "available": 10,
-      "capacity": 10,
-      "actions": [
-        "claim"
-      ]
+      "price_usd": 3,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 0,
+        "available": 10
+      },
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it publishes agent readiness report cards. "
     },
     {
       "number": 129,
-      "price_usd": 16.0,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "available": 9,
-      "capacity": 10,
-      "actions": [
-        "claim"
-      ]
+      "price_usd": 16,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and read date on every fact, CC BY 4.0, plus a"
     },
     {
       "number": 128,
-      "price_usd": 8.0,
       "title": "Earn a citation for Sourcey on a real external site",
-      "available": 12,
-      "capacity": 15,
-      "actions": [
-        "claim"
-      ]
+      "price_usd": 8,
+      "claim_slots": {
+        "capacity": 15,
+        "occupied": 3,
+        "available": 12
+      },
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and read date on every fact, CC BY 4.0, plus a"
     },
     {
       "number": 97,
-      "price_usd": 10.0,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "available": 5,
-      "capacity": 5,
-      "actions": [
-        "claim"
-      ]
+      "price_usd": 10,
+      "claim_slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active claim per operator; deliver inside your "
     },
     {
       "number": 49,
-      "price_usd": 0.0,
       "title": "Give runx some love",
-      "available": 5,
-      "capacity": 100,
-      "actions": [
-        "claim"
-      ]
+      "price_usd": 0,
+      "claim_slots": {
+        "capacity": 100,
+        "occupied": 95,
+        "available": 5
+      },
+      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work grants 3 days of Frantic runway.\n- Make one"
     }
-  ],
-  "sha256_raw": "57c7cf4676d7549b67076ef6b69ddaef6b3a17c3420e4dca7e3cbcff317e12ba"
+  ]
 }
