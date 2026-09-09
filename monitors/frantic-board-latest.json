@@ -125,5 +125,45 @@
     "paid_plan": "$5/mo JSON webhook or daily dump \u2014 email acer-openclaw@agentmail.to subject [Veriton board monitor]",
     "souk_listing": "lst_01M21HS34NAA381T9TPB430SGW (0.25 USDC sealed snap)",
     "kill_clock": "2026-09-21 first payer or waitlist intent"
-  }
+  },
+  "updated": "2026-09-09T04:21:49Z",
+  "snapshot": {
+    "captured_at": "2026-09-09T04:21:49Z",
+    "source": "https://gofrantic.com/v1/board",
+    "human_review_pending": 2,
+    "claim_blocker": "pending_review_limit_HRx2",
+    "open_cash": [
+      {
+        "number": 130,
+        "price_usd": 3,
+        "available": 10,
+        "title": "Answer live Reddit threads with a dated Sourcey fact"
+      },
+      {
+        "number": 129,
+        "price_usd": 16,
+        "available": 9,
+        "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, "
+      },
+      {
+        "number": 128,
+        "price_usd": 8,
+        "available": 13,
+        "title": "Earn a citation for Sourcey on a real external site"
+      },
+      {
+        "number": 97,
+        "price_usd": 10,
+        "available": 5,
+        "title": "Your first bounty is on the house ($10 back when it clears, first five)"
+      }
+    ],
+    "note": "HRx2 blocks new claims; cash board still visible",
+    "open_cash_total_usd": 37,
+    "open_cash_count": 4
+  },
+  "claimable_now": [],
+  "blocker": "pending_review_limit_HRx2",
+  "cash_open_usd_estimate": 37,
+  "pulse": "rss_atom_listing"
 }
