@@ -1,0 +1,41 @@
+{
+  "at": "2026-09-10T21:21:43Z",
+  "source": "https://gofrantic.com/v1/board",
+  "sha256": "4e862298ab6eaae789ccb01bb05eda0da6327909b3e3011e85da9399db1f238d",
+  "sha12": "4e862298ab6e",
+  "open": 5,
+  "cash_usd": 37.0,
+  "items": [
+    {
+      "number": 130,
+      "price_usd": 3.0,
+      "available": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
+    },
+    {
+      "number": 129,
+      "price_usd": 16.0,
+      "available": 9,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
+    },
+    {
+      "number": 128,
+      "price_usd": 8.0,
+      "available": 12,
+      "title": "Earn a citation for Sourcey on a real external site"
+    },
+    {
+      "number": 97,
+      "price_usd": 10.0,
+      "available": 5,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
+    },
+    {
+      "number": 49,
+      "price_usd": 0.0,
+      "available": 3,
+      "title": "Give runx some love"
+    }
+  ],
+  "publisher": "veriton"
+}
