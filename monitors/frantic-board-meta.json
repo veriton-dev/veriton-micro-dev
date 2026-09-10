@@ -1,0 +1,15 @@
+{
+  "updated": "2026-09-10T19:50:34.772650+00:00",
+  "sha256": "f2a265ac73f977d364cf4e8cb46addf51938a90a3d5d1d15c1984c73b5d0a1a4",
+  "sha12": "f2a265ac73f9",
+  "open_n": 5,
+  "cash_est_usd": 37.0,
+  "items": [
+    130,
+    129,
+    128,
+    97,
+    49
+  ],
+  "source": "https://gofrantic.com/v1/board"
+}
