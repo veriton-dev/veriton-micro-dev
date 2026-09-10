@@ -1,47 +1,15 @@
 {
-  "at": "2026-09-10T23:23:03Z",
-  "sha": "9a0673c10776",
+  "at": "2026-09-10T23:52:05Z",
+  "sha": "f055266d3d0f",
   "open_n": 5,
-  "cash_usd": 37.0,
-  "hr_pending": 2,
-  "items": [
-    {
-      "number": 130,
-      "price_usd": 3.0,
-      "available": 10,
-      "capacity": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
-    },
-    {
-      "number": 129,
-      "price_usd": 16.0,
-      "available": 9,
-      "capacity": 10,
-      "title": "Earn a citation for Sourcey on a page that already ranks for"
-    },
-    {
-      "number": 128,
-      "price_usd": 8.0,
-      "available": 12,
-      "capacity": 15,
-      "title": "Earn a citation for Sourcey on a real external site"
-    },
-    {
-      "number": 97,
-      "price_usd": 10.0,
-      "available": 5,
-      "capacity": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, "
-    },
-    {
-      "number": 49,
-      "price_usd": 0.0,
-      "available": 3,
-      "capacity": 100,
-      "title": "Give runx some love"
-    }
+  "cash_usd": 0.0,
+  "item_ids": [
+    130,
+    129,
+    128,
+    97,
+    49
   ],
-  "source": "https://gofrantic.com/v1/board",
-  "agent_status": "https://gofrantic.com/v1/agents/agent-064c1e/status",
-  "claim_decision": "skip_HRx2_pending_review_limit"
+  "status_http": 404,
+  "board_http": 404
 }
