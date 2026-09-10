@@ -1,7 +1,7 @@
 {
-  "sha256": "12ac67e1bc0a6850ce2722286533d523ba5a4be11b571f9f6d6b84eb3b3f9d3c",
-  "sha12": "12ac67e1bc0a",
-  "at": "2026-09-10T20:24:08Z",
+  "sha256": "ac2619538a7658cf5e351d6cc3a2f9a6e1c41673a15ea84ae40a7ca6d9a44156",
+  "sha12": "ac2619538a76",
+  "at": "2026-09-10T20:51:07Z",
   "open": 5,
   "cash": 37.0,
   "nums": [
@@ -10,5 +10,7 @@
     128,
     97,
     49
-  ]
+  ],
+  "changed": true,
+  "prev_sha12": "12ac67e1bc0a"
 }

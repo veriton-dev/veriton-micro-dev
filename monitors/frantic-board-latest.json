@@ -1,83 +1,48 @@
 {
-  "object": "frantic_board_snapshot",
-  "generated_at": "2026-09-10T20:24:08Z",
-  "source": "https://gofrantic.com/v1/board",
-  "open_count": 5,
-  "board_cash_usd": 37.0,
-  "open_numbers": [
-    130,
-    129,
-    128,
-    97,
-    49
-  ],
-  "sha256_12": "12ac67e1bc0a",
-  "sha256": "12ac67e1bc0a6850ce2722286533d523ba5a4be11b571f9f6d6b84eb3b3f9d3c",
-  "open_bounties": [
+  "at": "2026-09-10T20:51:07Z",
+  "cash_usd": 37.0,
+  "items": [
     {
+      "available": 10,
+      "capacity": 10,
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it ",
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3,
-      "claim_slots": {
-        "capacity": 10,
-        "occupied": 0,
-        "available": 10
-      },
-      "work_status": "open",
-      "page_url": "https://gofrantic.com/bounties/130"
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
+      "available": 9,
+      "capacity": 10,
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re",
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16,
-      "claim_slots": {
-        "capacity": 10,
-        "occupied": 1,
-        "available": 9
-      },
-      "work_status": "open",
-      "page_url": "https://gofrantic.com/bounties/129"
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
+      "available": 12,
+      "capacity": 15,
+      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re",
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8,
-      "claim_slots": {
-        "capacity": 15,
-        "occupied": 3,
-        "available": 12
-      },
-      "work_status": "open",
-      "page_url": "https://gofrantic.com/bounties/128"
+      "title": "Earn a citation for Sourcey on a real external site"
     },
     {
+      "available": 5,
+      "capacity": 5,
+      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active ",
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10,
-      "claim_slots": {
-        "capacity": 5,
-        "occupied": 0,
-        "available": 5
-      },
-      "work_status": "open",
-      "page_url": "https://gofrantic.com/bounties/97"
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
+      "available": 4,
+      "capacity": 100,
+      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra",
       "number": 49,
-      "title": "Give runx some love",
       "price_usd": 0,
-      "claim_slots": {
-        "capacity": 100,
-        "occupied": 96,
-        "available": 4
-      },
-      "work_status": "open",
-      "page_url": "https://gofrantic.com/bounties/49"
+      "title": "Give runx some love"
     }
   ],
-  "notes": {
-    "b120_available": 0,
-    "getblock_sourcey": "https://sourcey.com/log/getblock",
-    "publisher": "veriton"
-  }
+  "open": 5,
+  "source": "https://gofrantic.com/v1/board"
 }
