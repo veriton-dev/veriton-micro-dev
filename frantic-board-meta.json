@@ -1,15 +1,8 @@
 {
-  "at": "2026-09-10T21:52:07Z",
-  "sha12": "205998027017",
-  "sha256": "20599802701735322988bbbb9a04bb493f0642c4edf4eceb43e10d732b2bdd42",
+  "at": "2026-09-10T23:23:03Z",
+  "sha": "9a0673c10776",
   "open_n": 5,
-  "cash_usd": 37.0,
-  "open_ids": [
-    130,
-    129,
-    128,
-    97,
-    49
-  ],
-  "source": "https://gofrantic.com/v1/board"
+  "cash": 37.0,
+  "hr": 2,
+  "claim": "skip_HRx2_pending_review_limit"
 }
