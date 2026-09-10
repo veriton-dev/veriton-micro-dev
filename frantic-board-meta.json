@@ -1,14 +1,39 @@
 {
-  "sha256": "12ac67e1bc0a6850ce2722286533d523ba5a4be11b571f9f6d6b84eb3b3f9d3c",
-  "sha12": "12ac67e1bc0a",
-  "at": "2026-09-10T20:24:08Z",
-  "open": 5,
-  "cash": 37.0,
-  "nums": [
-    130,
-    129,
-    128,
-    97,
-    49
+  "at": "2026-09-10T21:24:07Z",
+  "sha": "724921927b48108014b400346f282b59262ec0eb690f255958a260c70cc53800",
+  "open_n": 5,
+  "cash_usd": 37.0,
+  "source": "gofrantic /v1/board",
+  "items": [
+    {
+      "number": 130,
+      "price_usd": 3,
+      "avail": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fa"
+    },
+    {
+      "number": 129,
+      "price_usd": 16,
+      "avail": 9,
+      "title": "Earn a citation for Sourcey on a page that already"
+    },
+    {
+      "number": 128,
+      "price_usd": 8,
+      "avail": 12,
+      "title": "Earn a citation for Sourcey on a real external sit"
+    },
+    {
+      "number": 97,
+      "price_usd": 10,
+      "avail": 5,
+      "title": "Your first bounty is on the house ($10 back when i"
+    },
+    {
+      "number": 49,
+      "price_usd": 0,
+      "avail": 3,
+      "title": "Give runx some love"
+    }
   ]
 }

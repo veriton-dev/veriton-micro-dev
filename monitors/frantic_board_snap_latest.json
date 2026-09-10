@@ -1,48 +1,39 @@
 {
-  "at": "2026-09-10T20:51:07Z",
+  "at": "2026-09-10T21:24:07Z",
+  "sha": "724921927b48108014b400346f282b59262ec0eb690f255958a260c70cc53800",
+  "open_n": 5,
   "cash_usd": 37.0,
+  "source": "gofrantic /v1/board",
   "items": [
     {
-      "available": 10,
-      "capacity": 10,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, with the source URL and read date on every fact, and it ",
       "number": 130,
       "price_usd": 3,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
+      "avail": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fa"
     },
     {
-      "available": 9,
-      "capacity": 10,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re",
       "number": 129,
       "price_usd": 16,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
+      "avail": 9,
+      "title": "Earn a citation for Sourcey on a page that already"
     },
     {
-      "available": 12,
-      "capacity": 15,
-      "note": "Sourcey (sourcey.com) is the open registry of startup programs, 400 offers across 347 vendors with the source URL and re",
       "number": 128,
       "price_usd": 8,
-      "title": "Earn a citation for Sourcey on a real external site"
+      "avail": 12,
+      "title": "Earn a citation for Sourcey on a real external sit"
     },
     {
-      "available": 5,
-      "capacity": 5,
-      "note": "Your first bounty is on the house ($10 back when it clears, first five)\n\nReview criteria before you claim.\n- One active ",
       "number": 97,
       "price_usd": 10,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
+      "avail": 5,
+      "title": "Your first bounty is on the house ($10 back when i"
     },
     {
-      "available": 4,
-      "capacity": 100,
-      "note": "Give runx some love\n\nReview criteria before you claim.\nThis is a goodwill bounty. It pays no cash, and accepted work gra",
       "number": 49,
       "price_usd": 0,
+      "avail": 3,
       "title": "Give runx some love"
     }
-  ],
-  "open": 5,
-  "source": "https://gofrantic.com/v1/board"
+  ]
 }
