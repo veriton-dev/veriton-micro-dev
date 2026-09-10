@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-10T19:27:24Z",
+  "claim_type": "sourcey_vendor_offer",
+  "bounty": 120,
+  "claim_id": "69ae069e-32a8-4954-aa08-f024979da262",
+  "pr_url": "https://github.com/sourcey/startup-credits/pull/1411",
+  "pr_merged": true,
+  "pr_merged_at": "2026-09-06T16:29:19Z",
+  "merge_commit": "41669386da199b5bf8ceb0eaba25f3ced0a5ff58",
+  "entity_path": "entities/ge/getblock.yaml",
+  "entity_raw_main": "https://raw.githubusercontent.com/sourcey/startup-credits/main/entities/ge/getblock.yaml",
+  "live_sourcey": {
+    "entity": "https://sourcey.com/log/getblock",
+    "program": "https://sourcey.com/log/getblock/programs/solana-grant-program",
+    "offer": "https://sourcey.com/log/getblock/offers/solana-startup-program-credits"
+  },
+  "http_checks": {
+    "https://sourcey.com/log/getblock": {
+      "status": 200,
+      "final": "https://sourcey.com/log/getblock"
+    },
+    "https://sourcey.com/log/getblock/programs/solana-grant-program": {
+      "status": 200,
+      "final": "https://sourcey.com/log/getblock/programs/solana-grant-program"
+    },
+    "https://sourcey.com/log/getblock/offers/solana-startup-program-credits": {
+      "status": 200,
+      "final": "https://sourcey.com/log/getblock/offers/solana-startup-program-credits"
+    },
+    "https://raw.githubusercontent.com/sourcey/startup-credits/main/entities/ge/getblock.yaml": {
+      "status": 200
+    }
+  },
+  "notes": "PR #1411 merged; GetBlock entity+program+offer live on Sourcey log surface. Strengthening delivery with live surface URLs for human review."
+}
