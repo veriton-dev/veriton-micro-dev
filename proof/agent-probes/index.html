@@ -2,31 +2,35 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Veriton agent-probes proof — 2026-09-11.10</title>
+<title>Veriton agent-probes proof — 2026-09-11.11</title>
 <body style="font-family:system-ui,sans-serif;max-width:48rem;margin:2rem auto;padding:0 1rem;line-height:1.5">
 <h1>Agent probes proof</h1>
-<p>Shipped <strong>2026-09-11</strong> during xAI unlimited day burst-build. Version <strong>2026-09-11.10</strong>.</p>
+<p>Shipped <strong>2026-09-11</strong> during xAI unlimited day burst-build. Version <strong>2026-09-11.11</strong>.</p>
 <p>Production API: <a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></p>
 <p>Catalog: <a href="https://veriton-tls-json.vercel.app/api/catalog"><code>/api/catalog</code></a> · OpenAPI: <a href="https://veriton-tls-json.vercel.app/api/openapi"><code>/api/openapi</code></a></p>
-<p>Hobby plan: single serverless router (<code>/api/router</code>) + rewrites → <strong>44 endpoints</strong>.</p>
-<h2>New in .10</h2>
+<p>Hobby plan: single serverless router (<code>/api/router</code>) + rewrites → <strong>50 endpoints</strong>.</p>
+<h2>New in .11</h2>
 <ul>
-  <li><code>/api/catalog</code> — machine-readable endpoint catalog (fixes prior 404)</li>
-  <li><code>/api/ns</code> — nameserver + SOA + glue</li>
-  <li><code>/api/tdm</code> — AI crawler / TDM policy (robots + ai.txt + llms + tdmrep)</li>
-  <li><code>/api/identity</code> — agent identity pack (card + mcp + x402 + did + openapi)</li>
+  <li><code>/api/cdn</code> — CDN/WAF fingerprint (headers + CNAME)</li>
+  <li><code>/api/csp</code> — Content-Security-Policy parse + score</li>
+  <li><code>/api/manifest</code> — Web App Manifest / PWA signals</li>
+  <li><code>/api/atproto</code> — AT Protocol / Bluesky identity + PDS</li>
+  <li><code>/api/matrix</code> — Matrix homeserver discovery</li>
+  <li><code>/api/asn</code> — ASN/org/prefix (Team Cymru + geo)</li>
 </ul>
 <h2>curl smoke</h2>
 <pre style="background:#f4f4f5;padding:1rem;overflow:auto">
 curl -sS 'https://veriton-tls-json.vercel.app/api/health'
 curl -sS 'https://veriton-tls-json.vercel.app/api/catalog' | head -c 400
-curl -sS 'https://veriton-tls-json.vercel.app/api/ns?host=example.com'
-curl -sS 'https://veriton-tls-json.vercel.app/api/tdm?host=nytimes.com' | head -c 500
-curl -sS 'https://veriton-tls-json.vercel.app/api/identity?host=veriton-html-json-api.netlify.app'
-curl -sS 'https://veriton-html-json-api.netlify.app/.well-known/x402' | head -c 400
+curl -sS 'https://veriton-tls-json.vercel.app/api/cdn?host=cloudflare.com'
+curl -sS 'https://veriton-tls-json.vercel.app/api/csp?url=https://github.com' | head -c 500
+curl -sS 'https://veriton-tls-json.vercel.app/api/manifest?host=github.com' | head -c 500
+curl -sS 'https://veriton-tls-json.vercel.app/api/atproto?host=bsky.app' | head -c 500
+curl -sS 'https://veriton-tls-json.vercel.app/api/matrix?host=matrix.org' | head -c 500
+curl -sS 'https://veriton-tls-json.vercel.app/api/asn?ip=1.1.1.1'
 curl -sS 'https://veriton-html-json-api.netlify.app/v1/ready'
 </pre>
-<p>Paid rail + catalog: <a href="https://veriton-html-json-api.netlify.app/v1/catalog">x402 catalog 0.1.7</a> · <a href="https://veriton-html-json-api.netlify.app/v1/ready">/v1/ready</a></p>
+<p>Paid rail + catalog: <a href="https://veriton-html-json-api.netlify.app/v1/catalog">x402 catalog 0.1.8</a> · <a href="https://veriton-html-json-api.netlify.app/v1/ready">/v1/ready</a></p>
 <p>Mirrors: <a href="https://veriton-micro-dev.surge.sh/proof/agent-probes/">surge</a> · <a href="https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/">GH Pages</a></p>
 <p>Contact: acer-openclaw@agentmail.to · GitHub veriton-dev</p>
 </body>

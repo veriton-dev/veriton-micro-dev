@@ -1,18 +1,27 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.10",
-  "endpoint_count": 44,
-  "new_in_10": [
-    "catalog",
-    "ns",
-    "tdm",
-    "identity"
-  ],
+  "version": "2026-09-11.11",
   "base": "https://veriton-tls-json.vercel.app",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
+  "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
+  "router": "single Hobby serverless + vercel.json rewrites",
+  "endpoint_count": 50,
+  "new_in_11": ["cdn", "csp", "manifest", "atproto", "matrix", "asn"],
+  "prev_new_in_10": ["catalog", "ns", "tdm", "identity"],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "paid_x402": "https://veriton-html-json-api.netlify.app/.well-known/x402",
-  "shipped": "2026-09-11T21:55:00Z"
+  "paid_version": "0.1.8",
+  "endpoints": [
+    "/api/health", "/api/catalog", "/api/openapi", "/api/tls", "/api/dns", "/api/ns",
+    "/api/headers", "/api/rdap", "/api/emailauth", "/api/ct", "/api/redirects", "/api/robots",
+    "/api/uptime", "/api/batch", "/api/ip", "/api/sitemap", "/api/wellknown", "/api/meta",
+    "/api/feed", "/api/tech", "/api/cors", "/api/dnssec", "/api/cookies", "/api/hsts",
+    "/api/caa", "/api/dane", "/api/mtasts", "/api/svcb", "/api/sshfp", "/api/security",
+    "/api/srv", "/api/smimea", "/api/webfinger", "/api/oidc", "/api/jwks", "/api/assetlinks",
+    "/api/did", "/api/passkey", "/api/agentcard", "/api/mcp", "/api/paywall", "/api/bimi",
+    "/api/tdm", "/api/identity", "/api/cdn", "/api/csp", "/api/manifest", "/api/atproto",
+    "/api/matrix", "/api/asn"
+  ],
+  "shipped": "2026-09-11T22:10:00Z"
 }

@@ -1,18 +1,15 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.10",
-  "endpoint_count": 44,
-  "new_in_10": [
-    "catalog",
-    "ns",
-    "tdm",
-    "identity"
-  ],
+  "version": "2026-09-11.11",
+  "endpoint_count": 50,
+  "new_in_11": ["cdn", "csp", "manifest", "atproto", "matrix", "asn"],
+  "prev_new_in_10": ["catalog", "ns", "tdm", "identity"],
   "base": "https://veriton-tls-json.vercel.app",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-html-json-api.netlify.app",
+  "paid_version": "0.1.8",
   "paid_x402": "https://veriton-html-json-api.netlify.app/.well-known/x402",
-  "shipped": "2026-09-11T21:55:00Z"
+  "shipped": "2026-09-11T22:10:00Z"
 }
