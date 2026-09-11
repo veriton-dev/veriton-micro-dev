@@ -1,16 +1,9 @@
 {
-  "at": "2026-09-10T23:56:23Z",
-  "sha": "d69094c14336",
-  "open_n": 5,
-  "cash_usd": 37.0,
-  "item_ids": [
-    130,
-    129,
-    128,
-    97,
-    49
-  ],
-  "status_http": 200,
-  "board_http": 200,
-  "hr_n": 2
+  "sha12": "44b4b195410b",
+  "sha256": "44b4b195410ba9f0341700e920da02348c9b625c6a2021f9a0fa59dd901180dc",
+  "generated_at": "2026-09-11T01:21:17Z",
+  "pulse": "0117",
+  "cash_open_usd": 37.0,
+  "open_or_claimable_count": 5,
+  "fixed_at": "2026-09-11T01:21:17Z"
 }
