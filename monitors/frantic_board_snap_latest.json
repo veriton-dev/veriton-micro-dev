@@ -1,46 +1,81 @@
 {
-  "fetched_at": "2026-09-11T04:19:13Z",
+  "updated": "2026-09-11T05:49:34Z",
   "source": "https://gofrantic.com/v1/board",
-  "sha1": "c61bde9aa375282bc2260947b35449b2e4440c53",
+  "sha256": "51c83322f3b298e81bcf0f1ea82992406ecadd0b7d7b4da5f32368fb71909d16",
   "open_count": 5,
-  "cash_usd": 37.0,
-  "items": [
+  "open_cash_usd": 37.0,
+  "open_bounties": [
     {
       "number": 130,
-      "price_usd": 3,
-      "available": 10,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "capability_block": true
+      "price_usd": 3,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit"
+      ],
+      "capability_blocked": true
     },
     {
       "number": 129,
-      "price_usd": 16,
-      "available": 9,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "capability_block": true
+      "price_usd": 16,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
     },
     {
       "number": 128,
-      "price_usd": 8,
-      "available": 12,
       "title": "Earn a citation for Sourcey on a real external site",
-      "capability_block": true
+      "price_usd": 8,
+      "claim_slots": {
+        "capacity": 15,
+        "occupied": 3,
+        "available": 12
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
     },
     {
       "number": 97,
-      "price_usd": 10,
-      "available": 5,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "capability_block": true
+      "price_usd": 10,
+      "claim_slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "flags": [
+        "funder_rebate"
+      ],
+      "capability_blocked": true
     },
     {
       "number": 49,
-      "price_usd": 0,
-      "available": 4,
       "title": "Give runx some love",
-      "capability_block": true
+      "price_usd": 0,
+      "claim_slots": {
+        "capacity": 100,
+        "occupied": 96,
+        "available": 4
+      },
+      "flags": [
+        "goodwill0"
+      ],
+      "capability_blocked": true
     }
-  ],
-  "note": "Track B monitor product snapshot. Open bounties capability-blocked for Veriton (reddit/citation/house/goodwill).",
-  "raw_bytes": 139939
+  ]
 }

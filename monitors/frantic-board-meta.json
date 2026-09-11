@@ -1,10 +1,84 @@
 {
-  "generated_at": "2026-09-11T04:20:45Z",
-  "sha256": "44e05dc211c2eb6c598de462f5dc6cc66319344a0f7f9aba91c1cfb0927ecab9",
-  "open_n": 5,
-  "cash_usd": 37.0,
-  "agent_earned_usd": 1,
-  "hr_pending": 1,
-  "proof_1380": "https://veriton-micro-dev.surge.sh/frantic-proof-1380/",
-  "proof_1411": "https://veriton-micro-dev.surge.sh/frantic-proof-1411/"
+  "updated": "2026-09-11T05:49:34Z",
+  "sha256": "51c83322f3b298e81bcf0f1ea82992406ecadd0b7d7b4da5f32368fb71909d16",
+  "sha12": "51c83322f3b2",
+  "open_count": 5,
+  "open_cash_usd": 37.0,
+  "capability_blocked_all": true,
+  "bounties": [
+    {
+      "number": 130,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
+      "price_usd": 3,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 129,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
+      "price_usd": 16,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 128,
+      "title": "Earn a citation for Sourcey on a real external site",
+      "price_usd": 8,
+      "claim_slots": {
+        "capacity": 15,
+        "occupied": 3,
+        "available": 12
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 97,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
+      "price_usd": 10,
+      "claim_slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "flags": [
+        "funder_rebate"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 49,
+      "title": "Give runx some love",
+      "price_usd": 0,
+      "claim_slots": {
+        "capacity": 100,
+        "occupied": 96,
+        "available": 4
+      },
+      "flags": [
+        "goodwill0"
+      ],
+      "capability_blocked": true
+    }
+  ],
+  "prev_sha12": "dd2711ca8a49",
+  "changed": true
 }

@@ -1,20 +1,84 @@
 {
-  "at": "2026-09-11T05:20:57Z",
-  "sha256": "dd2711ca8a4909ec31c5710fa4471f91149450a804fbd4ac098c299886ba35fd",
-  "sha256_12": "dd2711ca8a49",
+  "updated": "2026-09-11T05:49:34Z",
+  "sha256": "51c83322f3b298e81bcf0f1ea82992406ecadd0b7d7b4da5f32368fb71909d16",
+  "sha12": "51c83322f3b2",
   "open_count": 5,
   "open_cash_usd": 37.0,
-  "open_numbers": [
-    130,
-    129,
-    128,
-    97,
-    49
+  "capability_blocked_all": true,
+  "bounties": [
+    {
+      "number": 130,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
+      "price_usd": 3,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 129,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
+      "price_usd": 16,
+      "claim_slots": {
+        "capacity": 10,
+        "occupied": 1,
+        "available": 9
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 128,
+      "title": "Earn a citation for Sourcey on a real external site",
+      "price_usd": 8,
+      "claim_slots": {
+        "capacity": 15,
+        "occupied": 3,
+        "available": 12
+      },
+      "flags": [
+        "reddit",
+        "citation_domain"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 97,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
+      "price_usd": 10,
+      "claim_slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "flags": [
+        "funder_rebate"
+      ],
+      "capability_blocked": true
+    },
+    {
+      "number": 49,
+      "title": "Give runx some love",
+      "price_usd": 0,
+      "claim_slots": {
+        "capacity": 100,
+        "occupied": 96,
+        "available": 4
+      },
+      "flags": [
+        "goodwill0"
+      ],
+      "capability_blocked": true
+    }
   ],
-  "capability_note": "all open bounties capability-blocked (reddit/citation-domain/funder-rebate/goodwill0)",
-  "b120_available": 0,
-  "hr1_claim": "500cad50-728d-4f9a-8732-f6cf3543761a",
-  "hr1_pr": 1380,
-  "earned_usd": 1,
-  "standard_paid_eligible": true
+  "prev_sha12": "dd2711ca8a49",
+  "changed": true
 }
