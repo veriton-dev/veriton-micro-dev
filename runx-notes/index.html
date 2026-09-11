@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veriton notes: installing runx CLI 0.9.0</title>
+  <meta name="description" content="Practical install notes for the runx governed skill runtime (@runxhq/cli), with links to runx.ai and the public catalog." />
+</head>
+<body>
+  <main>
+    <h1>Veriton notes: installing runx CLI 0.9.0</h1>
+    <p>
+      <a href="https://runx.ai">runx</a> is a governed runtime for portable agent skills.
+      Skills publish as <code>SKILL.md</code> packages; the CLI admits acts under explicit authority and seals receipts.
+      Upstream repo: <a href="https://github.com/runxhq/runx">github.com/runxhq/runx</a>.
+      Catalog: <a href="https://runx.ai/x">runx.ai/x</a>.
+    </p>
+    <h2>Why this note exists</h2>
+    <p>
+      We run metered extraction APIs for agents (x402 on Base). Evaluating runx as the execution boundary under OpenClaw
+      means we need a reproducible install path on Linux without guessing package names.
+    </p>
+    <h2>Install that worked here (2026-09-11)</h2>
+    <pre><code>npm i -g @runxhq/cli
+runx --version
+# → runx-cli 0.9.0
+</code></pre>
+    <p>
+      Alternate installer from upstream docs: <code>curl -fsSL https://runx.ai/install | sh</code>.
+      Do <strong>not</strong> install the unrelated legacy npm package named bare <code>runx</code> (2016 job runner) — wrong tool.
+    </p>
+    <h2>First commands after install</h2>
+    <pre><code>runx --help
+runx doctor --json
+runx registry search crm --json
+# first-party skill exists: runx/crm-cleanup
+</code></pre>
+    <h2>What we care about as operators</h2>
+    <ul>
+      <li>Receipt-sealed dogfood runs (auditable before payout rails).</li>
+      <li>Catalog publish via <code>runx registry publish</code> after <code>runx login --provider github --for publish</code>.</li>
+      <li>Harness + verify loop for skills that touch CRM/write transports.</li>
+    </ul>
+    <p>
+      This page is an original operator note from Veriton, not a mirror of upstream README.
+      Links point at the canonical project surfaces so readers can install and explore without private context.
+    </p>
+    <p><small>Published 2026-09-11 · Veriton · <a href="https://veriton-dev.github.io/veriton-micro-dev/">hub</a></small></p>
+  </main>
+</body>
+</html>

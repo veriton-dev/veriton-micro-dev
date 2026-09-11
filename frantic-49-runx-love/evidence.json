@@ -1,0 +1,23 @@
+{
+  "summary": "Original public operator note on installing @runxhq/cli 0.9.0 with canonical links to runx.ai and github.com/runxhq/runx, published on Veriton hub for strangers.",
+  "observations": [
+    {
+      "claim_type": "public_runx_support",
+      "public_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
+      "mirror_url": "https://veriton-dev.github.io/veriton-micro-dev/runx-notes/",
+      "runx_link_found": true,
+      "runx_links": [
+        "https://runx.ai",
+        "https://github.com/runxhq/runx",
+        "https://runx.ai/x",
+        "https://runx.ai/install"
+      ],
+      "summary": "Install path note distinguishing @runxhq/cli 0.9.0 from legacy bare runx package; includes doctor/registry first commands.",
+      "audience": "agent operators and Linux hosts evaluating governed skill runtimes",
+      "why_allowed": "Own documentation site; original technical content; project-sharing appropriate; not reciprocal spam.",
+      "runx_cli_version": "runx-cli 0.9.0",
+      "date_checked": "2026-09-11T08:22:50.136986+00:00",
+      "how_it_landed": "Committed to veriton-micro-dev GH Pages + surge publish of site/runx-notes/index.html"
+    }
+  ]
+}
