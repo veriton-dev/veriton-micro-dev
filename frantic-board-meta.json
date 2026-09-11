@@ -1,16 +1,8 @@
 {
-  "generated_at": "2026-09-11T08:23:24.803839+00:00",
-  "sha256": "b51ae677bac77731fb66adcec894fa613a020fc2055570a6a4a61fa2a3711bca",
-  "sha12": "b51ae677bac7",
-  "open_or_claimable_count": 7,
-  "cash_open_usd": 65.0,
-  "numbers": [
-    33,
-    129,
-    97,
-    128,
-    79,
-    130,
-    49
-  ]
+  "sha256": "f8969dd635307de250338ca40375782c2579d31f8188ef62ed4d8006cd253b61",
+  "sha12": "f8969dd63530",
+  "generated_at": "2026-09-11T08:24:38.227000+00:00",
+  "published_at": "2026-09-11T08:24:38.403869+00:00",
+  "open_count": 7,
+  "cash_open_usd": 65.0
 }
