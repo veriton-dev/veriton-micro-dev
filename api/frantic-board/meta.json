@@ -1,16 +1,10 @@
 {
-  "updated": "2026-09-11T03:20:54Z",
-  "sha256": "8f6431684fb0587841a5775ecc32d16fe1e6c24b51b49b4912b108f6c0f2da01",
-  "open_count": 5,
-  "open_cash_usd": 37.0,
-  "items": [
-    130,
-    129,
-    128,
-    97,
-    49
-  ],
-  "notes": "capability_blocked reddit/citation/house/goodwill; HR1 pending PR1380; standard_paid unlocked earnedUsd=1 PR1411",
+  "ts": "2026-09-11T15:22:20Z",
+  "sha12": "018d94b9b47b",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
+  "updated": "2026-09-11T15:22:20.561353+00:00",
+  "sha256": "018d94b9b47b09ed85a85c89d9378963992b41bbc9d975eb095a987e21081ffe",
   "source": "https://gofrantic.com/v1/board",
-  "agent": "agent-064c1e"
+  "pulse": "2026-09-11T15:22:20Z"
 }

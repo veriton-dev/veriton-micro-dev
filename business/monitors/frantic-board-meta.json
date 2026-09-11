@@ -1,69 +1,10 @@
 {
-  "updated": "2026-09-11T09:19:36Z",
-  "sha256": "03f8b355aadc416f5831453a19ed1d89d72d26633a1a0673add2795c4549dfe1",
-  "sha12": "03f8b355aadc",
-  "open_count": 8,
-  "open_total_usd": 74.0,
-  "open": [
-    {
-      "number": 130,
-      "price_usd": 3.0,
-      "available": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "work_status": "open"
-    },
-    {
-      "number": 129,
-      "price_usd": 16.0,
-      "available": 8,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "work_status": "open"
-    },
-    {
-      "number": 128,
-      "price_usd": 8.0,
-      "available": 10,
-      "title": "Earn a citation for Sourcey on a real external site",
-      "work_status": "open"
-    },
-    {
-      "number": 97,
-      "price_usd": 10.0,
-      "available": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "work_status": "open"
-    },
-    {
-      "number": 89,
-      "price_usd": 9.0,
-      "available": 1,
-      "title": "runx skill: bookkeeper",
-      "work_status": "open"
-    },
-    {
-      "number": 79,
-      "price_usd": 8.0,
-      "available": 1,
-      "title": "runx skill: CRM cleanup",
-      "work_status": "open"
-    },
-    {
-      "number": 49,
-      "price_usd": 0.0,
-      "available": 4,
-      "title": "Give runx some love",
-      "work_status": "open"
-    },
-    {
-      "number": 33,
-      "price_usd": 20.0,
-      "available": 1,
-      "title": "Publish Sourcey docs for a maintained OSS library",
-      "work_status": "open"
-    }
-  ],
+  "ts": "2026-09-11T15:23:38Z",
+  "sha12": "018d94b9b47b",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
+  "updated": "2026-09-11T15:23:38.149565+00:00",
+  "sha256": "018d94b9b47b09ed85a85c89d9378963992b41bbc9d975eb095a987e21081ffe",
   "source": "https://gofrantic.com/v1/board",
-  "new_since_last": [
-    "#89 runx skill bookkeeper $9 avail1"
-  ]
+  "pulse": "2026-09-11T15:23:38Z"
 }

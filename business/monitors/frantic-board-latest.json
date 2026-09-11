@@ -1,75 +1,60 @@
 {
-  "schema": "veriton.board.v1",
+  "ts": "2026-09-11T15:23:38Z",
+  "schema": "v1",
   "source": "https://gofrantic.com/v1/board",
-  "fetched_at": "2026-09-11T12:56:09Z",
-  "sha256": "86ef7816a597ffd576ee60cf8ad721a1c09298ff6d79c066c95aae0d5e8bda65",
-  "sha12": "86ef7816a597",
-  "open_n": 8,
-  "open_sum_usd": 75.0,
+  "sha256": "018d94b9b47b09ed85a85c89d9378963992b41bbc9d975eb095a987e21081ffe",
+  "sha12": "018d94b9b47b",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
   "open_bounties": [
     {
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3.0,
       "available": 10,
+      "occupied": 0,
       "capacity": 10,
-      "url": "/bounties/130"
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16.0,
       "available": 8,
+      "occupied": 2,
       "capacity": 10,
-      "url": "/bounties/129"
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8.0,
       "available": 10,
+      "occupied": 5,
       "capacity": 15,
-      "url": "/bounties/128"
+      "title": "Earn a citation for Sourcey on a real external site"
     },
     {
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10.0,
       "available": 5,
+      "occupied": 0,
       "capacity": 5,
-      "url": "/bounties/p-ce0199eecf"
-    },
-    {
-      "number": 89,
-      "title": "runx skill: bookkeeper",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1,
-      "url": "/bounties/p-b502a1ccb6"
-    },
-    {
-      "number": 83,
-      "title": "runx skill: postmortem maker",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1,
-      "url": "/bounties/p-6ef6c24c6f"
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
       "number": 49,
-      "title": "Give runx some love",
       "price_usd": 0.0,
       "available": 4,
+      "occupied": 96,
       "capacity": 100,
-      "url": "/bounties/p-0d641a030c"
+      "title": "Give runx some love"
     },
     {
       "number": 33,
-      "title": "Publish Sourcey docs for a maintained OSS library",
       "price_usd": 20.0,
       "available": 1,
+      "occupied": 0,
       "capacity": 1,
-      "url": "/bounties/p-8b91e1ac8c"
+      "title": "Publish Sourcey docs for a maintained OSS library"
     }
-  ]
+  ],
+  "notes": "earn-pulse 2026-09-11T15:23:38Z; A DANE pricecut; E hold"
 }

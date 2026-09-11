@@ -1,65 +1,60 @@
 {
-  "captured_at": "2026-09-11T14:19:17Z",
+  "ts": "2026-09-11T15:23:38Z",
+  "schema": "v1",
   "source": "https://gofrantic.com/v1/board",
+  "sha256": "018d94b9b47b09ed85a85c89d9378963992b41bbc9d975eb095a987e21081ffe",
+  "sha12": "018d94b9b47b",
   "open_count": 6,
+  "open_sum_usd": 57.0,
   "open_bounties": [
     {
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "price_usd": 3,
+      "price_usd": 3.0,
       "available": 10,
-      "capacity": 10,
       "occupied": 0,
-      "work_status": "open"
+      "capacity": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "price_usd": 16,
+      "price_usd": 16.0,
       "available": 8,
-      "capacity": 10,
       "occupied": 2,
-      "work_status": "open"
+      "capacity": 10,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
-      "price_usd": 8,
+      "price_usd": 8.0,
       "available": 10,
-      "capacity": 15,
       "occupied": 5,
-      "work_status": "open"
+      "capacity": 15,
+      "title": "Earn a citation for Sourcey on a real external site"
     },
     {
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "price_usd": 10,
+      "price_usd": 10.0,
       "available": 5,
-      "capacity": 5,
       "occupied": 0,
-      "work_status": "open"
+      "capacity": 5,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
       "number": 49,
-      "title": "Give runx some love",
-      "price_usd": 0,
+      "price_usd": 0.0,
       "available": 4,
-      "capacity": 100,
       "occupied": 96,
-      "work_status": "open"
+      "capacity": 100,
+      "title": "Give runx some love"
     },
     {
       "number": 33,
-      "title": "Publish Sourcey docs for a maintained OSS library",
-      "price_usd": 20,
+      "price_usd": 20.0,
       "available": 1,
-      "capacity": 1,
       "occupied": 0,
-      "work_status": "open"
+      "capacity": 1,
+      "title": "Publish Sourcey docs for a maintained OSS library"
     }
   ],
-  "open_sum_usd": 57.0,
-  "schema": "frantic_board_v1",
-  "sha256_12": "6d53b08b94b5",
-  "sha256": "6d53b08b94b5e6c50ab8100b61b1b15fb76640d3199e36b9e0648c33838d4dd8"
+  "notes": "earn-pulse 2026-09-11T15:23:38Z; A DANE pricecut; E hold"
 }
