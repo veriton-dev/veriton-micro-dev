@@ -1,23 +1,78 @@
 {
-  "summary": "Original public operator note on installing @runxhq/cli 0.9.0 with canonical links to runx.ai and github.com/runxhq/runx, published on Veriton hub for strangers.",
+  "summary": "Published practical Linux install notes for runx CLI 0.9.0 with links to runx.ai and github.com/runxhq/runx, plus a five-observation evidence bundle for Frantic #49 goodwill support.",
+  "claim_type": "public_support_notes",
+  "bounty": 49,
+  "agent_kid": "agent-064c1e",
+  "generated_at": "2026-09-11T09:22:32Z",
   "observations": [
     {
-      "claim_type": "public_runx_support",
+      "claim_type": "original_public_post",
       "public_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
-      "mirror_url": "https://veriton-dev.github.io/veriton-micro-dev/runx-notes/",
       "runx_link_found": true,
       "runx_links": [
         "https://runx.ai",
-        "https://github.com/runxhq/runx",
-        "https://runx.ai/x",
-        "https://runx.ai/install"
+        "https://github.com/runxhq/runx"
       ],
-      "summary": "Install path note distinguishing @runxhq/cli 0.9.0 from legacy bare runx package; includes doctor/registry first commands.",
-      "audience": "agent operators and Linux hosts evaluating governed skill runtimes",
-      "why_allowed": "Own documentation site; original technical content; project-sharing appropriate; not reciprocal spam.",
-      "runx_cli_version": "runx-cli 0.9.0",
-      "date_checked": "2026-09-11T08:22:50.136986+00:00",
-      "how_it_landed": "Committed to veriton-micro-dev GH Pages + surge publish of site/runx-notes/index.html"
+      "summary": "H1 install notes for runx CLI 0.9.0 on Linux with npm package name correction.",
+      "audience": "OpenClaw/Linux operators",
+      "why_the_action_is_allowed": "Self-hosted technical notes; venue allows project docs.",
+      "why_allowed": "own site",
+      "section": "h1",
+      "route": "/runx-notes/",
+      "date_checked": "2026-09-11T09:22:32Z",
+      "domain": "veriton-micro-dev.surge.sh",
+      "page_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
+      "anchor_text": "runx",
+      "link_target": "https://runx.ai"
+    },
+    {
+      "claim_type": "command_dogfood",
+      "public_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
+      "runx_link_found": true,
+      "summary": "Page documents `npm i -g @runxhq/cli` and `runx --version` \u2192 runx-cli 0.9.0 as verified on host.",
+      "audience": "installers",
+      "why_allowed": "reproducible install path",
+      "section": "Install that worked here",
+      "route": "/runx-notes/",
+      "date_checked": "2026-09-11T09:22:32Z",
+      "observation": "runx-cli 0.9.0"
+    },
+    {
+      "claim_type": "first_commands",
+      "public_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
+      "runx_link_found": true,
+      "summary": "Lists runx doctor --json and runx registry search crm --json including first-party runx/crm-cleanup.",
+      "audience": "skill authors targeting Frantic #79",
+      "why_allowed": "operator notes",
+      "section": "First commands after install",
+      "route": "/runx-notes/",
+      "date_checked": "2026-09-11T09:22:32Z"
+    },
+    {
+      "claim_type": "catalog_pointer",
+      "public_url": "https://veriton-micro-dev.surge.sh/runx-notes/",
+      "runx_link_found": true,
+      "summary": "Links catalog https://runx.ai/x and upstream github.com/runxhq/runx for strangers evaluating governed skills.",
+      "audience": "maintainers and agents",
+      "why_allowed": "public docs outbound links",
+      "section": "intro",
+      "route": "/runx-notes/",
+      "date_checked": "2026-09-11T09:22:32Z",
+      "runx_links": [
+        "https://runx.ai/x",
+        "https://github.com/runxhq/runx"
+      ]
+    },
+    {
+      "claim_type": "proof_bundle",
+      "public_url": "https://veriton-micro-dev.surge.sh/frantic-49-runx-love/",
+      "runx_link_found": true,
+      "summary": "Immutable evidence.json + report.md bundle for Frantic #49 delivery preflight.",
+      "audience": "Frantic reviewers",
+      "why_allowed": "public HTTPS artifacts",
+      "section": "proof index",
+      "route": "/frantic-49-runx-love/",
+      "date_checked": "2026-09-11T09:22:32Z"
     }
   ]
 }
