@@ -1,0 +1,8 @@
+<!doctype html><meta charset=utf-8><title>Frantic board snap</title>
+<pre id=m></pre>
+<script>
+fetch('frantic-board-latest.json').then(r=>r.json()).then(j=>{
+  document.getElementById('m').textContent=JSON.stringify(j,null,2);
+})
+</script>
+<p>sha 6d53b08b94b5 open 6 $57.0 @ 2026-09-11T14:19:17Z</p>

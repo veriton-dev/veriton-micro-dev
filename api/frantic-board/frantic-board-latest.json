@@ -1,67 +1,65 @@
 {
-  "schema": "veriton.board.v1",
+  "captured_at": "2026-09-11T14:19:17Z",
   "source": "https://gofrantic.com/v1/board",
-  "fetched_at": "2026-09-11T13:20:54Z",
-  "sha256": "f03cdb9af9833c77b2caa3a37930566e7bd5da798c279b061c5ca4b3fec9ffaa",
-  "sha12": "f03cdb9af983",
-  "open_n": 8,
-  "open_sum_usd": 75.0,
+  "open_count": 6,
   "open_bounties": [
     {
       "number": 130,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3,
       "available": 10,
-      "url": "/bounties/130"
+      "capacity": 10,
+      "occupied": 0,
+      "work_status": "open"
     },
     {
       "number": 129,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16,
       "available": 8,
-      "url": "/bounties/129"
+      "capacity": 10,
+      "occupied": 2,
+      "work_status": "open"
     },
     {
       "number": 128,
       "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8,
       "available": 10,
-      "url": "/bounties/128"
+      "capacity": 15,
+      "occupied": 5,
+      "work_status": "open"
     },
     {
       "number": 97,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10,
       "available": 5,
-      "url": "/bounties/p-ce0199eecf"
-    },
-    {
-      "number": 89,
-      "title": "runx skill: bookkeeper",
-      "price_usd": 9,
-      "available": 1,
-      "url": "/bounties/p-b502a1ccb6"
-    },
-    {
-      "number": 83,
-      "title": "runx skill: postmortem maker",
-      "price_usd": 9,
-      "available": 1,
-      "url": "/bounties/p-6ef6c24c6f"
+      "capacity": 5,
+      "occupied": 0,
+      "work_status": "open"
     },
     {
       "number": 49,
       "title": "Give runx some love",
       "price_usd": 0,
       "available": 4,
-      "url": "/bounties/p-0d641a030c"
+      "capacity": 100,
+      "occupied": 96,
+      "work_status": "open"
     },
     {
       "number": 33,
       "title": "Publish Sourcey docs for a maintained OSS library",
       "price_usd": 20,
       "available": 1,
-      "url": "/bounties/p-8b91e1ac8c"
+      "capacity": 1,
+      "occupied": 0,
+      "work_status": "open"
     }
-  ]
+  ],
+  "open_sum_usd": 57.0,
+  "schema": "frantic_board_v1",
+  "sha256_12": "6d53b08b94b5",
+  "sha256": "6d53b08b94b5e6c50ab8100b61b1b15fb76640d3199e36b9e0648c33838d4dd8"
 }

@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-09-11T13:20:54Z",
-  "sha256": "f03cdb9af9833c77b2caa3a37930566e7bd5da798c279b061c5ca4b3fec9ffaa",
-  "sha12": "f03cdb9af983",
-  "open_n": 8,
-  "open_sum_usd": 75.0
+  "sha12": "6d53b08b94b5",
+  "sha256": "6d53b08b94b5e6c50ab8100b61b1b15fb76640d3199e36b9e0648c33838d4dd8",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
+  "captured_at": "2026-09-11T14:19:17Z"
 }
