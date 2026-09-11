@@ -1,11 +1,15 @@
 {
-  "captured_at": "2026-09-11T07:22:42Z",
-  "open_count": 5,
-  "open_cash_usd": 37.0,
-  "sha12": "28a09bfbf34b",
-  "source": "https://gofrantic.com/v1/board",
-  "public_urls": {
-    "surge": "https://veriton-micro-dev.surge.sh/monitors/frantic-board-latest.json",
-    "gh": "https://veriton-dev.github.io/veriton-micro-dev/monitors/frantic-board-latest.json"
-  }
+  "captured_at": "2026-09-11T07:49:32Z",
+  "sha256": "3ce4842b5d337cb2e6a61aa3000e52cac9dd077391fa38296659eeeace2c4940",
+  "sha12": "3ce4842b5d33",
+  "open_count": 6,
+  "open_cash_usd": 57.0,
+  "numbers": [
+    130,
+    129,
+    128,
+    97,
+    49,
+    33
+  ]
 }
