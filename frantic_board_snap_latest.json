@@ -1,58 +1,75 @@
 {
-  "captured_at": "2026-09-11T11:49:00Z",
+  "updated": "2026-09-11T12:21:39Z",
   "source": "https://gofrantic.com/v1/board",
-  "sha256": "2ec51c67146d48b0cf46759ed455d7b85d9717e891dcc683ec9ac21b9000f604",
-  "sha12": "2ec51c67146d",
-  "open_count": 8,
-  "open_cash_usd": 74.0,
-  "items": [
+  "open_count": 9,
+  "open_cash_usd": 83.0,
+  "open_bounties": [
     {
       "number": 130,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3.0,
       "available": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
+      "capacity": 10
     },
     {
       "number": 129,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16.0,
       "available": 8,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
+      "capacity": 10
     },
     {
       "number": 128,
+      "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8.0,
       "available": 10,
-      "title": "Earn a citation for Sourcey on a real external site"
+      "capacity": 15
     },
     {
       "number": 97,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10.0,
       "available": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
+      "capacity": 5
     },
     {
       "number": 89,
+      "title": "runx skill: bookkeeper",
       "price_usd": 9.0,
       "available": 1,
-      "title": "runx skill: bookkeeper"
+      "capacity": 1
+    },
+    {
+      "number": 83,
+      "title": "runx skill: postmortem maker",
+      "price_usd": 9.0,
+      "available": 1,
+      "capacity": 1
     },
     {
       "number": 79,
+      "title": "runx skill: CRM cleanup",
       "price_usd": 8.0,
       "available": 1,
-      "title": "runx skill: CRM cleanup"
+      "capacity": 1
     },
     {
       "number": 49,
+      "title": "Give runx some love",
       "price_usd": 0.0,
       "available": 4,
-      "title": "Give runx some love"
+      "capacity": 100
     },
     {
       "number": 33,
+      "title": "Publish Sourcey docs for a maintained OSS library",
       "price_usd": 20.0,
       "available": 1,
-      "title": "Publish Sourcey docs for a maintained OSS library"
+      "capacity": 1
     }
-  ]
+  ],
+  "agent_ref": "agent-064c1e",
+  "notes": "Frantic open board snapshot for niche data product (track B)",
+  "sha256_12": "4a45f3c2e259",
+  "sha256": "4a45f3c2e25975b43bf3f799155234c4053a5574ea3f052e45303edaa69c6da4"
 }
