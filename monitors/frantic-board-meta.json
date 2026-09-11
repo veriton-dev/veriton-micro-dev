@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-11T05:49:34Z",
-  "sha256": "51c83322f3b298e81bcf0f1ea82992406ecadd0b7d7b4da5f32368fb71909d16",
-  "sha12": "51c83322f3b2",
+  "updated": "2026-09-11T06:19:05Z",
+  "sha256": "3a502aa68a85189d22141b4356f4f4a6fde0fbead012d8baa9bbc4f98d7450c0",
+  "sha12": "3a502aa68a85",
   "open_count": 5,
   "open_cash_usd": 37.0,
   "capability_blocked_all": true,
@@ -9,7 +9,7 @@
     {
       "number": 130,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "price_usd": 3,
+      "price_usd": 3.0,
       "claim_slots": {
         "capacity": 10,
         "occupied": 1,
@@ -18,12 +18,12 @@
       "flags": [
         "reddit"
       ],
-      "capability_blocked": true
+      "claim_state": "requires_identity"
     },
     {
       "number": 129,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "price_usd": 16,
+      "price_usd": 16.0,
       "claim_slots": {
         "capacity": 10,
         "occupied": 1,
@@ -31,14 +31,14 @@
       },
       "flags": [
         "reddit",
-        "citation_domain"
+        "citation-domain"
       ],
-      "capability_blocked": true
+      "claim_state": "requires_identity"
     },
     {
       "number": 128,
       "title": "Earn a citation for Sourcey on a real external site",
-      "price_usd": 8,
+      "price_usd": 8.0,
       "claim_slots": {
         "capacity": 15,
         "occupied": 3,
@@ -46,28 +46,28 @@
       },
       "flags": [
         "reddit",
-        "citation_domain"
+        "citation-domain"
       ],
-      "capability_blocked": true
+      "claim_state": "requires_identity"
     },
     {
       "number": 97,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "price_usd": 10,
+      "price_usd": 10.0,
       "claim_slots": {
         "capacity": 5,
         "occupied": 0,
         "available": 5
       },
       "flags": [
-        "funder_rebate"
+        "funder-rebate"
       ],
-      "capability_blocked": true
+      "claim_state": "requires_identity"
     },
     {
       "number": 49,
       "title": "Give runx some love",
-      "price_usd": 0,
+      "price_usd": 0.0,
       "claim_slots": {
         "capacity": 100,
         "occupied": 96,
@@ -76,9 +76,9 @@
       "flags": [
         "goodwill0"
       ],
-      "capability_blocked": true
+      "claim_state": "available"
     }
   ],
-  "prev_sha12": "dd2711ca8a49",
-  "changed": true
+  "source": "https://gofrantic.com/v1/board",
+  "agent_status_note": "earnedUsd=1 standardPaidEligible=true HR1=PR1380 b120_full"
 }
