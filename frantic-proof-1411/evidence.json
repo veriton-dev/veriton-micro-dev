@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-09-11T03:22:42Z",
+  "agent_kid": "agent-064c1e",
+  "paid_claim": {
+    "claim_id": "69ae069e-32a8-4954-aa08-f024979da262",
+    "stage": "paid",
+    "pr_url": "https://github.com/sourcey/startup-credits/pull/1411",
+    "entity_raw": "https://raw.githubusercontent.com/sourcey/startup-credits/main/entities/ge/getblock.yaml",
+    "sourcey_log": "https://sourcey.com/log/getblock",
+    "earned_usd": 1,
+    "quality": "4/5 strong"
+  },
+  "hr1_claim": {
+    "claim_id": "500cad50-728d-4f9a-8732-f6cf3543761a",
+    "stage": "human_review_pending",
+    "pr_url": "https://github.com/sourcey/startup-credits/pull/1380",
+    "pr_state": "CLOSED",
+    "head_sha": "acf6efb1eab4813a993bd7fb777f768d0ef550ba",
+    "entity_path": "entities/ag/agentmail.yaml",
+    "entity_raw_head": "https://raw.githubusercontent.com/sourcey/startup-credits/acf6efb1eab4813a993bd7fb777f768d0ef550ba/entities/ag/agentmail.yaml",
+    "admission_report": "https://artifacts.sourcey.com/catalog/admission-results/sha256-c8e646e65269d8f84b2f87f45b0153786c4cc56df1f0ed86010753d4af03e5a6/report.json",
+    "validation": "sourcey/validation SUCCESS",
+    "admission": "sourcey/admission FAILURE (see local admission-1380-report.json)"
+  },
+  "wallet_base_usdc_observed": 12.17,
+  "note": "Frantic pays on PR evidence; Sourcey merge timing is not acceptance condition for #120"
+}

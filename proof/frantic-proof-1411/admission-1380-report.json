@@ -1,0 +1,1274 @@
+{
+  "report_contract": "sourcey.startup-credits-admission-report/v1alpha1",
+  "repository": "sourcey/startup-credits",
+  "pull_request_number": 1380,
+  "base_sha": "ba67eeac0029b61198c9db843773d307ae72b491",
+  "head_sha": "acf6efb1eab4813a993bd7fb777f768d0ef550ba",
+  "source_tree": "b36548ecf995107e8667333d3a43262b4a0eff93",
+  "change_tree": "180357575ca44bce49d35c0f4ad730b79e20863e",
+  "live_source_commit": "16aae0e74df8a801c02816d5f87b161a589ee3a3",
+  "live_parent_release_id": "sha256:8986cb1640fd748dd005e5c94c7b02d3f44a3d39ff6b72573091bd81af84c61e",
+  "evaluated_at": "2026-09-06T06:38:39.979Z",
+  "changed_files": [
+    "entities/ag/agentmail.yaml"
+  ],
+  "subjects": [
+    {
+      "kind": "entity",
+      "entity_id": "ent_01m1t1qv3nkbheegg2zjmmcck7",
+      "program_id": null,
+      "offer_id": null,
+      "label": "AgentMail",
+      "revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6"
+    },
+    {
+      "kind": "program",
+      "entity_id": "ent_01m1t1qv3nkbheegg2zjmmcck7",
+      "program_id": "prg_01m1t1qv3vdq0smmz6z7k19ph5",
+      "offer_id": null,
+      "label": "AgentMail for Startups",
+      "revision_digest": "sha256:09c4ea4f237dc25c7235dec4956e108de96d211922098109dff5b6d6dd21a2be"
+    },
+    {
+      "kind": "offer",
+      "entity_id": "ent_01m1t1qv3nkbheegg2zjmmcck7",
+      "program_id": "prg_01m1t1qv3vdq0smmz6z7k19ph5",
+      "offer_id": "off_01m1t1qv3wn7wmw1tqkcfgwdbr",
+      "label": "Three months free on the AgentMail Startup tier",
+      "revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33"
+    }
+  ],
+  "candidate_domains": [
+    "agentmail.to"
+  ],
+  "sources": [
+    {
+      "subject_revision_digest": "sha256:09c4ea4f237dc25c7235dec4956e108de96d211922098109dff5b6d6dd21a2be",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "requested_url": "https://www.agentmail.to/startups",
+      "final_url": "https://www.agentmail.to/startups",
+      "final_host": "www.agentmail.to",
+      "authority": "canonical",
+      "capture_status": "captured",
+      "response_status_code": 200,
+      "capture_digest": "sha256:f834b649daf6d52ee16fc1b4aadc3af11ed0d8ad43728ef5a4de0391ea5f463e",
+      "normalized_object_digest": "sha256:36711a982b943af9e622721cb0d98e703d25dd013fba288f52566cf67d08f650"
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+      "requested_url": "https://www.agentmail.to/pricing",
+      "final_url": "https://www.agentmail.to/pricing",
+      "final_host": "www.agentmail.to",
+      "authority": "canonical",
+      "capture_status": "captured",
+      "response_status_code": 200,
+      "capture_digest": "sha256:7d57f3522888fdc1217edb829a3860467b34d14135167af9772d8eabd191b812",
+      "normalized_object_digest": "sha256:e3fb14051ff3819f81a37b1fa99c373c9a8ee8595fb2acc0f3f7a61477b9a63f"
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "requested_url": "https://www.agentmail.to/startups",
+      "final_url": "https://www.agentmail.to/startups",
+      "final_host": "www.agentmail.to",
+      "authority": "canonical",
+      "capture_status": "captured",
+      "response_status_code": 200,
+      "capture_digest": "sha256:f834b649daf6d52ee16fc1b4aadc3af11ed0d8ad43728ef5a4de0391ea5f463e",
+      "normalized_object_digest": "sha256:36711a982b943af9e622721cb0d98e703d25dd013fba288f52566cf67d08f650"
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+      "requested_url": "https://www.agentmail.to/pricing",
+      "final_url": "https://www.agentmail.to/pricing",
+      "final_host": "www.agentmail.to",
+      "authority": "canonical",
+      "capture_status": "captured",
+      "response_status_code": 200,
+      "capture_digest": "sha256:7d57f3522888fdc1217edb829a3860467b34d14135167af9772d8eabd191b812",
+      "normalized_object_digest": "sha256:e3fb14051ff3819f81a37b1fa99c373c9a8ee8595fb2acc0f3f7a61477b9a63f"
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "requested_url": "https://www.agentmail.to/startups",
+      "final_url": "https://www.agentmail.to/startups",
+      "final_host": "www.agentmail.to",
+      "authority": "canonical",
+      "capture_status": "captured",
+      "response_status_code": 200,
+      "capture_digest": "sha256:f834b649daf6d52ee16fc1b4aadc3af11ed0d8ad43728ef5a4de0391ea5f463e",
+      "normalized_object_digest": "sha256:36711a982b943af9e622721cb0d98e703d25dd013fba288f52566cf67d08f650"
+    }
+  ],
+  "claims": [
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/category",
+      "status": "supported",
+      "guidance": "Category is Sourcey's reviewed taxonomy classification of the vendor's cited product identity.",
+      "result_digest": "sha256:1e22cd0619b075b72e3a486a768c5a4993d85fc25e4ae2d096b19302a4d00f45",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:2b6e4a235299cd3513ee5cb77fa6bf334b0fd838bf4878f177a43a0195b1bea0",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 3303,
+              "end_byte": 3330,
+              "value_digest": "sha256:f3fe630da931b80e47d140b072c0a0c55180b343b7ddccd330b0209d23ce8ae5"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/description",
+      "status": "supported",
+      "guidance": "A concise factual description may quote or faithfully paraphrase cited source text; it does not need to appear verbatim.",
+      "result_digest": "sha256:02ffcee44e4d1b6234b8246006c66aa6f92907b2579ef4637127e679d825eaa7",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:57eaf88910f7bde05f271e6a96dfba926c40e8ea2c985ae1cc4210fb37d0dd34",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 3303,
+              "end_byte": 3330,
+              "value_digest": "sha256:f3fe630da931b80e47d140b072c0a0c55180b343b7ddccd330b0209d23ce8ae5"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/domains",
+      "status": "supported",
+      "guidance": "Every canonical domain value must be supported by a cited public source. Sourcey-owned validity metadata is not vendor text.",
+      "result_digest": "sha256:0cd21f8de2de70832c3e5e5993832836df92d506ffad6cc10124a6c17d342105",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:4be05522e3bb67065f63578150fcb892ae877b4a08d4f5604824c95fc4324280",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 279,
+              "end_byte": 291,
+              "value_digest": "sha256:9fb0402a72691f58285f6454a7b8d7e631427eda264bd99a2d602b305dfae200"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/domains/0/value",
+      "status": "supported",
+      "guidance": "Every canonical domain value must be supported by a cited public source. Sourcey-owned validity metadata is not vendor text.",
+      "result_digest": "sha256:b43eb3bc8e538b25e731215ce407c636c05814f5ac7b2f06d94a5f4d6045627a",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:299a5763171689de314c68a54a1767c980d0f75f91e96ba932a2028b0ceaac4e",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 279,
+              "end_byte": 291,
+              "value_digest": "sha256:9fb0402a72691f58285f6454a7b8d7e631427eda264bd99a2d602b305dfae200"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/links",
+      "status": "supported",
+      "guidance": "Canonical public links must be present in or resolve from cited vendor material.",
+      "result_digest": "sha256:6e6aac8fd1dced8645ce09bdd090a9986272e70b3d0be3109d7a6b9f4fe09124",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:955a9b4fcb5c234760105f29ed08644b30b5089ed2b98b530cb62f0ea05d93d6",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 267,
+              "end_byte": 299,
+              "value_digest": "sha256:601e4e4fd130832dbd9bb0e099f5a2222b0e6dbe3b9874cb039bbafab0b6974a"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/links/pricing",
+      "status": "supported",
+      "guidance": "Canonical public links must be present in or resolve from cited vendor material.",
+      "result_digest": "sha256:10e9a1846678000e4f66cb1e3280fdeb496bab41caa97b2ddd0ace2f2d51c6be",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:34f6a727a3984463cd2620968ef08ab587478924bbf1ce5ff22c5864ae37b462",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 267,
+              "end_byte": 299,
+              "value_digest": "sha256:601e4e4fd130832dbd9bb0e099f5a2222b0e6dbe3b9874cb039bbafab0b6974a"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/links/site",
+      "status": "supported",
+      "guidance": "Canonical public links must be present in or resolve from cited vendor material.",
+      "result_digest": "sha256:f961774a90180a4cd72231f1fb35614a495ff837d6de404f7c4e0eb26819e8b2",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:2d7975e8590baa55d659882bcca3d824f15431af8be52cf02b9621ce262d6dab",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 267,
+              "end_byte": 291,
+              "value_digest": "sha256:8d1e7589b74b0f4451ef53c0d3392221c2b1e9ebc9bfe73eace421bfa4a2f739"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "path": "/name",
+      "status": "supported",
+      "guidance": "Use the vendor name substantively supported by a cited public source.",
+      "result_digest": "sha256:517321239f92f620943202cede112ae93ae6678dc3b47efc02b6ada979434e7f",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:ef15e679e33bc688296c4d638700f0f7b98a31c592d5794685f651e2bf382551",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 54,
+              "end_byte": 63,
+              "value_digest": "sha256:d5b06fb0a58c9a5de6f27f761299a6f92368098a201bd0ba9062a4b52f31ae04"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:09c4ea4f237dc25c7235dec4956e108de96d211922098109dff5b6d6dd21a2be",
+      "path": "/summary",
+      "status": "supported",
+      "guidance": "Program summary is a concise factual synopsis and may faithfully paraphrase the cited Program facts when present.",
+      "result_digest": "sha256:b76d6a0773ab27cb61702eef1c661fd2d843d5852cec154554cc5cd712ffdb44",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:0de4af3dec56117db5cffe2f1185a2994a878b1727689211ccd8e08012cef9ba",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 24,
+              "end_byte": 161,
+              "value_digest": "sha256:75d1da68096e7fd2b60949992f591f2b732f0afefd6520d63120142f88b07374"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:09c4ea4f237dc25c7235dec4956e108de96d211922098109dff5b6d6dd21a2be",
+      "path": "/title",
+      "status": "supported",
+      "guidance": "Use a published Program name when one exists; otherwise a neutral Sourcey title may faithfully summarize the cited program identity.",
+      "result_digest": "sha256:91e1f6d3dec6da1ac0e0bb08037206626d823b8b59ad32e66977deafca0f101a",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:14ce25920ef55f2add2813a21f49a8d0b1e2da35982a3c867feb7b82e224cec1",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 1894,
+              "end_byte": 1916,
+              "value_digest": "sha256:83d30ac87ffe28f6d324fa78895cd82772f0173c5fc7c1cd5a65d2a17e8db747"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/access",
+      "status": "unresolved",
+      "guidance": "Cited public material must substantiate where and how an eligible applicant gets the Offer; deterministic transport and availability rules may normalize the captured action.",
+      "result_digest": "sha256:2eacf01e3782a14da7392eb220cf837f3954333189dc0abe76b912d85bfeadd1",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/access/availability",
+      "status": "supported",
+      "guidance": "Cited public material must substantiate where and how an eligible applicant gets the Offer; deterministic transport and availability rules may normalize the captured action.",
+      "result_digest": "sha256:32574b07a4b0c95ad161299b5174ff6a2e308d881b73fc04748ef03fa83bba03",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:8d244e537c35445cbd1417c5ab0888c5e6b271718be0db32a09984506aa340d9",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2052,
+              "end_byte": 2061,
+              "value_digest": "sha256:3f0c9286cd8c697aa9a4b35becbf78d54b92ac5aacb7b2cd781af1a96706c32d"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/access/instructions",
+      "status": "unresolved",
+      "guidance": "Cited public material must substantiate where and how an eligible applicant gets the Offer; deterministic transport and availability rules may normalize the captured action.",
+      "result_digest": "sha256:104dc58b3d5a0441bb2318236e6ce3b64134ada34ea70a7b1f99cdb58d2634f4",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/access/method",
+      "status": "supported",
+      "guidance": "Cited public material must substantiate where and how an eligible applicant gets the Offer; deterministic transport and availability rules may normalize the captured action.",
+      "result_digest": "sha256:5be08b083a4ae258084cc6a6e77c04024d5ce6e5e5c656fbcb4b97eaa266ff65",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:8d244e537c35445cbd1417c5ab0888c5e6b271718be0db32a09984506aa340d9",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2052,
+              "end_byte": 2061,
+              "value_digest": "sha256:3f0c9286cd8c697aa9a4b35becbf78d54b92ac5aacb7b2cd781af1a96706c32d"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/access/url",
+      "status": "supported",
+      "guidance": "Cited public material must substantiate where and how an eligible applicant gets the Offer; deterministic transport and availability rules may normalize the captured action.",
+      "result_digest": "sha256:a5abbc3c69a245dcee551b56cb716aec681869c42e7adf663ae3ffbe446e0657",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:5e7ed2ce96b22fcc8eeeffea7b8bebb724c737912c022aa67e4584b234ef9b17",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 274,
+              "end_byte": 307,
+              "value_digest": "sha256:1494fb846c1e4f784f3f01591431d0f03a06349627bb370b4aae086c2d9a6846"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/description",
+      "status": "unresolved",
+      "guidance": "Long-form Offer description must remain a faithful factual account of cited Offer facts when present; independent evidence must support the published value.",
+      "result_digest": "sha256:f7732a06987bc08fe10c47ce49df523923501b9f4c4f3c2ef7cd028cd71b1916",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:6d0392da662729f7b617959ecb9d252d962a3dcc35902707519b256bf990fdb7",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:e2b1bd803abf983f417eb50f92e271aeab63b45b6b9b1e0db6526368bac5f287",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:fd6b58e27fe2e7f475779dfc1cd15e868a56b2424564d5620a4c3fb7a4db8613",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/description",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:8b5fd81f3f26423abf65af22dfa9387f895df031e4773b69d565db8a6dcb293a",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/duration",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:ac1368033c8ad4eaa819fe2b2357195aa00ce0c2461dd626cd7a3094f11bb687",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/duration/kind",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:01e120740ab193103dece3661e8b7eb3b508b0f74d6754dd7213e2ae99c2c772",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/duration/value",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:6b5b7846181262572b69afbdff6d50b68dcd42eb8db4c5e8608314273a11b691",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:c4bcbc84443fcb18fcdaab80397edde0efbafe265e245733619867062fb71d66",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 1921,
+              "end_byte": 1929,
+              "value_digest": "sha256:bfd45132a8c6d6346dca8f2a60ab4b5bad371249f628e2be10a807fdf440d069"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/kind",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:aeec62b8ae7ba08476970fa9fa7bbdd020aa98acacbe7fbb4c2ff983dcd0dd6b",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/benefits/0/service",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:94f98085c3cc6a97d55b69bc1febcf8a23f2f31bc76b8181c065df6734a87cd3",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/economics/consideration/kind",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material benefit and consideration; canonical types and numeric encodings express those same facts.",
+      "result_digest": "sha256:84377b2fc6f0d1944db6aa56d7c70d4a064589472c28e4af73cdcf095687506d",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:8e29a1a773cc86077cb791cd1e4d6da4fa5b4b34ed764e26875d29708ab65818",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/kind",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:23556631ed674290a3ca5b2a1d75264af5459eca6cb14c5c706fe6ad6d4dc826",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:5f5e1ddeae6acee28c882570056a1efdd5dd9dec97462e35ec921d47ee8a7482",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/0/statement",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:ca68691321e770c5bef84d6450f6482a5ff4692b9dfad121070ec40d77649719",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/1",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:27348d23bc9ffaa2b6083a65b8aa861a4103e9ae92be26162cdc24b2ea2e0dc9",
+      "bindings": [],
+      "residue_codes": [
+        "composition-dependency-unresolved"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/1/fact",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:059edc85ac579f588773cb081c064a3d66eb3c1ba927656e7381de27ef363431",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/1/operator",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:a634a428ebbf3e8b121b4490103c3ac5a1d54a7b097762f4977333087cbe0d17",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/1/statement",
+      "status": "unresolved",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:1d57c37a218d98c7c4c060233c2e2a05f28d08f617f99a32bb219078e3d37987",
+      "bindings": [],
+      "residue_codes": [
+        "semantic-judgement-missing"
+      ]
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/1/value/value",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:f613e561107e15507038e305554f74e3649197e74a2217796c0f06536481d1ad",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:d8bc53cb051ec394952c009aa2ae282b4a58ba94bea6d96c5cadbafc7c004ebf",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/2",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:1e07abc5e269639d025651e3be35027094dc3e798219651e249857f925dc8830",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:e16b7b7a753f17a011fe60aa5365720f9f0c020b7c212d7d69cd98490a4c1e61",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/2/fact",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:a347656a853bca193a52db2372ed171c5977be9d0e292326e0710e3d0f795405",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:d8bc53cb051ec394952c009aa2ae282b4a58ba94bea6d96c5cadbafc7c004ebf",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/2/operator",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:04eba5cbe603a6c3f176b6530c3dcd4a68b81afd2f4f07cd7500aa9e5e8dd422",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:d8bc53cb051ec394952c009aa2ae282b4a58ba94bea6d96c5cadbafc7c004ebf",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/2/statement",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:66947f2d23e981d34155f8c7fc5d51d0f46ff745bab10c9f00fd22b6a910a56e",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:d8bc53cb051ec394952c009aa2ae282b4a58ba94bea6d96c5cadbafc7c004ebf",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/2/value/value",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:35af30ae6bfd675dcb50b8a0ddd431f0f20aa1692e266b194d62aad588593a41",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:d8bc53cb051ec394952c009aa2ae282b4a58ba94bea6d96c5cadbafc7c004ebf",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2390,
+              "end_byte": 2431,
+              "value_digest": "sha256:be855295354f2147d769286f39f83373622264fdd8cbed4a7d6dd5ef67c147da"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/3",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:5448ef95548faab5bca8edbf1aa6b8b59d75c6710ee03b24bc6f60899f943c68",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:913d7d3e52c77a1ec230d125c637c72911b314f46da984bdab0670d55c449080",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 1970,
+              "end_byte": 1972,
+              "value_digest": "sha256:7d601f9d20703a97b8cb530538dbbadaa3e4bdfa5f333977e4232f51eebdc47a"
+            }
+          ]
+        },
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:f410584b2f310c73e44f3a2d056be45b322c2a386a3a993fe30cefe2fbf73334",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2440,
+              "end_byte": 2501,
+              "value_digest": "sha256:8b820ddcbd87e979d4653531832ebf3a5dac7d739bbdae9cbbf2a72fe996c179"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/3/fact",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:6be3d365666ce4c24923cd1b6c2f2bdb57599af9e52b864045d50e45b9fbdb18",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:c2b7c2ae4c4d6b76f42b4060d5f15adbb8ed63868c45968ebc13490eab44a936",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2440,
+              "end_byte": 2501,
+              "value_digest": "sha256:8b820ddcbd87e979d4653531832ebf3a5dac7d739bbdae9cbbf2a72fe996c179"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/3/operator",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:47874da2157314d721287085071efaa5c61c29b1a97fa7391bd324662d299e8a",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:9277eb600badf9e33705fb7896b8099abc1f2b1c19114265d55f0c8e6b941310",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 1970,
+              "end_byte": 1972,
+              "value_digest": "sha256:7d601f9d20703a97b8cb530538dbbadaa3e4bdfa5f333977e4232f51eebdc47a"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/3/statement",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:2e7072e98852d988a81a87230fb0f7ecc4669cac4901810927b7331a08e88de3",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:c2b7c2ae4c4d6b76f42b4060d5f15adbb8ed63868c45968ebc13490eab44a936",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2440,
+              "end_byte": 2501,
+              "value_digest": "sha256:8b820ddcbd87e979d4653531832ebf3a5dac7d739bbdae9cbbf2a72fe996c179"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/3/value/value",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:a60262569e1bb6bce3dfd8fc1e45c517f2980be81ca16e8a7bbbf14a3f4541c3",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:c2b7c2ae4c4d6b76f42b4060d5f15adbb8ed63868c45968ebc13490eab44a936",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2440,
+              "end_byte": 2501,
+              "value_digest": "sha256:8b820ddcbd87e979d4653531832ebf3a5dac7d739bbdae9cbbf2a72fe996c179"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/eligibility/rule/rules/4/statement",
+      "status": "supported",
+      "guidance": "Cited source text must substantiate every material eligibility condition; Sourcey-owned criterion identifiers and reasons are metadata.",
+      "result_digest": "sha256:09525485c9d43939566137b933f55e5b529529e04c10104a7030ee2309ecf9c6",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:b09942b05720d3f6481af64543c32c54378778ebcde38af7b88243cd4043b04a",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2849,
+              "end_byte": 3019,
+              "value_digest": "sha256:834254afd3529e40173b6bcc2f6b2a86c64ac95e2c9d84bec3f6e68d85f61d9c"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/lifecycle/status",
+      "status": "supported",
+      "guidance": "The vendor's current availability or explicit paused or ended state must be cited; Sourcey's effective_from capture time is not vendor text.",
+      "result_digest": "sha256:3f15191dc28de1726aee026a24e6914da2be94ba5eb33a3aaddf1dfb23d67252",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:8d244e537c35445cbd1417c5ab0888c5e6b271718be0db32a09984506aa340d9",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2052,
+              "end_byte": 2061,
+              "value_digest": "sha256:3f0c9286cd8c697aa9a4b35becbf78d54b92ac5aacb7b2cd781af1a96706c32d"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/roles",
+      "status": "supported",
+      "guidance": "Sources must identify the real terms authority and access operator; canonical Entity IDs are resolved identifiers and need not appear on the page.",
+      "result_digest": "sha256:38c4804a8734a9302020590e6aaeca55a39b59a03880ea2b23cbe9bf92ae84d7",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:3166e5386909411f5ea618e04c16c2a55e595afc0cffe739993ba36f73ec0013",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 54,
+              "end_byte": 63,
+              "value_digest": "sha256:d5b06fb0a58c9a5de6f27f761299a6f92368098a201bd0ba9062a4b52f31ae04"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/roles/access_operator_entity_id",
+      "status": "supported",
+      "guidance": "Sources must identify the real terms authority and access operator; canonical Entity IDs are resolved identifiers and need not appear on the page.",
+      "result_digest": "sha256:eb073751d00c0e58baf3029c1e963a37e0935253a1fc81bccbea08e37073cc2b",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:f5a7c055e0a7a964f0b1ff52136a39f2e1ed2a186ce89b40a4741366a723fe8e",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 54,
+              "end_byte": 63,
+              "value_digest": "sha256:d5b06fb0a58c9a5de6f27f761299a6f92368098a201bd0ba9062a4b52f31ae04"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/roles/terms_authority_entity_id",
+      "status": "supported",
+      "guidance": "Sources must identify the real terms authority and access operator; canonical Entity IDs are resolved identifiers and need not appear on the page.",
+      "result_digest": "sha256:ea2cdfdde660051c3a4a9354ace4c9d883a823ee55ebf14df351edf8b6ff880e",
+      "bindings": [
+        {
+          "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+          "binding_digest": "sha256:f5a7c055e0a7a964f0b1ff52136a39f2e1ed2a186ce89b40a4741366a723fe8e",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 54,
+              "end_byte": 63,
+              "value_digest": "sha256:d5b06fb0a58c9a5de6f27f761299a6f92368098a201bd0ba9062a4b52f31ae04"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/summary",
+      "status": "supported",
+      "guidance": "Summary is Sourcey’s concise factual synopsis and may faithfully paraphrase the cited economics, eligibility, and access facts.",
+      "result_digest": "sha256:2fcaf515de28a0c79c5be4b1e45437720585c7862835d0a1116c8d935dc88e6d",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:62c5c6381a69bc192f0c520eaa57051543800a481a1267dbc4eb9d7bdfb88dd7",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 2130,
+              "end_byte": 2277,
+              "value_digest": "sha256:9e9ffeb304f4a7e788960b96305b546ab292748f1f82988c79d54e510fa5f9a3"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    },
+    {
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "path": "/title",
+      "status": "supported",
+      "guidance": "Use a published Offer name when one exists; otherwise a neutral Sourcey title may faithfully summarize the cited offer facts.",
+      "result_digest": "sha256:71a44bc9c53b6f03dcf1f2d88dd7e26eb0dd45ac9a119a339df888d7450d518d",
+      "bindings": [
+        {
+          "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+          "binding_digest": "sha256:e8e5d211b3c3b00859e65a56579267e16a3f6add72152bc7a88c209759c89d22",
+          "locators": [
+            {
+              "kind": "utf8-range",
+              "start_byte": 1917,
+              "end_byte": 1955,
+              "value_digest": "sha256:044c4c5d2a8b6bb2268a9965441047628227734d38befcfd9e454e2821a2df8a"
+            }
+          ]
+        }
+      ],
+      "residue_codes": []
+    }
+  ],
+  "conflicts": [
+    {
+      "kind": "open_pull_request",
+      "strength": "exact",
+      "key_digest": "sha256:4ec724383305de01811890f3c69d94388e5653b987d7a373aa1bd30c43388c11",
+      "target_references": [
+        "entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ]
+    },
+    {
+      "kind": "open_pull_request",
+      "strength": "ambiguous",
+      "key_digest": "sha256:57ceeb931986908ff827bfcb53ab561949f69e18d9406c0c6a003296fc7a6fb5",
+      "target_references": [
+        "entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ]
+    },
+    {
+      "kind": "open_pull_request",
+      "strength": "exact",
+      "key_digest": "sha256:62c2671a50c5c6f2206a4025ddf36df2549558d1be90578221c0c86ba5e2c19d",
+      "target_references": [
+        "entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ]
+    },
+    {
+      "kind": "open_pull_request",
+      "strength": "exact",
+      "key_digest": "sha256:9f987dc514cb7a00a150b614c152c83dbd329f7a911896deef0574eb6131002a",
+      "target_references": [
+        "entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:entity:ent_01m1c2a0zpk1wx0kkvnvx50nmf"
+      ]
+    },
+    {
+      "kind": "open_pull_request",
+      "strength": "ambiguous",
+      "key_digest": "sha256:cc1401221496807866a3682a2d2205d684f6efe66c272d6c9a65c14789c6bbaa",
+      "target_references": [
+        "offer:off_01m1c2a0zrdkbxrqczzwsmcfgy"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:offer:off_01m1c2a0zrdkbxrqczzwsmcfgy"
+      ]
+    },
+    {
+      "kind": "open_pull_request",
+      "strength": "ambiguous",
+      "key_digest": "sha256:d34b675a6e18dfaee7e2a643b06dee2082552bc9dbe17f19d6b1ddbf878828ea",
+      "target_references": [
+        "offer:off_01m1c2a0zrdkbxrqczzwsmcfgy"
+      ],
+      "source_references": [
+        "github:sourcey/startup-credits#1061@f19f82c250d36a524f0db759345ad7c0b8efeb5b:offer:off_01m1c2a0zrdkbxrqczzwsmcfgy"
+      ]
+    }
+  ],
+  "outcome": "rejected",
+  "reason_codes": [
+    "ambiguous_conflict",
+    "claim_unresolved",
+    "entity_summary_required",
+    "exact_conflict"
+  ],
+  "retryable": false,
+  "next_action": "stop",
+  "model_effects": [
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+      "subject_revision_digest": "sha256:6d7de735394fe5b3287e661ccab63cc6fba5924c0cc8aa5c7b78e1e94da3bbf6",
+      "receipt_digest": "sha256:c3e198b0ededf644b7ef74189549b14990c9f0e71d1b5eb8d3245cf89eea10fd",
+      "spend_microusd": 4872,
+      "cached": false,
+      "claim_ids": [
+        "sha256:f04a62a0c3452efeb49f8caf4e0f02b951ebece633bc6e7e85dca06c205942bc",
+        "sha256:073c67b22f3bf05d34faca595361be12b8612733706271c694e9213554a0cc61"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "subject_revision_digest": "sha256:09c4ea4f237dc25c7235dec4956e108de96d211922098109dff5b6d6dd21a2be",
+      "receipt_digest": "sha256:4a97c4481d23930b3ed365b34d2bcad956720b2b83585b510ec828a8393e672d",
+      "spend_microusd": 3890,
+      "cached": false,
+      "claim_ids": [
+        "sha256:f195f15d10b17bdac716a45523ce11ba6cdbbaf5166565c3166282fb4e0feb33"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "receipt_digest": "sha256:15ecd4aec5e1d773a9094389a868f6a7038a9793e7e5454f94395a9e5073f838",
+      "spend_microusd": 14268,
+      "cached": false,
+      "claim_ids": [
+        "sha256:8d79a354b4bed69cff18bbb95e753664ef700b331a97a9b721c3078233ee5e8b",
+        "sha256:cb1e4d42b63e4792fdca2b8accee4fbaa1ca882954f853ad51d5c3b416a94b54",
+        "sha256:9fc10fa458d8f619c278883a0f9b04c92a3f6a807cbca4d4d9bed3dd422465c9",
+        "sha256:06b18e484d40bdced729512f0620a4da24a8da72f39bb3d893af4a95de32dc45",
+        "sha256:bbbc3ebb3e2003424895a40924639e7fa87e41177bb6601492074ff127b52bd2",
+        "sha256:4a8220659aa3855a7091c1e81808429208259e8f82c0276cc0e14c0f668a05e7",
+        "sha256:5f5f96f045e5f23b8b070e03a2e5a2edfeb0a46d558a2370b3530b9512a60358",
+        "sha256:c6b30e08afd62c4685c853381549cf47531c3ee6c7d6e06a96769053599a4847",
+        "sha256:217b8fbf297eb16f5962e03df204947d3291577cfe8ba3b30d1d8d032fba692d",
+        "sha256:94cc10b5937c0d88be00b41831b233ed123616b0eabc6f4b97059898887a80e8",
+        "sha256:8382a05f3ef418328d6cc56abcfb31d46b94032d545429bfacc1b8b685806493",
+        "sha256:14c6715592814753e54deb449590d43e9caa8f72c4a0c070efccf65527b9d700"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_8933eaae80cce0943670d2ba204c601b65a4d72adc0b5b572663d173bcf80236",
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "receipt_digest": "sha256:f2376ac50877fef5fba2d3314f52e5fb3eeea9df6cd857a0fc3a0987ffdb2c85",
+      "spend_microusd": 13259,
+      "cached": false,
+      "claim_ids": [
+        "sha256:b8fd5cbbbff92b229c39b7564ecece429d612dcae0cfcd2af25bee11fb395790",
+        "sha256:4cb8e807580e02bcc207d7ef80d51f1178eee75208c1c2022bb7f181bd62509b",
+        "sha256:1bf5042274304f2b8e2ac2a82e565362f2135fbaa321e361467f199c24ccff77",
+        "sha256:65c320a304953e7f60fd65b3c395e7ddf7efb36a338e16ee6becc1acff64b798",
+        "sha256:883e7a637f0b31999b2cd23939809b15f3863982549d8f5b815ef7778000494c",
+        "sha256:3215da1d9c727798502e5955129cb1d4baa6354039cea69816ef3b398b0a42ca",
+        "sha256:2e2a79f76ef55d72cbe180956943f324c8ceb02bff3f9214ee0a50c4e5c99b0d",
+        "sha256:55f0fffa084520f59a1e58d7b49929573fb1de01976873bd14337aca60a989a2",
+        "sha256:8cbbac212f5691504a1959f2cd5464cd1b831a460ad3d1e69856f3e5fe4fc882",
+        "sha256:d1e6d6d80c82176e40eda18f4f3b155e41896f08cdf2d95ae5a4065b7d06ae4d",
+        "sha256:d4d8d9f72750f94478c5663e7029a7021327b4ed508a69f30790e55a90141bfc"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "receipt_digest": "sha256:b019a67eea4729aaaf8ff91235225b31154fa7c2a8ae7cc4001a3575f8abd048",
+      "spend_microusd": 16977,
+      "cached": false,
+      "claim_ids": [
+        "sha256:8d79a354b4bed69cff18bbb95e753664ef700b331a97a9b721c3078233ee5e8b",
+        "sha256:cb1e4d42b63e4792fdca2b8accee4fbaa1ca882954f853ad51d5c3b416a94b54",
+        "sha256:9fc10fa458d8f619c278883a0f9b04c92a3f6a807cbca4d4d9bed3dd422465c9",
+        "sha256:06b18e484d40bdced729512f0620a4da24a8da72f39bb3d893af4a95de32dc45",
+        "sha256:bbbc3ebb3e2003424895a40924639e7fa87e41177bb6601492074ff127b52bd2",
+        "sha256:4a8220659aa3855a7091c1e81808429208259e8f82c0276cc0e14c0f668a05e7",
+        "sha256:5f5f96f045e5f23b8b070e03a2e5a2edfeb0a46d558a2370b3530b9512a60358",
+        "sha256:c6b30e08afd62c4685c853381549cf47531c3ee6c7d6e06a96769053599a4847",
+        "sha256:217b8fbf297eb16f5962e03df204947d3291577cfe8ba3b30d1d8d032fba692d",
+        "sha256:94cc10b5937c0d88be00b41831b233ed123616b0eabc6f4b97059898887a80e8",
+        "sha256:8382a05f3ef418328d6cc56abcfb31d46b94032d545429bfacc1b8b685806493",
+        "sha256:14c6715592814753e54deb449590d43e9caa8f72c4a0c070efccf65527b9d700"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "receipt_digest": "sha256:4506f06986a139d32553dad0ea1497d874b274ff1e823dbfa56e3fb8d8bda62e",
+      "spend_microusd": 14948,
+      "cached": false,
+      "claim_ids": [
+        "sha256:b8fd5cbbbff92b229c39b7564ecece429d612dcae0cfcd2af25bee11fb395790",
+        "sha256:4cb8e807580e02bcc207d7ef80d51f1178eee75208c1c2022bb7f181bd62509b",
+        "sha256:1bf5042274304f2b8e2ac2a82e565362f2135fbaa321e361467f199c24ccff77",
+        "sha256:65c320a304953e7f60fd65b3c395e7ddf7efb36a338e16ee6becc1acff64b798",
+        "sha256:883e7a637f0b31999b2cd23939809b15f3863982549d8f5b815ef7778000494c",
+        "sha256:3215da1d9c727798502e5955129cb1d4baa6354039cea69816ef3b398b0a42ca",
+        "sha256:2e2a79f76ef55d72cbe180956943f324c8ceb02bff3f9214ee0a50c4e5c99b0d",
+        "sha256:55f0fffa084520f59a1e58d7b49929573fb1de01976873bd14337aca60a989a2",
+        "sha256:8cbbac212f5691504a1959f2cd5464cd1b831a460ad3d1e69856f3e5fe4fc882",
+        "sha256:d1e6d6d80c82176e40eda18f4f3b155e41896f08cdf2d95ae5a4065b7d06ae4d",
+        "sha256:d4d8d9f72750f94478c5663e7029a7021327b4ed508a69f30790e55a90141bfc"
+      ]
+    },
+    {
+      "provider": "google-gemini",
+      "model": "gemini-3.8-flash",
+      "source_id": "src_aabe8a185b080db3d1c64cb90fd9703d512a5190ae03215f439801d43026990d",
+      "subject_revision_digest": "sha256:606b34c1fee970787e918308b33d62501db3f2d65e74de438959f51cecf94a33",
+      "receipt_digest": "sha256:b019a67eea4729aaaf8ff91235225b31154fa7c2a8ae7cc4001a3575f8abd048",
+      "spend_microusd": 16977,
+      "cached": true,
+      "claim_ids": [
+        "sha256:8d79a354b4bed69cff18bbb95e753664ef700b331a97a9b721c3078233ee5e8b",
+        "sha256:cb1e4d42b63e4792fdca2b8accee4fbaa1ca882954f853ad51d5c3b416a94b54",
+        "sha256:9fc10fa458d8f619c278883a0f9b04c92a3f6a807cbca4d4d9bed3dd422465c9",
+        "sha256:06b18e484d40bdced729512f0620a4da24a8da72f39bb3d893af4a95de32dc45",
+        "sha256:bbbc3ebb3e2003424895a40924639e7fa87e41177bb6601492074ff127b52bd2",
+        "sha256:4a8220659aa3855a7091c1e81808429208259e8f82c0276cc0e14c0f668a05e7",
+        "sha256:5f5f96f045e5f23b8b070e03a2e5a2edfeb0a46d558a2370b3530b9512a60358",
+        "sha256:c6b30e08afd62c4685c853381549cf47531c3ee6c7d6e06a96769053599a4847",
+        "sha256:217b8fbf297eb16f5962e03df204947d3291577cfe8ba3b30d1d8d032fba692d",
+        "sha256:94cc10b5937c0d88be00b41831b233ed123616b0eabc6f4b97059898887a80e8",
+        "sha256:8382a05f3ef418328d6cc56abcfb31d46b94032d545429bfacc1b8b685806493",
+        "sha256:14c6715592814753e54deb449590d43e9caa8f72c4a0c070efccf65527b9d700"
+      ]
+    }
+  ],
+  "authority": {
+    "machine_policy_digest": "sha256:83584a94c30d1d444ee1656e1b67b697dcb30b2faafff603a5dac2736c75e175",
+    "coverage_policy_digest": "sha256:6e57f02d3ace71508dd8276e5df4baf23af618aa8dfce45c2c1e28856af7b052",
+    "evaluator_digest": "sha256:f14f668db2e69db679a1b232a044d7d962785711358b256ae1796c16c90c2530",
+    "input_digest": "sha256:44b983616381aca4bfaab8c1cec32b63cba5db5a30d26a148b78fc053bf887c5",
+    "result_digest": "sha256:05535e1895f12e6b55753b8c2470d2ba629c66d8532e9a8f6300b5c0f37102d2",
+    "execution_receipt_digest": "sha256:fc400851cde0d387198cb5d5160c89302c594aa591578af697390ac36db07a64",
+    "admission_artifact_digest": null,
+    "admission_candidate_url": null,
+    "evidence_authority_set_digest": null,
+    "asset_authority_bundle_digest": null
+  },
+  "report_digest": "sha256:c8e646e65269d8f84b2f87f45b0153786c4cc56df1f0ed86010753d4af03e5a6"
+}
