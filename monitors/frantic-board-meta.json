@@ -1,6 +1,11 @@
 {
-  "sha": "02df0fdbd623",
-  "open": 5,
-  "cash_open": 37.0,
-  "captured": "2026-09-11T06:47:00Z"
+  "captured_at": "2026-09-11T07:18:37Z",
+  "open_count": 5,
+  "open_cash_usd": 37.0,
+  "sha12": "edf92f26928f",
+  "source": "https://gofrantic.com/v1/board",
+  "public_urls": {
+    "surge": "https://veriton-micro-dev.surge.sh/monitors/frantic-board-latest.json",
+    "gh": "https://veriton-dev.github.io/veriton-micro-dev/monitors/frantic-board-latest.json"
+  }
 }
