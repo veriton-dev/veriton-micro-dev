@@ -1,6 +1,20 @@
 {
-  "at": "2026-09-11T05:19:43Z",
-  "sha256_12": "c6940b69c20b",
+  "at": "2026-09-11T05:20:57Z",
+  "sha256": "dd2711ca8a4909ec31c5710fa4471f91149450a804fbd4ac098c299886ba35fd",
+  "sha256_12": "dd2711ca8a49",
   "open_count": 5,
-  "open_cash_usd": 37.0
+  "open_cash_usd": 37.0,
+  "open_numbers": [
+    130,
+    129,
+    128,
+    97,
+    49
+  ],
+  "capability_note": "all open bounties capability-blocked (reddit/citation-domain/funder-rebate/goodwill0)",
+  "b120_available": 0,
+  "hr1_claim": "500cad50-728d-4f9a-8732-f6cf3543761a",
+  "hr1_pr": 1380,
+  "earned_usd": 1,
+  "standard_paid_eligible": true
 }
