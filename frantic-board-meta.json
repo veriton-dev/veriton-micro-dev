@@ -1,10 +1,6 @@
 {
-  "generated_at": "2026-09-11T04:20:45Z",
-  "sha256": "44e05dc211c2eb6c598de462f5dc6cc66319344a0f7f9aba91c1cfb0927ecab9",
-  "open_n": 5,
-  "cash_usd": 37.0,
-  "agent_earned_usd": 1,
-  "hr_pending": 1,
-  "proof_1380": "https://veriton-micro-dev.surge.sh/frantic-proof-1380/",
-  "proof_1411": "https://veriton-micro-dev.surge.sh/frantic-proof-1411/"
+  "at": "2026-09-11T05:19:43Z",
+  "sha256_12": "c6940b69c20b",
+  "open_count": 5,
+  "open_cash_usd": 37.0
 }
