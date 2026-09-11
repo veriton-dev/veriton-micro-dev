@@ -1,8 +1,11 @@
 {
-  "updated": "2026-09-11T11:22:18Z",
-  "sha12": "34e9a46d15d6",
-  "open": 8,
-  "cash_usd": 74.0,
-  "source": "gofrantic.com/v1/board",
-  "note": "pulse board snap; E blocked=2 PRL; paytest awarded external"
+  "captured_at": "2026-09-11T11:49:00Z",
+  "sha256": "2ec51c67146d48b0cf46759ed455d7b85d9717e891dcc683ec9ac21b9000f604",
+  "sha12": "2ec51c67146d",
+  "open_count": 8,
+  "open_cash_usd": 74.0,
+  "url_latest": "https://veriton-micro-dev.surge.sh/frantic-board-latest.json",
+  "url_snap": "https://veriton-micro-dev.surge.sh/frantic_board_snap_latest.json",
+  "url_meta": "https://veriton-micro-dev.surge.sh/frantic-board-meta.json",
+  "gh_pages": "https://veriton-dev.github.io/veriton-micro-dev/"
 }
