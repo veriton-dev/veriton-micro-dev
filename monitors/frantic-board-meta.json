@@ -1,58 +1,7 @@
 {
-  "updated": "2026-09-11T10:19:54.969Z",
-  "sha256": "1e8c5644993342666cc73bee63e183004578d7018406caf4661b04aa875ed5e1",
-  "sha12": "1e8c56449933",
-  "open_count": 8,
-  "open_total_usd": 74.0,
-  "open": [
-    {
-      "number": 33,
-      "price_usd": 20.0,
-      "available": 1,
-      "title": "Publish Sourcey docs for a maintained OSS library"
-    },
-    {
-      "number": 129,
-      "price_usd": 16.0,
-      "available": 8,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
-    },
-    {
-      "number": 97,
-      "price_usd": 10.0,
-      "available": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
-    },
-    {
-      "number": 89,
-      "price_usd": 9.0,
-      "available": 1,
-      "title": "runx skill: bookkeeper"
-    },
-    {
-      "number": 79,
-      "price_usd": 8.0,
-      "available": 1,
-      "title": "runx skill: CRM cleanup"
-    },
-    {
-      "number": 128,
-      "price_usd": 8.0,
-      "available": 10,
-      "title": "Earn a citation for Sourcey on a real external site"
-    },
-    {
-      "number": 130,
-      "price_usd": 3.0,
-      "available": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
-    },
-    {
-      "number": 49,
-      "price_usd": 0.0,
-      "available": 4,
-      "title": "Give runx some love"
-    }
-  ],
-  "source": "https://gofrantic.com/v1/board"
+  "generated_at": "2026-09-11T10:25:42.500410+00:00",
+  "sha256_12": "0d0a6e3b9323",
+  "open_or_claimable_count": 8,
+  "cash_open_usd": 74.0,
+  "source": "veriton.frantic-board-snapshot/v1"
 }
