@@ -1,0 +1,58 @@
+{
+  "updated": "2026-09-11T13:20:18Z",
+  "sha12": "2a38c7deab5a",
+  "source": "https://gofrantic.com/v1/board",
+  "open_count": 8,
+  "open_sum_usd": 75.0,
+  "schema": "v1",
+  "open": [
+    {
+      "n": 130,
+      "usd": 3,
+      "avail": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
+    },
+    {
+      "n": 129,
+      "usd": 16,
+      "avail": 8,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
+    },
+    {
+      "n": 128,
+      "usd": 8,
+      "avail": 10,
+      "title": "Earn a citation for Sourcey on a real external site"
+    },
+    {
+      "n": 97,
+      "usd": 10,
+      "avail": 5,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
+    },
+    {
+      "n": 89,
+      "usd": 9,
+      "avail": 1,
+      "title": "runx skill: bookkeeper"
+    },
+    {
+      "n": 83,
+      "usd": 9,
+      "avail": 1,
+      "title": "runx skill: postmortem maker"
+    },
+    {
+      "n": 49,
+      "usd": 0,
+      "avail": 4,
+      "title": "Give runx some love"
+    },
+    {
+      "n": 33,
+      "usd": 20,
+      "avail": 1,
+      "title": "Publish Sourcey docs for a maintained OSS library"
+    }
+  ]
+}
