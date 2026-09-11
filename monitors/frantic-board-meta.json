@@ -1,7 +1,8 @@
 {
-  "at": "2026-09-11T00:20:46Z",
-  "sha": "788790795d79",
-  "open_n": 5,
-  "cash": 37.0,
-  "hr_n": 2
+  "sha12": "7c432f9ed460",
+  "generated_at": "2026-09-11T00:20:56.303014+00:00",
+  "pulse": "0017",
+  "cash_open_usd": 37.0,
+  "open_or_claimable_count": 5,
+  "fixed_at": "2026-09-11T00:24:56Z"
 }
