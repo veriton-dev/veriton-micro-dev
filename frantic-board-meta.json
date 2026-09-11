@@ -1,17 +1,16 @@
 {
-  "captured_at": "2026-09-11T08:19:49Z",
-  "sha256": "d534272ae481baacf7c177cbb533409e2c857b2bb0e383558d3838d065f55cda",
-  "sha12": "d534272ae481",
-  "open_count": 7,
-  "open_cash_usd": 65.0,
+  "generated_at": "2026-09-11T08:23:24.803839+00:00",
+  "sha256": "b51ae677bac77731fb66adcec894fa613a020fc2055570a6a4a61fa2a3711bca",
+  "sha12": "b51ae677bac7",
+  "open_or_claimable_count": 7,
+  "cash_open_usd": 65.0,
   "numbers": [
-    130,
+    33,
     129,
-    128,
     97,
+    128,
     79,
-    49,
-    33
-  ],
-  "publisher": "veriton-earn-loop"
+    130,
+    49
+  ]
 }
