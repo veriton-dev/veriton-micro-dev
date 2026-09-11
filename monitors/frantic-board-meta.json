@@ -1,8 +1,7 @@
 {
-  "at": "2026-09-10T23:23:03Z",
-  "sha": "9a0673c10776",
+  "at": "2026-09-11T00:20:46Z",
+  "sha": "788790795d79",
   "open_n": 5,
   "cash": 37.0,
-  "hr": 2,
-  "claim": "skip_HRx2_pending_review_limit"
+  "hr_n": 2
 }

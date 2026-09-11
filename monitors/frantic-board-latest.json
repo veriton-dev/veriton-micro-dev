@@ -1,6 +1,6 @@
 {
   "schema": "veriton.frantic-board-snapshot/v1",
-  "generated_at": "2026-09-11T00:20:37.330198+00:00",
+  "generated_at": "2026-09-11T00:20:56.303014+00:00",
   "source": "https://gofrantic.com/v1/board",
   "agent_sample": "agent-064c1e",
   "board": {
