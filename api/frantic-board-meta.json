@@ -1,10 +1,46 @@
 {
-  "ts": "2026-09-11T15:23:38Z",
-  "sha12": "018d94b9b47b",
+  "updated": "2026-09-11T20:57:11.555237Z",
+  "sha256": "a0a76bf02d9eecdd7a8da5e4408a1fb6530ffd4ac3479137c24f07dd52525e6e",
+  "sha12": "a0a76bf02d9e",
   "open_count": 6,
-  "open_sum_usd": 57.0,
-  "updated": "2026-09-11T15:23:38.149565+00:00",
-  "sha256": "018d94b9b47b09ed85a85c89d9378963992b41bbc9d975eb095a987e21081ffe",
+  "face_usd": 57.0,
   "source": "https://gofrantic.com/v1/board",
-  "pulse": "2026-09-11T15:23:38Z"
+  "open": [
+    {
+      "number": 130,
+      "price_usd": 3,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
+      "available": 10
+    },
+    {
+      "number": 129,
+      "price_usd": 16,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, ",
+      "available": 8
+    },
+    {
+      "number": 128,
+      "price_usd": 8,
+      "title": "Earn a citation for Sourcey on a real external site",
+      "available": 10
+    },
+    {
+      "number": 97,
+      "price_usd": 10,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
+      "available": 5
+    },
+    {
+      "number": 49,
+      "price_usd": 0,
+      "title": "Give runx some love",
+      "available": 4
+    },
+    {
+      "number": 33,
+      "price_usd": 20,
+      "title": "Publish Sourcey docs for a maintained OSS library",
+      "available": 1
+    }
+  ]
 }
