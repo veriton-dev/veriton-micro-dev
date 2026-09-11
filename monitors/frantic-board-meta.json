@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-09-11T01:50:56.118504+00:00",
-  "sha256": "b8585c4066cccb86f5e070111108244143019456cb53b8f3fd08f4476006fdd4",
-  "sha12": "b8585c4066cc",
+  "generated_at": "2026-09-11T02:24:01.027604+00:00",
+  "sha256": "34fd6551408437575aedf04f72ab50c4371954364b258d61b6567e3d4146cf54",
+  "sha12": "34fd65514084",
   "open_or_claimable_count": 5,
   "cash_open_usd": 37.0,
-  "pulse": "0147"
+  "pulse": "1917",
+  "standard_paid_eligible": true
 }
