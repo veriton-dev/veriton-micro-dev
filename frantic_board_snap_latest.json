@@ -1,75 +1,75 @@
 {
-  "updated": "2026-09-11T12:21:39Z",
+  "schema": "veriton.board.v1",
   "source": "https://gofrantic.com/v1/board",
-  "open_count": 9,
-  "open_cash_usd": 83.0,
+  "fetched_at": "2026-09-11T12:56:09Z",
+  "sha256": "86ef7816a597ffd576ee60cf8ad721a1c09298ff6d79c066c95aae0d5e8bda65",
+  "sha12": "86ef7816a597",
+  "open_n": 8,
+  "open_sum_usd": 75.0,
   "open_bounties": [
     {
       "number": 130,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3.0,
       "available": 10,
-      "capacity": 10
+      "capacity": 10,
+      "url": "/bounties/130"
     },
     {
       "number": 129,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16.0,
       "available": 8,
-      "capacity": 10
+      "capacity": 10,
+      "url": "/bounties/129"
     },
     {
       "number": 128,
       "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8.0,
       "available": 10,
-      "capacity": 15
+      "capacity": 15,
+      "url": "/bounties/128"
     },
     {
       "number": 97,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10.0,
       "available": 5,
-      "capacity": 5
+      "capacity": 5,
+      "url": "/bounties/p-ce0199eecf"
     },
     {
       "number": 89,
       "title": "runx skill: bookkeeper",
       "price_usd": 9.0,
       "available": 1,
-      "capacity": 1
+      "capacity": 1,
+      "url": "/bounties/p-b502a1ccb6"
     },
     {
       "number": 83,
       "title": "runx skill: postmortem maker",
       "price_usd": 9.0,
       "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 79,
-      "title": "runx skill: CRM cleanup",
-      "price_usd": 8.0,
-      "available": 1,
-      "capacity": 1
+      "capacity": 1,
+      "url": "/bounties/p-6ef6c24c6f"
     },
     {
       "number": 49,
       "title": "Give runx some love",
       "price_usd": 0.0,
       "available": 4,
-      "capacity": 100
+      "capacity": 100,
+      "url": "/bounties/p-0d641a030c"
     },
     {
       "number": 33,
       "title": "Publish Sourcey docs for a maintained OSS library",
       "price_usd": 20.0,
       "available": 1,
-      "capacity": 1
+      "capacity": 1,
+      "url": "/bounties/p-8b91e1ac8c"
     }
-  ],
-  "agent_ref": "agent-064c1e",
-  "notes": "Frantic open board snapshot for niche data product (track B)",
-  "sha256_12": "4a45f3c2e259",
-  "sha256": "4a45f3c2e25975b43bf3f799155234c4053a5574ea3f052e45303edaa69c6da4"
+  ]
 }
