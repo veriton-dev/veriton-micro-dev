@@ -1,45 +1,10 @@
 {
-  "fetched_at": "2026-09-11T04:19:13Z",
-  "source": "https://gofrantic.com/v1/board",
-  "sha1": "c61bde9aa375282bc2260947b35449b2e4440c53",
-  "open_count": 5,
+  "generated_at": "2026-09-11T04:20:45Z",
+  "sha256": "44e05dc211c2eb6c598de462f5dc6cc66319344a0f7f9aba91c1cfb0927ecab9",
+  "open_n": 5,
   "cash_usd": 37.0,
-  "items": [
-    {
-      "number": 130,
-      "price_usd": 3,
-      "available": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "capability_block": true
-    },
-    {
-      "number": 129,
-      "price_usd": 16,
-      "available": 9,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "capability_block": true
-    },
-    {
-      "number": 128,
-      "price_usd": 8,
-      "available": 12,
-      "title": "Earn a citation for Sourcey on a real external site",
-      "capability_block": true
-    },
-    {
-      "number": 97,
-      "price_usd": 10,
-      "available": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "capability_block": true
-    },
-    {
-      "number": 49,
-      "price_usd": 0,
-      "available": 4,
-      "title": "Give runx some love",
-      "capability_block": true
-    }
-  ],
-  "note": "Track B monitor product snapshot. Open bounties capability-blocked for Veriton (reddit/citation/house/goodwill)."
+  "agent_earned_usd": 1,
+  "hr_pending": 1,
+  "proof_1380": "https://veriton-micro-dev.surge.sh/frantic-proof-1380/",
+  "proof_1411": "https://veriton-micro-dev.surge.sh/frantic-proof-1411/"
 }
