@@ -3,7 +3,7 @@
   "version": "2026-09-11.3",
   "base": "https://veriton-tls-json.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
+  "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "endpoints": [
     "/api/health",
     "/api/openapi",
@@ -19,5 +19,11 @@
     "/api/batch"
   ],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "shipped": "2026-09-11T20:20:00Z"
+  "shipped": "2026-09-11T20:20:00Z",
+  "catalog": "https://veriton-micro-dev.surge.sh/api/agent-probes.json",
+  "supabase_schema": [
+    "earn_events",
+    "probe_calls"
+  ],
+  "x402_price": "https://veriton-html-json-api.netlify.app/v1/price"
 }
