@@ -1,75 +1,60 @@
 {
-  "updated": "2026-09-11T12:21:39Z",
+  "ts": "2026-09-11T14:23:19Z",
+  "schema": "v1",
   "source": "https://gofrantic.com/v1/board",
-  "open_count": 9,
-  "open_cash_usd": 83.0,
+  "sha256": "1e840545902579e1bad56ba08db7ba48fb282231bcf5436e1fe3e03e125e5813",
+  "sha12": "1e8405459025",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
   "open_bounties": [
     {
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "price_usd": 3.0,
+      "price_usd": 3,
       "available": 10,
-      "capacity": 10
+      "occupied": 0,
+      "capacity": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "price_usd": 16.0,
+      "price_usd": 16,
       "available": 8,
-      "capacity": 10
+      "occupied": 2,
+      "capacity": 10,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
-      "price_usd": 8.0,
+      "price_usd": 8,
       "available": 10,
-      "capacity": 15
+      "occupied": 5,
+      "capacity": 15,
+      "title": "Earn a citation for Sourcey on a real external site"
     },
     {
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "price_usd": 10.0,
+      "price_usd": 10,
       "available": 5,
-      "capacity": 5
-    },
-    {
-      "number": 89,
-      "title": "runx skill: bookkeeper",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 83,
-      "title": "runx skill: postmortem maker",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 79,
-      "title": "runx skill: CRM cleanup",
-      "price_usd": 8.0,
-      "available": 1,
-      "capacity": 1
+      "occupied": 0,
+      "capacity": 5,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
       "number": 49,
-      "title": "Give runx some love",
       "price_usd": 0.0,
       "available": 4,
-      "capacity": 100
+      "occupied": 96,
+      "capacity": 100,
+      "title": "Give runx some love"
     },
     {
       "number": 33,
-      "title": "Publish Sourcey docs for a maintained OSS library",
-      "price_usd": 20.0,
+      "price_usd": 20,
       "available": 1,
-      "capacity": 1
+      "occupied": 0,
+      "capacity": 1,
+      "title": "Publish Sourcey docs for a maintained OSS library"
     }
   ],
-  "agent_ref": "agent-064c1e",
-  "notes": "Frantic open board snapshot for niche data product (track B)",
-  "sha256_12": "4a45f3c2e259",
-  "sha256": "4a45f3c2e25975b43bf3f799155234c4053a5574ea3f052e45303edaa69c6da4"
+  "notes": "gtm-pulse; A listing retag html-to-json #1; pilots 3/3 closed; E PRL hold"
 }

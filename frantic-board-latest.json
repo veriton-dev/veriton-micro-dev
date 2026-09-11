@@ -1,67 +1,60 @@
 {
-  "schema": "veriton.board.v1",
+  "ts": "2026-09-11T14:23:19Z",
+  "schema": "v1",
   "source": "https://gofrantic.com/v1/board",
-  "fetched_at": "2026-09-11T13:20:54Z",
-  "sha256": "f03cdb9af9833c77b2caa3a37930566e7bd5da798c279b061c5ca4b3fec9ffaa",
-  "sha12": "f03cdb9af983",
-  "open_n": 8,
-  "open_sum_usd": 75.0,
+  "sha256": "1e840545902579e1bad56ba08db7ba48fb282231bcf5436e1fe3e03e125e5813",
+  "sha12": "1e8405459025",
+  "open_count": 6,
+  "open_sum_usd": 57.0,
   "open_bounties": [
     {
       "number": 130,
-      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "price_usd": 3,
       "available": 10,
-      "url": "/bounties/130"
+      "occupied": 0,
+      "capacity": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
       "number": 129,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "price_usd": 16,
       "available": 8,
-      "url": "/bounties/129"
+      "occupied": 2,
+      "capacity": 10,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
       "number": 128,
-      "title": "Earn a citation for Sourcey on a real external site",
       "price_usd": 8,
       "available": 10,
-      "url": "/bounties/128"
+      "occupied": 5,
+      "capacity": 15,
+      "title": "Earn a citation for Sourcey on a real external site"
     },
     {
       "number": 97,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "price_usd": 10,
       "available": 5,
-      "url": "/bounties/p-ce0199eecf"
-    },
-    {
-      "number": 89,
-      "title": "runx skill: bookkeeper",
-      "price_usd": 9,
-      "available": 1,
-      "url": "/bounties/p-b502a1ccb6"
-    },
-    {
-      "number": 83,
-      "title": "runx skill: postmortem maker",
-      "price_usd": 9,
-      "available": 1,
-      "url": "/bounties/p-6ef6c24c6f"
+      "occupied": 0,
+      "capacity": 5,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
       "number": 49,
-      "title": "Give runx some love",
-      "price_usd": 0,
+      "price_usd": 0.0,
       "available": 4,
-      "url": "/bounties/p-0d641a030c"
+      "occupied": 96,
+      "capacity": 100,
+      "title": "Give runx some love"
     },
     {
       "number": 33,
-      "title": "Publish Sourcey docs for a maintained OSS library",
       "price_usd": 20,
       "available": 1,
-      "url": "/bounties/p-8b91e1ac8c"
+      "occupied": 0,
+      "capacity": 1,
+      "title": "Publish Sourcey docs for a maintained OSS library"
     }
-  ]
+  ],
+  "notes": "gtm-pulse; A listing retag html-to-json #1; pilots 3/3 closed; E PRL hold"
 }
