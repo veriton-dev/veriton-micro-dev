@@ -1,0 +1,46 @@
+{
+  "updated": "2026-09-11T03:20:54Z",
+  "sha256": "8f6431684fb0587841a5775ecc32d16fe1e6c24b51b49b4912b108f6c0f2da01",
+  "open_count": 5,
+  "open_cash_usd": 37.0,
+  "items": [
+    {
+      "number": 130,
+      "price_usd": 3,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
+      "available": 10
+    },
+    {
+      "number": 129,
+      "price_usd": 16,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
+      "available": 9
+    },
+    {
+      "number": 128,
+      "price_usd": 8,
+      "title": "Earn a citation for Sourcey on a real external site",
+      "available": 12
+    },
+    {
+      "number": 97,
+      "price_usd": 10,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
+      "available": 5
+    },
+    {
+      "number": 49,
+      "price_usd": null,
+      "title": "Give runx some love",
+      "available": 4
+    }
+  ],
+  "frantic": {
+    "earnedUsd": 1,
+    "standardPaidEligible": true,
+    "humanReviewPending": 1,
+    "hr1_claim": "500cad50-728d-4f9a-8732-f6cf3543761a",
+    "hr1_pr": "https://github.com/sourcey/startup-credits/pull/1380",
+    "paid_pr": "https://github.com/sourcey/startup-credits/pull/1411"
+  }
+}
