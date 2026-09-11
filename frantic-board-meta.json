@@ -1,8 +1,11 @@
 {
-  "captured_at": "2026-09-11T07:20:51Z",
-  "sha256": "6c56201e32c270339979723925f16f26e295069a1a3a197ac292b088d0840874",
+  "captured_at": "2026-09-11T07:22:42Z",
   "open_count": 5,
   "open_cash_usd": 37.0,
-  "surge": "https://veriton-micro-dev.surge.sh/monitors/frantic-board-latest.json",
-  "gh": "https://veriton-dev.github.io/veriton-micro-dev/monitors/frantic-board-latest.json"
+  "sha12": "28a09bfbf34b",
+  "source": "https://gofrantic.com/v1/board",
+  "public_urls": {
+    "surge": "https://veriton-micro-dev.surge.sh/monitors/frantic-board-latest.json",
+    "gh": "https://veriton-dev.github.io/veriton-micro-dev/monitors/frantic-board-latest.json"
+  }
 }

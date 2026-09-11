@@ -1,8 +1,8 @@
 {
-  "captured_at": "2026-09-11T07:18:37Z",
+  "captured_at": "2026-09-11T07:22:42Z",
   "open_count": 5,
   "open_cash_usd": 37.0,
-  "sha12": "edf92f26928f",
+  "sha12": "28a09bfbf34b",
   "source": "https://gofrantic.com/v1/board",
   "public_urls": {
     "surge": "https://veriton-micro-dev.surge.sh/monitors/frantic-board-latest.json",
