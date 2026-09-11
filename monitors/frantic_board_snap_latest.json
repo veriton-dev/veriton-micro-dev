@@ -1,62 +1,62 @@
 {
   "agent_earned_usd": 1,
   "agent_standard_paid": true,
-  "captured_at": "2026-09-11T09:20:36Z",
-  "notes": "#128 machine_verification_pending; #120 HR pending; blocked=2",
+  "captured_at": "2026-09-11T09:50:09.221876Z",
+  "notes": "#128 stage=machine_verification_pending; #120 HR; blocked=2",
   "open": [
     {
-      "available": 10,
-      "number": 130,
-      "price_usd": 3,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
+      "number": 33,
+      "price_usd": 20.0,
+      "available": 1,
+      "title": "Publish Sourcey docs for a maintained OSS library"
     },
     {
-      "available": 8,
       "number": 129,
-      "price_usd": 16,
+      "price_usd": 16.0,
+      "available": 8,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
     },
     {
-      "available": 10,
-      "number": 128,
-      "price_usd": 8,
-      "title": "Earn a citation for Sourcey on a real external site"
-    },
-    {
-      "available": 5,
       "number": 97,
-      "price_usd": 10,
+      "price_usd": 10.0,
+      "available": 5,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)"
     },
     {
-      "available": 1,
       "number": 89,
-      "price_usd": 9,
+      "price_usd": 9.0,
+      "available": 1,
       "title": "runx skill: bookkeeper"
     },
     {
-      "available": 1,
+      "number": 128,
+      "price_usd": 8.0,
+      "available": 10,
+      "title": "Earn a citation for Sourcey on a real external site"
+    },
+    {
       "number": 79,
-      "price_usd": 8,
+      "price_usd": 8.0,
+      "available": 1,
       "title": "runx skill: CRM cleanup"
     },
     {
-      "available": 4,
-      "number": 49,
-      "price_usd": 0.0,
-      "title": "Give runx some love"
+      "number": 130,
+      "price_usd": 3.0,
+      "available": 10,
+      "title": "Answer live Reddit threads with a dated Sourcey fact"
     },
     {
-      "available": 1,
-      "number": 33,
-      "price_usd": 20,
-      "title": "Publish Sourcey docs for a maintained OSS library"
+      "number": 49,
+      "price_usd": 0.0,
+      "available": 4,
+      "title": "Give runx some love"
     }
   ],
   "open_count": 8,
   "open_total_usd": 74.0,
-  "sha12": "76ec1c721a2f",
-  "sha256": "76ec1c721a2f2566b9709e0bb6ecf00b1eba5579361f86bcb63e2796492a1055",
+  "sha12": "f01f5fe4ec18",
+  "sha256": "f01f5fe4ec180fd0aa01e04abb5b8b6ba99074345f0efbe839805ac8ec0b362a",
   "source": "https://gofrantic.com/v1/board",
-  "updated": "2026-09-11T09:20:36Z"
+  "updated": "2026-09-11T09:50:09.221876Z"
 }
