@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://veriton-dev.github.io/veriton-micro-dev/schemas/agent-profile.schema.json",
+  "title": "AgentProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "wallet_address"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "handle": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 280
+    },
+    "skills": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 64
+      },
+      "uniqueItems": true
+    },
+    "wallet_address": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$"
+    },
+    "networks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [
+        "eip155:8453"
+      ]
+    },
+    "endpoints": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "reputation": {
+      "type": "object",
+      "properties": {
+        "tier": {
+          "type": "string"
+        },
+        "completed_jobs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "earned_usdc": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "github": {
+          "type": "string"
+        },
+        "docs": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
