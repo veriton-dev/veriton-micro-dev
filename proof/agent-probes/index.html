@@ -2,35 +2,36 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Veriton agent-probes proof — 2026-09-11.7</title>
+<title>Veriton agent-probes proof — 2026-09-11.9</title>
 <body style="font-family:system-ui,sans-serif;max-width:48rem;margin:2rem auto;padding:0 1rem;line-height:1.5">
 <h1>Agent probes proof</h1>
-<p>Shipped <strong>2026-09-11</strong> during xAI unlimited day burst-build. Version <strong>2026-09-11.7</strong>.</p>
+<p>Shipped <strong>2026-09-11</strong> during xAI unlimited day burst-build. Version <strong>2026-09-11.9</strong>.</p>
 <p>Production API: <a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></p>
 <p>OpenAPI: <a href="https://veriton-tls-json.vercel.app/api/openapi"><code>/api/openapi</code></a></p>
-<p>Hobby plan: single serverless router (<code>/api/router</code>) + rewrites → <strong>34 endpoints</strong>.</p>
-<h2>Endpoints (34)</h2>
+<p>Hobby plan: single serverless router (<code>/api/router</code>) + rewrites → <strong>40 endpoints</strong>.</p>
+<h2>Endpoints (40)</h2>
 <ol>
 <li>health</li><li>openapi</li><li>tls</li><li>dns</li><li>headers</li><li>rdap</li>
 <li>emailauth</li><li>ct</li><li>redirects</li><li>robots</li><li>uptime</li><li>batch</li>
 <li>ip</li><li>sitemap</li><li>wellknown</li><li>meta</li>
 <li>feed</li><li>tech</li><li>cors</li><li>dnssec</li><li>cookies</li><li>hsts</li>
 <li>caa</li><li>dane</li><li>mtasts</li><li>svcb</li><li>sshfp</li><li>security</li>
-<li><strong>srv</strong> (new)</li><li><strong>smimea</strong> (new)</li><li><strong>webfinger</strong> (new)</li>
-<li><strong>oidc</strong> (new)</li><li><strong>jwks</strong> (new)</li><li><strong>assetlinks</strong> (new)</li>
+<li>srv</li><li>smimea</li><li>webfinger</li><li>oidc</li><li>jwks</li><li>assetlinks</li>
+<li><strong>did</strong> (new .9)</li><li><strong>passkey</strong> (new .9)</li><li><strong>agentcard</strong> (new .9)</li>
+<li><strong>mcp</strong> (new .9)</li><li><strong>paywall</strong> (new .9)</li><li><strong>bimi</strong> (new .9)</li>
 </ol>
-<h2>curl smoke</h2>
+<h2>curl smoke (v2026-09-11.9)</h2>
 <pre style="background:#f4f4f5;padding:1rem;overflow:auto">
 curl -sS 'https://veriton-tls-json.vercel.app/api/health'
-curl -sS 'https://veriton-tls-json.vercel.app/api/srv?host=gmail.com'
-curl -sS 'https://veriton-tls-json.vercel.app/api/smimea?host=ietf.org&local=security'
-curl -sS 'https://veriton-tls-json.vercel.app/api/webfinger?host=mastodon.social&user=Gargron'
-curl -sS 'https://veriton-tls-json.vercel.app/api/oidc?host=accounts.google.com'
-curl -sS 'https://veriton-tls-json.vercel.app/api/jwks?host=www.googleapis.com'
-curl -sS 'https://veriton-tls-json.vercel.app/api/assetlinks?host=www.google.com'
+curl -sS 'https://veriton-tls-json.vercel.app/api/did?host=identity.foundation'
+curl -sS 'https://veriton-tls-json.vercel.app/api/passkey?host=github.com'
+curl -sS 'https://veriton-tls-json.vercel.app/api/agentcard?host=example.com'
+curl -sS 'https://veriton-tls-json.vercel.app/api/mcp?host=veriton-html-json-api.netlify.app'
+curl -sS 'https://veriton-tls-json.vercel.app/api/paywall?host=veriton-html-json-api.netlify.app'
+curl -sS 'https://veriton-tls-json.vercel.app/api/bimi?host=paypal.com'
 curl -sS 'https://veriton-tls-json.vercel.app/api/batch?host=example.com'
 </pre>
-<p>Paid rail + catalog: <a href="https://veriton-html-json-api.netlify.app/v1/catalog">x402 catalog 0.1.5</a> · <a href="https://veriton-html-json-api.netlify.app/v1/ready">/v1/ready</a></p>
+<p>Paid rail + catalog: <a href="https://veriton-html-json-api.netlify.app/v1/catalog">x402 catalog 0.1.6</a> · <a href="https://veriton-html-json-api.netlify.app/v1/ready">/v1/ready</a></p>
 <p>Contact: acer-openclaw@agentmail.to · GitHub veriton-dev</p>
 </body>
 </html>
