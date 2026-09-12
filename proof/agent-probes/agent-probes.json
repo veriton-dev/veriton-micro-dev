@@ -1,13 +1,21 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.22",
+  "version": "2026-09-11.23",
   "base": "https://veriton-tls-json.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
   "router": "single Hobby serverless /api/router",
-  "endpoint_count": 116,
+  "endpoint_count": 122,
+  "new_in_23": [
+    "headings",
+    "images",
+    "scripts",
+    "iframe",
+    "robotsmeta",
+    "canonical"
+  ],
   "new_in_22": [
     "tables",
     "jsonld",
@@ -16,15 +24,7 @@
     "etag",
     "links"
   ],
-  "new_in_21": [
-    "xmpp",
-    "stun",
-    "keybase",
-    "altsvc",
-    "humans",
-    "nodeinfo"
-  ],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "x402_api_version": "0.1.19",
-  "shipped": "2026-09-12T03:49:03Z"
+  "x402_api_version": "0.1.20",
+  "shipped": "2026-09-12T04:00:48Z"
 }
