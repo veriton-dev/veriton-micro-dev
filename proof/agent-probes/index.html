@@ -2,24 +2,22 @@
 <html lang="en">
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Veriton agent-probes proof — 2026-09-11.18</title>
-<body style="font-family:system-ui,sans-serif;max-width:48rem;margin:2rem auto;padding:0 1rem;line-height:1.5">
-<h1>Agent probes proof</h1>
-<p>Shipped <strong>2026-09-11</strong> during xAI unlimited day burst-build. Version <strong>2026-09-11.18</strong>.</p>
-<p>Production API: <a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></p>
-<p>Catalog: <a href="https://veriton-tls-json.vercel.app/api/catalog"><code>/api/catalog</code></a> · OpenAPI: <a href="https://veriton-tls-json.vercel.app/api/openapi"><code>/api/openapi</code></a></p>
-<p>Hobby plan: single serverless router + <code>vercel.json</code> rewrites. <strong>endpoint_count=92</strong>.</p>
-<h2>New in .18</h2>
+<title>veriton-agent-probes</title>
+<body style="font-family:system-ui,sans-serif;max-width:52rem;margin:2rem auto;padding:0 1rem;line-height:1.45">
+<h1>veriton-agent-probes</h1>
+<p>Agent-native structured network probes → JSON. Free niche tooling on Vercel. <strong>v2026-09-11.19</strong> · <strong>98 endpoints</strong></p>
+<p><a href="/.well-known/x402"><code>GET /.well-known/x402</code></a> · <a href="/api/health"><code>GET /api/health</code></a> · <a href="/api/catalog"><code>GET /api/catalog</code></a> · <a href="/api/openapi"><code>GET /api/openapi</code></a></p>
+<h2>New in .19</h2>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/cache?url=https://cloudflare.com"><code>/api/cache</code></a> — Cache-Control / CDN cache-status</li>
-<li><a href="https://veriton-tls-json.vercel.app/api/methods?url=https://httpbin.org/get"><code>/api/methods</code></a> — HTTP method matrix (OPTIONS/Allow/CORS)</li>
-<li><a href="https://veriton-tls-json.vercel.app/api/privacy?url=https://www.apple.com"><code>/api/privacy</code></a> — GPC/DNT/privacy well-known + policy links</li>
-<li><a href="https://veriton-tls-json.vercel.app/api/relme?url=https://indieweb.org"><code>/api/relme</code></a> — rel=me identity graph</li>
-<li><a href="https://veriton-tls-json.vercel.app/api/opensearch?host=www.wikipedia.org"><code>/api/opensearch</code></a> — OpenSearch description discovery</li>
-<li><a href="https://veriton-tls-json.vercel.app/api/servertiming?url=https://www.cloudflare.com"><code>/api/servertiming</code></a> — Server-Timing + Timing-Allow-Origin</li>
+  <li><code>GET /api/webmention?url=https://aaronparecki.com/</code> — Webmention + pingback endpoints</li>
+  <li><code>GET /api/autoconfig?host=gmail.com</code> — Mozilla autoconfig + MS Autodiscover</li>
+  <li><code>GET /api/trusttxt?host=openx.com</code> — IAB trust.txt</li>
+  <li><code>GET /api/doh?host=cloudflare-dns.com</code> — DNS-over-HTTPS discovery + JSON probe</li>
+  <li><code>GET /api/oauthmeta?host=login.microsoftonline.com</code> — OAuth AS / protected-resource metadata</li>
+  <li><code>GET /api/clienthints?url=https://www.google.com</code> — Accept-CH / Critical-CH</li>
 </ul>
-<h2>Paid rail</h2>
-<p><a href="https://veriton-html-json-api.netlify.app">veriton-html-json-api.netlify.app</a> · version <strong>0.1.15</strong> · free_probes=92</p>
-<p>Machine JSON: <a href="./agent-probes.json">agent-probes.json</a></p>
+<p>Prior: .18 cache/methods/privacy/relme/opensearch/servertiming · .17 hreflang/nel/referrer/ocsp/sbom/rpki</p>
+<p>Paid HTML→JSON rail: <a href="https://veriton-html-json-api.netlify.app">veriton-html-json-api.netlify.app</a></p>
+<p>Proof: <a href="https://veriton-micro-dev.surge.sh/proof/agent-probes/">Surge</a> · <a href="https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/">GH Pages</a></p>
 </body>
 </html>
