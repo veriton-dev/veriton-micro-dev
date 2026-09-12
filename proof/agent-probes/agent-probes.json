@@ -1,13 +1,21 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.21",
+  "version": "2026-09-11.22",
   "base": "https://veriton-tls-json.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
   "router": "single Hobby serverless /api/router",
-  "endpoint_count": 110,
+  "endpoint_count": 116,
+  "new_in_22": [
+    "tables",
+    "jsonld",
+    "microdata",
+    "forms",
+    "etag",
+    "links"
+  ],
   "new_in_21": [
     "xmpp",
     "stun",
@@ -16,47 +24,7 @@
     "humans",
     "nodeinfo"
   ],
-  "new_in_20": [
-    "coop",
-    "reportto",
-    "dnslink",
-    "caldav",
-    "apicatalog",
-    "compression"
-  ],
-  "new_in_19": [
-    "webmention",
-    "autoconfig",
-    "trusttxt",
-    "doh",
-    "oauthmeta",
-    "clienthints"
-  ],
-  "new_in_18": [
-    "cache",
-    "methods",
-    "privacy",
-    "relme",
-    "opensearch",
-    "servertiming"
-  ],
-  "new_in_17": [
-    "hreflang",
-    "nel",
-    "referrer",
-    "ocsp",
-    "sbom",
-    "rpki"
-  ],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "paid_version": "0.1.18",
-  "shipped": "2026-09-12T03:40:00Z",
-  "examples": {
-    "xmpp": "https://veriton-tls-json.vercel.app/api/xmpp?host=xmpp.org",
-    "stun": "https://veriton-tls-json.vercel.app/api/stun?host=stun.l.google.com",
-    "keybase": "https://veriton-tls-json.vercel.app/api/keybase?host=keybase.io",
-    "altsvc": "https://veriton-tls-json.vercel.app/api/altsvc?url=https://www.cloudflare.com",
-    "humans": "https://veriton-tls-json.vercel.app/api/humans?host=humanstxt.org",
-    "nodeinfo": "https://veriton-tls-json.vercel.app/api/nodeinfo?host=mastodon.social"
-  }
+  "x402_api_version": "0.1.19",
+  "shipped": "2026-09-12T03:49:03Z"
 }
