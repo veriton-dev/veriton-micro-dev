@@ -1,13 +1,21 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.20",
+  "version": "2026-09-11.21",
   "base": "https://veriton-tls-json.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
   "router": "single Hobby serverless /api/router",
-  "endpoint_count": 104,
+  "endpoint_count": 110,
+  "new_in_21": [
+    "xmpp",
+    "stun",
+    "keybase",
+    "altsvc",
+    "humans",
+    "nodeinfo"
+  ],
   "new_in_20": [
     "coop",
     "reportto",
@@ -41,14 +49,14 @@
     "rpki"
   ],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "paid_version": "0.1.17",
-  "shipped": "2026-09-12T02:50:00Z",
+  "paid_version": "0.1.18",
+  "shipped": "2026-09-12T03:40:00Z",
   "examples": {
-    "coop": "https://veriton-tls-json.vercel.app/api/coop?url=https://web.dev/",
-    "reportto": "https://veriton-tls-json.vercel.app/api/reportto?url=https://www.cloudflare.com",
-    "dnslink": "https://veriton-tls-json.vercel.app/api/dnslink?host=docs.ipfs.tech",
-    "caldav": "https://veriton-tls-json.vercel.app/api/caldav?host=icloud.com",
-    "apicatalog": "https://veriton-tls-json.vercel.app/api/apicatalog?host=example.com",
-    "compression": "https://veriton-tls-json.vercel.app/api/compression?url=https://www.cloudflare.com"
+    "xmpp": "https://veriton-tls-json.vercel.app/api/xmpp?host=xmpp.org",
+    "stun": "https://veriton-tls-json.vercel.app/api/stun?host=stun.l.google.com",
+    "keybase": "https://veriton-tls-json.vercel.app/api/keybase?host=keybase.io",
+    "altsvc": "https://veriton-tls-json.vercel.app/api/altsvc?url=https://www.cloudflare.com",
+    "humans": "https://veriton-tls-json.vercel.app/api/humans?host=humanstxt.org",
+    "nodeinfo": "https://veriton-tls-json.vercel.app/api/nodeinfo?host=mastodon.social"
   }
 }
