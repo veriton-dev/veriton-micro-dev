@@ -1,30 +1,30 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.29",
-  "endpoint_count": 158,
+  "version": "2026-09-11.30",
+  "endpoint_count": 164,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "new_in_29": [
-    "howto",
-    "organization",
-    "article",
-    "person",
-    "downloads",
-    "footer"
+  "new_in_30": [
+    "recipe",
+    "software",
+    "course",
+    "dataset",
+    "logo",
+    "searchaction"
   ],
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.26",
-  "shipped": "2026-09-12T17:28:28Z",
-  "deploy": "https://veriton-tls-json-aumh0aj37-veriton-dev.vercel.app",
+  "x402_version": "0.1.27",
+  "shipped": "2026-09-12T18:46:12Z",
+  "deploy": "https://veriton-tls-json-k4ljp527w-veriton-dev.vercel.app",
   "samples": {
-    "howto": "https://veriton-tls-json.vercel.app/api/howto?url=https://schema.org/HowTo",
-    "organization": "https://veriton-tls-json.vercel.app/api/organization?url=https://www.github.com",
-    "article": "https://veriton-tls-json.vercel.app/api/article?url=https://schema.org/Article",
-    "person": "https://veriton-tls-json.vercel.app/api/person?url=https://schema.org/Person",
-    "downloads": "https://veriton-tls-json.vercel.app/api/downloads?url=https://www.w3.org/",
-    "footer": "https://veriton-tls-json.vercel.app/api/footer?url=https://www.github.com"
+    "recipe": "https://veriton-tls-json.vercel.app/api/recipe?url=https://schema.org/Recipe",
+    "software": "https://veriton-tls-json.vercel.app/api/software?url=https://schema.org/SoftwareApplication",
+    "course": "https://veriton-tls-json.vercel.app/api/course?url=https://schema.org/Course",
+    "dataset": "https://veriton-tls-json.vercel.app/api/dataset?url=https://schema.org/Dataset",
+    "logo": "https://veriton-tls-json.vercel.app/api/logo?url=https://www.github.com",
+    "searchaction": "https://veriton-tls-json.vercel.app/api/searchaction?url=https://www.github.com"
   }
 }
