@@ -20,11 +20,11 @@
   "shipped": "2026-09-12T18:46:12Z",
   "deploy": "https://veriton-tls-json-k4ljp527w-veriton-dev.vercel.app",
   "samples": {
-    "recipe": "https://veriton-tls-json.vercel.app/api/recipe?url=https://schema.org/Recipe",
-    "software": "https://veriton-tls-json.vercel.app/api/software?url=https://schema.org/SoftwareApplication",
-    "course": "https://veriton-tls-json.vercel.app/api/course?url=https://schema.org/Course",
-    "dataset": "https://veriton-tls-json.vercel.app/api/dataset?url=https://schema.org/Dataset",
-    "logo": "https://veriton-tls-json.vercel.app/api/logo?url=https://www.github.com",
-    "searchaction": "https://veriton-tls-json.vercel.app/api/searchaction?url=https://www.github.com"
+    "recipe": "https://veriton-tls-json.vercel.app/api/recipe?url=https://www.bbcgoodfood.com/recipes/classic-lasagne",
+    "software": "https://veriton-tls-json.vercel.app/api/software?url=https://code.visualstudio.com/",
+    "course": "https://veriton-tls-json.vercel.app/api/course?url=https://www.coursera.org/learn/machine-learning",
+    "dataset": "https://veriton-tls-json.vercel.app/api/dataset?url=https://catalog.data.gov/dataset",
+    "logo": "https://veriton-tls-json.vercel.app/api/logo?url=https://www.apple.com/",
+    "searchaction": "https://veriton-tls-json.vercel.app/api/searchaction?url=https://www.wikipedia.org/"
   }
 }
