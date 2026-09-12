@@ -1,13 +1,29 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.15",
+  "version": "2026-09-11.17",
   "base": "https://veriton-tls-json.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
-  "router": "single Hobby serverless + vercel.json rewrites",
-  "endpoint_count": 74,
+  "router": "single Hobby serverless /api/router",
+  "endpoint_count": 86,
+  "new_in_17": [
+    "hreflang",
+    "nel",
+    "referrer",
+    "ocsp",
+    "sbom",
+    "rpki"
+  ],
+  "new_in_16": [
+    "spf",
+    "http3",
+    "sellers",
+    "aiplugin",
+    "nostr",
+    "permissions"
+  ],
   "new_in_15": [
     "cname",
     "oembed",
@@ -41,8 +57,15 @@
     "favicon"
   ],
   "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "paid_version": "0.1.12",
+  "paid_version": "0.1.14",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "deploy_inspect": "https://vercel.com/veriton-dev/veriton-tls-json/899iFNBGxEF6U29DUyu9Y1yM4dgG",
-  "shipped": "2026-09-11T23:25:00Z"
+  "shipped": "2026-09-12T00:11:12Z",
+  "curl_evidence": {
+    "hreflang": "/api/hreflang?url=https://www.wikipedia.org",
+    "nel": "/api/nel?url=https://www.cloudflare.com",
+    "referrer": "/api/referrer?url=https://github.com",
+    "ocsp": "/api/ocsp?host=github.com",
+    "sbom": "/api/sbom?host=github.com",
+    "rpki": "/api/rpki?ip=1.1.1.1"
+  }
 }
