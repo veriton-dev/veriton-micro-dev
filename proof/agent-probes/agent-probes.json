@@ -1,39 +1,24 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.25",
+  "version": "2026-09-11.26",
   "base": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-p9nbfwd90-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-lk4fzo6tf-veriton-dev.vercel.app",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/",
   "gh_pages_proof": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
   "router": "single Hobby serverless /api/router",
-  "endpoint_count": 134,
-  "new_in_25": [
-    "fonts",
-    "mailto",
-    "integrity",
-    "amp",
-    "theme",
-    "sourcemap"
+  "endpoint_count": 140,
+  "new_in_26": [
+    "serviceworker",
+    "pagination",
+    "breadcrumb",
+    "trackers",
+    "ratelimit",
+    "authforms"
   ],
-  "new_in_24": [
-    "opengraph",
-    "twittercard",
-    "lang",
-    "preload",
-    "readability",
-    "videos"
-  ],
-  "new_in_23": [
-    "headings",
-    "images",
-    "scripts",
-    "iframe",
-    "robotsmeta",
-    "canonical"
-  ],
-  "paid_rail": "https://veriton-html-json-api.netlify.app",
-  "x402_api_version": "0.1.22",
-  "shipped": "2026-09-12T05:59:31Z"
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "paid_rail_netlify": "https://veriton-html-json-api.netlify.app",
+  "x402_version": "0.1.23",
+  "shipped": "2026-09-12T08:50:40Z"
 }
