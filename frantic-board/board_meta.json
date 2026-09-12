@@ -1,0 +1,9 @@
+{
+  "sha": "b998d62e286b",
+  "prev_sha": "093492ec46c2",
+  "changed": true,
+  "fetched_at": "2026-09-12T06:30:45Z",
+  "open_count": 5,
+  "open_sum_usd": 37.0,
+  "parse": "open_bounties_only"
+}

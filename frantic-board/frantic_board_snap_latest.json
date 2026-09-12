@@ -1,75 +1,68 @@
 {
-  "updated": "2026-09-11T12:21:39Z",
+  "ok": true,
+  "sku": "frantic_board_snap_v2",
+  "captured_at": "2026-09-12T14:06:26Z",
   "source": "https://gofrantic.com/v1/board",
-  "open_count": 9,
-  "open_cash_usd": 83.0,
-  "open_bounties": [
+  "open_count": 5,
+  "open_sum_usd": 37.0,
+  "opens": [
     {
-      "number": 130,
+      "n": 130,
+      "usd": 3,
       "title": "Answer live Reddit threads with a dated Sourcey fact",
-      "price_usd": 3.0,
       "available": 10,
-      "capacity": 10
+      "capacity": 10,
+      "occupied": 0,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 129,
+      "n": 129,
+      "usd": 16,
       "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
-      "price_usd": 16.0,
       "available": 8,
-      "capacity": 10
+      "capacity": 10,
+      "occupied": 2,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 128,
+      "n": 128,
+      "usd": 8,
       "title": "Earn a citation for Sourcey on a real external site",
-      "price_usd": 8.0,
-      "available": 10,
-      "capacity": 15
+      "available": 9,
+      "capacity": 15,
+      "occupied": 6,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 97,
+      "n": 97,
+      "usd": 10,
       "title": "Your first bounty is on the house ($10 back when it clears, first five)",
-      "price_usd": 10.0,
       "available": 5,
-      "capacity": 5
+      "capacity": 5,
+      "occupied": 0,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 89,
-      "title": "runx skill: bookkeeper",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 83,
-      "title": "runx skill: postmortem maker",
-      "price_usd": 9.0,
-      "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 79,
-      "title": "runx skill: CRM cleanup",
-      "price_usd": 8.0,
-      "available": 1,
-      "capacity": 1
-    },
-    {
-      "number": 49,
+      "n": 49,
+      "usd": 0,
       "title": "Give runx some love",
-      "price_usd": 0.0,
-      "available": 4,
-      "capacity": 100
-    },
-    {
-      "number": 33,
-      "title": "Publish Sourcey docs for a maintained OSS library",
-      "price_usd": 20.0,
-      "available": 1,
-      "capacity": 1
+      "available": 2,
+      "capacity": 100,
+      "occupied": 98,
+      "funded": true,
+      "work_status": "open"
     }
   ],
-  "agent_ref": "agent-064c1e",
-  "notes": "Frantic open board snapshot for niche data product (track B)",
-  "sha256_12": "4a45f3c2e259",
-  "sha256": "4a45f3c2e25975b43bf3f799155234c4053a5574ea3f052e45303edaa69c6da4"
+  "raw_sha256": "9127ff7154d5ef371b79a482212a3aeedb10204d32cd78fa9c9dea2f1309b164",
+  "board_meta": {
+    "day": 72,
+    "funded_usd": 730,
+    "season_total_usd": 1764,
+    "moved_usd": 1158,
+    "live": true
+  }
 }

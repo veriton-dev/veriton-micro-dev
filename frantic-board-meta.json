@@ -1,6 +1,14 @@
 {
-  "ts": "2026-09-11T14:23:19Z",
-  "sha12": "1e8405459025",
-  "open_count": 6,
-  "open_sum_usd": 57.0
+  "at": "2026-09-11T22:42:14.866Z",
+  "sha": "b7c62576314f908c85ffb9acb901a6fa2378f3a4620124339a55fa0fafde76f2",
+  "sha12": "b7c62576314f",
+  "face12": "eaf8e9896620",
+  "open": 6,
+  "face_usd": 57.0,
+  "changed": false,
+  "sku": "frantic_board_snap_v2",
+  "listing": "lst_01M21HS34NAA381T9TPB430SGW",
+  "price_usdc": 0.15,
+  "free_sample": "https://veriton-frantic-board.surge.sh",
+  "prev_sha12": "b7c62576314f"
 }

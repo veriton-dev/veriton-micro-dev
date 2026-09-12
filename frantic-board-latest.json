@@ -1,60 +1,83 @@
 {
-  "ts": "2026-09-11T14:23:19Z",
-  "schema": "v1",
+  "ok": true,
+  "sku": "frantic_board_snap_v2",
+  "captured_at": "2026-09-11T22:42:14.866Z",
   "source": "https://gofrantic.com/v1/board",
-  "sha256": "1e840545902579e1bad56ba08db7ba48fb282231bcf5436e1fe3e03e125e5813",
-  "sha12": "1e8405459025",
   "open_count": 6,
   "open_sum_usd": 57.0,
-  "open_bounties": [
+  "opens": [
     {
-      "number": 130,
-      "price_usd": 3,
+      "n": 130,
+      "usd": 3,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
       "available": 10,
-      "occupied": 0,
       "capacity": 10,
-      "title": "Answer live Reddit threads with a dated Sourcey fact"
+      "occupied": 0,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 129,
-      "price_usd": 16,
+      "n": 129,
+      "usd": 16,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
       "available": 8,
-      "occupied": 2,
       "capacity": 10,
-      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query"
+      "occupied": 2,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 128,
-      "price_usd": 8,
+      "n": 128,
+      "usd": 8,
+      "title": "Earn a citation for Sourcey on a real external site",
       "available": 10,
-      "occupied": 5,
       "capacity": 15,
-      "title": "Earn a citation for Sourcey on a real external site"
+      "occupied": 5,
+      "funded": true,
+      "work_status": "open"
     },
     {
-      "number": 97,
-      "price_usd": 10,
+      "n": 97,
+      "usd": 10,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
       "available": 5,
-      "occupied": 0,
       "capacity": 5,
-      "title": "Your first bounty is on the house ($10 back when it clears, first five)"
-    },
-    {
-      "number": 49,
-      "price_usd": 0.0,
-      "available": 4,
-      "occupied": 96,
-      "capacity": 100,
-      "title": "Give runx some love"
-    },
-    {
-      "number": 33,
-      "price_usd": 20,
-      "available": 1,
       "occupied": 0,
+      "funded": true,
+      "work_status": "open"
+    },
+    {
+      "n": 49,
+      "usd": 0,
+      "title": "Give runx some love",
+      "available": 3,
+      "capacity": 100,
+      "occupied": 97,
+      "funded": true,
+      "work_status": "open"
+    },
+    {
+      "n": 33,
+      "usd": 20,
+      "title": "Publish Sourcey docs for a maintained OSS library",
+      "available": 1,
       "capacity": 1,
-      "title": "Publish Sourcey docs for a maintained OSS library"
+      "occupied": 0,
+      "funded": true,
+      "work_status": "open"
     }
   ],
-  "notes": "gtm-pulse; A listing retag html-to-json #1; pilots 3/3 closed; E PRL hold"
+  "raw_sha256": "b7c62576314f908c85ffb9acb901a6fa2378f3a4620124339a55fa0fafde76f2",
+  "sha12": "b7c62576314f",
+  "board_meta": {
+    "day": 72,
+    "funded_usd": 730,
+    "season_total_usd": 1764,
+    "moved_usd": 1158,
+    "live": true
+  },
+  "listing": "lst_01M21HS34NAA381T9TPB430SGW",
+  "price_usdc": 0.15,
+  "free_sample": "https://veriton-frantic-board.surge.sh",
+  "face12": "eaf8e9896620"
 }
