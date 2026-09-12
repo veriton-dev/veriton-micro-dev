@@ -1,30 +1,31 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.30",
-  "endpoint_count": 164,
+  "version": "2026-09-11.31",
+  "endpoint_count": 170,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "new_in_30": [
-    "recipe",
-    "software",
-    "course",
-    "dataset",
-    "logo",
-    "searchaction"
+  "new_in_31": [
+    "videoobject",
+    "podcast",
+    "book",
+    "qa",
+    "claimreview",
+    "itemlist"
   ],
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.27",
-  "shipped": "2026-09-12T18:46:12Z",
-  "deploy": "https://veriton-tls-json-k4ljp527w-veriton-dev.vercel.app",
+  "x402_version": "0.1.29",
+  "shipped": "2026-09-12T21:28:19Z",
+  "deploy": "https://veriton-tls-json-go1enwsh5-veriton-dev.vercel.app",
+  "fixture": "https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
   "samples": {
-    "recipe": "https://veriton-tls-json.vercel.app/api/recipe?url=https://www.bbcgoodfood.com/recipes/classic-lasagne",
-    "software": "https://veriton-tls-json.vercel.app/api/software?url=https://code.visualstudio.com/",
-    "course": "https://veriton-tls-json.vercel.app/api/course?url=https://www.coursera.org/learn/machine-learning",
-    "dataset": "https://veriton-tls-json.vercel.app/api/dataset?url=https://catalog.data.gov/dataset",
-    "logo": "https://veriton-tls-json.vercel.app/api/logo?url=https://www.apple.com/",
-    "searchaction": "https://veriton-tls-json.vercel.app/api/searchaction?url=https://www.wikipedia.org/"
+    "videoobject": "https://veriton-tls-json.vercel.app/api/videoobject?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "podcast": "https://veriton-tls-json.vercel.app/api/podcast?url=https://www.npr.org/podcasts/510289/planet-money",
+    "book": "https://veriton-tls-json.vercel.app/api/book?url=https://www.goodreads.com/book/show/1885.Pride_and_Prejudice",
+    "qa": "https://veriton-tls-json.vercel.app/api/qa?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
+    "claimreview": "https://veriton-tls-json.vercel.app/api/claimreview?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
+    "itemlist": "https://veriton-tls-json.vercel.app/api/itemlist?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html"
   }
 }

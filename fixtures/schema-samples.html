@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Veriton schema samples fixture</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "QAPage",
+      "mainEntity": {
+        "@type": "Question",
+        "name": "What is x402?",
+        "text": "What is the x402 payment protocol?",
+        "answerCount": 1,
+        "dateCreated": "2026-09-12",
+        "author": {"@type": "Person", "name": "Veriton"},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HTTP 402 payment-required rail for agents using USDC on Base.",
+          "dateCreated": "2026-09-12",
+          "author": {"@type": "Person", "name": "Veriton"}
+        }
+      }
+    },
+    {
+      "@type": "ClaimReview",
+      "url": "https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
+      "claimReviewed": "Agents cannot settle micro-payments without a bank.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 1,
+        "bestRating": 5,
+        "worstRating": 1,
+        "alternateName": "False"
+      },
+      "author": {"@type": "Organization", "name": "Veriton"},
+      "datePublished": "2026-09-12",
+      "itemReviewed": {
+        "@type": "Claim",
+        "author": {"@type": "Organization", "name": "Example"},
+        "datePublished": "2026-01-01"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Veriton free probe highlights",
+      "numberOfItems": 3,
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "videoobject", "url": "https://veriton-tls-json.vercel.app/api/videoobject"},
+        {"@type": "ListItem", "position": 2, "name": "podcast", "url": "https://veriton-tls-json.vercel.app/api/podcast"},
+        {"@type": "ListItem", "position": 3, "name": "book", "url": "https://veriton-tls-json.vercel.app/api/book"}
+      ]
+    },
+    {
+      "@type": "PodcastEpisode",
+      "name": "Agent rails episode 1",
+      "description": "Shipping free teasers and paid x402 HTML→JSON.",
+      "datePublished": "2026-09-12",
+      "duration": "PT12M",
+      "episodeNumber": 1,
+      "associatedMedia": {"@type": "MediaObject", "contentUrl": "https://example.com/ep1.mp3"}
+    },
+    {
+      "@type": "PodcastSeries",
+      "name": "Veriton Agent Rails",
+      "url": "https://veriton-dev.github.io/veriton-micro-dev/",
+      "webFeed": "https://example.com/feed.xml"
+    },
+    {
+      "@type": "Book",
+      "name": "Agent Extraction Handbook",
+      "isbn": "9780000000001",
+      "author": {"@type": "Person", "name": "Veriton"},
+      "numberOfPages": 42,
+      "datePublished": "2026-09-12"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Veriton probe demo",
+      "description": "Demo of agent probes",
+      "uploadDate": "2026-09-12",
+      "contentUrl": "https://example.com/demo.mp4",
+      "embedUrl": "https://example.com/embed/demo",
+      "thumbnailUrl": "https://example.com/demo.jpg"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<h1>Veriton schema samples fixture</h1>
+<p>JSON-LD @graph with QAPage, ClaimReview, ItemList, PodcastEpisode, PodcastSeries, Book, VideoObject for extractor self-tests.</p>
+</body>
+</html>
