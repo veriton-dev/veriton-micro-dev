@@ -1,29 +1,30 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.28",
-  "endpoint_count": 152,
+  "version": "2026-09-11.29",
+  "endpoint_count": 158,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "new_in_28": [
-    "faq",
-    "products",
-    "reviews",
-    "jobs",
-    "events",
-    "nav"
+  "new_in_29": [
+    "howto",
+    "organization",
+    "article",
+    "person",
+    "downloads",
+    "footer"
   ],
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.25",
-  "shipped": "2026-09-12T16:12:33Z",
+  "x402_version": "0.1.26",
+  "shipped": "2026-09-12T17:28:28Z",
+  "deploy": "https://veriton-tls-json-aumh0aj37-veriton-dev.vercel.app",
   "samples": {
-    "faq": "https://veriton-tls-json.vercel.app/api/faq?url=https://www.cloudflare.com",
-    "products": "https://veriton-tls-json.vercel.app/api/products?url=https://www.apple.com",
-    "reviews": "https://veriton-tls-json.vercel.app/api/reviews?url=https://www.github.com",
-    "jobs": "https://veriton-tls-json.vercel.app/api/jobs?url=https://boards.greenhouse.io",
-    "events": "https://veriton-tls-json.vercel.app/api/events?url=https://schema.org/Event",
-    "nav": "https://veriton-tls-json.vercel.app/api/nav?url=https://www.github.com"
+    "howto": "https://veriton-tls-json.vercel.app/api/howto?url=https://schema.org/HowTo",
+    "organization": "https://veriton-tls-json.vercel.app/api/organization?url=https://www.github.com",
+    "article": "https://veriton-tls-json.vercel.app/api/article?url=https://schema.org/Article",
+    "person": "https://veriton-tls-json.vercel.app/api/person?url=https://schema.org/Person",
+    "downloads": "https://veriton-tls-json.vercel.app/api/downloads?url=https://www.w3.org/",
+    "footer": "https://veriton-tls-json.vercel.app/api/footer?url=https://www.github.com"
   }
 }
