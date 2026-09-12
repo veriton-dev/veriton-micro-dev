@@ -1,12 +1,20 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.31",
-  "endpoint_count": 170,
+  "version": "2026-09-11.32",
+  "endpoint_count": 176,
   "base": "https://veriton-tls-json.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/health",
+  "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402.json",
+  "new_in_32": [
+    "localbusiness",
+    "offer",
+    "rating",
+    "consent",
+    "citation",
+    "sameas"
+  ],
   "new_in_31": [
     "videoobject",
     "podcast",
@@ -16,16 +24,23 @@
     "itemlist"
   ],
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.29",
-  "shipped": "2026-09-12T21:28:19Z",
-  "deploy": "https://veriton-tls-json-go1enwsh5-veriton-dev.vercel.app",
+  "x402_version": "0.1.30",
+  "shipped": "2026-09-12T22:48:42Z",
+  "deploy": "https://veriton-tls-json-hnqmqeppq-veriton-dev.vercel.app",
   "fixture": "https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
   "samples": {
-    "videoobject": "https://veriton-tls-json.vercel.app/api/videoobject?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "podcast": "https://veriton-tls-json.vercel.app/api/podcast?url=https://www.npr.org/podcasts/510289/planet-money",
-    "book": "https://veriton-tls-json.vercel.app/api/book?url=https://www.goodreads.com/book/show/1885.Pride_and_Prejudice",
-    "qa": "https://veriton-tls-json.vercel.app/api/qa?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
-    "claimreview": "https://veriton-tls-json.vercel.app/api/claimreview?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
-    "itemlist": "https://veriton-tls-json.vercel.app/api/itemlist?url=https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html"
+    "localbusiness": "https://veriton-tls-json.vercel.app/api/localbusiness",
+    "offer": "https://veriton-tls-json.vercel.app/api/offer",
+    "rating": "https://veriton-tls-json.vercel.app/api/rating",
+    "consent": "https://veriton-tls-json.vercel.app/api/consent",
+    "citation": "https://veriton-tls-json.vercel.app/api/citation",
+    "sameas": "https://veriton-tls-json.vercel.app/api/sameas"
+  },
+  "curl_verified": {
+    "health": "2026-09-11.32 / 176",
+    "citation_arxiv": "grade A + DOI 10.48550/arXiv.1706.03762",
+    "sameas_github": "grade A unique_same_as_count>=40",
+    "consent_nytimes": "grade B vendors includes tcf_api",
+    "x402_health": "0.1.30"
   }
 }
