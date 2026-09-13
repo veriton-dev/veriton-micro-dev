@@ -1,37 +1,29 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.52",
-  "endpoint_count": 314,
-  "new_in_52": [
-    "msa",
-    "dpa",
-    "mou",
-    "rfp",
-    "rfq",
-    "changeorder",
-    "workorder"
+  "version": "2026-09-11.53",
+  "endpoint_count": 321,
+  "new_in_53": [
+    "baa",
+    "eula",
+    "loi",
+    "loa",
+    "termsheet",
+    "amendment",
+    "addendum"
   ],
-  "batch_multi_op": "GET /api/batch?ops=msa,dpa,mou,rfp&url=/fixtures/msa.html",
+  "batch_multi_op": "GET /api/batch?ops=baa,eula,loi,loa&url=/fixtures/baa.html",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.56",
-  "shipped": "2026-09-13T19:24:24Z",
+  "x402_version": "0.1.57",
+  "shipped": "2026-09-13T20:04:35Z",
   "fixtures": {
-    "msa": "https://veriton-tls-json.vercel.app/fixtures/msa.html",
-    "dpa": "https://veriton-tls-json.vercel.app/fixtures/dpa.html",
-    "mou": "https://veriton-tls-json.vercel.app/fixtures/mou.html",
-    "rfp": "https://veriton-tls-json.vercel.app/fixtures/rfp.html",
-    "rfq": "https://veriton-tls-json.vercel.app/fixtures/rfq.html",
-    "changeorder": "https://veriton-tls-json.vercel.app/fixtures/changeorder.html",
-    "workorder": "https://veriton-tls-json.vercel.app/fixtures/workorder.html"
+    "baa": "https://veriton-tls-json.vercel.app/fixtures/baa.html",
+    "eula": "https://veriton-tls-json.vercel.app/fixtures/eula.html",
+    "loi": "https://veriton-tls-json.vercel.app/fixtures/loi.html",
+    "loa": "https://veriton-tls-json.vercel.app/fixtures/loa.html",
+    "termsheet": "https://veriton-tls-json.vercel.app/fixtures/termsheet.html",
+    "amendment": "https://veriton-tls-json.vercel.app/fixtures/amendment.html",
+    "addendum": "https://veriton-tls-json.vercel.app/fixtures/addendum.html"
   },
-  "examples": {
-    "msa": "https://veriton-tls-json.vercel.app/api/msa?url=https://veriton-tls-json.vercel.app/fixtures/msa.html",
-    "dpa": "https://veriton-tls-json.vercel.app/api/dpa?url=https://veriton-tls-json.vercel.app/fixtures/dpa.html",
-    "mou": "https://veriton-tls-json.vercel.app/api/mou?url=https://veriton-tls-json.vercel.app/fixtures/mou.html",
-    "rfp": "https://veriton-tls-json.vercel.app/api/rfp?url=https://veriton-tls-json.vercel.app/fixtures/rfp.html",
-    "rfq": "https://veriton-tls-json.vercel.app/api/rfq?url=https://veriton-tls-json.vercel.app/fixtures/rfq.html",
-    "changeorder": "https://veriton-tls-json.vercel.app/api/changeorder?url=https://veriton-tls-json.vercel.app/fixtures/changeorder.html",
-    "workorder": "https://veriton-tls-json.vercel.app/api/workorder?url=https://veriton-tls-json.vercel.app/fixtures/workorder.html"
-  }
+  "pack": "B2B Contract Pack III (BAA/EULA/LOI/LOA/TermSheet/Amendment/Addendum)"
 }

@@ -1,22 +1,38 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>agent-probes proof 2026-09-11.52</title></head>
+<html><head><meta charset="utf-8"/><title>veriton-agent-probes 2026-09-11.53</title></head>
 <body>
-<h1>veriton-agent-probes proof</h1>
-<p>version <strong>2026-09-11.52</strong> · endpoints <strong>314</strong> · x402 <strong>0.1.55</strong></p>
-<p>Base: <a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></p>
-<p>Paid: <a href="https://veriton-x402-proxy.vercel.app">https://veriton-x402-proxy.vercel.app</a></p>
-<p>new_in_51: purchaseorder, billoflading, letterofcredit, factoring, nda, sow, ratecard</p>
-<p>Batch multi-op: <code>GET /api/batch?ops=nda,sow,ratecard&url=/fixtures/nda.html</code></p>
-<ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/purchaseorder?url=/fixtures/purchaseorder.html">purchaseorder</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/billoflading?url=/fixtures/billoflading.html">billoflading</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/letterofcredit?url=/fixtures/letterofcredit.html">letterofcredit</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/factoring?url=/fixtures/factoring.html">factoring</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/nda?url=/fixtures/nda.html">nda</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/sow?url=/fixtures/sow.html">sow</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/ratecard?url=/fixtures/ratecard.html">ratecard</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/batch?ops=purchaseorder,nda,sow,ratecard&url=/fixtures/nda.html">batch_multi_op</a></li>
-</ul>
-<p><a href="agent-probes.json">agent-probes.json</a></p>
-<p>shipped 2026-09-13T18:49:08Z</p>
+<h1>veriton-agent-probes 2026-09-11.53</h1>
+<p>endpoint_count=321 · new_in_53=baa, eula, loi, loa, termsheet, amendment, addendum</p>
+<p>base: <a href="https://veriton-tls-json.vercel.app">veriton-tls-json.vercel.app</a></p>
+<p>paid: <a href="https://veriton-x402-proxy.vercel.app">veriton-x402-proxy.vercel.app</a> 0.1.57</p>
+<p><a href="./agent-probes.json">agent-probes.json</a></p>
+<pre>{
+  "service": "veriton-agent-probes",
+  "version": "2026-09-11.53",
+  "endpoint_count": 321,
+  "new_in_53": [
+    "baa",
+    "eula",
+    "loi",
+    "loa",
+    "termsheet",
+    "amendment",
+    "addendum"
+  ],
+  "batch_multi_op": "GET /api/batch?ops=baa,eula,loi,loa&url=/fixtures/baa.html",
+  "base": "https://veriton-tls-json.vercel.app",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.57",
+  "shipped": "2026-09-13T20:04:35Z",
+  "fixtures": {
+    "baa": "https://veriton-tls-json.vercel.app/fixtures/baa.html",
+    "eula": "https://veriton-tls-json.vercel.app/fixtures/eula.html",
+    "loi": "https://veriton-tls-json.vercel.app/fixtures/loi.html",
+    "loa": "https://veriton-tls-json.vercel.app/fixtures/loa.html",
+    "termsheet": "https://veriton-tls-json.vercel.app/fixtures/termsheet.html",
+    "amendment": "https://veriton-tls-json.vercel.app/fixtures/amendment.html",
+    "addendum": "https://veriton-tls-json.vercel.app/fixtures/addendum.html"
+  },
+  "pack": "B2B Contract Pack III (BAA/EULA/LOI/LOA/TermSheet/Amendment/Addendum)"
+}</pre>
 </body></html>
