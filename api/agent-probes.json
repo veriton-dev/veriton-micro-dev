@@ -1,40 +1,31 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.54",
-  "endpoint_count": 328,
-  "new_in_54": [
-    "aup",
-    "cookiepolicy",
-    "dmca",
-    "subprocessors",
-    "privacynotice",
-    "whistleblower",
-    "coc"
+  "version": "2026-09-11.56",
+  "endpoint_count": 342,
+  "new_in_56": [
+    "soc2",
+    "iso27001",
+    "pcidss",
+    "gdpr",
+    "ccpa",
+    "bugbounty",
+    "securityassessment"
   ],
-  "batch_multi_op": "GET /api/batch?ops=aup,dmca,coc,privacynotice&url=/fixtures/aup",
+  "batch_multi_op": "GET /api/batch?ops=soc2,iso27001,gdpr,bugbounty&url=/fixtures/soc2.html",
   "batch_post_json": "POST /api/batch {ops,url|host,timeout_ms?}",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.58",
-  "shipped": "2026-09-13T20:47:54Z",
+  "x402_version": "0.1.60",
+  "shipped": "2026-09-13T22:04:41Z",
   "fixtures": {
-    "aup": "https://veriton-tls-json.vercel.app/fixtures/aup.html",
-    "cookiepolicy": "https://veriton-tls-json.vercel.app/fixtures/cookiepolicy.html",
-    "dmca": "https://veriton-tls-json.vercel.app/fixtures/dmca.html",
-    "subprocessors": "https://veriton-tls-json.vercel.app/fixtures/subprocessors.html",
-    "privacynotice": "https://veriton-tls-json.vercel.app/fixtures/privacynotice.html",
-    "whistleblower": "https://veriton-tls-json.vercel.app/fixtures/whistleblower.html",
-    "coc": "https://veriton-tls-json.vercel.app/fixtures/coc.html"
+    "soc2": "https://veriton-tls-json.vercel.app/fixtures/soc2.html",
+    "iso27001": "https://veriton-tls-json.vercel.app/fixtures/iso27001.html",
+    "pcidss": "https://veriton-tls-json.vercel.app/fixtures/pcidss.html",
+    "gdpr": "https://veriton-tls-json.vercel.app/fixtures/gdpr.html",
+    "ccpa": "https://veriton-tls-json.vercel.app/fixtures/ccpa.html",
+    "bugbounty": "https://veriton-tls-json.vercel.app/fixtures/bugbounty.html",
+    "securityassessment": "https://veriton-tls-json.vercel.app/fixtures/securityassessment.html"
   },
-  "curl": {
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402"
-  },
-  "supabase_api_deploys": {
-    "agent_probes_id": 66,
-    "x402_id": 67
-  },
-  "deploy": "https://veriton-tls-json-izd1zm0dz-veriton-dev.vercel.app"
+  "pack": "Vendor Attestation Pack VI (soc2/iso27001/pcidss/gdpr/ccpa/bugbounty/securityassessment)",
+  "deploy": "pending"
 }

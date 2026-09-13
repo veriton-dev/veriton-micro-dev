@@ -1,31 +1,31 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.55",
-  "endpoint_count": 335,
-  "new_in_55": [
-    "imprint",
-    "accessibility",
-    "trustcenter",
-    "statuspage",
-    "brandguidelines",
-    "modernslavery",
-    "responsibleai"
+  "version": "2026-09-11.56",
+  "endpoint_count": 342,
+  "new_in_56": [
+    "soc2",
+    "iso27001",
+    "pcidss",
+    "gdpr",
+    "ccpa",
+    "bugbounty",
+    "securityassessment"
   ],
-  "batch_multi_op": "GET /api/batch?ops=imprint,accessibility,trustcenter,statuspage&url=/fixtures/imprint.html",
+  "batch_multi_op": "GET /api/batch?ops=soc2,iso27001,gdpr,bugbounty&url=/fixtures/soc2.html",
   "batch_post_json": "POST /api/batch {ops,url|host,timeout_ms?}",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.59",
-  "shipped": "2026-09-13T21:24:39Z",
+  "x402_version": "0.1.60",
+  "shipped": "2026-09-13T22:04:41Z",
   "fixtures": {
-    "imprint": "https://veriton-tls-json.vercel.app/fixtures/imprint.html",
-    "accessibility": "https://veriton-tls-json.vercel.app/fixtures/accessibility.html",
-    "trustcenter": "https://veriton-tls-json.vercel.app/fixtures/trustcenter.html",
-    "statuspage": "https://veriton-tls-json.vercel.app/fixtures/statuspage.html",
-    "brandguidelines": "https://veriton-tls-json.vercel.app/fixtures/brandguidelines.html",
-    "modernslavery": "https://veriton-tls-json.vercel.app/fixtures/modernslavery.html",
-    "responsibleai": "https://veriton-tls-json.vercel.app/fixtures/responsibleai.html"
+    "soc2": "https://veriton-tls-json.vercel.app/fixtures/soc2.html",
+    "iso27001": "https://veriton-tls-json.vercel.app/fixtures/iso27001.html",
+    "pcidss": "https://veriton-tls-json.vercel.app/fixtures/pcidss.html",
+    "gdpr": "https://veriton-tls-json.vercel.app/fixtures/gdpr.html",
+    "ccpa": "https://veriton-tls-json.vercel.app/fixtures/ccpa.html",
+    "bugbounty": "https://veriton-tls-json.vercel.app/fixtures/bugbounty.html",
+    "securityassessment": "https://veriton-tls-json.vercel.app/fixtures/securityassessment.html"
   },
-  "pack": "Trust & Public Policy Pack V (imprint/accessibility/trustcenter/statuspage/brandguidelines/modernslavery/responsibleai)",
-  "deploy": "https://veriton-tls-json-d2iurhvht-veriton-dev.vercel.app"
+  "pack": "Vendor Attestation Pack VI (soc2/iso27001/pcidss/gdpr/ccpa/bugbounty/securityassessment)",
+  "deploy": "pending"
 }
