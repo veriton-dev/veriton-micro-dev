@@ -1,58 +1,57 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.37",
-  "shipped": "2026-09-13T05:32:34Z",
-  "endpoint_count": 209,
+  "version": "2026-09-11.38",
+  "shipped": "2026-09-13T06:48:26Z",
+  "endpoint_count": 216,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "paid_version": "0.1.36",
-  "new_in_37": [
-    "shipping",
-    "warranty",
-    "aggregateoffer",
-    "condition",
-    "subscription",
-    "nutrition",
-    "coupon"
+  "paid_version": "0.1.40",
+  "new_in_38": [
+    "returnpolicy",
+    "invoice",
+    "order",
+    "parcel",
+    "productgroup",
+    "audience",
+    "energy"
   ],
   "fixtures": {
-    "shipping": "https://veriton-tls-json.vercel.app/fixtures/shipping.html",
-    "warranty": "https://veriton-tls-json.vercel.app/fixtures/warranty.html",
-    "aggregateoffer": "https://veriton-tls-json.vercel.app/fixtures/aggregateoffer.html",
-    "condition": "https://veriton-tls-json.vercel.app/fixtures/condition.html",
-    "subscription": "https://veriton-tls-json.vercel.app/fixtures/subscription.html",
-    "nutrition": "https://veriton-tls-json.vercel.app/fixtures/nutrition.html",
-    "coupon": "https://veriton-tls-json.vercel.app/fixtures/coupon.html"
+    "returnpolicy": "https://veriton-tls-json.vercel.app/fixtures/returnpolicy.html",
+    "invoice": "https://veriton-tls-json.vercel.app/fixtures/invoice.html",
+    "order": "https://veriton-tls-json.vercel.app/fixtures/order.html",
+    "parcel": "https://veriton-tls-json.vercel.app/fixtures/parcel.html",
+    "productgroup": "https://veriton-tls-json.vercel.app/fixtures/productgroup.html",
+    "audience": "https://veriton-tls-json.vercel.app/fixtures/audience.html",
+    "energy": "https://veriton-tls-json.vercel.app/fixtures/energy.html"
   },
   "curl_verified": {
-    "health_version": "2026-09-11.37",
-    "catalog_count": 209,
+    "health_version": "2026-09-11.38",
+    "catalog_count": 216,
     "fixture_grades": {
-      "shipping": "A",
-      "warranty": "A",
-      "aggregateoffer": "B",
-      "condition": "A",
-      "subscription": "A",
-      "nutrition": "A",
-      "coupon": "A"
+      "returnpolicy": "B",
+      "invoice": "B",
+      "order": "A",
+      "parcel": "B",
+      "productgroup": "B",
+      "audience": "B",
+      "energy": "A"
     },
-    "x402_extractor": "veriton-html-json/0.1.36",
+    "x402_extractor": "veriton-html-json/0.1.40",
     "x402_signals": [
-      "brands",
-      "availability_signals",
+      "audience_signals",
+      "energy_signals",
+      "invoice_signals",
+      "order_signals",
+      "parcel_signals",
+      "product_group_signals",
       "product_identifiers",
-      "shipping_signals",
-      "warranty_signals",
-      "condition_signals",
-      "subscription_signals",
-      "coupon_signals",
-      "aggregate_offer_signals"
+      "return_policy_signals"
     ]
   },
-  "deploy": "https://veriton-tls-json-n3kdb01oi-veriton-dev.vercel.app"
+  "deploy": "https://veriton-tls-json-8s2gvaryf-veriton-dev.vercel.app"
 }
