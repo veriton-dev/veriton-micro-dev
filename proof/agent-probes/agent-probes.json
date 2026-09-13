@@ -1,62 +1,74 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.41",
-  "endpoint_count": 237,
-  "new_in_41": [
-    "refund",
-    "discount",
-    "giftcard",
-    "installment",
-    "appointment",
-    "rental",
-    "bundle"
+  "version": "2026-09-11.42",
+  "endpoint_count": 244,
+  "new_in_42": [
+    "loyalty",
+    "quote",
+    "calendar",
+    "fulfillment",
+    "pricematch",
+    "warrantyclaim",
+    "commerce"
   ],
   "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-1t7fu3nru-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-b1b2omd2d-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.45",
-  "fixture_grades_v41": {
-    "refund": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "discount": {
+  "x402_version": "0.1.46",
+  "catch_all_rewrite": true,
+  "fixture_grades_v42": {
+    "loyalty": {
       "ok": true,
       "grade": "A",
       "count": 2
     },
-    "giftcard": {
+    "quote": {
       "ok": true,
       "grade": "B",
       "count": 1
     },
-    "installment": {
+    "calendar": {
       "ok": true,
       "grade": "B",
-      "count": 1
+      "count": 1,
+      "has_ics": true
     },
-    "appointment": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "rental": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "bundle": {
+    "fulfillment": {
       "ok": true,
       "grade": "A",
-      "count": 4
+      "count": 2
+    },
+    "pricematch": {
+      "ok": true,
+      "grade": "A",
+      "count": 3
+    },
+    "warrantyclaim": {
+      "ok": true,
+      "grade": "A",
+      "count": 2
+    },
+    "commerce": {
+      "ok": true,
+      "grade": "A",
+      "count": 4,
+      "funnel": {
+        "checkout_count": 1,
+        "cart_count": 1,
+        "receipt_count": 1,
+        "refund_count": 1
+      }
     }
   },
-  "verified_at": "2026-09-13T10:09:39.473372+00:00",
-  "free_count": 237,
-  "count": 237
+  "verified_at": "2026-09-13T10:50:08.354339+00:00",
+  "free_count": 244,
+  "count": 244,
+  "supabase_api_deploys_ids": [
+    28,
+    29
+  ]
 }
