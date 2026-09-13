@@ -1,15 +1,47 @@
 <!doctype html>
-<html><head><meta charset="utf-8"/><title>Veriton agent-probes proof</title>
-<meta name="robots" content="index,follow"/>
-</head><body>
+<html><head><meta charset=utf-8><title>Veriton agent-probes proof</title>
+<meta name="description" content="veriton-agent-probes v2026-09-11.49 — 293 endpoints"/></head>
+<body>
 <h1>veriton-agent-probes proof</h1>
-<p>Version <strong>2026-09-11.48</strong> · 286 endpoints · x402 paid <strong>0.1.52</strong></p>
+<p>version <strong>2026-09-11.49</strong> · endpoints <strong>293</strong> · x402 <strong>0.1.53</strong></p>
+<p>new_in_49: margin, swap, bond, custody, settlement, hedge, netting</p>
 <ul>
 <li><a href="https://veriton-tls-json.vercel.app/api/health">health</a></li>
 <li><a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></li>
 <li><a href="https://veriton-tls-json.vercel.app/api/openapi">openapi</a></li>
-<li><a href="agent-probes.json">agent-probes.json</a></li>
 <li><a href="https://veriton-x402-proxy.vercel.app/health">x402 health</a></li>
+<li><a href="agent-probes.json">agent-probes.json</a></li>
 </ul>
-<p>new_in_48: dividend, liquidity, treasury, payroll, remittance, yieldapy, governance</p>
+<pre>{
+  "service": "veriton-agent-probes",
+  "version": "2026-09-11.49",
+  "endpoint_count": 293,
+  "new_in_49": [
+    "margin",
+    "swap",
+    "bond",
+    "custody",
+    "settlement",
+    "hedge",
+    "netting"
+  ],
+  "base": "https://veriton-tls-json.vercel.app",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.53",
+  "paid_version": "0.1.53",
+  "shipped": "2026-09-13T17:24:42Z",
+  "ops": {
+    "margin": "https://veriton-tls-json.vercel.app/api/margin?url=/fixtures/margin.html",
+    "swap": "https://veriton-tls-json.vercel.app/api/swap?url=/fixtures/swap.html",
+    "bond": "https://veriton-tls-json.vercel.app/api/bond?url=/fixtures/bond.html",
+    "custody": "https://veriton-tls-json.vercel.app/api/custody?url=/fixtures/custody.html",
+    "settlement": "https://veriton-tls-json.vercel.app/api/settlement?url=/fixtures/settlement.html",
+    "hedge": "https://veriton-tls-json.vercel.app/api/hedge?url=/fixtures/hedge.html",
+    "netting": "https://veriton-tls-json.vercel.app/api/netting?url=/fixtures/netting.html"
+  },
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402"
+}</pre>
 </body></html>
