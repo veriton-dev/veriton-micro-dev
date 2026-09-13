@@ -1,62 +1,62 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.40",
-  "endpoint_count": 230,
-  "new_in_40": [
-    "checkout",
-    "cart",
-    "receipt",
-    "tax",
-    "inventory",
-    "loan",
-    "contactpoint"
+  "version": "2026-09-11.41",
+  "endpoint_count": 237,
+  "new_in_41": [
+    "refund",
+    "discount",
+    "giftcard",
+    "installment",
+    "appointment",
+    "rental",
+    "bundle"
   ],
   "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-a2bp996oq-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-1t7fu3nru-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.44",
-  "fixture_grades_v40": {
-    "checkout": {
+  "x402_version": "0.1.45",
+  "fixture_grades_v41": {
+    "refund": {
       "ok": true,
       "grade": "B",
       "count": 1
     },
-    "cart": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "receipt": {
+    "discount": {
       "ok": true,
       "grade": "A",
       "count": 2
     },
-    "tax": {
+    "giftcard": {
       "ok": true,
       "grade": "B",
       "count": 1
     },
-    "inventory": {
-      "ok": true,
-      "grade": "A",
-      "count": 2
-    },
-    "loan": {
+    "installment": {
       "ok": true,
       "grade": "B",
       "count": 1
     },
-    "contactpoint": {
+    "appointment": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "rental": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "bundle": {
       "ok": true,
       "grade": "A",
-      "count": 2
+      "count": 4
     }
   },
-  "verified_at": "2026-09-13T09:27:15.334538+00:00",
-  "free_count": 230,
-  "count": 230
+  "verified_at": "2026-09-13T10:09:39.473372+00:00",
+  "free_count": 237,
+  "count": 237
 }
