@@ -1,41 +1,24 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.47",
-  "endpoint_count": 279,
-  "new_in_47": [
-    "airdrop",
-    "staking",
-    "royalty",
-    "prize",
-    "equity",
-    "vesting",
-    "collateral"
-  ],
+  "version": "2026-09-11.48",
+  "endpoint_count": 286,
+  "new_in_48": ["dividend", "liquidity", "treasury", "payroll", "remittance", "yieldapy", "governance"],
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.51",
-  "paid_version": "0.1.51",
-  "shipped": "2026-09-13T16:04:29Z",
+  "x402_version": "0.1.52",
+  "paid_version": "0.1.52",
+  "shipped": "2026-09-13T16:46:56Z",
   "ops": {
-    "airdrop": "https://veriton-tls-json.vercel.app/api/airdrop?url=/fixtures/airdrop.html",
-    "staking": "https://veriton-tls-json.vercel.app/api/staking?url=/fixtures/staking.html",
-    "royalty": "https://veriton-tls-json.vercel.app/api/royalty?url=/fixtures/royalty.html",
-    "prize": "https://veriton-tls-json.vercel.app/api/prize?url=/fixtures/prize.html",
-    "equity": "https://veriton-tls-json.vercel.app/api/equity?url=/fixtures/equity.html",
-    "vesting": "https://veriton-tls-json.vercel.app/api/vesting?url=/fixtures/vesting.html",
-    "collateral": "https://veriton-tls-json.vercel.app/api/collateral?url=/fixtures/collateral.html"
+    "dividend": "https://veriton-tls-json.vercel.app/api/dividend?url=/fixtures/dividend.html",
+    "liquidity": "https://veriton-tls-json.vercel.app/api/liquidity?url=/fixtures/liquidity.html",
+    "treasury": "https://veriton-tls-json.vercel.app/api/treasury?url=/fixtures/treasury.html",
+    "payroll": "https://veriton-tls-json.vercel.app/api/payroll?url=/fixtures/payroll.html",
+    "remittance": "https://veriton-tls-json.vercel.app/api/remittance?url=/fixtures/remittance.html",
+    "yieldapy": "https://veriton-tls-json.vercel.app/api/yieldapy?url=/fixtures/yieldapy.html",
+    "governance": "https://veriton-tls-json.vercel.app/api/governance?url=/fixtures/governance.html"
   },
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "fixtures": {
-    "airdrop": "https://veriton-tls-json.vercel.app/fixtures/airdrop.html",
-    "staking": "https://veriton-tls-json.vercel.app/fixtures/staking.html",
-    "royalty": "https://veriton-tls-json.vercel.app/fixtures/royalty.html",
-    "prize": "https://veriton-tls-json.vercel.app/fixtures/prize.html",
-    "equity": "https://veriton-tls-json.vercel.app/fixtures/equity.html",
-    "vesting": "https://veriton-tls-json.vercel.app/fixtures/vesting.html",
-    "collateral": "https://veriton-tls-json.vercel.app/fixtures/collateral.html"
-  }
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402"
 }
