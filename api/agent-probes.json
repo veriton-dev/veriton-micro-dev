@@ -27,5 +27,5 @@
     "securityassessment": "https://veriton-tls-json.vercel.app/fixtures/securityassessment.html"
   },
   "pack": "Vendor Attestation Pack VI (soc2/iso27001/pcidss/gdpr/ccpa/bugbounty/securityassessment)",
-  "deploy": "pending"
+  "deploy": "https://veriton-tls-json-clzzmkbfl-veriton-dev.vercel.app"
 }
