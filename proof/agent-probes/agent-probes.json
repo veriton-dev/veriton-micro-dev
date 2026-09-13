@@ -1,74 +1,20 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.42",
-  "endpoint_count": 244,
-  "new_in_42": [
-    "loyalty",
-    "quote",
-    "calendar",
-    "fulfillment",
-    "pricematch",
-    "warrantyclaim",
-    "commerce"
+  "version": "2026-09-11.43",
+  "endpoint_count": 251,
+  "new_in_43": [
+    "cancel",
+    "preorder",
+    "wishlist",
+    "license",
+    "contract",
+    "sla",
+    "donate"
   ],
-  "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-b1b2omd2d-veriton-dev.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.46",
-  "catch_all_rewrite": true,
-  "fixture_grades_v42": {
-    "loyalty": {
-      "ok": true,
-      "grade": "A",
-      "count": 2
-    },
-    "quote": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "calendar": {
-      "ok": true,
-      "grade": "B",
-      "count": 1,
-      "has_ics": true
-    },
-    "fulfillment": {
-      "ok": true,
-      "grade": "A",
-      "count": 2
-    },
-    "pricematch": {
-      "ok": true,
-      "grade": "A",
-      "count": 3
-    },
-    "warrantyclaim": {
-      "ok": true,
-      "grade": "A",
-      "count": 2
-    },
-    "commerce": {
-      "ok": true,
-      "grade": "A",
-      "count": 4,
-      "funnel": {
-        "checkout_count": 1,
-        "cart_count": 1,
-        "receipt_count": 1,
-        "refund_count": 1
-      }
-    }
-  },
-  "verified_at": "2026-09-13T10:50:08.354339+00:00",
-  "free_count": 244,
-  "count": 244,
-  "supabase_api_deploys_ids": [
-    28,
-    29
-  ]
+  "base": "https://veriton-tls-json.vercel.app",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.47",
+  "deploy": "https://veriton-tls-json-9uvj0jlii-veriton-dev.vercel.app",
+  "shipped": "2026-09-13T12:47:59Z",
+  "burst": "veriton-burst-build"
 }
