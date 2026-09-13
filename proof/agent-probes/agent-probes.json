@@ -1,61 +1,58 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.36",
-  "shipped": "2026-09-13T04:08:47Z",
-  "endpoint_count": 202,
+  "version": "2026-09-11.37",
+  "shipped": "2026-09-13T05:28:43Z",
+  "endpoint_count": 209,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "paid_version": "0.1.35",
-  "new_in_36": [
-    "openinghours",
-    "brand",
-    "merchant",
-    "geo",
-    "action",
-    "availability",
-    "sku"
+  "paid_version": "0.1.36",
+  "new_in_37": [
+    "shipping",
+    "warranty",
+    "aggregateoffer",
+    "condition",
+    "subscription",
+    "nutrition",
+    "coupon"
   ],
   "fixtures": {
-    "openinghours": "https://veriton-tls-json.vercel.app/fixtures/openinghours.html",
-    "brand": "https://veriton-tls-json.vercel.app/fixtures/brand.html",
-    "merchant": "https://veriton-tls-json.vercel.app/fixtures/merchant.html",
-    "geo": "https://veriton-tls-json.vercel.app/fixtures/geo.html",
-    "action": "https://veriton-tls-json.vercel.app/fixtures/action.html",
-    "availability": "https://veriton-tls-json.vercel.app/fixtures/availability.html",
-    "sku": "https://veriton-tls-json.vercel.app/fixtures/sku.html"
+    "shipping": "https://veriton-tls-json.vercel.app/fixtures/shipping.html",
+    "warranty": "https://veriton-tls-json.vercel.app/fixtures/warranty.html",
+    "aggregateoffer": "https://veriton-tls-json.vercel.app/fixtures/aggregateoffer.html",
+    "condition": "https://veriton-tls-json.vercel.app/fixtures/condition.html",
+    "subscription": "https://veriton-tls-json.vercel.app/fixtures/subscription.html",
+    "nutrition": "https://veriton-tls-json.vercel.app/fixtures/nutrition.html",
+    "coupon": "https://veriton-tls-json.vercel.app/fixtures/coupon.html"
   },
   "curl_verified": {
-    "health_version": "2026-09-11.36",
-    "catalog_count": 202,
+    "health_version": "2026-09-11.37",
+    "catalog_count": 209,
     "fixture_grades": {
-      "openinghours": "B",
-      "brand": "B",
-      "merchant": "B",
-      "geo": "B",
-      "action": "B",
-      "availability": "B",
-      "sku": "A"
+      "shipping": "A",
+      "warranty": "A",
+      "aggregateoffer": "B",
+      "condition": "A",
+      "subscription": "A",
+      "nutrition": "A",
+      "coupon": "A"
     },
-    "x402_demo": {
-      "extractor": "veriton-html-json/0.1.35",
-      "brands": [
-        "Veriton"
-      ],
-      "availability_signals": [
-        "https://schema.org/InStock"
-      ],
-      "product_identifiers": [
-        {
-          "sku": "VTN-1"
-        }
-      ]
-    }
+    "x402_extractor": "veriton-html-json/0.1.36",
+    "x402_signals": [
+      "brands",
+      "availability_signals",
+      "product_identifiers",
+      "shipping_signals",
+      "warranty_signals",
+      "condition_signals",
+      "subscription_signals",
+      "coupon_signals",
+      "aggregate_offer_signals"
+    ]
   },
-  "deploy": "https://veriton-tls-json-4g7vauahj-veriton-dev.vercel.app",
-  "production": "https://veriton-tls-json.vercel.app"
+  "deploy": "https://veriton-tls-json-f30637i9a-veriton-dev.vercel.app"
 }

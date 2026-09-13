@@ -1,53 +1,20 @@
 <!doctype html>
-<html lang="en"><meta charset="utf-8"><title>Veriton agent-probes proof · 2026-09-11.36</title>
-<style>body{font-family:system-ui,sans-serif;max-width:860px;margin:2rem auto;padding:0 1rem;line-height:1.45}
-code,a{word-break:break-all}.ok{color:#047857;font-weight:600} pre{background:#f1f5f9;padding:1rem;border-radius:8px;overflow:auto}</style>
-<h1>Agent-probes proof <span class="ok">2026-09-11.36</span></h1>
-<p>Shipped <code>2026-09-13T04:08:47Z</code> · <strong>202</strong> free endpoints · x402 paid rail <code>0.1.35</code></p>
+<html><head><meta charset="utf-8"/><title>Veriton agent-probes proof v37</title>
+<meta name="description" content="veriton-agent-probes 209 endpoints · x402 0.1.36"/></head>
+<body>
+<h1>Veriton agent-probes proof</h1>
+<p>version <strong>2026-09-11.37</strong> · endpoints <strong>209</strong> · paid rail <strong>0.1.36</strong></p>
+<p>shipped 2026-09-13T05:28:43Z</p>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/health">https://veriton-tls-json.vercel.app/api/health</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/catalog">https://veriton-tls-json.vercel.app/api/catalog</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/openapi">https://veriton-tls-json.vercel.app/api/openapi</a></li>
-<li>Paid: <a href="https://veriton-x402-proxy.vercel.app">https://veriton-x402-proxy.vercel.app</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/health">health</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/openapi">openapi</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/.well-known/x402">well-known x402</a></li>
+<li><a href="https://veriton-x402-proxy.vercel.app/health">x402 health</a></li>
+<li><a href="./agent-probes.json">agent-probes.json</a></li>
 </ul>
-<h2>new_in_36</h2>
+<h2>new_in_37</h2>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/openinghours?url=https://veriton-tls-json.vercel.app/fixtures/openinghours.html">/api/openinghours</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/brand?url=https://veriton-tls-json.vercel.app/fixtures/brand.html">/api/brand</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/merchant?url=https://veriton-tls-json.vercel.app/fixtures/merchant.html">/api/merchant</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/geo?url=https://veriton-tls-json.vercel.app/fixtures/geo.html">/api/geo</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/action?url=https://veriton-tls-json.vercel.app/fixtures/action.html">/api/action</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/availability?url=https://veriton-tls-json.vercel.app/fixtures/availability.html">/api/availability</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/sku?url=https://veriton-tls-json.vercel.app/fixtures/sku.html">/api/sku</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/shipping">shipping</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/shipping.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/warranty">warranty</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/warranty.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/aggregateoffer">aggregateoffer</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/aggregateoffer.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/condition">condition</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/condition.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/subscription">subscription</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/subscription.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/nutrition">nutrition</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/nutrition.html">fixture</a></li><li><a href="https://veriton-tls-json.vercel.app/api/coupon">coupon</a> · <a href="https://veriton-tls-json.vercel.app/fixtures/coupon.html">fixture</a></li>
 </ul>
-<h2>curl-verified snapshot</h2>
-<pre>{
-  "health_version": "2026-09-11.36",
-  "catalog_count": 202,
-  "fixture_grades": {
-    "openinghours": "B",
-    "brand": "B",
-    "merchant": "B",
-    "geo": "B",
-    "action": "B",
-    "availability": "B",
-    "sku": "A"
-  },
-  "x402_demo": {
-    "extractor": "veriton-html-json/0.1.35",
-    "brands": [
-      "Veriton"
-    ],
-    "availability_signals": [
-      "https://schema.org/InStock"
-    ],
-    "product_identifiers": [
-      {
-        "sku": "VTN-1"
-      }
-    ]
-  }
-}</pre>
-<p>Machine JSON: <a href="./agent-probes.json">agent-probes.json</a></p>
-</html>
+</body></html>
