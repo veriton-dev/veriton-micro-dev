@@ -1,46 +1,17 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.32",
-  "endpoint_count": 176,
+  "version": "2026-09-11.33",
+  "endpoint_count": 182,
+  "x402_version": "0.1.31",
+  "new_in_33": [
+    "movie",
+    "music",
+    "place",
+    "service",
+    "speakable",
+    "website"
+  ],
   "base": "https://veriton-tls-json.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402.json",
-  "new_in_32": [
-    "localbusiness",
-    "offer",
-    "rating",
-    "consent",
-    "citation",
-    "sameas"
-  ],
-  "new_in_31": [
-    "videoobject",
-    "podcast",
-    "book",
-    "qa",
-    "claimreview",
-    "itemlist"
-  ],
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.30",
-  "shipped": "2026-09-12T22:48:42Z",
-  "deploy": "https://veriton-tls-json-hnqmqeppq-veriton-dev.vercel.app",
-  "fixture": "https://veriton-dev.github.io/veriton-micro-dev/fixtures/schema-samples.html",
-  "samples": {
-    "localbusiness": "https://veriton-tls-json.vercel.app/api/localbusiness",
-    "offer": "https://veriton-tls-json.vercel.app/api/offer",
-    "rating": "https://veriton-tls-json.vercel.app/api/rating",
-    "consent": "https://veriton-tls-json.vercel.app/api/consent",
-    "citation": "https://veriton-tls-json.vercel.app/api/citation",
-    "sameas": "https://veriton-tls-json.vercel.app/api/sameas"
-  },
-  "curl_verified": {
-    "health": "2026-09-11.32 / 176",
-    "citation_arxiv": "grade A + DOI 10.48550/arXiv.1706.03762",
-    "sameas_github": "grade A unique_same_as_count>=40",
-    "consent_nytimes": "grade B vendors includes tcf_api",
-    "x402_health": "0.1.30"
-  }
+  "shipped": "2026-09-13T01:26:14Z"
 }
