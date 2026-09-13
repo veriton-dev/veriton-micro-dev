@@ -1,12 +1,49 @@
-<!doctype html><meta charset=utf-8><title>veriton agent-probes proof v39</title>
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>Veriton agent-probes proof</title></head>
+<body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <code>2026-09-11.39</code> · endpoints <strong>223</strong> · paid <code>0.1.43</code></p>
+<p>version <strong>2026-09-11.40</strong> · endpoints <strong>230</strong></p>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/health">health</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/openapi">openapi</a></li>
-<li><a href="https://veriton-x402-proxy.vercel.app/health">x402 health</a></li>
 <li><a href="agent-probes.json">agent-probes.json</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/health">live health</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/catalog">live catalog</a></li>
+<li>new_in_40: checkout, cart, receipt, tax, inventory, loan, contactpoint</li>
 </ul>
-<p>new_in_39: reservation, ticket, membership, paymentmethod, delivery, offercatalog, monetary</p>
-<p>shipped 2026-09-13T08:47:56Z</p>
+<pre>{
+  "checkout": {
+    "ok": true,
+    "grade": "B",
+    "count": 1
+  },
+  "cart": {
+    "ok": true,
+    "grade": "B",
+    "count": 1
+  },
+  "receipt": {
+    "ok": true,
+    "grade": "A",
+    "count": 2
+  },
+  "tax": {
+    "ok": true,
+    "grade": "B",
+    "count": 1
+  },
+  "inventory": {
+    "ok": true,
+    "grade": "A",
+    "count": 2
+  },
+  "loan": {
+    "ok": true,
+    "grade": "B",
+    "count": 1
+  },
+  "contactpoint": {
+    "ok": true,
+    "grade": "A",
+    "count": 2
+  }
+}</pre>
+</body></html>

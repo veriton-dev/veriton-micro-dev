@@ -1,43 +1,62 @@
 {
-    "service": "veriton-agent-probes",
-    "version": "2026-09-11.34",
-    "endpoint_count": 188,
-    "x402_version": "0.1.32",
-    "new_in_34": [
-        "vehicle",
-        "hotel",
-        "menu",
-        "game",
-        "medical",
-        "realestate"
-    ],
-    "new_in_33": [
-        "movie",
-        "music",
-        "place",
-        "service",
-        "speakable",
-        "website"
-    ],
-    "base": "https://veriton-tls-json.vercel.app",
-    "deploy": "https://veriton-tls-json-6y1t6tezg-veriton-dev.vercel.app",
-    "paid_rail": "https://veriton-x402-proxy.vercel.app",
-    "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402",
-    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "shipped": "2026-09-13T02:07:43Z",
-    "curl_verified": {
-        "health": "version=2026-09-11.34 endpoint_count=188",
-        "catalog": "count=188 new_in_34 present",
-        "openapi": "info.version=2026-09-11.34 paths=188",
-        "vehicle_fixture": "grade=B vehicle_count=1",
-        "hotel_fixture": "grade=B hotel_count=1",
-        "menu_fixture": "grade=A menu_count=3",
-        "game_fixture": "grade=B game_count=1",
-        "medical_fixture": "grade=B medical_count=1",
-        "realestate_fixture": "grade=B realestate_count=1",
-        "website_nytimes": "grade=B website_count=1",
-        "x402_proxy_health": "0.1.32 free_teasers.vehicle present"
+  "service": "veriton-agent-probes",
+  "version": "2026-09-11.40",
+  "endpoint_count": 230,
+  "new_in_40": [
+    "checkout",
+    "cart",
+    "receipt",
+    "tax",
+    "inventory",
+    "loan",
+    "contactpoint"
+  ],
+  "production": "https://veriton-tls-json.vercel.app",
+  "deploy": "https://veriton-tls-json-a2bp996oq-veriton-dev.vercel.app",
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.44",
+  "fixture_grades_v40": {
+    "checkout": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "cart": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "receipt": {
+      "ok": true,
+      "grade": "A",
+      "count": 2
+    },
+    "tax": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "inventory": {
+      "ok": true,
+      "grade": "A",
+      "count": 2
+    },
+    "loan": {
+      "ok": true,
+      "grade": "B",
+      "count": 1
+    },
+    "contactpoint": {
+      "ok": true,
+      "grade": "A",
+      "count": 2
     }
+  },
+  "verified_at": "2026-09-13T09:27:15.334538+00:00",
+  "free_count": 230,
+  "count": 230
 }
