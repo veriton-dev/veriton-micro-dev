@@ -1,32 +1,38 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.50",
-  "endpoint_count": 300,
-  "new_in_50": [
-    "futures",
-    "option",
-    "forward",
-    "repo",
-    "lease",
-    "annuity",
-    "clearing"
+  "version": "2026-09-11.51",
+  "endpoint_count": 307,
+  "new_in_51": [
+    "purchaseorder",
+    "billoflading",
+    "letterofcredit",
+    "factoring",
+    "nda",
+    "sow",
+    "ratecard"
   ],
+  "batch_multi_op": "GET /api/batch?ops=nda,sow,ratecard&url=/fixtures/nda.html",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.54",
-  "paid_version": "0.1.54",
-  "shipped": "2026-09-13T18:05:33Z",
+  "x402_version": "0.1.55",
+  "paid_version": "0.1.55",
+  "shipped": "2026-09-13T18:49:08Z",
+  "deploy": "https://veriton-tls-json-1b0icjwua-veriton-dev.vercel.app",
   "ops": {
-    "futures": "https://veriton-tls-json.vercel.app/api/futures?url=/fixtures/futures.html",
-    "option": "https://veriton-tls-json.vercel.app/api/option?url=/fixtures/option.html",
-    "forward": "https://veriton-tls-json.vercel.app/api/forward?url=/fixtures/forward.html",
-    "repo": "https://veriton-tls-json.vercel.app/api/repo?url=/fixtures/repo.html",
-    "lease": "https://veriton-tls-json.vercel.app/api/lease?url=/fixtures/lease.html",
-    "annuity": "https://veriton-tls-json.vercel.app/api/annuity?url=/fixtures/annuity.html",
-    "clearing": "https://veriton-tls-json.vercel.app/api/clearing?url=/fixtures/clearing.html"
+    "purchaseorder": "https://veriton-tls-json.vercel.app/api/purchaseorder?url=/fixtures/purchaseorder.html",
+    "billoflading": "https://veriton-tls-json.vercel.app/api/billoflading?url=/fixtures/billoflading.html",
+    "letterofcredit": "https://veriton-tls-json.vercel.app/api/letterofcredit?url=/fixtures/letterofcredit.html",
+    "factoring": "https://veriton-tls-json.vercel.app/api/factoring?url=/fixtures/factoring.html",
+    "nda": "https://veriton-tls-json.vercel.app/api/nda?url=/fixtures/nda.html",
+    "sow": "https://veriton-tls-json.vercel.app/api/sow?url=/fixtures/sow.html",
+    "ratecard": "https://veriton-tls-json.vercel.app/api/ratecard?url=/fixtures/ratecard.html",
+    "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=purchaseorder,nda,sow,ratecard&url=/fixtures/nda.html"
   },
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402"
+  "verified": {
+    "health_version": "2026-09-11.51",
+    "endpoint_count": 307,
+    "all_new_grade": "A",
+    "batch_multi_op": true,
+    "x402": "0.1.55"
+  }
 }
