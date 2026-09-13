@@ -2,7 +2,7 @@
   "ok": true,
   "service": "veriton-agent-probes",
   "version": "2026-09-11.37",
-  "shipped": "2026-09-13T05:28:43Z",
+  "shipped": "2026-09-13T05:32:34Z",
   "endpoint_count": 209,
   "base": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -54,5 +54,5 @@
       "aggregate_offer_signals"
     ]
   },
-  "deploy": "https://veriton-tls-json-f30637i9a-veriton-dev.vercel.app"
+  "deploy": "https://veriton-tls-json-n3kdb01oi-veriton-dev.vercel.app"
 }
