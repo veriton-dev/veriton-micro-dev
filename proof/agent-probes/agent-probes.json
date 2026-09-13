@@ -1,20 +1,30 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.43",
-  "endpoint_count": 251,
-  "new_in_43": [
-    "cancel",
-    "preorder",
-    "wishlist",
-    "license",
-    "contract",
-    "sla",
-    "donate"
+  "version": "2026-09-11.44",
+  "endpoint_count": 258,
+  "new_in_44": [
+    "escrow",
+    "dispute",
+    "payout",
+    "tos",
+    "affiliate",
+    "trial",
+    "waitlist"
   ],
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.47",
-  "deploy": "https://veriton-tls-json-9uvj0jlii-veriton-dev.vercel.app",
-  "shipped": "2026-09-13T12:47:59Z",
-  "burst": "veriton-burst-build"
+  "x402_version": "0.1.48",
+  "shipped": "2026-09-13T13:25:30Z",
+  "ops": {
+    "escrow": "https://veriton-tls-json.vercel.app/api/escrow?url=/fixtures/escrow.html",
+    "dispute": "https://veriton-tls-json.vercel.app/api/dispute?url=/fixtures/dispute.html",
+    "payout": "https://veriton-tls-json.vercel.app/api/payout?url=/fixtures/payout.html",
+    "tos": "https://veriton-tls-json.vercel.app/api/tos?url=/fixtures/tos.html",
+    "affiliate": "https://veriton-tls-json.vercel.app/api/affiliate?url=/fixtures/affiliate.html",
+    "trial": "https://veriton-tls-json.vercel.app/api/trial?url=/fixtures/trial.html",
+    "waitlist": "https://veriton-tls-json.vercel.app/api/waitlist?url=/fixtures/waitlist.html"
+  },
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi"
 }
