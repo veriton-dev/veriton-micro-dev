@@ -1,51 +1,61 @@
 {
+  "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.35",
-  "shipped": "2026-09-13T03:29:04Z",
+  "version": "2026-09-11.36",
+  "shipped": "2026-09-13T04:08:47Z",
+  "endpoint_count": 202,
   "base": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-53qhs4cdl-veriton-dev.vercel.app",
-  "endpoint_count": 195,
-  "new_in_35": [
-    "x402detect",
-    "restaurant",
-    "flight",
-    "sport",
-    "financial",
-    "broadcast",
-    "trip"
-  ],
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "paid_api_version": "0.1.33",
-  "x402_quality": {
-    "jsonld": true,
-    "opengraph": true,
-    "microdata_types": true,
-    "schema_types": true,
-    "demo_verified": true
+  "paid_version": "0.1.35",
+  "new_in_36": [
+    "openinghours",
+    "brand",
+    "merchant",
+    "geo",
+    "action",
+    "availability",
+    "sku"
+  ],
+  "fixtures": {
+    "openinghours": "https://veriton-tls-json.vercel.app/fixtures/openinghours.html",
+    "brand": "https://veriton-tls-json.vercel.app/fixtures/brand.html",
+    "merchant": "https://veriton-tls-json.vercel.app/fixtures/merchant.html",
+    "geo": "https://veriton-tls-json.vercel.app/fixtures/geo.html",
+    "action": "https://veriton-tls-json.vercel.app/fixtures/action.html",
+    "availability": "https://veriton-tls-json.vercel.app/fixtures/availability.html",
+    "sku": "https://veriton-tls-json.vercel.app/fixtures/sku.html"
   },
   "curl_verified": {
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "x402detect": "https://veriton-tls-json.vercel.app/api/x402detect?url=https://veriton-x402-proxy.vercel.app",
-    "restaurant_fixture": "https://veriton-tls-json.vercel.app/api/restaurant?url=https://veriton-tls-json.vercel.app/fixtures/restaurant.html",
-    "flight_fixture": "https://veriton-tls-json.vercel.app/api/flight?url=https://veriton-tls-json.vercel.app/fixtures/flight.html",
-    "sport_fixture": "https://veriton-tls-json.vercel.app/api/sport?url=https://veriton-tls-json.vercel.app/fixtures/sport.html",
-    "financial_fixture": "https://veriton-tls-json.vercel.app/api/financial?url=https://veriton-tls-json.vercel.app/fixtures/financial.html",
-    "broadcast_fixture": "https://veriton-tls-json.vercel.app/api/broadcast?url=https://veriton-tls-json.vercel.app/fixtures/broadcast.html",
-    "trip_fixture": "https://veriton-tls-json.vercel.app/api/trip?url=https://veriton-tls-json.vercel.app/fixtures/trip.html",
-    "x402_demo": "POST https://veriton-x402-proxy.vercel.app/v1/demo/html-to-json",
-    "x402_health": "https://veriton-x402-proxy.vercel.app/health"
+    "health_version": "2026-09-11.36",
+    "catalog_count": 202,
+    "fixture_grades": {
+      "openinghours": "B",
+      "brand": "B",
+      "merchant": "B",
+      "geo": "B",
+      "action": "B",
+      "availability": "B",
+      "sku": "A"
+    },
+    "x402_demo": {
+      "extractor": "veriton-html-json/0.1.35",
+      "brands": [
+        "Veriton"
+      ],
+      "availability_signals": [
+        "https://schema.org/InStock"
+      ],
+      "product_identifiers": [
+        {
+          "sku": "VTN-1"
+        }
+      ]
+    }
   },
-  "grades": {
-    "x402detect": "A",
-    "restaurant": "B",
-    "flight": "A",
-    "sport": "A",
-    "financial": "A",
-    "broadcast": "B",
-    "trip": "B"
-  },
-  "gh_pages": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
-  "surge_proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/"
+  "deploy": "https://veriton-tls-json-4g7vauahj-veriton-dev.vercel.app",
+  "production": "https://veriton-tls-json.vercel.app"
 }
