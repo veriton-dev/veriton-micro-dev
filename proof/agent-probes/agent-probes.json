@@ -1,28 +1,29 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.44",
-  "endpoint_count": 258,
-  "new_in_44": [
-    "escrow",
-    "dispute",
-    "payout",
-    "tos",
-    "affiliate",
-    "trial",
-    "waitlist"
+  "version": "2026-09-11.45",
+  "endpoint_count": 265,
+  "new_in_45": [
+    "auction",
+    "promo",
+    "insurance",
+    "credits",
+    "salary",
+    "kyc",
+    "tip"
   ],
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.48",
-  "shipped": "2026-09-13T13:25:30Z",
+  "x402_version": "0.1.49",
+  "paid_version": "0.1.49",
+  "shipped": "2026-09-13T14:08:10Z",
   "ops": {
-    "escrow": "https://veriton-tls-json.vercel.app/api/escrow?url=/fixtures/escrow.html",
-    "dispute": "https://veriton-tls-json.vercel.app/api/dispute?url=/fixtures/dispute.html",
-    "payout": "https://veriton-tls-json.vercel.app/api/payout?url=/fixtures/payout.html",
-    "tos": "https://veriton-tls-json.vercel.app/api/tos?url=/fixtures/tos.html",
-    "affiliate": "https://veriton-tls-json.vercel.app/api/affiliate?url=/fixtures/affiliate.html",
-    "trial": "https://veriton-tls-json.vercel.app/api/trial?url=/fixtures/trial.html",
-    "waitlist": "https://veriton-tls-json.vercel.app/api/waitlist?url=/fixtures/waitlist.html"
+    "auction": "https://veriton-tls-json.vercel.app/api/auction?url=/fixtures/auction.html",
+    "promo": "https://veriton-tls-json.vercel.app/api/promo?url=/fixtures/promo.html",
+    "insurance": "https://veriton-tls-json.vercel.app/api/insurance?url=/fixtures/insurance.html",
+    "credits": "https://veriton-tls-json.vercel.app/api/credits?url=/fixtures/credits.html",
+    "salary": "https://veriton-tls-json.vercel.app/api/salary?url=/fixtures/salary.html",
+    "kyc": "https://veriton-tls-json.vercel.app/api/kyc?url=/fixtures/kyc.html",
+    "tip": "https://veriton-tls-json.vercel.app/api/tip?url=/fixtures/tip.html"
   },
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",

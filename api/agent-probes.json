@@ -1,62 +1,31 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.41",
-  "endpoint_count": 237,
-  "new_in_41": [
-    "refund",
-    "discount",
-    "giftcard",
-    "installment",
-    "appointment",
-    "rental",
-    "bundle"
+  "version": "2026-09-11.45",
+  "endpoint_count": 265,
+  "new_in_45": [
+    "auction",
+    "promo",
+    "insurance",
+    "credits",
+    "salary",
+    "kyc",
+    "tip"
   ],
-  "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-1t7fu3nru-veriton-dev.vercel.app",
+  "base": "https://veriton-tls-json.vercel.app",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.49",
+  "paid_version": "0.1.49",
+  "shipped": "2026-09-13T14:08:10Z",
+  "ops": {
+    "auction": "https://veriton-tls-json.vercel.app/api/auction?url=/fixtures/auction.html",
+    "promo": "https://veriton-tls-json.vercel.app/api/promo?url=/fixtures/promo.html",
+    "insurance": "https://veriton-tls-json.vercel.app/api/insurance?url=/fixtures/insurance.html",
+    "credits": "https://veriton-tls-json.vercel.app/api/credits?url=/fixtures/credits.html",
+    "salary": "https://veriton-tls-json.vercel.app/api/salary?url=/fixtures/salary.html",
+    "kyc": "https://veriton-tls-json.vercel.app/api/kyc?url=/fixtures/kyc.html",
+    "tip": "https://veriton-tls-json.vercel.app/api/tip?url=/fixtures/tip.html"
+  },
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.45",
-  "fixture_grades_v41": {
-    "refund": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "discount": {
-      "ok": true,
-      "grade": "A",
-      "count": 2
-    },
-    "giftcard": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "installment": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "appointment": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "rental": {
-      "ok": true,
-      "grade": "B",
-      "count": 1
-    },
-    "bundle": {
-      "ok": true,
-      "grade": "A",
-      "count": 4
-    }
-  },
-  "verified_at": "2026-09-13T10:09:39.473372+00:00",
-  "free_count": 237,
-  "count": 237
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi"
 }
