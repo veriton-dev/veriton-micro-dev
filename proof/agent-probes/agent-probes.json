@@ -1,43 +1,51 @@
 {
-    "service": "veriton-agent-probes",
-    "version": "2026-09-11.34",
-    "endpoint_count": 188,
-    "x402_version": "0.1.32",
-    "new_in_34": [
-        "vehicle",
-        "hotel",
-        "menu",
-        "game",
-        "medical",
-        "realestate"
-    ],
-    "new_in_33": [
-        "movie",
-        "music",
-        "place",
-        "service",
-        "speakable",
-        "website"
-    ],
-    "base": "https://veriton-tls-json.vercel.app",
-    "deploy": "https://veriton-tls-json-6y1t6tezg-veriton-dev.vercel.app",
-    "paid_rail": "https://veriton-x402-proxy.vercel.app",
-    "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "service": "veriton-agent-probes",
+  "version": "2026-09-11.35",
+  "shipped": "2026-09-13T03:29:04Z",
+  "base": "https://veriton-tls-json.vercel.app",
+  "deploy": "https://veriton-tls-json-53qhs4cdl-veriton-dev.vercel.app",
+  "endpoint_count": 195,
+  "new_in_35": [
+    "x402detect",
+    "restaurant",
+    "flight",
+    "sport",
+    "financial",
+    "broadcast",
+    "trip"
+  ],
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "paid_api_version": "0.1.33",
+  "x402_quality": {
+    "jsonld": true,
+    "opengraph": true,
+    "microdata_types": true,
+    "schema_types": true,
+    "demo_verified": true
+  },
+  "curl_verified": {
+    "health": "https://veriton-tls-json.vercel.app/api/health",
     "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
     "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "shipped": "2026-09-13T02:07:43Z",
-    "curl_verified": {
-        "health": "version=2026-09-11.34 endpoint_count=188",
-        "catalog": "count=188 new_in_34 present",
-        "openapi": "info.version=2026-09-11.34 paths=188",
-        "vehicle_fixture": "grade=B vehicle_count=1",
-        "hotel_fixture": "grade=B hotel_count=1",
-        "menu_fixture": "grade=A menu_count=3",
-        "game_fixture": "grade=B game_count=1",
-        "medical_fixture": "grade=B medical_count=1",
-        "realestate_fixture": "grade=B realestate_count=1",
-        "website_nytimes": "grade=B website_count=1",
-        "x402_proxy_health": "0.1.32 free_teasers.vehicle present"
-    }
+    "x402detect": "https://veriton-tls-json.vercel.app/api/x402detect?url=https://veriton-x402-proxy.vercel.app",
+    "restaurant_fixture": "https://veriton-tls-json.vercel.app/api/restaurant?url=https://veriton-tls-json.vercel.app/fixtures/restaurant.html",
+    "flight_fixture": "https://veriton-tls-json.vercel.app/api/flight?url=https://veriton-tls-json.vercel.app/fixtures/flight.html",
+    "sport_fixture": "https://veriton-tls-json.vercel.app/api/sport?url=https://veriton-tls-json.vercel.app/fixtures/sport.html",
+    "financial_fixture": "https://veriton-tls-json.vercel.app/api/financial?url=https://veriton-tls-json.vercel.app/fixtures/financial.html",
+    "broadcast_fixture": "https://veriton-tls-json.vercel.app/api/broadcast?url=https://veriton-tls-json.vercel.app/fixtures/broadcast.html",
+    "trip_fixture": "https://veriton-tls-json.vercel.app/api/trip?url=https://veriton-tls-json.vercel.app/fixtures/trip.html",
+    "x402_demo": "POST https://veriton-x402-proxy.vercel.app/v1/demo/html-to-json",
+    "x402_health": "https://veriton-x402-proxy.vercel.app/health"
+  },
+  "grades": {
+    "x402detect": "A",
+    "restaurant": "B",
+    "flight": "A",
+    "sport": "A",
+    "financial": "A",
+    "broadcast": "B",
+    "trip": "B"
+  },
+  "gh_pages": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
+  "surge_proof": "https://veriton-micro-dev.surge.sh/proof/agent-probes/"
 }
