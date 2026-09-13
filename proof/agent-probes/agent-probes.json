@@ -1,38 +1,37 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.51",
-  "endpoint_count": 307,
-  "new_in_51": [
-    "purchaseorder",
-    "billoflading",
-    "letterofcredit",
-    "factoring",
-    "nda",
-    "sow",
-    "ratecard"
+  "version": "2026-09-11.52",
+  "endpoint_count": 314,
+  "new_in_52": [
+    "msa",
+    "dpa",
+    "mou",
+    "rfp",
+    "rfq",
+    "changeorder",
+    "workorder"
   ],
-  "batch_multi_op": "GET /api/batch?ops=nda,sow,ratecard&url=/fixtures/nda.html",
+  "batch_multi_op": "GET /api/batch?ops=msa,dpa,mou,rfp&url=/fixtures/msa.html",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.55",
-  "paid_version": "0.1.55",
-  "shipped": "2026-09-13T18:49:08Z",
-  "deploy": "https://veriton-tls-json-1b0icjwua-veriton-dev.vercel.app",
-  "ops": {
-    "purchaseorder": "https://veriton-tls-json.vercel.app/api/purchaseorder?url=/fixtures/purchaseorder.html",
-    "billoflading": "https://veriton-tls-json.vercel.app/api/billoflading?url=/fixtures/billoflading.html",
-    "letterofcredit": "https://veriton-tls-json.vercel.app/api/letterofcredit?url=/fixtures/letterofcredit.html",
-    "factoring": "https://veriton-tls-json.vercel.app/api/factoring?url=/fixtures/factoring.html",
-    "nda": "https://veriton-tls-json.vercel.app/api/nda?url=/fixtures/nda.html",
-    "sow": "https://veriton-tls-json.vercel.app/api/sow?url=/fixtures/sow.html",
-    "ratecard": "https://veriton-tls-json.vercel.app/api/ratecard?url=/fixtures/ratecard.html",
-    "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=purchaseorder,nda,sow,ratecard&url=/fixtures/nda.html"
+  "x402_version": "0.1.56",
+  "shipped": "2026-09-13T19:24:24Z",
+  "fixtures": {
+    "msa": "https://veriton-tls-json.vercel.app/fixtures/msa.html",
+    "dpa": "https://veriton-tls-json.vercel.app/fixtures/dpa.html",
+    "mou": "https://veriton-tls-json.vercel.app/fixtures/mou.html",
+    "rfp": "https://veriton-tls-json.vercel.app/fixtures/rfp.html",
+    "rfq": "https://veriton-tls-json.vercel.app/fixtures/rfq.html",
+    "changeorder": "https://veriton-tls-json.vercel.app/fixtures/changeorder.html",
+    "workorder": "https://veriton-tls-json.vercel.app/fixtures/workorder.html"
   },
-  "verified": {
-    "health_version": "2026-09-11.51",
-    "endpoint_count": 307,
-    "all_new_grade": "A",
-    "batch_multi_op": true,
-    "x402": "0.1.55"
+  "examples": {
+    "msa": "https://veriton-tls-json.vercel.app/api/msa?url=https://veriton-tls-json.vercel.app/fixtures/msa.html",
+    "dpa": "https://veriton-tls-json.vercel.app/api/dpa?url=https://veriton-tls-json.vercel.app/fixtures/dpa.html",
+    "mou": "https://veriton-tls-json.vercel.app/api/mou?url=https://veriton-tls-json.vercel.app/fixtures/mou.html",
+    "rfp": "https://veriton-tls-json.vercel.app/api/rfp?url=https://veriton-tls-json.vercel.app/fixtures/rfp.html",
+    "rfq": "https://veriton-tls-json.vercel.app/api/rfq?url=https://veriton-tls-json.vercel.app/fixtures/rfq.html",
+    "changeorder": "https://veriton-tls-json.vercel.app/api/changeorder?url=https://veriton-tls-json.vercel.app/fixtures/changeorder.html",
+    "workorder": "https://veriton-tls-json.vercel.app/api/workorder?url=https://veriton-tls-json.vercel.app/fixtures/workorder.html"
   }
 }
