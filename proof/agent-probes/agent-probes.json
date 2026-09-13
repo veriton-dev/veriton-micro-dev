@@ -1,40 +1,31 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.54",
-  "endpoint_count": 328,
-  "new_in_54": [
-    "aup",
-    "cookiepolicy",
-    "dmca",
-    "subprocessors",
-    "privacynotice",
-    "whistleblower",
-    "coc"
+  "version": "2026-09-11.55",
+  "endpoint_count": 335,
+  "new_in_55": [
+    "imprint",
+    "accessibility",
+    "trustcenter",
+    "statuspage",
+    "brandguidelines",
+    "modernslavery",
+    "responsibleai"
   ],
-  "batch_multi_op": "GET /api/batch?ops=aup,dmca,coc,privacynotice&url=/fixtures/aup",
+  "batch_multi_op": "GET /api/batch?ops=imprint,accessibility,trustcenter,statuspage&url=/fixtures/imprint.html",
   "batch_post_json": "POST /api/batch {ops,url|host,timeout_ms?}",
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.58",
-  "shipped": "2026-09-13T20:47:54Z",
+  "x402_version": "0.1.59",
+  "shipped": "2026-09-13T21:24:39Z",
   "fixtures": {
-    "aup": "https://veriton-tls-json.vercel.app/fixtures/aup.html",
-    "cookiepolicy": "https://veriton-tls-json.vercel.app/fixtures/cookiepolicy.html",
-    "dmca": "https://veriton-tls-json.vercel.app/fixtures/dmca.html",
-    "subprocessors": "https://veriton-tls-json.vercel.app/fixtures/subprocessors.html",
-    "privacynotice": "https://veriton-tls-json.vercel.app/fixtures/privacynotice.html",
-    "whistleblower": "https://veriton-tls-json.vercel.app/fixtures/whistleblower.html",
-    "coc": "https://veriton-tls-json.vercel.app/fixtures/coc.html"
+    "imprint": "https://veriton-tls-json.vercel.app/fixtures/imprint.html",
+    "accessibility": "https://veriton-tls-json.vercel.app/fixtures/accessibility.html",
+    "trustcenter": "https://veriton-tls-json.vercel.app/fixtures/trustcenter.html",
+    "statuspage": "https://veriton-tls-json.vercel.app/fixtures/statuspage.html",
+    "brandguidelines": "https://veriton-tls-json.vercel.app/fixtures/brandguidelines.html",
+    "modernslavery": "https://veriton-tls-json.vercel.app/fixtures/modernslavery.html",
+    "responsibleai": "https://veriton-tls-json.vercel.app/fixtures/responsibleai.html"
   },
-  "curl": {
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402"
-  },
-  "supabase_api_deploys": {
-    "agent_probes_id": 66,
-    "x402_id": 67
-  },
-  "deploy": "https://veriton-tls-json-izd1zm0dz-veriton-dev.vercel.app"
+  "pack": "Trust & Public Policy Pack V (imprint/accessibility/trustcenter/statuspage/brandguidelines/modernslavery/responsibleai)",
+  "deploy": "https://veriton-tls-json-d2iurhvht-veriton-dev.vercel.app"
 }
