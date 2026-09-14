@@ -1,20 +1,38 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.58",
-  "endpoint_count": 356,
-  "package_version": "1.0.58",
-  "new_in_58": ["iso9001", "iso42001", "dora", "ciscontrols", "incidentresponse", "businesscontinuity", "disasterrecovery"],
+  "version": "2026-09-11.59",
+  "endpoint_count": 363,
+  "package_version": "1.0.59",
+  "new_in_59": [
+    "soc1",
+    "iso14001",
+    "iso45001",
+    "iso22301",
+    "pentest",
+    "vendorrisk",
+    "threatmodel"
+  ],
+  "new_in_58": [
+    "iso9001",
+    "iso42001",
+    "dora",
+    "ciscontrols",
+    "incidentresponse",
+    "businesscontinuity",
+    "disasterrecovery"
+  ],
   "base": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.62",
+  "x402_version": "0.1.64",
   "batch": {
-    "get": "https://veriton-tls-json.vercel.app/api/batch?ops=iso9001,dora,ciscontrols,incidentresponse&url=/fixtures/iso9001",
-    "post": "POST /api/batch {\"ops\":[\"iso9001\",\"iso42001\",\"dora\"],\"url\":\"/fixtures/iso9001\",\"timeout_ms\":8000}"
+    "get": "https://veriton-tls-json.vercel.app/api/batch?ops=soc1,iso14001,pentest,vendorrisk&url=/fixtures/soc1",
+    "post": "POST /api/batch {\"ops\":[\"soc1\",\"iso14001\",\"pentest\"],\"url\":\"/fixtures/soc1\",\"timeout_ms\":8000}",
+    "partial_timeouts": true,
+    "response_bytes_cap": 450000
   },
-  "deploy": "https://veriton-tls-json-59dk8w4lf-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-6asmgljnm-veriton-dev.vercel.app",
   "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "custom_domain_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-13T23:25:00Z",
-  "pack": "Operational Resilience Pack VIII"
+  "pack": "ESG + Vendor Assurance Pack IX",
+  "shipped": "2026-09-14T00:55:00Z"
 }
