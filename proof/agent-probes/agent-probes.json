@@ -1,18 +1,18 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.66",
-  "package": "1.0.66",
-  "endpoint_count": 412,
-  "new_in_66": [
-    "eventstream",
-    "queuebacklog",
-    "schemaregistry",
-    "cdcchange",
-    "deadletter",
-    "watermarklag",
-    "partitionmap"
+  "version": "2026-09-11.67",
+  "package": "1.0.67",
+  "endpoint_count": 419,
+  "new_in_67": [
+    "vectorindex",
+    "embeddingspace",
+    "ragpipeline",
+    "chunkstore",
+    "retrieverank",
+    "contextwindow",
+    "knowledgegraph"
   ],
-  "pack": "Data Pipeline & Event Infrastructure Pack XVI",
+  "pack": "Vector RAG & Knowledge Infrastructure Pack XVII",
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
@@ -20,16 +20,15 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "paid_public": "https://www.veriton-x402.dedyn.io",
-  "x402_version": "0.1.71",
-  "shipped": "2026-09-14T05:28:12Z",
+  "x402_version": "0.1.72",
+  "shipped": "2026-09-14T06:05:12Z",
   "fixtures": {
-    "eventstream": "https://veriton-tls-json.vercel.app/fixtures/eventstream.html",
-    "queuebacklog": "https://veriton-tls-json.vercel.app/fixtures/queuebacklog.html",
-    "schemaregistry": "https://veriton-tls-json.vercel.app/fixtures/schemaregistry.html",
-    "cdcchange": "https://veriton-tls-json.vercel.app/fixtures/cdcchange.html",
-    "deadletter": "https://veriton-tls-json.vercel.app/fixtures/deadletter.html",
-    "watermarklag": "https://veriton-tls-json.vercel.app/fixtures/watermarklag.html",
-    "partitionmap": "https://veriton-tls-json.vercel.app/fixtures/partitionmap.html"
-  },
-  "deploy": "https://veriton-tls-json-njmio5oz3-veriton-dev.vercel.app"
+    "vectorindex": "https://veriton-tls-json.vercel.app/fixtures/vectorindex.html",
+    "embeddingspace": "https://veriton-tls-json.vercel.app/fixtures/embeddingspace.html",
+    "ragpipeline": "https://veriton-tls-json.vercel.app/fixtures/ragpipeline.html",
+    "chunkstore": "https://veriton-tls-json.vercel.app/fixtures/chunkstore.html",
+    "retrieverank": "https://veriton-tls-json.vercel.app/fixtures/retrieverank.html",
+    "contextwindow": "https://veriton-tls-json.vercel.app/fixtures/contextwindow.html",
+    "knowledgegraph": "https://veriton-tls-json.vercel.app/fixtures/knowledgegraph.html"
+  }
 }
