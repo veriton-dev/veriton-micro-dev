@@ -23,6 +23,7 @@
   "x402_public": "https://www.veriton-x402.dedyn.io",
   "proof_surge": "https://veriton-agent-probes-proof.surge.sh/",
   "proof_gh": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
-  "shipped_at": "2026-09-14T08:45:03Z",
-  "burst": "veriton-burst-build"
+  "shipped_at": "2026-09-14T08:48:25Z",
+  "burst": "veriton-burst-build",
+  "deploy": "https://veriton-tls-json-14q17za2k-veriton-dev.vercel.app"
 }
