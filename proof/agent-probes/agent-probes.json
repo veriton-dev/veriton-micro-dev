@@ -30,5 +30,7 @@
     "alertroute": "https://veriton-tls-json.vercel.app/fixtures/alertroute.html",
     "errorbudget": "https://veriton-tls-json.vercel.app/fixtures/errorbudget.html",
     "sliindicator": "https://veriton-tls-json.vercel.app/fixtures/sliindicator.html"
-  }
+  },
+  "deploy": "https://veriton-tls-json-9gtvi8cjo-veriton-dev.vercel.app",
+  "commit": "60b1abf"
 }
