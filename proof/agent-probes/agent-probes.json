@@ -1,27 +1,33 @@
 {
-    "ok": true,
-    "service": "veriton-agent-probes",
-    "version": "2026-09-11.72",
-    "package_version": "1.0.72",
-    "endpoint_count": 454,
-    "pack": "Agent Runtime Ops & Delivery Signals Pack XXII",
-    "new_in_72": [
-        "jobstatus",
-        "readiness",
-        "prommetrics",
-        "apideprecate",
-        "changelog",
-        "sdkclient",
-        "webhooksign"
-    ],
-    "base": "https://veriton-tls-json.vercel.app",
-    "health": "https://veriton-tls-json.vercel.app/api/health",
-    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-    "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-    "x402_api": "https://www.veriton-x402.dedyn.io",
-    "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-    "x402_version": "0.1.77",
-    "shipped": "2026-09-14T09:25:00Z",
-    "burst": "veriton-burst-build"
+  "ok": true,
+  "service": "veriton-agent-probes",
+  "version": "2026-09-11.73",
+  "package_version": "1.0.73",
+  "endpoint_count": 461,
+  "pack": "Agent Edge Runtime & Scaling Signals Pack XXIII",
+  "new_in_73": [
+    "coldstart",
+    "warmpool",
+    "concurrencycap",
+    "queuewait",
+    "autoscalepolicy",
+    "regionpin",
+    "edgecache"
+  ],
+  "base": "https://veriton-tls-json.vercel.app",
+  "deploy": "https://veriton-tls-json-ou2s83xm8-veriton-dev.vercel.app",
+  "inspect": "https://vercel.com/veriton-dev/veriton-tls-json",
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "x402_api": "https://www.veriton-x402.dedyn.io",
+  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.78",
+  "supabase_api_deploys_ids": [
+    116,
+    117
+  ],
+  "shipped": "2026-09-14T10:49:40Z",
+  "burst": "veriton-burst-build"
 }
