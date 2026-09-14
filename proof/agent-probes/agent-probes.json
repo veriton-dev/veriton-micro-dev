@@ -1,21 +1,41 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.61",
-  "endpoint_count": 377,
-  "new_in_61": [
-    "modelcard",
-    "guardrail",
-    "evalreport",
-    "toolregistry",
-    "agentroster",
-    "runbook",
-    "promptpolicy"
+  "version": "2026-09-11.62",
+  "package": "1.0.62",
+  "endpoint_count": 384,
+  "new_in_62": [
+    "redteam",
+    "safetycase",
+    "contentfilter",
+    "costmeter",
+    "toolallowlist",
+    "memorypolicy",
+    "sessionaudit"
   ],
+  "pack": "Agent Observability & Safety Pack XII",
+  "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "x402": "https://veriton-x402-proxy.vercel.app/health",
-  "x402_version": "0.1.66",
-  "pack": "Agent Runtime Governance Pack XI",
-  "deploy": "https://veriton-tls-json-6j1odoayi-veriton-dev.vercel.app"
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "x402_version": "0.1.67",
+  "x402_origin": "https://www.veriton-x402.dedyn.io",
+  "examples": {
+    "redteam": "https://veriton-tls-json.vercel.app/api/redteam?url=https://veriton-tls-json.vercel.app/fixtures/redteam.html",
+    "safetycase": "https://veriton-tls-json.vercel.app/api/safetycase?url=https://veriton-tls-json.vercel.app/fixtures/safetycase.html",
+    "contentfilter": "https://veriton-tls-json.vercel.app/api/contentfilter?url=https://veriton-tls-json.vercel.app/fixtures/contentfilter.html",
+    "costmeter": "https://veriton-tls-json.vercel.app/api/costmeter?url=https://veriton-tls-json.vercel.app/fixtures/costmeter.html",
+    "toolallowlist": "https://veriton-tls-json.vercel.app/api/toolallowlist?url=https://veriton-tls-json.vercel.app/fixtures/toolallowlist.html",
+    "memorypolicy": "https://veriton-tls-json.vercel.app/api/memorypolicy?url=https://veriton-tls-json.vercel.app/fixtures/memorypolicy.html",
+    "sessionaudit": "https://veriton-tls-json.vercel.app/api/sessionaudit?url=https://veriton-tls-json.vercel.app/fixtures/sessionaudit.html"
+  },
+  "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=redteam,safetycase,contentfilter,costmeter&url=/fixtures/redteam.html",
+  "shipped": "2026-09-14T02:47:39Z",
+  "verified": {
+    "health_version": "2026-09-11.62",
+    "endpoint_count": 384,
+    "new_ops_http": 200,
+    "grades": "A"
+  }
 }
