@@ -1,18 +1,18 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.65",
-  "package": "1.0.65",
-  "endpoint_count": 405,
-  "new_in_65": [
-    "requesttrace",
-    "spancollect",
-    "logdrain",
-    "metricexport",
-    "alertroute",
-    "errorbudget",
-    "sliindicator"
+  "version": "2026-09-11.66",
+  "package": "1.0.66",
+  "endpoint_count": 412,
+  "new_in_66": [
+    "eventstream",
+    "queuebacklog",
+    "schemaregistry",
+    "cdcchange",
+    "deadletter",
+    "watermarklag",
+    "partitionmap"
   ],
-  "pack": "Observability & Reliability Signals Pack XV",
+  "pack": "Data Pipeline & Event Infrastructure Pack XVI",
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
@@ -20,17 +20,16 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "paid_public": "https://www.veriton-x402.dedyn.io",
-  "x402_version": "0.1.70",
-  "shipped": "2026-09-14T04:46:07Z",
+  "x402_version": "0.1.71",
+  "shipped": "2026-09-14T05:28:12Z",
   "fixtures": {
-    "requesttrace": "https://veriton-tls-json.vercel.app/fixtures/requesttrace.html",
-    "spancollect": "https://veriton-tls-json.vercel.app/fixtures/spancollect.html",
-    "logdrain": "https://veriton-tls-json.vercel.app/fixtures/logdrain.html",
-    "metricexport": "https://veriton-tls-json.vercel.app/fixtures/metricexport.html",
-    "alertroute": "https://veriton-tls-json.vercel.app/fixtures/alertroute.html",
-    "errorbudget": "https://veriton-tls-json.vercel.app/fixtures/errorbudget.html",
-    "sliindicator": "https://veriton-tls-json.vercel.app/fixtures/sliindicator.html"
+    "eventstream": "https://veriton-tls-json.vercel.app/fixtures/eventstream.html",
+    "queuebacklog": "https://veriton-tls-json.vercel.app/fixtures/queuebacklog.html",
+    "schemaregistry": "https://veriton-tls-json.vercel.app/fixtures/schemaregistry.html",
+    "cdcchange": "https://veriton-tls-json.vercel.app/fixtures/cdcchange.html",
+    "deadletter": "https://veriton-tls-json.vercel.app/fixtures/deadletter.html",
+    "watermarklag": "https://veriton-tls-json.vercel.app/fixtures/watermarklag.html",
+    "partitionmap": "https://veriton-tls-json.vercel.app/fixtures/partitionmap.html"
   },
-  "deploy": "https://veriton-tls-json-9gtvi8cjo-veriton-dev.vercel.app",
-  "commit": "60b1abf"
+  "deploy": "https://veriton-tls-json-njmio5oz3-veriton-dev.vercel.app"
 }
