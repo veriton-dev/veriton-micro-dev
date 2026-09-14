@@ -1,43 +1,28 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.63",
-  "package": "1.0.63",
-  "endpoint_count": 391,
-  "new_in_63": [
-    "workflowgraph",
-    "retrybudget",
-    "circuitbreak",
-    "ratequota",
-    "humanhandoff",
-    "sloobjective",
-    "driftmonitor"
+  "version": "2026-09-11.64",
+  "package": "1.0.64",
+  "endpoint_count": 398,
+  "new_in_64": [
+    "featureflag",
+    "canaryrelease",
+    "shadowtraffic",
+    "abexperiment",
+    "killswitch",
+    "rolloutplan",
+    "healthgate"
   ],
-  "pack": "Agent Orchestration & Reliability Pack XIII",
+  "pack": "Progressive Delivery & Runtime Control Pack XIV",
   "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-ea3n0je3f-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-kvnocqd1n-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "paid_public": "https://www.veriton-x402.dedyn.io",
-  "x402_version": "0.1.68",
-  "shipped": "2026-09-14T03:26:54Z",
-  "burst": "veriton-burst-build",
-  "fixtures": {
-    "workflowgraph": "https://veriton-tls-json.vercel.app/api/workflowgraph?url=/fixtures/workflowgraph",
-    "retrybudget": "https://veriton-tls-json.vercel.app/api/retrybudget?url=/fixtures/retrybudget",
-    "circuitbreak": "https://veriton-tls-json.vercel.app/api/circuitbreak?url=/fixtures/circuitbreak",
-    "ratequota": "https://veriton-tls-json.vercel.app/api/ratequota?url=/fixtures/ratequota",
-    "humanhandoff": "https://veriton-tls-json.vercel.app/api/humanhandoff?url=/fixtures/humanhandoff",
-    "sloobjective": "https://veriton-tls-json.vercel.app/api/sloobjective?url=/fixtures/sloobjective",
-    "driftmonitor": "https://veriton-tls-json.vercel.app/api/driftmonitor?url=/fixtures/driftmonitor"
-  },
-  "curl_verified": {
-    "health_version": "2026-09-11.63",
-    "endpoint_count": 391,
-    "fixture_grades": "all A",
-    "batch_multi_op": "all A",
-    "x402_health": "0.1.68"
-  }
+  "x402_version": "0.1.69",
+  "supabase_api_deploys_ids": [86, 87],
+  "shipped_at": "2026-09-14T04:05:00Z",
+  "burst": "veriton-burst-build"
 }
