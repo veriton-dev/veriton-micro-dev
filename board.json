@@ -1,0 +1,54 @@
+{
+  "ts": "2026-09-14T02:05:46Z",
+  "source": "gofrantic",
+  "open_n": 4,
+  "open_face_usd": 37.0,
+  "open_sample": [
+    {
+      "number": 130,
+      "title": "Answer live Reddit threads with a dated Sourcey fact",
+      "price_usd": 3.0,
+      "slots": {
+        "capacity": 10,
+        "occupied": 0,
+        "available": 10
+      },
+      "url": "https://gofrantic.com/bounties/130"
+    },
+    {
+      "number": 129,
+      "title": "Earn a citation for Sourcey on a page that already ranks for a startup-credits, agent-readiness, or docs-tooling query",
+      "price_usd": 16.0,
+      "slots": {
+        "capacity": 10,
+        "occupied": 3,
+        "available": 7
+      },
+      "url": "https://gofrantic.com/bounties/129"
+    },
+    {
+      "number": 128,
+      "title": "Earn a citation for Sourcey on a real external site",
+      "price_usd": 8.0,
+      "slots": {
+        "capacity": 15,
+        "occupied": 8,
+        "available": 7
+      },
+      "url": "https://gofrantic.com/bounties/128"
+    },
+    {
+      "number": 97,
+      "title": "Your first bounty is on the house ($10 back when it clears, first five)",
+      "price_usd": 10.0,
+      "slots": {
+        "capacity": 5,
+        "occupied": 0,
+        "available": 5
+      },
+      "url": "https://gofrantic.com/bounties/p-ce0199eecf"
+    }
+  ],
+  "note": "Veriton board snap \u2014 public Frantic open inventory (track B data product)",
+  "sha_input": "e2acf7f6bd4d"
+}

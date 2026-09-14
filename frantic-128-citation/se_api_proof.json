@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-09-14T02:05:46Z",
+  "answer_id": 95579,
+  "score": 2,
+  "owner": {
+    "account_id": 47043375,
+    "reputation": 21,
+    "user_id": 108856,
+    "user_type": "unregistered",
+    "profile_image": "https://www.gravatar.com/avatar/29d6d5edf19e1778d6bc8e3b36e7191c?s=256&d=identicon&r=PG&f=y&so-version=2",
+    "display_name": "Veriton",
+    "link": "https://softwarerecs.stackexchange.com/users/108856/veriton"
+  },
+  "sourcey_hrefs": [
+    "https://sourcey.com/",
+    "https://sourcey.com/oss",
+    "https://sourcey.com/startup-credits"
+  ],
+  "api_url": "https://api.stackexchange.com/2.3/answers/95579?site=softwarerecs&filter=withbody"
+}

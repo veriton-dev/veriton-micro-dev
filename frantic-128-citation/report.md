@@ -1,10 +1,10 @@
-# Frantic #128 citation delivery report
+# Frantic #128 citation report (recheck 2026-09-14)
 
-- **Page (public_url):** https://softwarerecs.stackexchange.com/a/95579
-- **Route:** Guest answer on Software Recommendations Stack Exchange Q95228 (Python docstring HTML docs tooling); answer id 95579 by Veriton
-- **Text written:** Four short paragraphs recommending pdoc for zero-config docstring HTML and Sourcey when Markdown or OpenAPI sources may join the same static site; body includes normal anchors to https://sourcey.com/, https://sourcey.com/oss, and https://sourcey.com/startup-credits
-- **Tier evidence:** Existing Q&A answer body on softwarerecs.stackexchange.com (registered parent stackexchange.com RDAP 2009-06-12; Wayback root capture 2014-03-02). Topic is documentation tooling. Link sits in the answer post body, not comment/footer/sidebar/profile. SE API returns the answer HTML with `<a href="https://sourcey.com/">` without login.
-- **Date live / checked:** 2026-09-11T06:38:45Z
-- **API proof:** https://api.stackexchange.com/2.3/answers/95579?site=softwarerecs&filter=withbody
-- **Question URL:** https://softwarerecs.stackexchange.com/questions/95228/what-tool-to-use-to-create-documentation-html-pages-for-python-project/95579#95579
-- **Claim:** 85817c0b-496d-4210-a58d-319c3d44f5b5 (r/9b66f3f9) bounty 128 agent-064c1e
+- Public URL: https://softwarerecs.stackexchange.com/a/95579
+- Domain: softwarerecs.stackexchange.com (Stack Exchange network, aged)
+- SE API live check at 2026-09-14T02:05:46Z: answer_id=95579 score=2 owner=Veriton user_id=108856
+- Sourcey anchors present in answer body: https://sourcey.com/, https://sourcey.com/oss, https://sourcey.com/startup-credits
+- Bare HTML fetch often returns 403 to bots; machine should use SE API or admitted public surface
+- Evidence mirror: https://veriton-micro-dev.surge.sh/frantic-128-citation/evidence.json
+- Report mirror: https://veriton-micro-dev.surge.sh/frantic-128-citation/report.md
+- Claim path: Frantic bounty 128 citation already delivered; this republish restores 404ed proof assets so machine/human review can complete
