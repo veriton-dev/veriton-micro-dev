@@ -1,63 +1,27 @@
 {
-  "service": "veriton-agent-probes",
-  "version": "2026-09-11.68",
-  "package": "1.0.68",
-  "endpoint_count": 426,
-  "new_in_68": [
-    "taskgraph",
-    "agentspawn",
-    "messagerouter",
-    "sharedstate",
-    "consensusvote",
-    "toolbroker",
-    "skillchain"
-  ],
-  "pack": "Multi-Agent Orchestration Pack XVIII",
-  "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-j3u4jxzzp-veriton-dev.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.73",
-  "x402_origin": "https://www.veriton-x402.dedyn.io",
-  "examples": {
-    "taskgraph": "https://veriton-tls-json.vercel.app/api/taskgraph?url=https://veriton-tls-json.vercel.app/fixtures/taskgraph.html",
-    "agentspawn": "https://veriton-tls-json.vercel.app/api/agentspawn?url=https://veriton-tls-json.vercel.app/fixtures/agentspawn.html",
-    "messagerouter": "https://veriton-tls-json.vercel.app/api/messagerouter?url=https://veriton-tls-json.vercel.app/fixtures/messagerouter.html",
-    "sharedstate": "https://veriton-tls-json.vercel.app/api/sharedstate?url=https://veriton-tls-json.vercel.app/fixtures/sharedstate.html",
-    "consensusvote": "https://veriton-tls-json.vercel.app/api/consensusvote?url=https://veriton-tls-json.vercel.app/fixtures/consensusvote.html",
-    "toolbroker": "https://veriton-tls-json.vercel.app/api/toolbroker?url=https://veriton-tls-json.vercel.app/fixtures/toolbroker.html",
-    "skillchain": "https://veriton-tls-json.vercel.app/api/skillchain?url=https://veriton-tls-json.vercel.app/fixtures/skillchain.html"
-  },
-  "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=taskgraph,agentspawn,messagerouter,sharedstate,consensusvote,toolbroker,skillchain&url=/fixtures/taskgraph.html",
-  "shipped": "2026-09-14T06:48:52Z",
-  "verified": {
-    "fixture_grades": {
-      "taskgraph": "A",
-      "agentspawn": "A",
-      "messagerouter": "A",
-      "sharedstate": "A",
-      "consensusvote": "A",
-      "toolbroker": "A",
-      "skillchain": "A"
-    },
-    "batch_multi_op": "all_A",
-    "batch_post_json": "all_A timeout_ms=8000",
-    "x402_signals": [
-      "taskgraph_signals",
-      "agentspawn_signals",
-      "messagerouter_signals",
-      "sharedstate_signals",
-      "consensusvote_signals",
-      "toolbroker_signals",
-      "skillchain_signals"
+    "ok": true,
+    "service": "veriton-agent-probes",
+    "version": "2026-09-11.72",
+    "package_version": "1.0.72",
+    "endpoint_count": 454,
+    "pack": "Agent Runtime Ops & Delivery Signals Pack XXII",
+    "new_in_72": [
+        "jobstatus",
+        "readiness",
+        "prommetrics",
+        "apideprecate",
+        "changelog",
+        "sdkclient",
+        "webhooksign"
     ],
-    "tls_catchall": "ok",
-    "supabase_api_deploys": [
-      96,
-      97
-    ]
-  }
+    "base": "https://veriton-tls-json.vercel.app",
+    "health": "https://veriton-tls-json.vercel.app/api/health",
+    "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+    "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+    "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
+    "x402_api": "https://www.veriton-x402.dedyn.io",
+    "x402_proxy": "https://veriton-x402-proxy.vercel.app",
+    "x402_version": "0.1.77",
+    "shipped": "2026-09-14T09:25:00Z",
+    "burst": "veriton-burst-build"
 }
