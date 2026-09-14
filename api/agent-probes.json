@@ -31,7 +31,7 @@
     "partial_timeouts": true,
     "response_bytes_cap": 450000
   },
-  "deploy": "https://veriton-tls-json-6asmgljnm-veriton-dev.vercel.app",
+  "deploy": "https://veriton-tls-json-j8fbnbdbc-veriton-dev.vercel.app",
   "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "pack": "ESG + Vendor Assurance Pack IX",
   "shipped": "2026-09-14T00:55:00Z"
