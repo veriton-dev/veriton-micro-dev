@@ -1,29 +1,13 @@
 <!doctype html>
-<html><head>
-<meta charset="utf-8"/>
-<title>Veriton agent-probes proof</title>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<style>
-body{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-width:900px;margin:2rem auto;padding:0 1rem;line-height:1.45}
-a{color:#0b57d0} code{background:#f4f4f5;padding:.1rem .3rem;border-radius:4px}
-.badge{display:inline-block;background:#111;color:#fff;padding:.15rem .5rem;border-radius:999px;font-size:.85rem}
-ul{padding-left:1.2rem}
-</style>
-</head>
+<html><head><meta charset="utf-8"/><title>veriton-agent-probes proof</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p><span class="badge">2026-09-11.64</span> · 398 endpoints · Pack XIV Progressive Delivery & Runtime Control</p>
-<p>Production: <a href="https://veriton-tls-json.vercel.app">https://veriton-tls-json.vercel.app</a></p>
-<p>JSON: <a href="./agent-probes.json">agent-probes.json</a></p>
-<h2>new_in_64</h2>
+<p>version <b>2026-09-11.65</b> · package 1.0.65 · endpoints 405</p>
+<p>pack: Observability & Reliability Signals Pack XV</p>
+<pre id="j"></pre>
+<script>fetch('agent-probes.json').then(r=>r.json()).then(d=>{document.getElementById('j').textContent=JSON.stringify(d,null,2)})</script>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/featureflag?url=https://veriton-tls-json.vercel.app/fixtures/featureflag.html">featureflag</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/canaryrelease?url=https://veriton-tls-json.vercel.app/fixtures/canaryrelease.html">canaryrelease</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/shadowtraffic?url=https://veriton-tls-json.vercel.app/fixtures/shadowtraffic.html">shadowtraffic</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/abexperiment?url=https://veriton-tls-json.vercel.app/fixtures/abexperiment.html">abexperiment</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/killswitch?url=https://veriton-tls-json.vercel.app/fixtures/killswitch.html">killswitch</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/rolloutplan?url=https://veriton-tls-json.vercel.app/fixtures/rolloutplan.html">rolloutplan</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/healthgate?url=https://veriton-tls-json.vercel.app/fixtures/healthgate.html">healthgate</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/requesttrace?url=/fixtures/requesttrace">requesttrace</a></li><li><a href="https://veriton-tls-json.vercel.app/api/spancollect?url=/fixtures/spancollect">spancollect</a></li><li><a href="https://veriton-tls-json.vercel.app/api/logdrain?url=/fixtures/logdrain">logdrain</a></li><li><a href="https://veriton-tls-json.vercel.app/api/metricexport?url=/fixtures/metricexport">metricexport</a></li><li><a href="https://veriton-tls-json.vercel.app/api/alertroute?url=/fixtures/alertroute">alertroute</a></li><li><a href="https://veriton-tls-json.vercel.app/api/errorbudget?url=/fixtures/errorbudget">errorbudget</a></li><li><a href="https://veriton-tls-json.vercel.app/api/sliindicator?url=/fixtures/sliindicator">sliindicator</a></li>
 </ul>
-<p>x402 paid rail <code>0.1.69</code>: <a href="https://www.veriton-x402.dedyn.io/health">www.veriton-x402.dedyn.io/health</a></p>
+<p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> · <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></p>
 </body></html>

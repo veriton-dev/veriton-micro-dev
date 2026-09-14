@@ -1,28 +1,34 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.64",
-  "package": "1.0.64",
-  "endpoint_count": 398,
-  "new_in_64": [
-    "featureflag",
-    "canaryrelease",
-    "shadowtraffic",
-    "abexperiment",
-    "killswitch",
-    "rolloutplan",
-    "healthgate"
+  "version": "2026-09-11.65",
+  "package": "1.0.65",
+  "endpoint_count": 405,
+  "new_in_65": [
+    "requesttrace",
+    "spancollect",
+    "logdrain",
+    "metricexport",
+    "alertroute",
+    "errorbudget",
+    "sliindicator"
   ],
-  "pack": "Progressive Delivery & Runtime Control Pack XIV",
+  "pack": "Observability & Reliability Signals Pack XV",
   "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-kvnocqd1n-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "paid_public": "https://www.veriton-x402.dedyn.io",
-  "x402_version": "0.1.69",
-  "supabase_api_deploys_ids": [86, 87],
-  "shipped_at": "2026-09-14T04:05:00Z",
-  "burst": "veriton-burst-build"
+  "x402_version": "0.1.70",
+  "shipped": "2026-09-14T04:46:07Z",
+  "fixtures": {
+    "requesttrace": "https://veriton-tls-json.vercel.app/fixtures/requesttrace.html",
+    "spancollect": "https://veriton-tls-json.vercel.app/fixtures/spancollect.html",
+    "logdrain": "https://veriton-tls-json.vercel.app/fixtures/logdrain.html",
+    "metricexport": "https://veriton-tls-json.vercel.app/fixtures/metricexport.html",
+    "alertroute": "https://veriton-tls-json.vercel.app/fixtures/alertroute.html",
+    "errorbudget": "https://veriton-tls-json.vercel.app/fixtures/errorbudget.html",
+    "sliindicator": "https://veriton-tls-json.vercel.app/fixtures/sliindicator.html"
+  }
 }
