@@ -1,41 +1,43 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.62",
-  "package": "1.0.62",
-  "endpoint_count": 384,
-  "new_in_62": [
-    "redteam",
-    "safetycase",
-    "contentfilter",
-    "costmeter",
-    "toolallowlist",
-    "memorypolicy",
-    "sessionaudit"
+  "version": "2026-09-11.63",
+  "package": "1.0.63",
+  "endpoint_count": 391,
+  "new_in_63": [
+    "workflowgraph",
+    "retrybudget",
+    "circuitbreak",
+    "ratequota",
+    "humanhandoff",
+    "sloobjective",
+    "driftmonitor"
   ],
-  "pack": "Agent Observability & Safety Pack XII",
+  "pack": "Agent Orchestration & Reliability Pack XIII",
   "production": "https://veriton-tls-json.vercel.app",
+  "deploy": "https://veriton-tls-json-ea3n0je3f-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.67",
-  "x402_origin": "https://www.veriton-x402.dedyn.io",
-  "examples": {
-    "redteam": "https://veriton-tls-json.vercel.app/api/redteam?url=https://veriton-tls-json.vercel.app/fixtures/redteam.html",
-    "safetycase": "https://veriton-tls-json.vercel.app/api/safetycase?url=https://veriton-tls-json.vercel.app/fixtures/safetycase.html",
-    "contentfilter": "https://veriton-tls-json.vercel.app/api/contentfilter?url=https://veriton-tls-json.vercel.app/fixtures/contentfilter.html",
-    "costmeter": "https://veriton-tls-json.vercel.app/api/costmeter?url=https://veriton-tls-json.vercel.app/fixtures/costmeter.html",
-    "toolallowlist": "https://veriton-tls-json.vercel.app/api/toolallowlist?url=https://veriton-tls-json.vercel.app/fixtures/toolallowlist.html",
-    "memorypolicy": "https://veriton-tls-json.vercel.app/api/memorypolicy?url=https://veriton-tls-json.vercel.app/fixtures/memorypolicy.html",
-    "sessionaudit": "https://veriton-tls-json.vercel.app/api/sessionaudit?url=https://veriton-tls-json.vercel.app/fixtures/sessionaudit.html"
+  "paid_public": "https://www.veriton-x402.dedyn.io",
+  "x402_version": "0.1.68",
+  "shipped": "2026-09-14T03:26:54Z",
+  "burst": "veriton-burst-build",
+  "fixtures": {
+    "workflowgraph": "https://veriton-tls-json.vercel.app/api/workflowgraph?url=/fixtures/workflowgraph",
+    "retrybudget": "https://veriton-tls-json.vercel.app/api/retrybudget?url=/fixtures/retrybudget",
+    "circuitbreak": "https://veriton-tls-json.vercel.app/api/circuitbreak?url=/fixtures/circuitbreak",
+    "ratequota": "https://veriton-tls-json.vercel.app/api/ratequota?url=/fixtures/ratequota",
+    "humanhandoff": "https://veriton-tls-json.vercel.app/api/humanhandoff?url=/fixtures/humanhandoff",
+    "sloobjective": "https://veriton-tls-json.vercel.app/api/sloobjective?url=/fixtures/sloobjective",
+    "driftmonitor": "https://veriton-tls-json.vercel.app/api/driftmonitor?url=/fixtures/driftmonitor"
   },
-  "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=redteam,safetycase,contentfilter,costmeter&url=/fixtures/redteam.html",
-  "shipped": "2026-09-14T02:47:39Z",
-  "verified": {
-    "health_version": "2026-09-11.62",
-    "endpoint_count": 384,
-    "new_ops_http": 200,
-    "grades": "A"
+  "curl_verified": {
+    "health_version": "2026-09-11.63",
+    "endpoint_count": 391,
+    "fixture_grades": "all A",
+    "batch_multi_op": "all A",
+    "x402_health": "0.1.68"
   }
 }

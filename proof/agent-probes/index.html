@@ -1,60 +1,9 @@
-<!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes v62 proof</title>
-<meta name="description" content="Veriton agent-probes 2026-09-11.62 — 384 endpoints, Pack XII">
-<style>body{font-family:system-ui,sans-serif;max-width:820px;margin:2rem auto;padding:0 1rem;line-height:1.45} code,pre{background:#f4f4f5;padding:.15rem .35rem;border-radius:4px} pre{padding:1rem;overflow:auto} a{color:#0b5fff}</style>
-</head><body>
-<h1>veriton-agent-probes <code>2026-09-11.62</code></h1>
-<p><strong>Pack XII</strong> — Agent Observability & Safety · <strong>384</strong> endpoints · x402 <code>0.1.67</code></p>
+<!doctype html><meta charset=utf-8>
+<title>agent-probes proof 2026-09-11.63</title>
+<h1>veriton-agent-probes 2026-09-11.63</h1>
+<p>endpoints=391 pack=Agent Orchestration & Reliability Pack XIII x402=0.1.68</p>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/health">health</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/openapi">openapi</a></li>
-<li><a href="https://veriton-x402-proxy.vercel.app/health">x402 proxy health</a></li>
+<li><a href="agent-probes.json">agent-probes.json</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/health">live health</a></li>
+<li><a href="https://veriton-tls-json.vercel.app/api/catalog">live catalog</a></li>
 </ul>
-<h2>new_in_62</h2>
-<ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/redteam?url=https://veriton-tls-json.vercel.app/fixtures/redteam.html"><code>/api/redteam</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/safetycase?url=https://veriton-tls-json.vercel.app/fixtures/safetycase.html"><code>/api/safetycase</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/contentfilter?url=https://veriton-tls-json.vercel.app/fixtures/contentfilter.html"><code>/api/contentfilter</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/costmeter?url=https://veriton-tls-json.vercel.app/fixtures/costmeter.html"><code>/api/costmeter</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/toolallowlist?url=https://veriton-tls-json.vercel.app/fixtures/toolallowlist.html"><code>/api/toolallowlist</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/memorypolicy?url=https://veriton-tls-json.vercel.app/fixtures/memorypolicy.html"><code>/api/memorypolicy</code></a></li><li><a href="https://veriton-tls-json.vercel.app/api/sessionaudit?url=https://veriton-tls-json.vercel.app/fixtures/sessionaudit.html"><code>/api/sessionaudit</code></a></li>
-</ul>
-<pre>{
-  "service": "veriton-agent-probes",
-  "version": "2026-09-11.62",
-  "package": "1.0.62",
-  "endpoint_count": 384,
-  "new_in_62": [
-    "redteam",
-    "safetycase",
-    "contentfilter",
-    "costmeter",
-    "toolallowlist",
-    "memorypolicy",
-    "sessionaudit"
-  ],
-  "pack": "Agent Observability & Safety Pack XII",
-  "production": "https://veriton-tls-json.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.67",
-  "x402_origin": "https://www.veriton-x402.dedyn.io",
-  "examples": {
-    "redteam": "https://veriton-tls-json.vercel.app/api/redteam?url=https://veriton-tls-json.vercel.app/fixtures/redteam.html",
-    "safetycase": "https://veriton-tls-json.vercel.app/api/safetycase?url=https://veriton-tls-json.vercel.app/fixtures/safetycase.html",
-    "contentfilter": "https://veriton-tls-json.vercel.app/api/contentfilter?url=https://veriton-tls-json.vercel.app/fixtures/contentfilter.html",
-    "costmeter": "https://veriton-tls-json.vercel.app/api/costmeter?url=https://veriton-tls-json.vercel.app/fixtures/costmeter.html",
-    "toolallowlist": "https://veriton-tls-json.vercel.app/api/toolallowlist?url=https://veriton-tls-json.vercel.app/fixtures/toolallowlist.html",
-    "memorypolicy": "https://veriton-tls-json.vercel.app/api/memorypolicy?url=https://veriton-tls-json.vercel.app/fixtures/memorypolicy.html",
-    "sessionaudit": "https://veriton-tls-json.vercel.app/api/sessionaudit?url=https://veriton-tls-json.vercel.app/fixtures/sessionaudit.html"
-  },
-  "batch_multi_op": "https://veriton-tls-json.vercel.app/api/batch?ops=redteam,safetycase,contentfilter,costmeter&url=/fixtures/redteam.html",
-  "shipped": "2026-09-14T02:47:39Z",
-  "verified": {
-    "health_version": "2026-09-11.62",
-    "endpoint_count": 384,
-    "new_ops_http": 200,
-    "grades": "A"
-  }
-}</pre>
-<p>JSON: <a href="./agent-probes.json">agent-probes.json</a></p>
-</body></html>
