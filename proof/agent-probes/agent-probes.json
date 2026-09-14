@@ -1,22 +1,36 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.74",
-  "endpoint_count": 469,
-  "new_in_74": [
-    "loadshed",
-    "backpressure",
-    "gracefuldrain",
-    "trafficshift",
-    "bluegreen",
-    "deployfreeze",
-    "chaosexp"
+  "version": "2026-09-11.75",
+  "x402_version": "0.1.80",
+  "endpoint_count": 475,
+  "pack": "Incident Response & Capacity Ops Pack XXV",
+  "new_in_75": [
+    "incidentsev",
+    "oncallrota",
+    "postmortem",
+    "capacityplan",
+    "dependencygraph",
+    "errorbudgetburn",
+    "maintenancewin"
   ],
-  "pack": "Reliability Traffic Control & Chaos Pack XXIV",
-  "x402": "0.1.79",
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "shipped_at": "2026-09-14T11:25:44Z"
+  "www_x402": "https://www.veriton-x402.dedyn.io",
+  "fixtures": [
+    "https://veriton-tls-json.vercel.app/fixtures/incidentsev.html",
+    "https://veriton-tls-json.vercel.app/fixtures/oncallrota.html",
+    "https://veriton-tls-json.vercel.app/fixtures/postmortem.html",
+    "https://veriton-tls-json.vercel.app/fixtures/capacityplan.html",
+    "https://veriton-tls-json.vercel.app/fixtures/dependencygraph.html",
+    "https://veriton-tls-json.vercel.app/fixtures/errorbudgetburn.html",
+    "https://veriton-tls-json.vercel.app/fixtures/maintenancewin.html"
+  ],
+  "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem,capacityplan,dependencygraph,errorbudgetburn,maintenancewin&url=/fixtures/incidentsev",
+  "shipped_at": "2026-09-14T12:05:44Z",
+  "burst": "veriton-burst-build"
 }
