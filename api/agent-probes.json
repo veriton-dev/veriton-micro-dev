@@ -1,38 +1,21 @@
 {
-  "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.59",
-  "endpoint_count": 363,
-  "package_version": "1.0.59",
-  "new_in_59": [
-    "soc1",
-    "iso14001",
-    "iso45001",
-    "iso22301",
-    "pentest",
-    "vendorrisk",
-    "threatmodel"
+  "version": "2026-09-11.61",
+  "endpoint_count": 377,
+  "new_in_61": [
+    "modelcard",
+    "guardrail",
+    "evalreport",
+    "toolregistry",
+    "agentroster",
+    "runbook",
+    "promptpolicy"
   ],
-  "new_in_58": [
-    "iso9001",
-    "iso42001",
-    "dora",
-    "ciscontrols",
-    "incidentresponse",
-    "businesscontinuity",
-    "disasterrecovery"
-  ],
-  "base": "https://veriton-tls-json.vercel.app",
-  "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.64",
-  "batch": {
-    "get": "https://veriton-tls-json.vercel.app/api/batch?ops=soc1,iso14001,pentest,vendorrisk&url=/fixtures/soc1",
-    "post": "POST /api/batch {\"ops\":[\"soc1\",\"iso14001\",\"pentest\"],\"url\":\"/fixtures/soc1\",\"timeout_ms\":8000}",
-    "partial_timeouts": true,
-    "response_bytes_cap": 450000
-  },
-  "deploy": "https://veriton-tls-json-j8fbnbdbc-veriton-dev.vercel.app",
-  "well_known": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "pack": "ESG + Vendor Assurance Pack IX",
-  "shipped": "2026-09-14T00:55:00Z"
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "x402": "https://veriton-x402-proxy.vercel.app/health",
+  "x402_version": "0.1.66",
+  "pack": "Agent Runtime Governance Pack XI",
+  "deploy": "https://veriton-tls-json-6j1odoayi-veriton-dev.vercel.app"
 }

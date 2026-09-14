@@ -1,22 +1,21 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.60",
-  "endpoint_count": 370,
-  "package": "1.0.60",
-  "pack": "Privacy & Data Governance Pack X",
-  "new_in_60": [
-    "dpia",
-    "dataretention",
-    "breachnotify",
-    "datamap",
-    "zerotrust",
-    "accessreview",
-    "secretsmgmt"
+  "version": "2026-09-11.61",
+  "endpoint_count": 377,
+  "new_in_61": [
+    "modelcard",
+    "guardrail",
+    "evalreport",
+    "toolregistry",
+    "agentroster",
+    "runbook",
+    "promptpolicy"
   ],
-  "base": "https://veriton-tls-json.vercel.app",
-  "x402": "0.1.65",
-  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "paid_origin": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-14T01:25:00Z",
-  "burst": "veriton-burst-build"
+  "health": "https://veriton-tls-json.vercel.app/api/health",
+  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
+  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
+  "x402": "https://veriton-x402-proxy.vercel.app/health",
+  "x402_version": "0.1.66",
+  "pack": "Agent Runtime Governance Pack XI",
+  "deploy": "https://veriton-tls-json-6j1odoayi-veriton-dev.vercel.app"
 }
