@@ -1,29 +1,28 @@
 {
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.70",
-  "package": "1.0.70",
-  "endpoint_count": 440,
-  "new_in_70": [
-    "episodicmem",
-    "semanticmem",
-    "policyguard",
-    "tooltrace",
-    "costbudget",
-    "retrypolicy",
-    "failover"
+  "version": "2026-09-11.71",
+  "package": "1.0.71",
+  "endpoint_count": 447,
+  "new_in_71": [
+    "a2acard",
+    "mcptool",
+    "fnschema",
+    "streamsse",
+    "callbackhook",
+    "resultcache",
+    "tokenmeter"
   ],
-  "pack": "Agent Memory, Policy & Runtime Control Pack XX",
+  "pack": "Agent Interface, Contracts & Delivery Pack XXI",
   "production": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-4q8uat84j-veriton-dev.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.75",
+  "x402_version": "0.1.76",
   "x402_public": "https://www.veriton-x402.dedyn.io",
   "proof_surge": "https://veriton-agent-probes-proof.surge.sh/",
   "proof_gh": "https://veriton-dev.github.io/veriton-micro-dev/proof/agent-probes/",
-  "shipped_at": "2026-09-14T08:08:42Z",
+  "shipped_at": "2026-09-14T08:45:03Z",
   "burst": "veriton-burst-build"
 }
