@@ -1,14 +1,14 @@
 <!doctype html>
 <html><head><meta charset="utf-8"/><title>veriton-agent-probes proof</title>
-<meta name="description" content="Pack XVIII Multi-Agent Orchestration · 2026-09-11.68 · 426 endpoints"/>
+<meta name="description" content="Pack XIX durable execution probes proof"/>
 </head><body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <strong>2026-09-11.68</strong> · endpoints <strong>426</strong> · pack <strong>Multi-Agent Orchestration Pack XVIII</strong></p>
+<p>version 2026-09-11.69 · endpoints 433 · Durable Execution & Coordination Pack XIX</p>
 <ul>
 <li><a href="agent-probes.json">agent-probes.json</a></li>
 <li><a href="https://veriton-tls-json.vercel.app/api/health">production health</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a></li>
-<li><a href="https://www.veriton-x402.dedyn.io/health">x402 health 0.1.73</a></li>
+<li><a href="https://www.veriton-x402.dedyn.io/health">x402 health</a></li>
 </ul>
-<p>new_in_68: taskgraph, agentspawn, messagerouter, sharedstate, consensusvote, toolbroker, skillchain</p>
+<pre id="j"></pre>
+<script>fetch('agent-probes.json').then(r=>r.json()).then(j=>{document.getElementById('j').textContent=JSON.stringify(j,null,2)})</script>
 </body></html>
