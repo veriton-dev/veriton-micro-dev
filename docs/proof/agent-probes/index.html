@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.78</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.80</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.78</b> · x402 <b>0.1.83</b> · endpoints <b>475</b></p>
-<p>HTTP Semantics & Content Negotiation Pack XXVIII</p>
+<p>version <b>2026-09-11.80</b> · x402 <b>0.1.85</b> · endpoints <b>475</b></p>
+<p>HTTP Integrity, Range &amp; Payload Limits Pack XXX</p>
 <ul>
-<li>GET /api/health If-Modified-Since matching Last-Modified → 304</li>
-<li>GET /api/health Accept: text/html → 406 <code>not_acceptable</code></li>
-<li>POST /api/batch Content-Type: text/plain → 415 <code>unsupported_media_type</code></li>
-<li>Discovery headers: X-Content-Type-Options, Referrer-Policy, Link, Access-Control-Max-Age</li>
-<li>GET /api/health If-None-Match matching ETag → 304</li>
+<li>GET /api/health → Content-Digest sha-256</li>
+<li>GET /api/health Range: bytes=0-31 → 206 Content-Range</li>
+<li>GET /api/health Range unsatisfiable → 416 <code>range_not_satisfiable</code></li>
+<li>POST /api/batch Content-Length &gt; 65536 → 413 <code>payload_too_large</code></li>
+<li>GET /api/health Expect: teapot → 417 <code>expectation_failed</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.78",
-  "x402_version": "0.1.83",
+  "version": "2026-09-11.80",
+  "x402_version": "0.1.85",
   "endpoint_count": 475,
-  "pack": "HTTP Semantics &amp; Content Negotiation Pack XXVIII",
-  "etag": "W/&quot;agent-probes-2026-09-11.78&quot;",
+  "pack": "HTTP Integrity, Range &amp; Payload Limits Pack XXX",
+  "etag": "W/&quot;agent-probes-2026-09-11.80&quot;",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-18T08:45:00Z"
+  "shipped_at": "2026-09-18T12:45:00Z"
 }</pre>
 </body></html>
