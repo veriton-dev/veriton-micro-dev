@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.76</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.77</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.76</b> · x402 <b>0.1.81</b> · endpoints <b>475</b></p>
-<p>Discovery Contracts & Batch Error Codes Pack XXVI</p>
+<p>version <b>2026-09-11.77</b> · x402 <b>0.1.82</b> · endpoints <b>475</b></p>
+<p>Discovery Conditional GET & Method Contract Pack XXVII</p>
 <ul>
-<li>GET /api/batch without host/ops → <code>missing_host_or_ops</code></li>
-<li>GET /api/batch?ops=nda without url → <code>missing_url_or_host</code></li>
-<li>POST /api/batch with bad JSON → <code>invalid_json</code></li>
-<li>OpenAPI /api/batch 200/207/400 JSON schemas</li>
-<li>Discovery Cache-Control public, max-age=60</li>
+<li>GET /api/health If-None-Match matching ETag → 304</li>
+<li>PUT /api/health → 405 <code>method_not_allowed</code></li>
+<li>X-Request-Id echoed on discovery + batch</li>
+<li>GET /api/batch without host/ops → problem details <code>missing_host_or_ops</code></li>
+<li>OpenAPI documents 304 + 405</li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,27 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.76",
-  "x402_version": "0.1.81",
+  "version": "2026-09-11.77",
+  "x402_version": "0.1.82",
   "endpoint_count": 475,
-  "pack": "Discovery Contracts & Batch Error Codes Pack XXVI",
-  "quality_in_76": [
-    "batch_error_codes",
-    "batch_openapi_contracts",
-    "discovery_cache_control",
-    "discovery_json_schemas",
-    "invalid_json_400"
-  ],
+  "pack": "Discovery Conditional GET &amp; Method Contract Pack XXVII",
+  "etag": "W/&quot;agent-probes-2026-09-11.77&quot;",
   "production": "https://veriton-tls-json.vercel.app",
-  "health": "https://veriton-tls-json.vercel.app/api/health",
-  "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
-  "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
-  "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops",
-  "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-18T04:50:00Z",
-  "burst": "veriton-burst-build"
+  "shipped_at": "2026-09-18T06:50:00Z"
 }</pre>
 </body></html>
