@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.84</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.85</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.84</b> · x402 <b>0.1.89</b> · endpoints <b>475</b></p>
-<p>HTTP 421 Misdirected, 424 Failed Dependency, 507 Storage, 508 Loop &amp; 511 Net-Auth Pack XXXIV</p>
+<p>version <b>2026-09-11.85</b> · x402 <b>0.1.90</b> · endpoints <b>475</b></p>
+<p>HTTP 402 Payment, 501 Not Implemented, 503 Unavailable, 504 Timeout &amp; 505 HTTP-Version Pack XXXV</p>
 <ul>
-<li>GET /api/health Prefer: return=misdirected → 421 <code>misdirected_request</code></li>
-<li>GET /api/health Prefer: return=failed → 424 <code>failed_dependency</code></li>
-<li>GET /api/health Prefer: return=storage → 507 <code>insufficient_storage</code> Retry-After: 30</li>
-<li>GET /api/health Prefer: return=loop → 508 <code>loop_detected</code> Via</li>
-<li>GET /api/health Prefer: return=netauth → 511 <code>network_authentication_required</code></li>
+<li>GET /api/health Prefer: return=payment → 402 <code>payment_required</code></li>
+<li>GET /api/health Prefer: return=notimplemented → 501 <code>not_implemented</code></li>
+<li>GET /api/health Prefer: return=down → 503 <code>service_unavailable</code> Retry-After: 15</li>
+<li>GET /api/health Prefer: return=timeout → 504 <code>gateway_timeout</code></li>
+<li>GET /api/health Prefer: return=httpversion → 505 <code>http_version_not_supported</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.84",
-  "x402_version": "0.1.89",
+  "version": "2026-09-11.85",
+  "x402_version": "0.1.90",
   "endpoint_count": 475,
-  "pack": "HTTP 421 Misdirected, 424 Failed Dependency, 507 Storage, 508 Loop &amp; 511 Net-Auth Pack XXXIV",
-  "etag": "W/&quot;agent-probes-2026-09-11.84&quot;",
+  "pack": "HTTP 402 Payment, 501 Not Implemented, 503 Unavailable, 504 Timeout &amp; 505 HTTP-Version Pack XXXV",
+  "etag": "W/&quot;agent-probes-2026-09-11.85&quot;",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-18T20:45:00Z"
+  "shipped_at": "2026-09-18T22:45:00Z"
 }</pre>
 </body></html>
