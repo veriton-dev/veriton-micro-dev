@@ -1,16 +1,16 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.82",
-  "x402_version": "0.1.87",
+  "version": "2026-09-11.83",
+  "x402_version": "0.1.88",
   "endpoint_count": 475,
-  "pack": "HTTP 409 Conflict, 429 Retry-After & 410 Gone Pack XXXII",
-  "quality_in_82": [
-    "conflict_409",
-    "too_many_requests_429",
-    "gone_410",
-    "traceparent_echo",
-    "ratelimit_headers"
+  "pack": "HTTP 423 Locked, 425 Too Early, 426 Upgrade, 431 Header Limits & 451 Legal Pack XXXIII",
+  "quality_in_83": [
+    "locked_423",
+    "too_early_425",
+    "upgrade_required_426",
+    "header_too_large_431",
+    "unavailable_legal_451"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -19,11 +19,11 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.82\"",
-  "last_modified": "Fri, 18 Sep 2026 16:45:00 GMT",
-  "conflict_example": "GET /api/health Prefer: return=conflict → 409 conflict",
+  "etag": "W/\"agent-probes-2026-09-11.83\"",
+  "last_modified": "Fri, 18 Sep 2026 18:45:00 GMT",
+  "locked_example": "GET /api/health Prefer: return=locked → 423 locked",
   "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-18T16:45:00Z",
+  "shipped_at": "2026-09-18T18:45:00Z",
   "burst": "veriton-burst-build"
 }

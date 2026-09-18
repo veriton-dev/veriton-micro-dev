@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.82</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.83</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.82</b> · x402 <b>0.1.87</b> · endpoints <b>475</b></p>
-<p>HTTP 409 Conflict, 429 Retry-After &amp; 410 Gone Pack XXXII</p>
+<p>version <b>2026-09-11.83</b> · x402 <b>0.1.88</b> · endpoints <b>475</b></p>
+<p>HTTP 423 Locked, 425 Too Early, 426 Upgrade, 431 Header Limits &amp; 451 Legal Pack XXXIII</p>
 <ul>
-<li>GET /api/health Prefer: return=conflict → 409 <code>conflict</code></li>
-<li>GET /api/health Prefer: return=retry → 429 + Retry-After: 5</li>
-<li>GET /api/health API-Version: 0 → 410 <code>gone</code> + Sunset</li>
-<li>GET /api/health Traceparent → Traceresponse echo</li>
-<li>GET /api/health → RateLimit limit=60 remaining=59 reset=60</li>
+<li>GET /api/health Prefer: return=locked → 423 <code>locked</code> + Lock-Token</li>
+<li>GET /api/health Early-Data: 1 → 425 <code>too_early</code></li>
+<li>GET /api/health Prefer: return=upgrade → 426 <code>upgrade_required</code></li>
+<li>GET /api/health X-Request-Id &gt;256 → 431 <code>header_too_large</code></li>
+<li>GET /api/health Prefer: return=unavailable → 451 <code>unavailable_for_legal_reasons</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.82",
-  "x402_version": "0.1.87",
+  "version": "2026-09-11.83",
+  "x402_version": "0.1.88",
   "endpoint_count": 475,
-  "pack": "HTTP 409 Conflict, 429 Retry-After &amp; 410 Gone Pack XXXII",
-  "etag": "W/&quot;agent-probes-2026-09-11.82&quot;",
+  "pack": "HTTP 423 Locked, 425 Too Early, 426 Upgrade, 431 Header Limits &amp; 451 Legal Pack XXXIII",
+  "etag": "W/&quot;agent-probes-2026-09-11.83&quot;",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-18T16:45:00Z"
+  "shipped_at": "2026-09-18T18:45:00Z"
 }</pre>
 </body></html>
