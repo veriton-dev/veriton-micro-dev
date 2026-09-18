@@ -1,36 +1,33 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.75</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.76</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.75</b> · x402 <b>0.1.80</b> · endpoints <b>475</b></p>
-<p>Incident Response & Capacity Ops Pack XXV</p>
+<p>version <b>2026-09-11.76</b> · x402 <b>0.1.81</b> · endpoints <b>475</b></p>
+<p>Discovery Contracts & Batch Error Codes Pack XXVI</p>
 <ul>
-<li><a href="https://veriton-tls-json.vercel.app/api/incidentsev?url=/fixtures/incidentsev">incidentsev</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/oncallrota?url=/fixtures/oncallrota">oncallrota</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/postmortem?url=/fixtures/postmortem">postmortem</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/capacityplan?url=/fixtures/capacityplan">capacityplan</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/dependencygraph?url=/fixtures/dependencygraph">dependencygraph</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/errorbudgetburn?url=/fixtures/errorbudgetburn">errorbudgetburn</a></li>
-<li><a href="https://veriton-tls-json.vercel.app/api/maintenancewin?url=/fixtures/maintenancewin">maintenancewin</a></li>
+<li>GET /api/batch without host/ops → <code>missing_host_or_ops</code></li>
+<li>GET /api/batch?ops=nda without url → <code>missing_url_or_host</code></li>
+<li>POST /api/batch with bad JSON → <code>invalid_json</code></li>
+<li>OpenAPI /api/batch 200/207/400 JSON schemas</li>
+<li>Discovery Cache-Control public, max-age=60</li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
+<a href="https://veriton-tls-json.vercel.app/api/openapi">openapi</a> ·
 <a href="https://veriton-tls-json.vercel.app/.well-known/x402">.well-known/x402</a></p>
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.75",
-  "x402_version": "0.1.80",
+  "version": "2026-09-11.76",
+  "x402_version": "0.1.81",
   "endpoint_count": 475,
-  "pack": "Incident Response & Capacity Ops Pack XXV",
-  "new_in_75": [
-    "incidentsev",
-    "oncallrota",
-    "postmortem",
-    "capacityplan",
-    "dependencygraph",
-    "errorbudgetburn",
-    "maintenancewin"
+  "pack": "Discovery Contracts & Batch Error Codes Pack XXVI",
+  "quality_in_76": [
+    "batch_error_codes",
+    "batch_openapi_contracts",
+    "discovery_cache_control",
+    "discovery_json_schemas",
+    "invalid_json_400"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -39,17 +36,9 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "fixtures": [
-    "https://veriton-tls-json.vercel.app/fixtures/incidentsev.html",
-    "https://veriton-tls-json.vercel.app/fixtures/oncallrota.html",
-    "https://veriton-tls-json.vercel.app/fixtures/postmortem.html",
-    "https://veriton-tls-json.vercel.app/fixtures/capacityplan.html",
-    "https://veriton-tls-json.vercel.app/fixtures/dependencygraph.html",
-    "https://veriton-tls-json.vercel.app/fixtures/errorbudgetburn.html",
-    "https://veriton-tls-json.vercel.app/fixtures/maintenancewin.html"
-  ],
-  "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem,capacityplan,dependencygraph,errorbudgetburn,maintenancewin&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-14T12:05:44Z",
+  "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops",
+  "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
+  "shipped_at": "2026-09-18T04:50:00Z",
   "burst": "veriton-burst-build"
 }</pre>
 </body></html>
