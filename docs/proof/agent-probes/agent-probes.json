@@ -1,16 +1,16 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.77",
-  "x402_version": "0.1.82",
+  "version": "2026-09-11.78",
+  "x402_version": "0.1.83",
   "endpoint_count": 475,
-  "pack": "Discovery Conditional GET & Method Contract Pack XXVII",
-  "quality_in_77": [
-    "discovery_etag_304",
-    "method_not_allowed_405",
-    "request_id_echo",
-    "problem_details",
-    "openapi_304_405"
+  "pack": "HTTP Semantics & Content Negotiation Pack XXVIII",
+  "quality_in_78": [
+    "last_modified_304",
+    "accept_not_acceptable_406",
+    "unsupported_media_type_415",
+    "security_headers",
+    "link_and_cors_preflight"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -19,9 +19,10 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.77\"",
+  "etag": "W/\"agent-probes-2026-09-11.78\"",
+  "last_modified": "Fri, 18 Sep 2026 08:45:00 GMT",
   "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-18T06:50:00Z",
+  "shipped_at": "2026-09-18T08:45:00Z",
   "burst": "veriton-burst-build"
 }
