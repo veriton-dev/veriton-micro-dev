@@ -1,33 +1,35 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.73",
-  "package_version": "1.0.73",
-  "endpoint_count": 461,
-  "pack": "Agent Edge Runtime & Scaling Signals Pack XXIII",
-  "new_in_73": [
-    "coldstart",
-    "warmpool",
-    "concurrencycap",
-    "queuewait",
-    "autoscalepolicy",
-    "regionpin",
-    "edgecache"
+  "version": "2026-09-11.76",
+  "x402_version": "0.1.81",
+  "endpoint_count": 475,
+  "pack": "Discovery Contracts & Batch Error Codes Pack XXVI",
+  "quality_in_76": [
+    "batch_error_codes",
+    "batch_openapi_contracts",
+    "discovery_cache_control",
+    "discovery_json_schemas",
+    "invalid_json_400"
   ],
-  "base": "https://veriton-tls-json.vercel.app",
-  "deploy": "https://veriton-tls-json-ou2s83xm8-veriton-dev.vercel.app",
-  "inspect": "https://vercel.com/veriton-dev/veriton-tls-json",
+  "new_in_75": [
+    "incidentsev",
+    "oncallrota",
+    "postmortem",
+    "capacityplan",
+    "dependencygraph",
+    "errorbudgetburn",
+    "maintenancewin"
+  ],
+  "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
   "catalog": "https://veriton-tls-json.vercel.app/api/catalog",
   "openapi": "https://veriton-tls-json.vercel.app/api/openapi",
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
-  "x402_api": "https://www.veriton-x402.dedyn.io",
-  "x402_proxy": "https://veriton-x402-proxy.vercel.app",
-  "x402_version": "0.1.78",
-  "supabase_api_deploys_ids": [
-    116,
-    117
-  ],
-  "shipped": "2026-09-14T10:49:40Z",
+  "paid_rail": "https://veriton-x402-proxy.vercel.app",
+  "www_x402": "https://www.veriton-x402.dedyn.io",
+  "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops",
+  "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
+  "shipped_at": "2026-09-18T04:50:00Z",
   "burst": "veriton-burst-build"
 }
