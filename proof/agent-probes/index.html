@@ -5,7 +5,7 @@
 <p>version <b>2026-09-11.82</b> · x402 <b>0.1.87</b> · endpoints <b>475</b></p>
 <p>HTTP 409 Conflict, 429 Retry-After &amp; 410 Gone Pack XXXII</p>
 <ul>
-<li>GET /api/health If-Match + If-None-Match current → 409 <code>conflict</code></li>
+<li>GET /api/health Prefer: return=conflict → 409 <code>conflict</code></li>
 <li>GET /api/health Prefer: return=retry → 429 + Retry-After: 5</li>
 <li>GET /api/health API-Version: 0 → 410 <code>gone</code> + Sunset</li>
 <li>GET /api/health Traceparent → Traceresponse echo</li>

@@ -21,6 +21,7 @@
   "www_x402": "https://www.veriton-x402.dedyn.io",
   "etag": "W/\"agent-probes-2026-09-11.82\"",
   "last_modified": "Fri, 18 Sep 2026 16:45:00 GMT",
+  "conflict_example": "GET /api/health Prefer: return=conflict → 409 conflict",
   "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
   "shipped_at": "2026-09-18T16:45:00Z",
