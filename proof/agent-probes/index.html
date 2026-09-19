@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.92</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.93</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.92</b> · x402 <b>0.1.97</b> · endpoints <b>475</b></p>
-<p>HTTP 218 This is fine, 430 Shopify Header Too Large, 450 Parental Controls, 456 Unrecoverable Error &amp; 498 Invalid Token Pack XLII</p>
+<p>version <b>2026-09-11.93</b> · x402 <b>0.1.98</b> · endpoints <b>475</b></p>
+<p>HTTP 420 Enhance Your Calm, 444 No Response, 460 AWS Client Closed, 494 Nginx Header Too Large &amp; 499 Client Closed Request Pack XLIII</p>
 <ul>
-<li>GET /api/health Prefer: return=fine → 218 <code>this_is_fine</code> Warning 199</li>
-<li>GET /api/health Prefer: return=shopify → 430 <code>shopify_header_too_large</code></li>
-<li>GET /api/health Prefer: return=blocked → 450 <code>blocked_by_parental_controls</code></li>
-<li>GET /api/health Prefer: return=unrecoverable → 456 <code>unrecoverable_error</code></li>
-<li>GET /api/health Prefer: return=invalidtoken → 498 <code>invalid_token</code></li>
+<li>GET /api/health Prefer: return=calm → 420 <code>enhance_your_calm</code></li>
+<li>GET /api/health Prefer: return=noresponse → 444 <code>no_response</code></li>
+<li>GET /api/health Prefer: return=elb → 460 <code>aws_client_closed</code></li>
+<li>GET /api/health Prefer: return=nginxheader → 494 <code>nginx_header_too_large</code></li>
+<li>GET /api/health Prefer: return=clientclosed → 499 <code>client_closed_request</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.92",
-  "x402_version": "0.1.97",
+  "version": "2026-09-11.93",
+  "x402_version": "0.1.98",
   "endpoint_count": 475,
-  "pack": "HTTP 218 This is fine, 430 Shopify Header Too Large, 450 Parental Controls, 456 Unrecoverable Error & 498 Invalid Token Pack XLII",
-  "etag": "W/\"agent-probes-2026-09-11.92\"",
+  "pack": "HTTP 420 Enhance Your Calm, 444 No Response, 460 AWS Client Closed, 494 Nginx Header Too Large & 499 Client Closed Request Pack XLIII",
+  "etag": "W/\"agent-probes-2026-09-11.93\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T12:45:00Z"
+  "shipped_at": "2026-09-19T14:45:00Z"
 }</pre>
 </body></html>
