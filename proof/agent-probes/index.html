@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.86</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.87</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.86</b> · x402 <b>0.1.91</b> · endpoints <b>475</b></p>
-<p>HTTP 401 Unauthorized, 403 Forbidden, 408 Timeout, 414 URI Too Long &amp; 502 Bad Gateway Pack XXXVI</p>
+<p>version <b>2026-09-11.87</b> · x402 <b>0.1.92</b> · endpoints <b>475</b></p>
+<p>HTTP 407 Proxy-Auth, 418 Teapot, 506 Variant, 509 Bandwidth &amp; 510 Not Extended Pack XXXVII</p>
 <ul>
-<li>GET /api/health Prefer: return=unauthorized → 401 <code>unauthorized</code> WWW-Authenticate Bearer</li>
-<li>GET /api/health Prefer: return=forbidden → 403 <code>forbidden</code> reason=agent_not_allowlisted</li>
-<li>GET /api/health Prefer: return=clienttimeout → 408 <code>request_timeout</code> Connection: close</li>
-<li>GET /api/health Prefer: return=uritoolong → 414 <code>uri_too_long</code> limit=2048</li>
-<li>GET /api/health Prefer: return=badgateway → 502 <code>bad_gateway</code> upstream=extract-worker</li>
+<li>GET /api/health Prefer: return=proxyauth → 407 <code>proxy_authentication_required</code> Proxy-Authenticate Bearer</li>
+<li>GET /api/health Prefer: return=teapot → 418 <code>im_a_teapot</code> brew=coffee rfc=2324</li>
+<li>GET /api/health Prefer: return=variant → 506 <code>variant_also_negotiates</code> Alternates</li>
+<li>GET /api/health Prefer: return=bandwidth → 509 <code>bandwidth_limit_exceeded</code> Retry-After: 60</li>
+<li>GET /api/health Prefer: return=notextended → 510 <code>not_extended</code> refused=expect-ct</li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.86",
-  "x402_version": "0.1.91",
+  "version": "2026-09-11.87",
+  "x402_version": "0.1.92",
   "endpoint_count": 475,
-  "pack": "HTTP 401 Unauthorized, 403 Forbidden, 408 Timeout, 414 URI Too Long &amp; 502 Bad Gateway Pack XXXVI",
-  "etag": "W/&quot;agent-probes-2026-09-11.86&quot;",
+  "pack": "HTTP 407 Proxy-Auth, 418 Teapot, 506 Variant, 509 Bandwidth &amp; 510 Not Extended Pack XXXVII",
+  "etag": "W/\"agent-probes-2026-09-11.87\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T00:45:00Z"
+  "shipped_at": "2026-09-19T02:45:00Z"
 }</pre>
 </body></html>
