@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.95</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.96</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.95</b> · x402 <b>0.1.100</b> · endpoints <b>475</b></p>
-<p>HTTP 463 AWS X-Forwarded-For Limit, 464 AWS Incompatible Protocol, 530 Site Frozen, 555 User Defined &amp; 598 Network Read Timeout Pack XLV</p>
+<p>version <b>2026-09-11.96</b> · x402 <b>0.1.101</b> · endpoints <b>475</b></p>
+<p>HTTP 520 Unknown Error, 521 Web Server Down, 522 Connection Timed Out, 523 Origin Unreachable &amp; 529 Site Overloaded Pack XLVI</p>
 <ul>
-<li>GET /api/health Prefer: return=awsfwd → 463 <code>aws_xff_limit</code></li>
-<li>GET /api/health Prefer: return=awsproto → 464 <code>aws_incompatible_protocol</code></li>
-<li>GET /api/health Prefer: return=frozen → 530 <code>site_frozen</code></li>
-<li>GET /api/health Prefer: return=userdefined → 555 <code>user_defined</code></li>
-<li>GET /api/health Prefer: return=readtimeout → 598 <code>network_read_timeout</code></li>
+<li>GET /api/health Prefer: return=cfunknown → 520 <code>unknown_error</code></li>
+<li>GET /api/health Prefer: return=webdown → 521 <code>web_server_down</code></li>
+<li>GET /api/health Prefer: return=cfconnect → 522 <code>connection_timed_out</code></li>
+<li>GET /api/health Prefer: return=unreachable → 523 <code>origin_unreachable</code></li>
+<li>GET /api/health Prefer: return=overloaded → 529 <code>site_overloaded</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.95",
-  "x402_version": "0.1.100",
+  "version": "2026-09-11.96",
+  "x402_version": "0.1.101",
   "endpoint_count": 475,
-  "pack": "HTTP 463 AWS X-Forwarded-For Limit, 464 AWS Incompatible Protocol, 530 Site Frozen, 555 User Defined & 598 Network Read Timeout Pack XLV",
-  "etag": "W/\"agent-probes-2026-09-11.95\"",
+  "pack": "HTTP 520 Unknown Error, 521 Web Server Down, 522 Connection Timed Out, 523 Origin Unreachable & 529 Site Overloaded Pack XLVI",
+  "etag": "W/\"agent-probes-2026-09-11.96\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T18:45:00Z"
+  "shipped_at": "2026-09-19T20:45:00Z"
 }</pre>
 </body></html>
