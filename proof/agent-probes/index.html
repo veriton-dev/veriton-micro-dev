@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.90</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.91</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.90</b> · x402 <b>0.1.95</b> · endpoints <b>475</b></p>
-<p>HTTP 201 Created, 203 Non-Authoritative Information, 205 Reset Content, 207 Multi-Status &amp; 500 Internal Server Error Pack XL</p>
+<p>version <b>2026-09-11.91</b> · x402 <b>0.1.96</b> · endpoints <b>475</b></p>
+<p>HTTP 208 Already Reported, 226 IM Used, 520 Origin Unknown, 522 Connection Timed Out &amp; 526 Invalid SSL Certificate Pack XLI</p>
 <ul>
-<li>GET /api/health Prefer: return=created → 201 <code>created</code> Location /resources/demo-created</li>
-<li>GET /api/health Prefer: return=nonauth → 203 <code>non_authoritative</code></li>
-<li>GET /api/health Prefer: return=reset → 205 <code>reset_content</code></li>
-<li>GET /api/health Prefer: return=multistatus → 207 <code>multi_status</code></li>
-<li>GET /api/health Prefer: return=error → 500 <code>internal_error</code></li>
+<li>GET /api/health Prefer: return=already → 208 <code>already_reported</code> DAV: 1</li>
+<li>GET /api/health Prefer: return=imused → 226 <code>im_used</code> IM: delta</li>
+<li>GET /api/health Prefer: return=unknown → 520 <code>origin_unknown</code></li>
+<li>GET /api/health Prefer: return=connecttimeout → 522 <code>connection_timed_out</code></li>
+<li>GET /api/health Prefer: return=invalidssl → 526 <code>invalid_ssl</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.90",
-  "x402_version": "0.1.95",
+  "version": "2026-09-11.91",
+  "x402_version": "0.1.96",
   "endpoint_count": 475,
-  "pack": "HTTP 201 Created, 203 Non-Authoritative Information, 205 Reset Content, 207 Multi-Status & 500 Internal Server Error Pack XL",
-  "etag": "W/\"agent-probes-2026-09-11.90\"",
+  "pack": "HTTP 208 Already Reported, 226 IM Used, 520 Origin Unknown, 522 Connection Timed Out & 526 Invalid SSL Certificate Pack XLI",
+  "etag": "W/\"agent-probes-2026-09-11.91\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T08:45:00Z"
+  "shipped_at": "2026-09-19T10:45:00Z"
 }</pre>
 </body></html>
