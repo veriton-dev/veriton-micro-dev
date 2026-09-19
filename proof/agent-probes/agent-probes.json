@@ -1,16 +1,16 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.87",
-  "x402_version": "0.1.92",
+  "version": "2026-09-11.88",
+  "x402_version": "0.1.93",
   "endpoint_count": 475,
-  "pack": "HTTP 407 Proxy-Auth, 418 Teapot, 506 Variant, 509 Bandwidth & 510 Not Extended Pack XXXVII",
-  "quality_in_87": [
-    "proxy_auth_407",
-    "teapot_418",
-    "variant_also_negotiates_506",
-    "bandwidth_limit_509",
-    "not_extended_510"
+  "pack": "HTTP 400 Bad Request, 404 Not Found, 411 Length Required, 202 Accepted & 303 See Other Pack XXXVIII",
+  "quality_in_88": [
+    "bad_request_400",
+    "not_found_404",
+    "length_required_411",
+    "accepted_202",
+    "see_other_303"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -19,11 +19,15 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.87\"",
-  "last_modified": "Sat, 19 Sep 2026 02:45:00 GMT",
-  "proxyauth_example": "GET /api/health Prefer: return=proxyauth \u2192 407 proxy_authentication_required Proxy-Authenticate Bearer",
+  "etag": "W/\"agent-probes-2026-09-11.88\"",
+  "last_modified": "Sat, 19 Sep 2026 04:45:00 GMT",
+  "badrequest_example": "GET /api/health Prefer: return=badrequest \u2192 400 bad_request",
+  "notfound_example": "GET /api/health Prefer: return=notfound \u2192 404 not_found",
+  "lengthrequired_example": "GET /api/health Prefer: return=lengthrequired \u2192 411 length_required",
+  "accepted_example": "GET /api/health Prefer: return=accepted \u2192 202 accepted Location /jobs/job_demo_accepted",
+  "seeother_example": "GET /api/health Prefer: return=seeother \u2192 303 see_other Location /api/health",
   "batch_error_example": "GET /api/batch \u2192 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-19T02:45:00Z",
+  "shipped_at": "2026-09-19T04:45:00Z",
   "burst": "veriton-burst-build"
 }
