@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.91</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.92</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.91</b> · x402 <b>0.1.96</b> · endpoints <b>475</b></p>
-<p>HTTP 208 Already Reported, 226 IM Used, 419 Page Expired, 440 Login Time-out &amp; 449 Retry With Pack XLI</p>
+<p>version <b>2026-09-11.92</b> · x402 <b>0.1.97</b> · endpoints <b>475</b></p>
+<p>HTTP 218 This is fine, 430 Shopify Header Too Large, 450 Parental Controls, 456 Unrecoverable Error &amp; 498 Invalid Token Pack XLII</p>
 <ul>
-<li>GET /api/health Prefer: return=already → 208 <code>already_reported</code> DAV: 1</li>
-<li>GET /api/health Prefer: return=imused → 226 <code>im_used</code> IM: delta</li>
-<li>GET /api/health Prefer: return=expired → 419 <code>page_expired</code></li>
-<li>GET /api/health Prefer: return=logintimeout → 440 <code>login_timeout</code></li>
-<li>GET /api/health Prefer: return=retrywith → 449 <code>retry_with</code></li>
+<li>GET /api/health Prefer: return=fine → 218 <code>this_is_fine</code> Warning 199</li>
+<li>GET /api/health Prefer: return=shopify → 430 <code>shopify_header_too_large</code></li>
+<li>GET /api/health Prefer: return=blocked → 450 <code>blocked_by_parental_controls</code></li>
+<li>GET /api/health Prefer: return=unrecoverable → 456 <code>unrecoverable_error</code></li>
+<li>GET /api/health Prefer: return=invalidtoken → 498 <code>invalid_token</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.91",
-  "x402_version": "0.1.96",
+  "version": "2026-09-11.92",
+  "x402_version": "0.1.97",
   "endpoint_count": 475,
-  "pack": "HTTP 208 Already Reported, 226 IM Used, 419 Page Expired, 440 Login Time-out & 449 Retry With Pack XLI",
-  "etag": "W/\"agent-probes-2026-09-11.91\"",
+  "pack": "HTTP 218 This is fine, 430 Shopify Header Too Large, 450 Parental Controls, 456 Unrecoverable Error & 498 Invalid Token Pack XLII",
+  "etag": "W/\"agent-probes-2026-09-11.92\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T10:45:00Z"
+  "shipped_at": "2026-09-19T12:45:00Z"
 }</pre>
 </body></html>
