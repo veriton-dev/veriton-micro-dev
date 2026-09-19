@@ -1,16 +1,16 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.84",
-  "x402_version": "0.1.89",
+  "version": "2026-09-11.86",
+  "x402_version": "0.1.91",
   "endpoint_count": 475,
-  "pack": "HTTP 421 Misdirected, 424 Failed Dependency, 507 Storage, 508 Loop & 511 Net-Auth Pack XXXIV",
-  "quality_in_84": [
-    "misdirected_421",
-    "failed_dependency_424",
-    "insufficient_storage_507",
-    "loop_detected_508",
-    "network_auth_511"
+  "pack": "HTTP 401 Unauthorized, 403 Forbidden, 408 Timeout, 414 URI Too Long & 502 Bad Gateway Pack XXXVI",
+  "quality_in_86": [
+    "unauthorized_401",
+    "forbidden_403",
+    "request_timeout_408",
+    "uri_too_long_414",
+    "bad_gateway_502"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -19,11 +19,11 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.84\"",
-  "last_modified": "Fri, 18 Sep 2026 20:45:00 GMT",
-  "misdirected_example": "GET /api/health Prefer: return=misdirected → 421 misdirected_request",
+  "etag": "W/\"agent-probes-2026-09-11.86\"",
+  "last_modified": "Sat, 19 Sep 2026 00:45:00 GMT",
+  "unauthorized_example": "GET /api/health Prefer: return=unauthorized → 401 unauthorized WWW-Authenticate Bearer",
   "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-18T20:45:00Z",
+  "shipped_at": "2026-09-19T00:45:00Z",
   "burst": "veriton-burst-build"
 }

@@ -1,16 +1,16 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.85",
-  "x402_version": "0.1.90",
+  "version": "2026-09-11.86",
+  "x402_version": "0.1.91",
   "endpoint_count": 475,
-  "pack": "HTTP 402 Payment, 501 Not Implemented, 503 Unavailable, 504 Timeout & 505 HTTP-Version Pack XXXV",
-  "quality_in_85": [
-    "payment_required_402",
-    "not_implemented_501",
-    "service_unavailable_503",
-    "gateway_timeout_504",
-    "http_version_not_supported_505"
+  "pack": "HTTP 401 Unauthorized, 403 Forbidden, 408 Timeout, 414 URI Too Long & 502 Bad Gateway Pack XXXVI",
+  "quality_in_86": [
+    "unauthorized_401",
+    "forbidden_403",
+    "request_timeout_408",
+    "uri_too_long_414",
+    "bad_gateway_502"
   ],
   "production": "https://veriton-tls-json.vercel.app",
   "health": "https://veriton-tls-json.vercel.app/api/health",
@@ -19,11 +19,11 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.85\"",
-  "last_modified": "Fri, 18 Sep 2026 22:45:00 GMT",
-  "payment_example": "GET /api/health Prefer: return=payment → 402 payment_required",
+  "etag": "W/\"agent-probes-2026-09-11.86\"",
+  "last_modified": "Sat, 19 Sep 2026 00:45:00 GMT",
+  "unauthorized_example": "GET /api/health Prefer: return=unauthorized → 401 unauthorized WWW-Authenticate Bearer",
   "batch_error_example": "GET /api/batch → 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-18T22:45:00Z",
+  "shipped_at": "2026-09-19T00:45:00Z",
   "burst": "veriton-burst-build"
 }
