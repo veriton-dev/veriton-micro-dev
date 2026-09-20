@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.104</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.105</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.104</b> · x402 <b>0.1.109</b> · endpoints <b>475</b></p>
-<p>SIP 483 Too Many Hops, SIP 484 Address Incomplete, SIP 485 Ambiguous, SMTP 535 Authentication Failed &amp; SMTP 551 User Not Local Pack LL</p>
+<p>version <b>2026-09-11.105</b> · x402 <b>0.1.110</b> · endpoints <b>475</b></p>
+<p>SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure &amp; SMTP 455 Unable to Accommodate Parameters Pack LM</p>
 <ul>
-<li>GET /api/health Prefer: return=siphops → 483 <code>sip_too_many_hops</code></li>
-<li>GET /api/health Prefer: return=sipaddr → 484 <code>sip_address_incomplete</code></li>
-<li>GET /api/health Prefer: return=sipambig → 485 <code>sip_ambiguous</code></li>
-<li>GET /api/health Prefer: return=badauth → 535 <code>smtp_auth_invalid</code></li>
-<li>GET /api/health Prefer: return=userremote → 551 <code>user_not_local</code></li>
+<li>GET /api/health Prefer: return=siploop → 482 <code>sip_loop_detected</code></li>
+<li>GET /api/health Prefer: return=sipprecond → 580 <code>sip_precondition</code></li>
+<li>GET /api/health Prefer: return=smtpnospace → 452 <code>smtp_insufficient</code></li>
+<li>GET /api/health Prefer: return=tempauth → 454 <code>smtp_temp_auth</code></li>
+<li>GET /api/health Prefer: return=smtpparams → 455 <code>smtp_unable_params</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.104",
-  "x402_version": "0.1.109",
+  "version": "2026-09-11.105",
+  "x402_version": "0.1.110",
   "endpoint_count": 475,
-  "pack": "SIP 483 Too Many Hops, SIP 484 Address Incomplete, SIP 485 Ambiguous, SMTP 535 Authentication Failed & SMTP 551 User Not Local Pack LL",
-  "etag": "W/\"agent-probes-2026-09-11.104\"",
+  "pack": "SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure & SMTP 455 Unable to Accommodate Parameters Pack LM",
+  "etag": "W/\"agent-probes-2026-09-11.105\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T12:45:00Z"
+  "shipped_at": "2026-09-20T14:45:00Z"
 }</pre>
 </body></html>
