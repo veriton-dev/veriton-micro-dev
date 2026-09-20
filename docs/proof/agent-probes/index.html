@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.107</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.108</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.107</b> · x402 <b>0.1.112</b> · endpoints <b>475</b></p>
-<p>SIP 604 Does Not Exist Anywhere, SIP 606 Not Acceptable, SIP 607 Unwanted, SMTP 541 Recipient Address Rejected &amp; SMTP 556 Domain Does Not Accept Mail Pack LO</p>
+<p>version <b>2026-09-11.108</b> · x402 <b>0.1.113</b> · endpoints <b>475</b></p>
+<p>SIP 608 Rejected, SIP 433 Anonymity Disallowed, SIP 436 Bad Identity-Info, SMTP 453 You Have No Mail &amp; SMTP 458 Unable To Queue Pack LP</p>
 <ul>
-<li>GET /api/health Prefer: return=sipnowhere → 604 <code>sip_nowhere</code></li>
-<li>GET /api/health Prefer: return=sipglobalna → 606 <code>sip_global_na</code></li>
-<li>GET /api/health Prefer: return=sipunwanted → 607 <code>sip_unwanted</code></li>
-<li>GET /api/health Prefer: return=rcptreject → 541 <code>smtp_rcpt_rejected</code></li>
-<li>GET /api/health Prefer: return=smtpnodom → 556 <code>smtp_domain_no_mail</code></li>
+<li>GET /api/health Prefer: return=sipreject → 608 <code>sip_rejected</code></li>
+<li>GET /api/health Prefer: return=sipanon → 433 <code>sip_anonymity</code></li>
+<li>GET /api/health Prefer: return=sipidinfo → 436 <code>sip_bad_identity</code></li>
+<li>GET /api/health Prefer: return=smtpnomail → 453 <code>smtp_no_mail</code></li>
+<li>GET /api/health Prefer: return=smtpqueue → 458 <code>smtp_unable_queue</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,11 +18,11 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.107",
-  "x402_version": "0.1.112",
+  "version": "2026-09-11.108",
+  "x402_version": "0.1.113",
   "endpoint_count": 475,
-  "pack": "SIP 604 Does Not Exist Anywhere, SIP 606 Not Acceptable, SIP 607 Unwanted, SMTP 541 Recipient Address Rejected & SMTP 556 Domain Does Not Accept Mail Pack LO",
-  "etag": "W/\"agent-probes-2026-09-11.107\"",
-  "shipped_at": "2026-09-20T18:45:00Z"
+  "pack": "SIP 608 Rejected, SIP 433 Anonymity Disallowed, SIP 436 Bad Identity-Info, SMTP 453 You Have No Mail & SMTP 458 Unable To Queue Pack LP",
+  "etag": "W/\"agent-probes-2026-09-11.108\"",
+  "shipped_at": "2026-09-20T20:45:00Z"
 }</pre>
 </body></html>
