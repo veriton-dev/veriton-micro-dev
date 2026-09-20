@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.105</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.106</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.105</b> · x402 <b>0.1.110</b> · endpoints <b>475</b></p>
-<p>SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure &amp; SMTP 455 Unable to Accommodate Parameters Pack LM</p>
+<p>version <b>2026-09-11.106</b> · x402 <b>0.1.111</b> · endpoints <b>475</b></p>
+<p>SIP 490 Request Updated, SIP 600 Busy Everywhere, SIP 603 Decline, SMTP 534 Authentication Mechanism Too Weak &amp; SMTP 538 Encryption Required Pack LN</p>
 <ul>
-<li>GET /api/health Prefer: return=siploop → 482 <code>sip_loop_detected</code></li>
-<li>GET /api/health Prefer: return=sipprecond → 580 <code>sip_precondition</code></li>
-<li>GET /api/health Prefer: return=smtpnospace → 452 <code>smtp_insufficient</code></li>
-<li>GET /api/health Prefer: return=tempauth → 454 <code>smtp_temp_auth</code></li>
-<li>GET /api/health Prefer: return=smtpparams → 455 <code>smtp_unable_params</code></li>
+<li>GET /api/health Prefer: return=sipupdated → 490 <code>sip_request_updated</code></li>
+<li>GET /api/health Prefer: return=sipallbusy → 600 <code>sip_busy_everywhere</code></li>
+<li>GET /api/health Prefer: return=sipdecline → 603 <code>sip_decline</code></li>
+<li>GET /api/health Prefer: return=authweak → 534 <code>smtp_auth_too_weak</code></li>
+<li>GET /api/health Prefer: return=encryptreq → 538 <code>smtp_encrypt_required</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.105",
-  "x402_version": "0.1.110",
+  "version": "2026-09-11.106",
+  "x402_version": "0.1.111",
   "endpoint_count": 475,
-  "pack": "SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure & SMTP 455 Unable to Accommodate Parameters Pack LM",
-  "etag": "W/\"agent-probes-2026-09-11.105\"",
+  "pack": "SIP 490 Request Updated, SIP 600 Busy Everywhere, SIP 603 Decline, SMTP 534 Authentication Mechanism Too Weak & SMTP 538 Encryption Required Pack LN",
+  "etag": "W/\"agent-probes-2026-09-11.106\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T14:45:00Z"
+  "shipped_at": "2026-09-20T16:45:00Z"
 }</pre>
 </body></html>
