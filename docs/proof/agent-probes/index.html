@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.105</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.107</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.105</b> · x402 <b>0.1.110</b> · endpoints <b>475</b></p>
-<p>SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure &amp; SMTP 455 Unable to Accommodate Parameters Pack LM</p>
+<p>version <b>2026-09-11.107</b> · x402 <b>0.1.112</b> · endpoints <b>475</b></p>
+<p>SIP 604 Does Not Exist Anywhere, SIP 606 Not Acceptable, SIP 607 Unwanted, SMTP 541 Recipient Address Rejected &amp; SMTP 556 Domain Does Not Accept Mail Pack LO</p>
 <ul>
-<li>GET /api/health Prefer: return=siploop → 482 <code>sip_loop_detected</code></li>
-<li>GET /api/health Prefer: return=sipprecond → 580 <code>sip_precondition</code></li>
-<li>GET /api/health Prefer: return=smtpnospace → 452 <code>smtp_insufficient</code></li>
-<li>GET /api/health Prefer: return=tempauth → 454 <code>smtp_temp_auth</code></li>
-<li>GET /api/health Prefer: return=smtpparams → 455 <code>smtp_unable_params</code></li>
+<li>GET /api/health Prefer: return=sipnowhere → 604 <code>sip_nowhere</code></li>
+<li>GET /api/health Prefer: return=sipglobalna → 606 <code>sip_global_na</code></li>
+<li>GET /api/health Prefer: return=sipunwanted → 607 <code>sip_unwanted</code></li>
+<li>GET /api/health Prefer: return=rcptreject → 541 <code>smtp_rcpt_rejected</code></li>
+<li>GET /api/health Prefer: return=smtpnodom → 556 <code>smtp_domain_no_mail</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,11 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.105",
-  "x402_version": "0.1.110",
+  "version": "2026-09-11.107",
+  "x402_version": "0.1.112",
   "endpoint_count": 475,
-  "pack": "SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure & SMTP 455 Unable to Accommodate Parameters Pack LM",
-  "etag": "W/\"agent-probes-2026-09-11.105\"",
-  "production": "https://veriton-tls-json.vercel.app",
-  "paid_rail": "https://veriton-x402-proxy.vercel.app",
-  "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T14:45:00Z"
+  "pack": "SIP 604 Does Not Exist Anywhere, SIP 606 Not Acceptable, SIP 607 Unwanted, SMTP 541 Recipient Address Rejected & SMTP 556 Domain Does Not Accept Mail Pack LO",
+  "etag": "W/\"agent-probes-2026-09-11.107\"",
+  "shipped_at": "2026-09-20T18:45:00Z"
 }</pre>
 </body></html>

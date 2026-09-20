@@ -1,10 +1,24 @@
 {
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.105",
-  "x402_version": "0.1.110",
+  "version": "2026-09-11.107",
+  "x402_version": "0.1.112",
   "endpoint_count": 475,
-  "pack": "SIP 482 Loop Detected, SIP 580 Precondition Failure, SMTP 452 Insufficient Storage, SMTP 454 Temporary Authentication Failure & SMTP 455 Unable to Accommodate Parameters Pack LM",
+  "pack": "SIP 604 Does Not Exist Anywhere, SIP 606 Not Acceptable, SIP 607 Unwanted, SMTP 541 Recipient Address Rejected & SMTP 556 Domain Does Not Accept Mail Pack LO",
+  "quality_in_107": [
+    "sip_nowhere_604",
+    "sip_global_na_606",
+    "sip_unwanted_607",
+    "smtp_rcpt_rejected_541",
+    "smtp_domain_no_mail_556"
+  ],
+  "quality_in_106": [
+    "sip_request_updated_490",
+    "sip_busy_everywhere_600",
+    "sip_decline_603",
+    "smtp_auth_too_weak_534",
+    "smtp_encrypt_required_538"
+  ],
   "quality_in_105": [
     "sip_loop_detected_482",
     "sip_precondition_580",
@@ -54,15 +68,15 @@
   "well_known_x402": "https://veriton-tls-json.vercel.app/.well-known/x402",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "etag": "W/\"agent-probes-2026-09-11.105\"",
-  "last_modified": "Sun, 20 Sep 2026 14:45:00 GMT",
-  "siploop_example": "GET /api/health Prefer: return=siploop \u2192 482 sip_loop_detected",
-  "sipprecond_example": "GET /api/health Prefer: return=sipprecond \u2192 580 sip_precondition",
-  "smtpnospace_example": "GET /api/health Prefer: return=smtpnospace \u2192 452 smtp_insufficient",
-  "tempauth_example": "GET /api/health Prefer: return=tempauth \u2192 454 smtp_temp_auth",
-  "smtpparams_example": "GET /api/health Prefer: return=smtpparams \u2192 455 smtp_unable_params",
+  "etag": "W/\"agent-probes-2026-09-11.107\"",
+  "last_modified": "Sun, 20 Sep 2026 18:45:00 GMT",
+  "sipnowhere_example": "GET /api/health Prefer: return=sipnowhere \u2192 604 sip_nowhere",
+  "sipglobalna_example": "GET /api/health Prefer: return=sipglobalna \u2192 606 sip_global_na",
+  "sipunwanted_example": "GET /api/health Prefer: return=sipunwanted \u2192 607 sip_unwanted",
+  "rcptreject_example": "GET /api/health Prefer: return=rcptreject \u2192 541 smtp_rcpt_rejected",
+  "smtpnodom_example": "GET /api/health Prefer: return=smtpnodom \u2192 556 smtp_domain_no_mail",
   "batch_error_example": "GET /api/batch \u2192 400 code=missing_host_or_ops type=https://veriton-tls-json.vercel.app/problems/missing_host_or_ops",
   "batch_example": "https://veriton-tls-json.vercel.app/api/batch?ops=incidentsev,oncallrota,postmortem&url=/fixtures/incidentsev",
-  "shipped_at": "2026-09-20T14:45:00Z",
+  "shipped_at": "2026-09-20T18:45:00Z",
   "burst": "veriton-burst-build"
 }
