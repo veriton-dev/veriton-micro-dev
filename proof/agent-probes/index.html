@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.102</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.103</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.102</b> · x402 <b>0.1.107</b> · endpoints <b>475</b></p>
-<p>SIP 481 Does Not Exist, SIP 486 Busy Here, SIP 487 Request Terminated, Exchange 550 Mailbox Unavailable &amp; SMTP 554 Transaction Failed Pack LJ</p>
+<p>version <b>2026-09-11.103</b> · x402 <b>0.1.108</b> · endpoints <b>475</b></p>
+<p>SIP 488 Not Acceptable Here, SIP 489 Bad Event, SIP 491 Request Pending, SMTP 552 Exceeded Storage &amp; SMTP 553 Mailbox Name Not Allowed Pack LK</p>
 <ul>
-<li>GET /api/health Prefer: return=sipgone → 481 <code>sip_does_not_exist</code></li>
-<li>GET /api/health Prefer: return=sipbusy → 486 <code>sip_busy</code></li>
-<li>GET /api/health Prefer: return=sipterm → 487 <code>sip_terminated</code></li>
-<li>GET /api/health Prefer: return=mailbox → 550 <code>mailbox_unavailable</code></li>
-<li>GET /api/health Prefer: return=smtpfail → 554 <code>transaction_failed</code></li>
+<li>GET /api/health Prefer: return=sipna → 488 <code>sip_not_acceptable</code></li>
+<li>GET /api/health Prefer: return=sipbadevent → 489 <code>sip_bad_event</code></li>
+<li>GET /api/health Prefer: return=sippending → 491 <code>sip_request_pending</code></li>
+<li>GET /api/health Prefer: return=mailboxfull → 552 <code>mailbox_full</code></li>
+<li>GET /api/health Prefer: return=badmailbox → 553 <code>mailbox_name_not_allowed</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.102",
-  "x402_version": "0.1.107",
+  "version": "2026-09-11.103",
+  "x402_version": "0.1.108",
   "endpoint_count": 475,
-  "pack": "SIP 481 Does Not Exist, SIP 486 Busy Here, SIP 487 Request Terminated, Exchange 550 Mailbox Unavailable & SMTP 554 Transaction Failed Pack LJ",
-  "etag": "W/\"agent-probes-2026-09-11.102\"",
+  "pack": "SIP 488 Not Acceptable Here, SIP 489 Bad Event, SIP 491 Request Pending, SMTP 552 Exceeded Storage & SMTP 553 Mailbox Name Not Allowed Pack LK",
+  "etag": "W/\"agent-probes-2026-09-11.103\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T08:45:00Z"
+  "shipped_at": "2026-09-20T10:45:00Z"
 }</pre>
 </body></html>
