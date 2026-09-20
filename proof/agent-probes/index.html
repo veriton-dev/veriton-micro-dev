@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.100</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.101</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.100</b> · x402 <b>0.1.105</b> · endpoints <b>475</b></p>
-<p>ISA 461 Identity Denied, IIS FastCGI 471, Tengine 493 SSL, SAP 512 Not Updated &amp; Incapsula 540 Timeout Pack L</p>
+<p>version <b>2026-09-11.101</b> · x402 <b>0.1.106</b> · endpoints <b>475</b></p>
+<p>IIS 441 Login Failed, Aliyun 439 Login Timeout, Weibo 477 Not Logged In, cPanel 508 Resource Limit &amp; SIP/Oracle 513 Message Too Large Pack LI</p>
 <ul>
-<li>GET /api/health Prefer: return=identitydenied → 461 <code>identity_denied</code></li>
-<li>GET /api/health Prefer: return=fastcgi → 471 <code>fastcgi_expectation</code></li>
-<li>GET /api/health Prefer: return=tengine → 493 <code>tengine_ssl</code></li>
-<li>GET /api/health Prefer: return=notupdated → 512 <code>not_updated</code></li>
-<li>GET /api/health Prefer: return=incapsula → 540 <code>incapsula_timeout</code></li>
+<li>GET /api/health Prefer: return=loginfailed → 441 <code>iis_login_failed</code></li>
+<li>GET /api/health Prefer: return=aliyuntimeout → 439 <code>aliyun_login_timeout</code></li>
+<li>GET /api/health Prefer: return=weibologin → 477 <code>weibo_not_logged_in</code></li>
+<li>GET /api/health Prefer: return=cpanel → 508 <code>cpanel_resource</code></li>
+<li>GET /api/health Prefer: return=msgtolarge → 513 <code>message_too_large</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,15 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.100",
-  "x402_version": "0.1.105",
+  "version": "2026-09-11.101",
+  "x402_version": "0.1.106",
   "endpoint_count": 475,
-  "pack": "ISA 461 Identity Denied, IIS FastCGI 471, Tengine 493 SSL, SAP 512 Not Updated & Incapsula 540 Timeout Pack L",
-  "etag": "W/\"agent-probes-2026-09-11.100\"",
+  "pack": "IIS 441 Login Failed, Aliyun 439 Login Timeout, Weibo 477 Not Logged In, cPanel 508 Resource Limit & SIP/Oracle 513 Message Too Large Pack LI",
+  "etag": "W/\"agent-probes-2026-09-11.101\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T04:45:00Z"
+  "shipped_at": "2026-09-20T06:45:00Z"
 }</pre>
 </body></html>
-
