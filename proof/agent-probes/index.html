@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.103</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.104</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.103</b> · x402 <b>0.1.108</b> · endpoints <b>475</b></p>
-<p>SIP 488 Not Acceptable Here, SIP 489 Bad Event, SIP 491 Request Pending, SMTP 552 Exceeded Storage &amp; SMTP 553 Mailbox Name Not Allowed Pack LK</p>
+<p>version <b>2026-09-11.104</b> · x402 <b>0.1.109</b> · endpoints <b>475</b></p>
+<p>SIP 483 Too Many Hops, SIP 484 Address Incomplete, SIP 485 Ambiguous, SMTP 535 Authentication Failed &amp; SMTP 551 User Not Local Pack LL</p>
 <ul>
-<li>GET /api/health Prefer: return=sipna → 488 <code>sip_not_acceptable</code></li>
-<li>GET /api/health Prefer: return=sipbadevent → 489 <code>sip_bad_event</code></li>
-<li>GET /api/health Prefer: return=sippending → 491 <code>sip_request_pending</code></li>
-<li>GET /api/health Prefer: return=mailboxfull → 552 <code>mailbox_full</code></li>
-<li>GET /api/health Prefer: return=badmailbox → 553 <code>mailbox_name_not_allowed</code></li>
+<li>GET /api/health Prefer: return=siphops → 483 <code>sip_too_many_hops</code></li>
+<li>GET /api/health Prefer: return=sipaddr → 484 <code>sip_address_incomplete</code></li>
+<li>GET /api/health Prefer: return=sipambig → 485 <code>sip_ambiguous</code></li>
+<li>GET /api/health Prefer: return=badauth → 535 <code>smtp_auth_invalid</code></li>
+<li>GET /api/health Prefer: return=userremote → 551 <code>user_not_local</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.103",
-  "x402_version": "0.1.108",
+  "version": "2026-09-11.104",
+  "x402_version": "0.1.109",
   "endpoint_count": 475,
-  "pack": "SIP 488 Not Acceptable Here, SIP 489 Bad Event, SIP 491 Request Pending, SMTP 552 Exceeded Storage & SMTP 553 Mailbox Name Not Allowed Pack LK",
-  "etag": "W/\"agent-probes-2026-09-11.103\"",
+  "pack": "SIP 483 Too Many Hops, SIP 484 Address Incomplete, SIP 485 Ambiguous, SMTP 535 Authentication Failed & SMTP 551 User Not Local Pack LL",
+  "etag": "W/\"agent-probes-2026-09-11.104\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-20T10:45:00Z"
+  "shipped_at": "2026-09-20T12:45:00Z"
 }</pre>
 </body></html>
