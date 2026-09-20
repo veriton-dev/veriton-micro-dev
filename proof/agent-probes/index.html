@@ -1,15 +1,15 @@
 <!doctype html>
-<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.97</title></head>
+<html><head><meta charset=utf-8><title>agent-probes proof 2026-09-11.98</title></head>
 <body>
 <h1>veriton-agent-probes proof</h1>
-<p>version <b>2026-09-11.97</b> · x402 <b>0.1.102</b> · endpoints <b>475</b></p>
-<p>HTTP 480 Temporarily Unavailable, 524 A Timeout Occurred, 525 SSL Handshake Failed, 526 Invalid SSL Certificate &amp; 527 Railgun Error Pack XLVII</p>
+<p>version <b>2026-09-11.98</b> · x402 <b>0.1.103</b> · endpoints <b>475</b></p>
+<p>HTTP 305 Use Proxy, 306 Unused, 530 Origin DNS Error, Spring 420 Method Failure &amp; Esri 499 Token Required Pack XLVIII</p>
 <ul>
-<li>GET /api/health Prefer: return=cftimeout → 524 <code>timeout_occurred</code></li>
-<li>GET /api/health Prefer: return=cfhandshake → 525 <code>ssl_handshake_failed</code></li>
-<li>GET /api/health Prefer: return=cfinvalid → 526 <code>invalid_ssl_certificate</code></li>
-<li>GET /api/health Prefer: return=railgun → 527 <code>railgun_error</code></li>
-<li>GET /api/health Prefer: return=tempunavail → 480 <code>temporarily_unavailable</code></li>
+<li>GET /api/health Prefer: return=useproxy → 305 <code>use_proxy</code></li>
+<li>GET /api/health Prefer: return=unused → 306 <code>unused</code></li>
+<li>GET /api/health Prefer: return=origindns → 530 <code>origin_dns_error</code></li>
+<li>GET /api/health Prefer: return=methodfailure → 420 <code>method_failure</code></li>
+<li>GET /api/health Prefer: return=tokenrequired → 499 <code>token_required</code></li>
 </ul>
 <p><a href="https://veriton-tls-json.vercel.app/api/health">health</a> ·
 <a href="https://veriton-tls-json.vercel.app/api/catalog">catalog</a> ·
@@ -18,14 +18,14 @@
 <pre>{
   "ok": true,
   "service": "veriton-agent-probes",
-  "version": "2026-09-11.97",
-  "x402_version": "0.1.102",
+  "version": "2026-09-11.98",
+  "x402_version": "0.1.103",
   "endpoint_count": 475,
-  "pack": "HTTP 480 Temporarily Unavailable, 524 A Timeout Occurred, 525 SSL Handshake Failed, 526 Invalid SSL Certificate & 527 Railgun Error Pack XLVII",
-  "etag": "W/\"agent-probes-2026-09-11.97\"",
+  "pack": "HTTP 305 Use Proxy, 306 Unused, 530 Origin DNS Error, Spring 420 Method Failure & Esri 499 Token Required Pack XLVIII",
+  "etag": "W/\"agent-probes-2026-09-11.98\"",
   "production": "https://veriton-tls-json.vercel.app",
   "paid_rail": "https://veriton-x402-proxy.vercel.app",
   "www_x402": "https://www.veriton-x402.dedyn.io",
-  "shipped_at": "2026-09-19T22:45:00Z"
+  "shipped_at": "2026-09-20T00:45:00Z"
 }</pre>
 </body></html>
